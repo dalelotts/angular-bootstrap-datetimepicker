@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" name="Default" comment="Fix issue where the span height is too tall in Hour and minute views.&#10;Fix issues where only 12 hours were displayed in Hour view.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/screenshots/day.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/screenshots/hour.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/screenshots/minute.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/screenshots/month.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/screenshots/year.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/index.html" afterPath="$PROJECT_DIR$/demo/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angular-bootstrap-datetimepicker.iws" />
@@ -21,7 +15,7 @@
     <file path="/bower.json" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373944810273" ignored="false" />
     <file path="/test.conf.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373977282800" ignored="false" />
     <file path="/datetimepicker.spec.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373984976511" ignored="false" />
-    <file path="/README.md" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373993769163" ignored="false" />
+    <file path="/README.md" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373994280961" ignored="false" />
     <file path="/datetimepicker.css" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373991356600" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +161,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="31" selection-start="2927" selection-end="2927" vertical-scroll-proportion="0.24936387">
+            <state line="8" column="77" selection-start="469" selection-end="469" vertical-scroll-proportion="0.34605598">
               <folding />
             </state>
           </provider>
@@ -588,7 +582,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="31" selection-start="2927" selection-end="2927" vertical-scroll-proportion="0.24936387">
+        <state line="8" column="77" selection-start="469" selection-end="469" vertical-scroll-proportion="0.34605598">
           <folding />
         </state>
       </provider>
