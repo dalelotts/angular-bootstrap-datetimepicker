@@ -1,4 +1,6 @@
 lib-cov
+bower_components
+node_modules
 *.seed
 *.log
 *.csv
@@ -12,3 +14,4 @@ logs
 results
 
 npm-debug.log
+
