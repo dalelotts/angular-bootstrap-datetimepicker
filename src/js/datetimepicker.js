@@ -175,12 +175,6 @@ angular.module('ui.bootstrap.datetimepicker', [])
                             result.dayNames.push(moment().day(dayNumber).format('dd'));
                         }
 
-                        // Calculate the number of weeks to add to the date list, assuming 7 days per row.
-                        // this will be 5 or 6 depending on when the number of days in the month and the day of week
-                        // that the month starts.
-                        // Always display 6 weeks, even if it can fit in 5 weeks
-                        var weekCount =  6; //Math.ceil((selectedDate.daysInMonth() + startOfMonth.day()) / 7);
-
                         for (var i = 0; i < 6; i++) {
                             var week = { dates: [] };
                             for (var j = 0; j < 7; j++) {
@@ -216,7 +210,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                             'dates': []
                         };
 
-                        for (var i = 0; i < 12; i++) {
+                        for (var i = 0; i < 24; i++) {
                             var hourMoment = moment.utc(selectedDate).add(i, 'hours');
                             var dateValue = {
                                 'date': hourMoment.valueOf(),
@@ -274,7 +268,6 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
 
                 var headerClickHandler = function (event) {
-                    console.log("headerClickHandler - " + event.data.viewProperty + " - " + event.data.dateProperty);
                     scope.changeView(scope.data[event.data.viewProperty], scope.data[event.data.dateProperty], event);
                     scope.$apply();
                 };
@@ -293,7 +286,6 @@ angular.module('ui.bootstrap.datetimepicker', [])
                         event.stopPropagation();
                         event.preventDefault();
                     }
-                    console.log("changeView - " + viewName + " - " + unixDate);
 
                     if (viewName && unixDate && dataFactory[viewName]) {
                         scope.data = dataFactory[viewName](unixDate)

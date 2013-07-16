@@ -303,8 +303,8 @@ describe('datepicker directive with initial date of 2013-01-22 and startView = "
     it('has `.switch` element with a value of 2013-1-22', function () {
         expect(jQuery('.switch', element).text()).toBe('2013-Jan-22');
     });
-    it('has 12 `.hour` elements', function () {
-        expect(jQuery('.hour', element).length).toBe(12);
+    it('has 24 `.hour` elements', function () {
+        expect(jQuery('.hour', element).length).toBe(24);
     });
     it('has 1 `.active` element with a value of 0:00', function () {
         expect(jQuery('.active', element).text()).toBe('0:00');
@@ -440,7 +440,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", 
         expect(jQuery('.switch', element).text()).toBe('2020-Jan-01');
 
         expect(jQuery('.active', element).length).toBe(1);
-        expect(jQuery('.hour', element).length).toBe(12);
+        expect(jQuery('.hour', element).length).toBe(24);
 
         var selectedElement = jQuery(jQuery('.hour', element)[3]);
         selectedElement.trigger('click');

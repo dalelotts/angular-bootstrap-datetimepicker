@@ -267,7 +267,7 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-.datetimepicker .datetimepicker-hours span {
+.datetimepicker span.hour {
   height: 26px;
   line-height: 26px;
 }
@@ -280,7 +280,7 @@
   margin-bottom: inherit;
   line-height: 30px;
 }
-.datetimepicker .datetimepicker-minutes span {
+.datetimepicker span.minute {
   height: 26px;
   line-height: 26px;
 }
