@@ -13,7 +13,9 @@
     "grunt-karma": "~0.4.3",
     "matchdep": "~0.1.1"
   },
-  "scripts": {},
+  "scripts": {
+      "test": "grunt --verbose"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/dalelotts/angular-bootstrap-datetimepicker.git"
