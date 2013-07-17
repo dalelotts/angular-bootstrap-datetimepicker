@@ -25,21 +25,27 @@ Requires:
 #Testing
 We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use grunt:
 
+```html
 npm install -g grunt-cli npm install bower install grunt
+```
 
 The karma task will try to open Chrome as a browser in which to run the tests. Make sure this is available or change the configuration in test\test.config.js
 
 #Usage
 We use bower for dependency management. Add
 
+```json
 dependencies: {
     "angular-bootstrap-datetimepicker": "latest"
 }
+```
+
 To your bower.json file. Then run
 
 ```html
 bower install
 ```
+
 This will copy the angular-bootstrap-datetimepicker files into your components folder, along with its dependencies.
 
 Add the css:
@@ -67,7 +73,7 @@ var myAppModule = angular.module('MyApp', ['angular.bootstrap.datetimepicker'])
 Apply the directive to your form elements:
 
 ```html
-<datetimepicker ></datetimepicker>
+<datetimepicker data-ng-model="data.date"></datetimepicker>
 ```
 
 ## Options
@@ -202,3 +208,7 @@ If the hour view is the minView, the date will be set to the beginning of the ho
 This view allows the user to select a specific time of day, in the selected hour.
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
+
+# Idea Project Directory
+
+The .idea directory holds the IntelliJ Idea project files for this project. If you use Idea, just open the project with Idea.
