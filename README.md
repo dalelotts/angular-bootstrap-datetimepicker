@@ -1,4 +1,4 @@
-# Project : angular-bootstrap-datetimepicker
+# Angular bootstrap date & time picker
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap
