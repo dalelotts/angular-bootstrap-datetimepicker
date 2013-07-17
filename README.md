@@ -40,17 +40,20 @@ To your bower.json file. Then run
 ```html
 bower install
 ```
-This will copy the ui-date files into your components folder, along with its dependencies.
+This will copy the angular-bootstrap-datetimepicker files into your components folder, along with its dependencies.
 
 Add the css:
 
 ```html
+<link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
 <link rel="stylesheet" href="components/angular-bootstrap-datetimepicker/css/datetimepicker.css"/>
 ```
 
 Load the script files in your application:
 ```html
 <script type="text/javascript" src="components/jquery/jquery.js"></script>
+<script type="text/javascript" src="components/moment/moment.js"></script>
+<script type="text/javascript" src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
 <script type="text/javascript" src="components/angular/angular.js"></script>
 <script type="text/javascript" src="components/angular-bootstrap-datetimepicker/js/datetimepicker.js"></script>
 ```
@@ -71,14 +74,14 @@ Apply the directive to your form elements:
 
 ### startView
 
-String.  Default: 'month'
+String.  Default: 'day'
 
 The view that the datetimepicker should show when it is opened.
 Accepts values of :
  * 'minute' for the minute view
  * 'hour' for the hour view
- * 'day' for the day view
- * 'month' for the 12-month view (the default)
+ * 'day' for the day view (the default)
+ * 'month' for the 12-month view
  * 'year' for the 10-year overview. Useful for date-of-birth datetimepickers.
 
 ### minView
@@ -92,6 +95,18 @@ The lowest view that the datetimepicker should show.
 Number.  Default: 5
 
 The increment used to build the hour view. A button is created for each <code>minuteStep</code> minutes.
+
+## Working with ng-model
+The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
+
+This directive also plays nicely with validation directives such as ng-required.
+
+The angular-bootstrap-datetimepicker directive stores and expects the model value to be a standard javascript Date object.
+
+## ng-required directive
+If you apply the required directive to element then the form element is invalid until a date is picked.
+
+Note: Remember that the ng-required directive must be explicitly set, i.e. to "true".
 
 ## Examples
 
@@ -166,7 +181,7 @@ If the year view is the minView, the date will be set to midnight on the first d
 This view allows the user to select the month in the selected year.
 If the month view is the minView, the date will be set to midnight on the first day of the month.
 
-## Day view
+## Day view (Default)
 
 ![Datetimepicker day view](https://raw.github.com/dalelotts/angular-bootstrap-datetimepicker/master/screenshots/day.png)
 

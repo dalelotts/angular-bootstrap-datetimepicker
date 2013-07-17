@@ -26,7 +26,7 @@
 
 angular.module('ui.bootstrap.datetimepicker', [])
     .constant('dateTimePickerConfig', {
-        startView: 'year',
+        startView: 'day',
         minView: 'minute',
         minuteStep: 5,
         dropdownSelector: null

@@ -5,8 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/datetimepicker.js" afterPath="$PROJECT_DIR$/src/js/datetimepicker.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/datetimepicker.spec.js" afterPath="$PROJECT_DIR$/test/datetimepicker.spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/index.html" afterPath="$PROJECT_DIR$/demo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="angular-bootstrap-datetimepicker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -17,8 +15,8 @@
     <file path="/datetimepicker.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373986059532" ignored="false" />
     <file path="/bower.json" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373944810273" ignored="false" />
     <file path="/test.conf.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373977282800" ignored="false" />
-    <file path="/datetimepicker.spec.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373984976511" ignored="false" />
-    <file path="/README.md" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374012858927" ignored="false" />
+    <file path="/datetimepicker.spec.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374021499665" ignored="false" />
+    <file path="/README.md" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374021179812" ignored="false" />
     <file path="/datetimepicker.css" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373991356600" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +81,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="24" selection-start="2036" selection-end="2117" vertical-scroll-proportion="-12.423077">
+            <state line="41" column="24" selection-start="2036" selection-end="2082" vertical-scroll-proportion="-12.153846">
               <folding />
             </state>
           </provider>
@@ -92,8 +90,17 @@
       <file leaf-file-name="datetimepicker.spec.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/datetimepicker.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="111" selection-start="656" selection-end="656" vertical-scroll-proportion="0.5338164">
-              <folding />
+            <state line="368" column="94" selection-start="19118" selection-end="19118" vertical-scroll-proportion="0.32647815">
+              <folding>
+                <element signature="e#13257#14104#0" expanded="false" />
+                <element signature="e#14206#15279#0" expanded="false" />
+                <element signature="e#15382#16240#0" expanded="false" />
+                <element signature="e#16345#17219#0" expanded="false" />
+                <element signature="e#17329#18695#0" expanded="false" />
+                <element signature="e#19806#20815#0" expanded="false" />
+                <element signature="e#20942#22005#0" expanded="false" />
+                <element signature="e#22150#23235#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,7 +108,16 @@
       <file leaf-file-name="datetimepicker.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/datetimepicker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="132" selection-start="7390" selection-end="7390" vertical-scroll-proportion="0.0">
+            <state line="28" column="23" selection-start="1109" selection-end="1109" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="94" column="16" selection-start="3108" selection-end="3115" vertical-scroll-proportion="-5.16">
               <folding />
             </state>
           </provider>
@@ -134,9 +150,9 @@
         <option value="$PROJECT_DIR$/src/css/datetimepicker.css" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/demo/index.html" />
+        <option value="$PROJECT_DIR$/src/js/datetimepicker.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/datetimepicker.spec.js" />
-        <option value="$PROJECT_DIR$/src/js/datetimepicker.js" />
       </list>
     </option>
   </component>
@@ -257,6 +273,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -341,9 +389,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="2" width="1600" height="868" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36107194" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36107194" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -486,13 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="115" selection-start="892" selection-end="892" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/esprima/test/compare.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="9" selection-start="1896" selection-end="1896" vertical-scroll-proportion="0.039812647">
@@ -514,20 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/datetimepicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="132" selection-start="7390" selection-end="7390" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="24" selection-start="2036" selection-end="2117" vertical-scroll-proportion="-12.423077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="18" selection-start="294" selection-end="294" vertical-scroll-proportion="0.1521197">
@@ -535,10 +562,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/datetimepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="23" selection-start="1109" selection-end="1109" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="16" selection-start="3108" selection-end="3115" vertical-scroll-proportion="-5.16">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="24" selection-start="2036" selection-end="2082" vertical-scroll-proportion="-12.153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/datetimepicker.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="111" selection-start="656" selection-end="656" vertical-scroll-proportion="0.5338164">
-          <folding />
+        <state line="368" column="94" selection-start="19118" selection-end="19118" vertical-scroll-proportion="0.32647815">
+          <folding>
+            <element signature="e#13257#14104#0" expanded="false" />
+            <element signature="e#14206#15279#0" expanded="false" />
+            <element signature="e#15382#16240#0" expanded="false" />
+            <element signature="e#16345#17219#0" expanded="false" />
+            <element signature="e#17329#18695#0" expanded="false" />
+            <element signature="e#19806#20815#0" expanded="false" />
+            <element signature="e#20942#22005#0" expanded="false" />
+            <element signature="e#22150#23235#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

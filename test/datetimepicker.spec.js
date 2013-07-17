@@ -5,7 +5,7 @@ describe('datepicker directive with empty initial state', function () {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $rootScope.date = null;
-        element = $compile('<datetimepicker data-ng-model="date" ></datetimepicker>')($rootScope);
+        element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'year\' }"></datetimepicker>')($rootScope);
         $rootScope.$digest();
     }));
 
@@ -359,7 +359,6 @@ describe('datepicker directive with initial date of 2013-01-22 1:15 and startVie
         expect($rootScope.date).toEqual(moment.utc("2013-01-22T01:00:00.000Z").toDate());
     });
 });
-
 describe('datepicker directive with no initial date, minView="year"', function () {
     var $rootScope, element;
     beforeEach(module('ui.bootstrap.datetimepicker'));
@@ -367,7 +366,7 @@ describe('datepicker directive with no initial date, minView="year"', function (
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $rootScope.date = null;
-        element = $compile('<datetimepicker data-datetimepicker-config="{ minView: \'year\' }" data-ng-model="date"></datetimepicker>')($rootScope);
+        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" data-ng-model="date"></datetimepicker>')($rootScope);
         $rootScope.$digest();
     }));
     it('clicking the `.future` element will set the date value to 2020-01-01T00:00:00.000Z"', function () {
@@ -380,7 +379,6 @@ describe('datepicker directive with no initial date, minView="year"', function (
         expect($rootScope.date).toEqual(moment.utc("2020-01-01T00:00:00.000Z").toDate());
     });
 });
-
 describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", startView="month" minView="month"', function () {
     var $rootScope, element;
     beforeEach(module('ui.bootstrap.datetimepicker'));
