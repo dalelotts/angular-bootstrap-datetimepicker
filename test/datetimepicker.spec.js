@@ -5,7 +5,7 @@ describe('datepicker directive with empty initial state', function () {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $rootScope.date = null;
-        element = $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
+        element = $compile('<datetimepicker data-ng-model="date" ></datetimepicker>')($rootScope);
         $rootScope.$digest();
     }));
 

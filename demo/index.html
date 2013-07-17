@@ -21,26 +21,25 @@
     <script type="text/javascript" src="src/js/datetimepicker.js"></script>
 </head>
 <body ng-app="ui.bootstrap.datetimepicker">
-<p>Selected Date: {{ data.date | date }}</p>
+<p>Selected Date: {{ data.date | date:'yyyy-MM-dd HH:mm' }}</p>
 <datetimepicker data-ng-model="data.date" ></datetimepicker>
 <div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
         Click here to show calendar
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+        <datetimepicker data-ng-model="data.date"></datetimepicker>
     </ul>
 </div>
 <div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
         <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
                 class="icon-calendar"></i></span>
         </div>
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
         <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+                        data-datetimepicker-config="{ startView: 'day', dropdownSelector: '#dropdown2' }"></datetimepicker>
     </ul>
 </div>
 </body>

@@ -13,6 +13,143 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap
 This project started as an AngularJS specific re-write of the [bootstrap-datetimepicker project](https://github.com/smalot/bootstrap-datetimepicker).
 Only the CSS file from the bootstrap-datetimepicker project was re-used.
 
+#Dependencies
+
+Requires:
+ * AngularJS 1.1.3 or higher (1.0.x will not work)
+ * jQuery for selector functionality not supported by jQuery lite that comes with Angular
+ * moment.js for date parsing and formatting
+ * bootstrap's dropdown component (`dropdowns.less`)
+ * bootstrap's sprites (`sprites.less` and associated images) for arrows
+
+#Testing
+We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use grunt:
+
+npm install -g grunt-cli npm install bower install grunt
+
+The karma task will try to open Chrome as a browser in which to run the tests. Make sure this is available or change the configuration in test\test.config.js
+
+#Usage
+We use bower for dependency management. Add
+
+dependencies: {
+    "angular-bootstrap-datetimepicker": "latest"
+}
+To your bower.json file. Then run
+
+```html
+bower install
+```
+This will copy the ui-date files into your components folder, along with its dependencies.
+
+Add the css:
+
+```html
+<link rel="stylesheet" href="components/angular-bootstrap-datetimepicker/css/datetimepicker.css"/>
+```
+
+Load the script files in your application:
+```html
+<script type="text/javascript" src="components/jquery/jquery.js"></script>
+<script type="text/javascript" src="components/angular/angular.js"></script>
+<script type="text/javascript" src="components/angular-bootstrap-datetimepicker/js/datetimepicker.js"></script>
+```
+
+Add the date module as a dependency to your application module:
+
+```html
+var myAppModule = angular.module('MyApp', ['angular.bootstrap.datetimepicker'])
+```
+
+Apply the directive to your form elements:
+
+```html
+<datetimepicker ></datetimepicker>
+```
+
+## Options
+
+### startView
+
+String.  Default: 'month'
+
+The view that the datetimepicker should show when it is opened.
+Accepts values of :
+ * 'minute' for the minute view
+ * 'hour' for the hour view
+ * 'day' for the day view
+ * 'month' for the 12-month view (the default)
+ * 'year' for the 10-year overview. Useful for date-of-birth datetimepickers.
+
+### minView
+
+String. 'minute'
+
+The lowest view that the datetimepicker should show.
+
+### minuteStep
+
+Number.  Default: 5
+
+The increment used to build the hour view. A button is created for each <code>minuteStep</code> minutes.
+
+## Examples
+
+### Inline component.
+
+```html
+<datetimepicker data-ng-model="data.date" ></datetimepicker>
+```
+### Inline component with data bound to the page with the format specified via date filter:
+
+```html
+<datetimepicker data-ng-model="data.date" ></datetimepicker>
+```
+```
+<p>Selected Date: {{ data.date | date:'yyyy-MM-dd HH:mm' }}</p>
+```
+
+Display formatting of the date field is controlled by Angular filters.
+
+### As a drop-down:
+
+```html
+<div class="dropdown">
+    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+        Click here to show calendar
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <datetimepicker data-ng-model="data.date"
+                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+    </ul>
+</div>
+```
+In this example, the drop-down functionality is controlled by Twitter Bootstrap.
+The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
+the drop-down is toggled closed after the user selectes a date/time.
+
+### Drop-down component with associated input box.
+```html
+<div class="dropdown">
+    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+        <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
+                class="icon-calendar"></i></span>
+        </div>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <datetimepicker data-ng-model="data.date"
+                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+    </ul>
+</div>
+```
+In this example, the drop-down functionality is controlled by Twitter Bootstrap.
+The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
+the drop-down is toggled closed after the user selectes a date/time.
+
+## I18N
+
+All internationalization is handled by Moment.js, see Moment's documention for details.
+
 # Screenshots
 
 ## Year view
@@ -50,104 +187,3 @@ If the hour view is the minView, the date will be set to the beginning of the ho
 This view allows the user to select a specific time of day, in the selected hour.
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
-
-
-# Example
-
-Attached to a field with the format specified via options:
-
-```html
-<datetimepicker data-ng-model="data.date" ></datetimepicker>
-```
-<p>Selected Date: {{ data.date | date }}</p>
-```
-
-Formatting of the date field is controlled by Angular filters.
-Attached to a field with the format specified via markup:
-
-```html
-<input type="text" value="2012-05-15 21:05" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
-```
-```javascript
-$('#datetimepicker').datetimepicker();
-```
-
-As a drop-down:
-
-```html
-<div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
-        Click here to show calendar
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
-    </ul>
-</div>
-```
-In this example, the drop-down functionality is controlled by Twitter Bootstrap.
-The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
-the drop-down is toggled closed after the user selectes a date/time.
-
-
-## Dependencies
-
-Requires:
- * jQuery for selector functionality not supported by jQuery lite that comes with Angular
- * moment.js for date parsing and formatting
- * bootstrap's dropdown component (`dropdowns.less`)
- * bootstrap's sprites (`sprites.less` and associated images) for arrows
-
-
-## Options
-
-### startView
-
-String.  Default: 'month'
-
-The view that the datetimepicker should show when it is opened.
-Accepts values of :
- * 'minute' for the minute view
- * 'hour' for the hour view
- * 'day' for the day view
- * 'month' for the 12-month view (the default)
- * 'year' for the 10-year overview. Useful for date-of-birth datetimepickers.
-
-### minView
-
-String. 'minute'
-
-The lowest view that the datetimepicker should show.
-
-### minuteStep
-
-Number.  Default: 5
-
-The increment used to build the hour view. A button is created for each <code>minuteStep</code> minutes.
-
-## Markup
-
-Inline component.
-
-```html
-<datetimepicker data-ng-model="data.date" ></datetimepicker>
-```
-
-Drop-down component with associated input box.
-```html
-<div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
-        <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
-                class="icon-calendar"></i></span>
-        </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
-    </ul>
-</div>
-```
-
-## I18N
-
-All internationalization is handled by Moment.js, see Moment's documention for details.

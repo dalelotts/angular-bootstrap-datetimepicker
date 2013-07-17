@@ -186,7 +186,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                                     'past': monthMoment.isBefore(startOfMonth),
                                     'future': monthMoment.isAfter(endOfMonth)
                                 };
-                                week.dates.push(dateValue)
+                                week.dates.push(dateValue);
                             }
                             result.weeks.push(week);
                         }
@@ -260,9 +260,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
                         // scope.changeView(scope.data.currentView, unixDate)
                         scope.ngModel = moment.utc(unixDate).toDate();
                         if (configuration.dropdownSelector) {
-                            jQuery(configuration.dropdownSelector).dropdown('toggle')
+                            jQuery(configuration.dropdownSelector).dropdown('toggle');
                         }
-                        return dataFactory[scope.data.currentView](unixDate)
+                        return dataFactory[scope.data.currentView](unixDate);
                     }
                 };
 
@@ -278,7 +278,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 $('.right', element).on('click', { viewProperty: 'currentView', dateProperty: 'rightDate'}, headerClickHandler);
 
                 scope.$watch('ngModel', function (newValue) {
-                    scope.changeView(scope.data.currentView, moment.utc(newValue || new Date()).valueOf())
+                    scope.changeView(scope.data.currentView, moment.utc(newValue || new Date()).valueOf());
                 });
 
                 scope.changeView = function (viewName, unixDate, event) {
@@ -288,11 +288,11 @@ angular.module('ui.bootstrap.datetimepicker', [])
                     }
 
                     if (viewName && unixDate && dataFactory[viewName]) {
-                        scope.data = dataFactory[viewName](unixDate)
+                        scope.data = dataFactory[viewName](unixDate);
                     }
                 };
 
-                scope.changeView(configuration.startView, moment.utc(scope.ngModel || new Date()).valueOf())
+                scope.changeView(configuration.startView, moment.utc(scope.ngModel || new Date()).valueOf());
             }
-        }
+        };
     }]);
