@@ -2,9 +2,7 @@ module.exports = function (grunt) {
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    /*grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-*/
+
     // Default task.
     grunt.registerTask('default', ['jshint', 'karma']);
 
@@ -37,5 +35,4 @@ module.exports = function (grunt) {
             }
         }
     });
-
 };
