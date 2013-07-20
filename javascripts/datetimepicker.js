@@ -1,3 +1,6 @@
+/*globals angular, moment, jQuery */
+/*jslint vars:true */
+
 /**
  CONTENTS PROPRIETARY AND CONFIDENTIAL
 
@@ -84,25 +87,25 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
                 var dataFactory = {
                     year: function (unixDate) {
-                        var selectedDate = moment(unixDate).startOf('year');
+                        var selectedDate = moment.utc(unixDate).startOf('year');
                         // View starts one year before the decade starts and ends one year after the decade ends
                         // i.e. passing in a date of 1/1/2013 will give a range of 2009 to 2020
                         // Truncate the last digit from the current year and subtract 1 to get the start of the decade
                         var startDecade = (parseInt(selectedDate.year() / 10, 10) * 10);
-                        var startDate = moment(selectedDate).year(startDecade - 1).startOf('year');
+                        var startDate = moment.utc(selectedDate).year(startDecade - 1).startOf('year');
                         var activeYear = scope.ngModel ? moment(scope.ngModel).year() : 0;
 
                         var result = {
                             'currentView': 'year',
                             'nextView': configuration.minView === 'year' ? 'setTime' : 'month',
                             'title': startDecade + '-' + (startDecade + 9),
-                            'leftDate': moment(startDate).subtract(9, 'year').valueOf(),
-                            'rightDate': moment(startDate).add(11, 'year').valueOf(),
+                            'leftDate': moment.utc(startDate).subtract(9, 'year').valueOf(),
+                            'rightDate': moment.utc(startDate).add(11, 'year').valueOf(),
                             'dates': []
                         };
 
                         for (var i = 0; i < 12; i++) {
-                            var yearMoment = moment(startDate).add(i, 'years');
+                            var yearMoment = moment.utc(startDate).add(i, 'years');
                             var dateValue = {
                                 'date': yearMoment.valueOf(),
                                 'display': yearMoment.format('YYYY'),
@@ -119,7 +122,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
                     month: function (unixDate) {
 
-                        var startDate = moment(unixDate).startOf('year');
+                        var startDate = moment.utc(unixDate).startOf('year');
 
                         var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM') : 0;
 
@@ -129,13 +132,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
                             'nextView': configuration.minView === 'month' ? 'setTime' : 'day',
                             'currentDate': startDate.valueOf(),
                             'title': startDate.format('YYYY'),
-                            'leftDate': moment(startDate).subtract(1, 'year').valueOf(),
-                            'rightDate': moment(startDate).add(1, 'year').valueOf(),
+                            'leftDate': moment.utc(startDate).subtract(1, 'year').valueOf(),
+                            'rightDate': moment.utc(startDate).add(1, 'year').valueOf(),
                             'dates': []
                         };
 
                         for (var i = 0; i < 12; i++) {
-                            var monthMoment = moment(startDate).add(i, 'months');
+                            var monthMoment = moment.utc(startDate).add(i, 'months');
                             var dateValue = {
                                 'date': monthMoment.valueOf(),
                                 'display': monthMoment.format('MMM'),
@@ -150,12 +153,12 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
                     day: function (unixDate) {
 
-                        var selectedDate = moment(unixDate);
-                        var startOfMonth = moment(selectedDate).startOf('month');
-                        var endOfMonth = moment(selectedDate).endOf('month');
+                        var selectedDate = moment.utc(unixDate);
+                        var startOfMonth = moment.utc(selectedDate).startOf('month');
+                        var endOfMonth = moment.utc(selectedDate).endOf('month');
 
                         // ToDo: Update to account for starting on days other than Sunday.
-                        var startDate = moment(startOfMonth).subtract(startOfMonth.day(), 'days');
+                        var startDate = moment.utc(startOfMonth).subtract(startOfMonth.day(), 'days');
 
                         var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
@@ -165,20 +168,20 @@ angular.module('ui.bootstrap.datetimepicker', [])
                             'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                             'currentDate': selectedDate.valueOf(),
                             'title': selectedDate.format('YYYY-MMM'),
-                            'leftDate': moment(startOfMonth).subtract(1, 'months').valueOf(),
-                            'rightDate': moment(startOfMonth).add(1, 'months').valueOf(),
+                            'leftDate': moment.utc(startOfMonth).subtract(1, 'months').valueOf(),
+                            'rightDate': moment.utc(startOfMonth).add(1, 'months').valueOf(),
                             'dayNames': [],
                             'weeks': []
                         };
 
                         for (var dayNumber = 0; dayNumber < 7; dayNumber++) {
-                            result.dayNames.push(moment().day(dayNumber).format('dd'));
+                            result.dayNames.push(moment.utc().day(dayNumber).format('dd'));
                         }
 
                         for (var i = 0; i < 6; i++) {
                             var week = { dates: [] };
                             for (var j = 0; j < 7; j++) {
-                                var monthMoment = moment(startDate).add((i * 7) + j, 'days');
+                                var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
                                 var dateValue = {
                                     'date': monthMoment.valueOf(),
                                     'display': monthMoment.format('D'),
@@ -195,7 +198,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                     },
 
                     hour: function (unixDate) {
-                        var selectedDate = moment(unixDate).hour(0).minute(0).second(0);
+                        var selectedDate = moment.utc(unixDate).hour(0).minute(0).second(0);
 
                         var activeFormat = scope.ngModel ? moment(scope.ngModel).format('YYYY-MM-DD H') : '';
 
@@ -205,13 +208,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
                             'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
                             'currentDate': selectedDate.valueOf(),
                             'title': selectedDate.format('YYYY-MMM-DD'),
-                            'leftDate': moment(selectedDate).subtract(1, 'days').valueOf(),
-                            'rightDate': moment(selectedDate).add(1, 'days').valueOf(),
+                            'leftDate': moment.utc(selectedDate).subtract(1, 'days').valueOf(),
+                            'rightDate': moment.utc(selectedDate).add(1, 'days').valueOf(),
                             'dates': []
                         };
 
                         for (var i = 0; i < 24; i++) {
-                            var hourMoment = moment(selectedDate).add(i, 'hours');
+                            var hourMoment = moment.utc(selectedDate).add(i, 'hours');
                             var dateValue = {
                                 'date': hourMoment.valueOf(),
                                 'display': hourMoment.format('H:00'),
@@ -225,7 +228,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                     },
 
                     minute: function (unixDate) {
-                        var selectedDate = moment(unixDate).minute(0).second(0);
+                        var selectedDate = moment.utc(unixDate).minute(0).second(0);
 
                         var activeFormat = scope.ngModel ? moment(scope.ngModel).format('YYYY-MM-DD H:mm') : '';
 
@@ -235,15 +238,15 @@ angular.module('ui.bootstrap.datetimepicker', [])
                             'nextView': 'setTime',
                             'currentDate': selectedDate.valueOf(),
                             'title': selectedDate.format('YYYY-MMM-DD H:mm'),
-                            'leftDate': moment(selectedDate).subtract(1, 'hours').valueOf(),
-                            'rightDate': moment(selectedDate).add(1, 'hours').valueOf(),
+                            'leftDate': moment.utc(selectedDate).subtract(1, 'hours').valueOf(),
+                            'rightDate': moment.utc(selectedDate).add(1, 'hours').valueOf(),
                             'dates': []
                         };
 
                         var limit = 60 / configuration.minuteStep;
 
                         for (var i = 0; i < limit; i++) {
-                            var hourMoment = moment(selectedDate).add(i * configuration.minuteStep, 'minute');
+                            var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
                             var dateValue = {
                                 'date': hourMoment.valueOf(),
                                 'display': hourMoment.format('H:mm'),
@@ -257,14 +260,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
                     },
 
                     setTime: function (unixDate) {
-                        scope.ngModel = new Date(unixDate);
+                        var tempDate = new Date(unixDate);
+                        scope.ngModel = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
                         if (configuration.dropdownSelector) {
                             jQuery(configuration.dropdownSelector).dropdown('toggle');
                         }
-                        return dataFactory[scope.data.currentView](scope.ngModel.valueOf());
+                        return dataFactory[scope.data.currentView](unixDate);
                     }
                 };
-
 
                 var headerClickHandler = function (event) {
                     scope.changeView(scope.data[event.data.viewProperty], scope.data[event.data.dateProperty], event);
@@ -272,13 +275,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 };
 
                 // Work around issue where angular does not compile, fire, or update values ng-click events on the elements in the table header
-                $('.left', element).on('click', { viewProperty: 'currentView', dateProperty: 'leftDate'}, headerClickHandler);
-                $('.switch', element).on('click', { viewProperty: 'previousView', dateProperty: 'currentDate'}, headerClickHandler);
-                $('.right', element).on('click', { viewProperty: 'currentView', dateProperty: 'rightDate'}, headerClickHandler);
+                jQuery('.left', element).on('click', { viewProperty: 'currentView', dateProperty: 'leftDate'}, headerClickHandler);
+                jQuery('.switch', element).on('click', { viewProperty: 'previousView', dateProperty: 'currentDate'}, headerClickHandler);
+                jQuery('.right', element).on('click', { viewProperty: 'currentView', dateProperty: 'rightDate'}, headerClickHandler);
 
-                scope.$watch('ngModel', function (newValue) {
-                    scope.changeView(scope.data.currentView, moment(newValue || new Date()).valueOf());
-                });
+                var getUTCTime = function () {
+                    var tempDate = (scope.ngModel || new Date());
+                    return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
+                };
 
                 scope.changeView = function (viewName, unixDate, event) {
                     if (event) {
@@ -291,7 +295,11 @@ angular.module('ui.bootstrap.datetimepicker', [])
                     }
                 };
 
-                scope.changeView(configuration.startView, moment(scope.ngModel || new Date()).valueOf());
+                scope.$watch('ngModel', function (newValue) {
+                    scope.changeView(scope.data.currentView, getUTCTime());
+                });
+
+                scope.changeView(configuration.startView, getUTCTime());
             }
         };
     }]);
