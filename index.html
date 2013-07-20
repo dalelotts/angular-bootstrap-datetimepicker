@@ -129,7 +129,7 @@
       </div>
         <h3>How?</h3>
         <p>Use bootstrap's dropdown component to display/hide calendar.</p>
-        <pre class="prettyprint"><ol><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown"</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="kw2">a</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-toggle"</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">"dropdown2"</span> role<span class="sy0">=</span><span class="st0">"button"</span> data-toggle<span class="sy0">=</span><span class="st0">"dropdown"</span> data-<span class="kw3">target</span><span class="sy0">=</span><span class="st0">"#"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"#"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"input-append"</span>&gt;&lt;<span class="kw2">input</span> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"text"</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"input-large"</span> data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownInput"</span>&gt;&lt;<span class="kw2">span</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"add-on"</span>&gt;&lt;<span class="kw2">i</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"icon-calendar"</span>&gt;&lt;<span class="sy0">/</span><span class="kw2">i</span>&gt;&lt;<span class="sy0">/</span><span class="kw2">span</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; &nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">a</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="kw2">ul</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-menu"</span> role<span class="sy0">=</span><span class="st0">"menu"</span> aria-labelledby<span class="sy0">=</span><span class="st0">"dLabel"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;datetimepicker data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownInput"</span> data-datetimepicker-config<span class="sy0">=</span><span class="st0">"{ dropdownSelector: '#dropdown2' }"</span><span class="sy0">/</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">ul</span>&gt;</span></div></li><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li></ol></pre>
+        <pre class="prettyprint"><code class="html5"><ol><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown"</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="kw2">a</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-toggle"</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">"dropdown2"</span> role<span class="sy0">=</span><span class="st0">"button"</span> data-toggle<span class="sy0">=</span><span class="st0">"dropdown"</span> data-<span class="kw3">target</span><span class="sy0">=</span><span class="st0">"#"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"#"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"input-append"</span>&gt;&lt;<span class="kw2">input</span> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"text"</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"input-large"</span> data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownInput"</span>&gt;&lt;<span class="kw2">span</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"add-on"</span>&gt;&lt;<span class="kw2">i</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"icon-calendar"</span>&gt;&lt;<span class="sy0">/</span><span class="kw2">i</span>&gt;&lt;<span class="sy0">/</span><span class="kw2">span</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; &nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">a</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="kw2">ul</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-menu"</span> role<span class="sy0">=</span><span class="st0">"menu"</span> aria-labelledby<span class="sy0">=</span><span class="st0">"dLabel"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;datetimepicker data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownInput"</span> data-datetimepicker-config<span class="sy0">=</span><span class="st0">"{ dropdownSelector: '#dropdown2' }"</span><span class="sy0">/</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">ul</span>&gt;</span></div></li><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li></ol></code></pre>
     </section>
 
     <hr/>
@@ -142,12 +142,12 @@
                <div class="span6">
                    <h3>minView</h3>
 
-                   <p>String. Default: 'minute'</p>
+                   <p>String. Default: <code>'minute'</code></p>
                    <p>The view that will trigger date selection when the user clicks on one of the date/time values.</p>
                </div>
                <div class="span6">
                    <h3>minuteStep</h3>
-                   <p>Number. Default: 5</p>
+                   <p>Number. Default: <code>5</code></p>
                    <p>The increment used to build the hour view. A button is created for each minuteStep minutes.</p>
                </div>
              </div>
@@ -157,7 +157,7 @@
            <div class="span6">
                <h3>startView</h3>
 
-               <p>String. Default: 'day'</p>
+               <p>String. Default: <code>'day'</code></p>
                <p>The view that the datetimepicker should show when it is opened.</p>
                <div class="well">
                <p>Accepts values of :</p>
@@ -170,7 +170,10 @@
                </dl>
                </div>
            </div>
-           <div class="span6">&nbsp;
+           <div class="span6">
+               <h3>dropdownSelector</h3>
+               <p>String. Default: <code>null</code></p>
+               <p>When used within a Bootstrap dropdown, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.</p>
            </div>
          </div>
    </section>
