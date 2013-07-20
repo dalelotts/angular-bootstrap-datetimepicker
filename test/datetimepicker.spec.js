@@ -414,7 +414,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", s
         element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
         $rootScope.$digest();
     }));
-    it('clicking the 14th `.month` element will set the date value to 2020-12-01T00:00:00.000"', function () {
+    it('clicking the 14th `.day` element will set the date value to 2020-01-11T00:00:00.000"', function () {
         expect(jQuery('.switch', element).text()).toBe('2020-Jan');
 
         expect(jQuery('.active', element).length).toBe(1);
@@ -424,7 +424,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", s
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe('11');
-        expect($rootScope.date).toEqual(new Date(1578672000000));
+        expect($rootScope.date).toEqual(moment("2020-01-11T00:00:00.000").toDate());
     });
 });
 describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", startView="hour" minView="hour", minuteStep: 15', function () {
@@ -437,7 +437,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", s
         element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'hour\', minView: \'hour\', minuteStep: 15 }" data-ng-model="date"></datetimepicker>')($rootScope);
         $rootScope.$digest();
     }));
-    it('clicking the 4th `.hour` element will set the date value to 2020-12-01T03:00:00.000"', function () {
+    it('clicking the 4th `.hour` element will set the date value to 2020-01-01T03:00:00.000"', function () {
         expect(jQuery('.switch', element).text()).toBe('2020-Jan-01');
 
         expect(jQuery('.active', element).length).toBe(1);
@@ -447,7 +447,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", s
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe('3:00');
-        expect($rootScope.date).toEqual(new Date(1577818800000));
+        expect($rootScope.date).toEqual(moment("2020-01-01T03:00:00.000").toDate());
     });
 });
 // ToDo: Test dropdownSelector
