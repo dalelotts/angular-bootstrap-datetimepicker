@@ -1,82 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Angular-bootstrap-datetimepicker by dalelotts</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Angular-bootstrap-datetimepicker</h1>
+<head>
+    <meta charset=utf-8/>
+    <title>Angular Bootstrap Datetime picker</title>
+
+    <link href="stylesheets/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="hero-unit" id="overview">
+    <div class="container">
+
+        <h1>Angular Datetime Picker</h1>
+
         <p>Native AngularJS datetime picker directive styled by Twitter Bootstrap</p>
 
-        <p class="view"><a href="https://github.com/dalelotts/angular-bootstrap-datetimepicker">View the Project on GitHub <small>dalelotts/angular-bootstrap-datetimepicker</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/dalelotts/angular-bootstrap-datetimepicker/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/dalelotts/angular-bootstrap-datetimepicker/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/dalelotts/angular-bootstrap-datetimepicker">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: 
-Dale Lotts (<a href="https://github.com/dalelotts" class="user-mention">@dalelotts</a>)</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/dalelotts">dalelotts</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        <p class="btn-group">
+            <a class="btn" href="https://github.com/dalelotts/angular-bootstrap-datetimepicker"><i class="icon-github"></i> Code on Github</a>
+            <a  class="btn btn-primary" href="https://github.com/dalelotts/angular-bootstrap-datetimepicker/zipball/master">
+                <i class="icon-download-alt icon-white"></i>Download  <small>(zip file)</small>
+            </a>
+            <a  class="btn btn-primary" href="https://github.com/dalelotts/angular-bootstrap-datetimepicker/tarball/master">
+                <i class="icon-download-alt icon-white"></i>Download  <small>(Tar ball)</small>
+            </a>
+        </p>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-325325-18");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <div class="bs-docs-social">
+        <div class="container">
+            <ul class="bs-docs-social-buttons">
+                <li>
+                    <iframe src="http://ghbtns.com/github-btn.html?user=dalelotts&amp;repo=angular-bootstrap-datetimepicker&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                </li>
+                <li>
+                    <iframe src="http://ghbtns.com/github-btn.html?user=dalelotts&amp;repo=angular-bootstrap-datetimepicker&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
 
-  </body>
+<div class="container main" ng-app="ui.bootstrap.datetimepicker">
+
+    <section id="inline">
+      <div class="page-header">
+        <h2>Examples</h2>
+      </div>
+      <div class="row">
+        <div class="span6">
+          <h3>Embedded calendar </h3>
+
+          <p>Display a calendar embedded in the page.</p>
+
+          <div class="well">
+            Selected Date: {{ data.embeddedDate | date:'yyyy-MMM-dd' }}
+            <datetimepicker data-ng-model="data.embeddedDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
+           </div>
+
+          <h4>Why?</h4>
+
+          <p>Allows the user to select a date/time directly on the page</p>
+        </div>
+        <div class="span6">
+          <h3>How?</h3>
+            <p>You can pass configuration options as a function or an object.</p>
+            <pre class="prettyprint"><ol class="linenums"><li class="L0"><span class="pln">Selected Date: <span class="atv">{</span>{ data.date | date:'yyyy-MM-dd a' }<span class="atv">}</span></span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="tag">&lt;datetimepicker</span><span class="pln"> </span><span class="atn">data-ng-model</span><span class="pun">=</span><span class="atv">"data.embeddedDate"</span></li><li class="L3">    <span class="atn">data-datetimepicker-config</span><span class="pun">=</span><span class="atv">"{ startView:'day', minView:'day' }"</span><span class="tag"> /&gt;</span></li></ol></pre>
+        </div>
+      </div>
+    </section>
+    <hr/>
+    <section id="drop-down">
+      <div class="row">
+        <div class="span6">
+            <h3>Drop-down using text link </h3>
+            <p>Display the calendar inside a bootstrap dropdown component.</p>
+
+            <div class="well">
+                Selected Date: {{ data.dateDropDownLink | date:'yyyy-MM-dd HH:mm a' }}
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        Click here to show calendar
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="data.dateDropDownLink" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <h3>Why?</h3>
+
+            <p>Allows the user to select a date/time from a drop-down component to save space on the page.</p>
+        </div>
+      </div>
+        <h3>How?</h3>
+        <p>Use bootstrap's dropdown component to display/hide calendar.</p>
+        <pre class="prettyprint"><ol><li class="li1"><div class="de1">Selected Date: {{ data.dateDropDownLink | date:'yyyy-MM-dd HH:mm a' }}</div></li><li class="li2"><div class="de2"><span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;<span class="kw2">a</span> &nbsp;<span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-toggle"</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">"dropdown1"</span> role<span class="sy0">=</span><span class="st0">"button"</span> data-toggle<span class="sy0">=</span><span class="st0">"dropdown"</span> data-<span class="kw3">target</span><span class="sy0">=</span><span class="st0">"#"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"#"</span>&gt;</span>Click here to show calendar<span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">a</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; &nbsp; <span class="sc2">&lt;<span class="kw2">ul</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-menu"</span> role<span class="sy0">=</span><span class="st0">"menu"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="sc2">&lt;datetimepicker data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownLink"</span> data-datetimepicker-config<span class="sy0">=</span><span class="st0">"{ dropdownSelector: '#dropdown1' }"</span><span class="sy0">/</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; &nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">ul</span>&gt;</span></div></li><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li></ol></pre>
+    </section>
+    <hr/>
+    <section id="drop-down-input">
+      <div class="row">
+        <div class="span6">
+            <h3>Drop-down Datetime with input box</h3>
+            <p>Display the calendar inside a bootstrap dropdown component.</p>
+
+            <div class="well">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-append"><input type="text" class="input-large" data-ng-model="data.dateDropDownInput"><span class="add-on"><i
+                                class="icon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="span6">
+            <h3>Why?</h3>
+
+           <p>Allows the user to select a date/time from a drop-down component to save space on the page.</p>
+        </div>
+      </div>
+        <h3>How?</h3>
+        <p>Use bootstrap's dropdown component to display/hide calendar.</p>
+        <pre class="prettyprint"><ol><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown"</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="kw2">a</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-toggle"</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">"dropdown2"</span> role<span class="sy0">=</span><span class="st0">"button"</span> data-toggle<span class="sy0">=</span><span class="st0">"dropdown"</span> data-<span class="kw3">target</span><span class="sy0">=</span><span class="st0">"#"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"#"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"input-append"</span>&gt;&lt;<span class="kw2">input</span> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"text"</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"input-large"</span> data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownInput"</span>&gt;&lt;<span class="kw2">span</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"add-on"</span>&gt;&lt;<span class="kw2">i</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"icon-calendar"</span>&gt;&lt;<span class="sy0">/</span><span class="kw2">i</span>&gt;&lt;<span class="sy0">/</span><span class="kw2">span</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; &nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">a</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="kw2">ul</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"dropdown-menu"</span> role<span class="sy0">=</span><span class="st0">"menu"</span> aria-labelledby<span class="sy0">=</span><span class="st0">"dLabel"</span>&gt;</span></div></li><li class="li1"><div class="de1">&nbsp; &nbsp; <span class="sc2">&lt;datetimepicker data-ng-model<span class="sy0">=</span><span class="st0">"data.dateDropDownInput"</span> data-datetimepicker-config<span class="sy0">=</span><span class="st0">"{ dropdownSelector: '#dropdown2' }"</span><span class="sy0">/</span>&gt;</span></div></li><li class="li2"><div class="de2">&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">ul</span>&gt;</span></div></li><li class="li1"><div class="de1"><span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span></div></li></ol></pre>
+    </section>
+
+    <hr/>
+
+    <h2>Configuration Options</h2>
+    <p>The <strong>datetimepicker-config</strong> attribute defines the configuration options.</p>
+                   <p>This attribute can be an object or a function.</p>
+    <section id="minMaxView">
+             <div class="row">
+               <div class="span6">
+                   <h3>minView</h3>
+
+                   <p>String. Default: 'minute'</p>
+                   <p>The view that will trigger date selection when the user clicks on one of the date/time values.</p>
+               </div>
+               <div class="span6">
+                   <h3>minuteStep</h3>
+                   <p>Number. Default: 5</p>
+                   <p>The increment used to build the hour view. A button is created for each minuteStep minutes.</p>
+               </div>
+             </div>
+       </section>
+    <section id="startView">
+         <div class="row">
+           <div class="span6">
+               <h3>startView</h3>
+
+               <p>String. Default: 'day'</p>
+               <p>The view that the datetimepicker should show when it is opened.</p>
+               <div class="well">
+               <p>Accepts values of :</p>
+               <dl>
+                 <dt>minute</dt><dd>for the minute view</dd>
+                 <dt>hour</dt><dd>for the hour view</dd>
+                   <dt>day</dt><dd>for the day view (the default)</dd>
+                   <dt>month</dt><dd>for the month view (12-months of the selected year)</dd>
+                   <dt>year</dt><dd>for the year view (12-year range)</dd>
+               </dl>
+               </div>
+           </div>
+           <div class="span6">&nbsp;
+           </div>
+         </div>
+   </section>
+</div>
+
+<hr/>
+
+<p>This project is maintained by <a href="https://github.com/dalelotts">dalelotts</a></p>
+
+<div class="loadingAnimation" ng-show="isLoading">
+  <div class="bowl_ringG">
+    <div class="ball_holderG">
+      <div class="ballG">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Le javascript
+================================================== -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular.js"></script>
+<script type="text/javascript" src="javascripts/datetimepicker.js"></script>
+
+</body>
+
 </html>
