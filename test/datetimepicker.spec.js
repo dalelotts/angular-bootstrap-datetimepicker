@@ -359,7 +359,7 @@ describe('datepicker directive with initial date of 2013-01-22 1:15 and startVie
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe(moment($rootScope.date).format('H:mm'));
-        expect($rootScope.date.getTime()).toEqual(moment("2013-01-22T01:00:00.000Z").toDate().getTime());
+        expect($rootScope.date).toEqual(new Date(1358816400000));
     });
 });
 describe('datepicker directive with no initial date, minView="year"', function () {
@@ -379,7 +379,7 @@ describe('datepicker directive with no initial date, minView="year"', function (
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe('2020');
-        expect($rootScope.date).toEqual(moment(1577808000000).toDate());
+        expect($rootScope.date).toEqual(new Date(1577808000000));
     });
 });
 describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", startView="month" minView="month"', function () {
@@ -401,7 +401,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", 
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe('Dec');
-        expect($rootScope.date).toEqual(moment(1606752000000).toDate());
+        expect($rootScope.date).toEqual(new Date(1606752000000));
     });
 });
 describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", startView="day" minView="day"', function () {
@@ -424,7 +424,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", 
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe('11');
-        expect($rootScope.date).toEqual(moment(1578672000000).toDate());
+        expect($rootScope.date).toEqual(new Date(1578672000000));
     });
 });
 describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", startView="hour" minView="hour", minuteStep: 15', function () {
@@ -447,7 +447,7 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", 
         selectedElement.trigger('click');
 
         expect(jQuery('.active', element).text()).toBe('3:00');
-        expect($rootScope.date).toEqual(moment(1577818800000).toDate());
+        expect($rootScope.date).toEqual(new Date(1577818800000));
     });
 });
 // ToDo: Test dropdownSelector
