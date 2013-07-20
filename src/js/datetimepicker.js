@@ -1,3 +1,6 @@
+/*globals angular, moment, jQuery */
+/*jslint vars:true */
+
 /**
  CONTENTS PROPRIETARY AND CONFIDENTIAL
 
