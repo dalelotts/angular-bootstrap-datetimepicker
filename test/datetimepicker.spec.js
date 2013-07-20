@@ -388,7 +388,6 @@ describe('datepicker directive with initial date of "2020-01-01T00:00:00.000Z", 
     beforeEach(inject(function (_$compile_, _$rootScope_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
-        moment().zone(0);
         $rootScope.date = moment("2020-01-01T00:00:00.000Z").toDate();
         element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\', minView: \'month\' }" data-ng-model="date"></datetimepicker>')($rootScope);
         $rootScope.$digest();
