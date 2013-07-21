@@ -24,12 +24,6 @@
  *    @since        7/21/13
  */
 
-
-// ToDo: configuration as a function
-// ToDo: startView < min view
-// ToDo: Test dropdownSelector
-// ToDo: Invalid minuteStep - 0, < 0, > 60, ?
-
 describe('minuteStep', function () {
     var $rootScope, element, $compile;
     beforeEach(module('ui.bootstrap.datetimepicker'));
