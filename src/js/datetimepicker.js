@@ -34,7 +34,34 @@ angular.module('ui.bootstrap.datetimepicker', [])
         minuteStep: 5,
         dropdownSelector: null
     })
-    .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
+    .constant('dateTimePickerConfigValidation', function (configuration) {
+        // Order of the elements in the validViews array is significant.
+        var validViews = ['minute', 'hour', 'day', 'month', 'year'];
+
+        if (validViews.indexOf(configuration.startView) < 0) {
+            throw ("invalid startView value: " + configuration.startView);
+        }
+
+        if (validViews.indexOf(configuration.minView) < 0) {
+            throw ("invalid minView value: " + configuration.minView);
+        }
+
+        if (validViews.indexOf(configuration.minView) >  validViews.indexOf(configuration.startView)) {
+            throw ("startView must be greater than minView");
+        }
+
+        if (!angular.isNumber(configuration.minuteStep)) {
+            throw ("minuteStep must be numeric");
+        }
+        if (configuration.minuteStep <= 0 || configuration.minuteStep >= 60) {
+            throw ("minuteStep must be greater than zero and less than 60");
+        }
+        if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
+            throw ("dropdownSelector must be a string");
+        }
+    }
+)
+    .directive('datetimepicker', ['dateTimePickerConfig', 'dateTimePickerConfigValidation', function (defaultConfig, validateConfigurationFunction) {
         "use strict";
 
         return {
@@ -84,6 +111,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 var configuration = {};
 
                 angular.extend(configuration, defaultConfig, directiveConfig);
+
+                validateConfigurationFunction(configuration);
 
                 var dataFactory = {
                     year: function (unixDate) {

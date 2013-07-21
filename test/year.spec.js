@@ -1,4 +1,30 @@
-describe('datepicker directive with empty initial state', function () {
+/**
+ CONTENTS PROPRIETARY AND CONFIDENTIAL
+
+ Copyright © 2013 Knight Rider Consulting, Inc. All rights reserved.
+ http://www.knightrider.com
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ *
+ *    @author        Dale "Ducky" Lotts
+ *    @since        7/21/13
+ */
+
+describe('year view with ng-model = null', function () {
     var $rootScope, element;
     beforeEach(module('ui.bootstrap.datetimepicker'));
     beforeEach(inject(function (_$compile_, _$rootScope_) {
@@ -244,125 +270,7 @@ describe('datepicker directive with empty initial state', function () {
         });
     });
 });
-describe('datepicker directive with initial date of 2010-10-01 and startView = "month"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = new Date("2010-10-01");
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\'}" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('has `.switch` element with a value of 2010', function () {
-        expect(jQuery('.switch', element).text()).toBe('2010');
-    });
-    it('has 12 `.month` elements', function () {
-        expect(jQuery('.month', element).length).toBe(12);
-    });
-    it('has 1 `.active` element with a value of Oct', function () {
-        expect(jQuery('.active', element).text()).toBe('Oct');
-    });
-});
-describe('datepicker directive with initial date of 2013-01-22 and startView = "day"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = new Date("2013-01-22");
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('has `.switch` element with a value of 2013-1', function () {
-        expect(jQuery('.switch', element).text()).toBe('2013-Jan');
-    });
-    it('has 42 `.day` elements', function () {
-        expect(jQuery('.day', element).length).toBe(42);
-    });
-    it('has 2 `.past` elements', function () {
-        expect(jQuery('.past', element).length).toBe(2);
-    });
-    it('has 9 `.future` elements', function () {
-        expect(jQuery('.future', element).length).toBe(9);
-    });
-    it('has 1 `.active` element with a value of 22', function () {
-        expect(jQuery('.active', element).text()).toBe('22');
-    });
-});
-describe('datepicker directive with initial date of 2013-01-22 and startView = "hour"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = new Date("2013-01-22");
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'hour\'}" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('has `.switch` element with a value of 2013-1-22', function () {
-        expect(jQuery('.switch', element).text()).toBe('2013-Jan-22');
-    });
-    it('has 24 `.hour` elements', function () {
-        expect(jQuery('.hour', element).length).toBe(24);
-    });
-    it('has 1 `.active` element with a value of 0:00', function () {
-        expect(jQuery('.active', element).text()).toBe(moment($rootScope.date).format('H:mm'));
-    });
-});
-describe('datepicker directive with initial date of 2013-01-22 and startView = "minute"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = moment("2013-01-22T00:0:00.000").toDate();
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\'}" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('has `.switch` element with a value of 2013-Jan-22 0:00', function () {
-        expect(jQuery('.switch', element).text()).toBe('2013-Jan-22 0:00');
-    });
-    it('has 12 `.minute` elements', function () {
-        expect(jQuery('.minute', element).length).toBe(12);
-    });
-    it('has 1 `.active` element', function () {
-        expect(jQuery('.active', element).length).toBe(1);
-    });
-    it('`.active` element with a value of 0:00', function () {
-        expect(jQuery('.active', element).text()).toBe('0:00');
-    });
-});
-describe('datepicker directive with initial date of 2013-01-22 1:15 and startView = "minute"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = moment("2013-01-22T01:15:00.000").toDate();
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minuteStep: 15 }" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('has `.switch` element with a value of 2013-Jan-22 1:00', function () {
-        expect(jQuery('.switch', element).text()).toBe('2013-Jan-22 1:00');
-    });
-    it('has 4 `.minute` elements', function () {
-        expect(jQuery('.minute', element).length).toBe(4);
-    });
-    it('has 1 `.active` element with a value of 1:15', function () {
-        expect(jQuery('.active', element).text()).toBe('1:15');
-    });
-    it('changes date/time to 1:00 to when clicking first `.minute` element with a value of 0:00', function () {
-        expect(jQuery('.active', element).text()).toBe('1:15');
-
-        var selectedElement = jQuery(jQuery('.minute', element)[0]);
-        selectedElement.trigger('click');
-
-        expect(jQuery('.active', element).text()).toBe('1:00');
-        expect($rootScope.date).toEqual( moment("2013-01-22T01:00:00.000").toDate());
-    });
-});
-describe('datepicker directive with no initial date, minView="year"', function () {
+describe('year view with with ng-model = null and minView="year"', function () {
     var $rootScope, element;
     beforeEach(module('ui.bootstrap.datetimepicker'));
     beforeEach(inject(function (_$compile_, _$rootScope_) {
@@ -382,74 +290,3 @@ describe('datepicker directive with no initial date, minView="year"', function (
         expect($rootScope.date).toEqual(moment('2020-01-01T00:00:00.000').toDate());
     });
 });
-describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", startView="month" minView="month"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = moment("2020-01-01T00:00:00.000").toDate();
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\', minView: \'month\' }" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('clicking the 12th `.month` element will set the date value to 2020-12-01T00:00:00.000"', function () {
-        expect(jQuery('.switch', element).text()).toBe('2020');
-
-        expect(jQuery('.month', element).length).toBe(12);
-
-        var selectedElement = jQuery(jQuery('.month', element)[11]);
-        selectedElement.trigger('click');
-
-        expect(jQuery('.active', element).text()).toBe('Dec');
-        expect($rootScope.date).toEqual(moment("2020-12-01T00:00:00.000").toDate());
-    });
-});
-describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", startView="day" minView="day"', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = moment("2020-01-01T00:00:00.000").toDate();
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('clicking the 14th `.day` element will set the date value to 2020-01-11T00:00:00.000"', function () {
-        expect(jQuery('.switch', element).text()).toBe('2020-Jan');
-
-        expect(jQuery('.active', element).length).toBe(1);
-        expect(jQuery('.day', element).length).toBe(42);
-
-        var selectedElement = jQuery(jQuery('.day', element)[13]);
-        selectedElement.trigger('click');
-
-        expect(jQuery('.active', element).text()).toBe('11');
-        expect($rootScope.date).toEqual(moment("2020-01-11T00:00:00.000").toDate());
-    });
-});
-describe('datepicker directive with initial date of "2020-01-01T00:00:00.000", startView="hour" minView="hour", minuteStep: 15', function () {
-    var $rootScope, element;
-    beforeEach(module('ui.bootstrap.datetimepicker'));
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $rootScope.date = moment("2020-01-01T00:00:00.000").toDate();
-        element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'hour\', minView: \'hour\', minuteStep: 15 }" data-ng-model="date"></datetimepicker>')($rootScope);
-        $rootScope.$digest();
-    }));
-    it('clicking the 4th `.hour` element will set the date value to 2020-01-01T03:00:00.000"', function () {
-        expect(jQuery('.switch', element).text()).toBe('2020-Jan-01');
-
-        expect(jQuery('.active', element).length).toBe(1);
-        expect(jQuery('.hour', element).length).toBe(24);
-
-        var selectedElement = jQuery(jQuery('.hour', element)[3]);
-        selectedElement.trigger('click');
-
-        expect(jQuery('.active', element).text()).toBe('3:00');
-        expect($rootScope.date).toEqual(moment("2020-01-01T03:00:00.000").toDate());
-    });
-});
-// ToDo: Test dropdownSelector
-// ToDo: Test invalid configuration
-// ToDo: Test multiple languages
