@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" name="Default" comment="Second attempt to correct time zone issues in calendar and test spec.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/day.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dropdownSelector.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/hour.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/i18n.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/minView.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/minute.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/minuteStep.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/month.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/startView.spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/year.spec.js" />
-      <change type="DELETED" beforePath="C:\Dev\angular-bootstrap-datetimepicker\test\datetimepicker.spec.js" afterPath="" />
+    <list default="true" id="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/datetimepicker.js" afterPath="$PROJECT_DIR$/src/js/datetimepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/index.html" afterPath="$PROJECT_DIR$/demo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/day.spec.js" afterPath="$PROJECT_DIR$/test/day.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dropdownSelector.spec.js" afterPath="$PROJECT_DIR$/test/dropdownSelector.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/hour.spec.js" afterPath="$PROJECT_DIR$/test/hour.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/i18n.spec.js" afterPath="$PROJECT_DIR$/test/i18n.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/minView.spec.js" afterPath="$PROJECT_DIR$/test/minView.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/minute.spec.js" afterPath="$PROJECT_DIR$/test/minute.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/minuteStep.spec.js" afterPath="$PROJECT_DIR$/test/minuteStep.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/month.spec.js" afterPath="$PROJECT_DIR$/test/month.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/startView.spec.js" afterPath="$PROJECT_DIR$/test/startView.spec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test.conf.js" afterPath="$PROJECT_DIR$/test/test.conf.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/year.spec.js" afterPath="$PROJECT_DIR$/test/year.spec.js" />
     </list>
     <ignored path="angular-bootstrap-datetimepicker.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374356132453" ignored="false" />
+    <file path="/Dummy.txt" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374488326808" ignored="false" />
     <file path="/.gitignore" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1373926939095" ignored="false" />
     <file path="/a.dummy" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374304893930" ignored="false" />
     <file path="/index.html" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374390039617" ignored="false" />
@@ -44,6 +41,9 @@
     <file path="/fragment.js2" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374392029797" ignored="false" />
     <file path="/startView.spec.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374393147717" ignored="false" />
     <file path="/minView.spec.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374393685000" ignored="false" />
+    <file path="$CLASS$/Dev/lsgit1/web-app/js/directives/dateTimePicker.js" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374462617298" ignored="false" />
+    <file path="$CLASS$/Dev/ww-git/WEB-INF/implementations/com/facebook/likebox/Edit.view.ftl" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374472983369" ignored="false" />
+    <file path="/*.regexp" changelist="6a5395fd-28c3-4027-8d9c-6fa5a195a8a2" time="1374489929836" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,30 +104,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="109" selection-start="1916" selection-end="1916" vertical-scroll-proportion="-11.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="datetimepicker.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/datetimepicker.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="34" selection-start="1625" selection-end="1625" vertical-scroll-proportion="0.57216495">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="minView.spec.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/minView.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1666" selection-end="1985" vertical-scroll-proportion="0.0">
+            <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -138,37 +118,49 @@
       <file leaf-file-name="startView.spec.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/startView.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="54" selection-start="1972" selection-end="1972" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dropdownSelector.spec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/dropdownSelector.spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="81" selection-start="1442" selection-end="1442" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hour.spec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/hour.spec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="994" selection-end="994" vertical-scroll-proportion="0.0">
+            <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#2068#3142#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="i18n.spec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/i18n.spec.js">
+      <file leaf-file-name="test.conf.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test.conf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="36" selection-start="956" selection-end="956" vertical-scroll-proportion="0.0">
+            <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="year.spec.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/year.spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datetimepicker.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/datetimepicker.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datetimepicker.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/datetimepicker.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="43" selection-start="298" selection-end="325" vertical-scroll-proportion="0.05448718">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -179,10 +171,20 @@
       <file leaf-file-name="minute.spec.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/minute.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="3" selection-start="3509" selection-end="3509" vertical-scroll-proportion="0.0">
+            <state line="5" column="0" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#1067#2071#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="i18n.spec.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/i18n.spec.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,7 +193,7 @@
       <file leaf-file-name="minuteStep.spec.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/minuteStep.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="31" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.0">
+            <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -202,10 +204,9 @@
       <file leaf-file-name="month.spec.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/month.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="1913" selection-end="1913" vertical-scroll-proportion="0.0">
+            <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#1061#1908#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -229,22 +230,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/test/i18n.spec.js" />
         <option value="$PROJECT_DIR$/test/datetimepicker.spec.js" />
+        <option value="$PROJECT_DIR$/test/configuration.spec.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/demo/index.html" />
+        <option value="$PROJECT_DIR$/src/js/datetimepicker.js" />
+        <option value="$PROJECT_DIR$/test/day.spec.js" />
+        <option value="$PROJECT_DIR$/test/dropdownSelector.spec.js" />
         <option value="$PROJECT_DIR$/test/hour.spec.js" />
+        <option value="$PROJECT_DIR$/test/i18n.spec.js" />
+        <option value="$PROJECT_DIR$/test/minute.spec.js" />
+        <option value="$PROJECT_DIR$/test/minuteStep.spec.js" />
+        <option value="$PROJECT_DIR$/test/minView.spec.js" />
         <option value="$PROJECT_DIR$/test/month.spec.js" />
+        <option value="$PROJECT_DIR$/test/startView.spec.js" />
         <option value="$PROJECT_DIR$/test/test.conf.js" />
         <option value="$PROJECT_DIR$/test/year.spec.js" />
-        <option value="$PROJECT_DIR$/test/day.spec.js" />
-        <option value="$PROJECT_DIR$/test/configuration.spec.js" />
-        <option value="$PROJECT_DIR$/demo/index.html" />
-        <option value="$PROJECT_DIR$/test/dropdownSelector.spec.js" />
-        <option value="$PROJECT_DIR$/test/minuteStep.spec.js" />
-        <option value="$PROJECT_DIR$/test/minute.spec.js" />
-        <option value="$PROJECT_DIR$/src/js/datetimepicker.js" />
-        <option value="$PROJECT_DIR$/test/minView.spec.js" />
-        <option value="$PROJECT_DIR$/test/startView.spec.js" />
       </list>
     </option>
   </component>
@@ -253,9 +254,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="5" />
     <option name="width" value="1600" />
-    <option name="height" value="865" />
+    <option name="height" value="870" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -283,6 +283,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -365,42 +367,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular-bootstrap-datetimepicker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -597,17 +565,29 @@
       <created>1374328746856</created>
       <updated>1374328746856</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Break up single test spec file into separate feature specific files. Also added configuration specific tests.">
+      <created>1374394009853</created>
+      <updated>1374394009853</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Remove unnecessary comment from test spec files">
+      <created>1374394109984</created>
+      <updated>1374394109984</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fix error in readme.md">
+      <created>1374461226641</created>
+      <updated>1374461226641</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="5" width="1600" height="865" extended-state="0" />
+    <frame x="0" y="0" width="1600" height="870" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3654391" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47679326" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4428773" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44154057" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -616,20 +596,23 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37393767" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2607282" sideWeight="0.6345609" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25942782" sideWeight="0.5232068" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -673,7 +656,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add documentation for dropdownSelector option." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix error in readme.md" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -706,87 +689,63 @@
     <MESSAGE value="Fix a couple of typo's in the spec file that were causing tests to fail when the tests are run in a different time zone." />
     <MESSAGE value="Add jslint specific comments to top of file" />
     <MESSAGE value="Add documentation for dropdownSelector option." />
+    <MESSAGE value="Break up single test spec file into separate feature specific files. Also added configuration specific tests." />
+    <MESSAGE value="Remove unnecessary comment from test spec files" />
+    <MESSAGE value="Fix error in readme.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bower_components/angular/angular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="339" column="20" selection-start="8927" selection-end="8930" vertical-scroll-proportion="0.3326226" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="0" selection-start="3055" selection-end="3055" vertical-scroll-proportion="0.0">
+        <state line="28" column="0" selection-start="1162" selection-end="1162" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="993" selection-end="993" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/year.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1483" selection-end="1686" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/day.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2135" selection-end="2135" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1058#2131#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="109" selection-start="1916" selection-end="1916" vertical-scroll-proportion="-11.0">
+        <state line="20" column="42" selection-start="1047" selection-end="1047" vertical-scroll-proportion="-6.6538463">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+    <entry file="file://$PROJECT_DIR$/test/day.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="16" selection-start="1717" selection-end="1717" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/angular/angular.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="339" column="20" selection-start="8927" selection-end="8930" vertical-scroll-proportion="0.3326226">
-          <folding />
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/dropdownSelector.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="81" selection-start="1442" selection-end="1442" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/hour.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="994" selection-end="994" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2068#3142#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/i18n.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="36" selection-start="956" selection-end="956" vertical-scroll-proportion="0.0">
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -795,17 +754,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/minute.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="3" selection-start="3509" selection-end="3509" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1067#2071#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/minuteStep.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="31" selection-start="2897" selection-end="2897" vertical-scroll-proportion="0.0">
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -814,7 +772,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/minView.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1666" selection-end="1985" vertical-scroll-proportion="0.0">
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -823,24 +781,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/month.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1913" selection-end="1913" vertical-scroll-proportion="0.0">
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1061#1908#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/startView.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="54" selection-start="1972" selection-end="1972" vertical-scroll-proportion="0.0">
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="3" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/year.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/datetimepicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="34" selection-start="1625" selection-end="1625" vertical-scroll-proportion="0.57216495">
+        <state line="15" column="43" selection-start="298" selection-end="325" vertical-scroll-proportion="0.05448718">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
