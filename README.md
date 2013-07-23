@@ -66,7 +66,7 @@ Load the script files in your application:
 Add the date module as a dependency to your application module:
 
 ```html
-var myAppModule = angular.module('MyApp', ['angular.bootstrap.datetimepicker'])
+var myAppModule = angular.module('MyApp', ['ui.bootstrap.datetimepicker'])
 ```
 
 Apply the directive to your form elements:
