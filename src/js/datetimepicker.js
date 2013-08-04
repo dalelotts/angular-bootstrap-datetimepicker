@@ -306,7 +306,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 $('.right', element).on('click', { viewProperty: 'currentView', dateProperty: 'rightDate'}, headerClickHandler);
 
                 var getUTCTime = function () {
-                    var tempDate = (scope.ngModel || new Date());
+                    var tempDate = (scope.ngModel ? moment(scope.ngModel).toDate() : new Date());
                     return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
                 };
 

@@ -22,6 +22,11 @@ describe('configuration validation', function () {
         it('when no configuration is specified', function () {
             $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
         });
+        it('when ng-model value is a valid date string (as if coming from json api)', function () {
+            $rootScope.date = "2013-08-04T23:00:00";
+            var element = $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
+            $rootScope.$digest();
+        });
     });
 
     describe('throws exception', function () {
@@ -41,3 +46,4 @@ describe('configuration validation', function () {
         });
     });
 });
+
