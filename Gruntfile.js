@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'karma']);
+    grunt.registerTask('default', ['jshint', 'karma', 'coverage']);
 
     var testConfig = function (configFile, customOptions) {
         var options = { configFile: configFile, keepalive: true };
@@ -14,6 +14,18 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        coverage: {
+          options: {
+            thresholds: {
+              'statements': 100,
+              'branches': 95,
+              'lines': 100,
+              'functions': 100
+            },
+            dir: 'coverage',
+            root: ''
+          }
+        },
         karma: {
             unit: {
                 options: testConfig('test/test.conf.js')

@@ -28,11 +28,13 @@ exclude = [
 
 ];
 
+preprocessors = {
+    '**/src/js/*.js': 'coverage'
+};
 
 // test results reporter to use
 // possible values: 'dots', 'progress', 'junit'
-reporters = ['progress'];
-
+reporters = ['progress', 'coverage'];
 
 // web server port
 port = 9876;

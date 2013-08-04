@@ -21,6 +21,17 @@ angular.module('ui.bootstrap.datetimepicker', [])
         dropdownSelector: null
     })
     .constant('dateTimePickerConfigValidation', function (configuration) {
+
+        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+
+        for(var prop in configuration) {
+            if(configuration.hasOwnProperty(prop)) {
+                if (validOptions.indexOf(prop) < 0) {
+                    throw ("invalid option: " + prop);
+                }
+            }
+        }
+
         // Order of the elements in the validViews array is significant.
         var validViews = ['minute', 'hour', 'day', 'month', 'year'];
 
@@ -86,7 +97,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 ngModel: "=ngModel"
             },
             replace: true,
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element, attrs) {
 
                 var directiveConfig = {};
 
@@ -310,7 +321,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                     }
                 };
 
-                scope.$watch('ngModel', function (newValue) {
+                scope.$watch('ngModel', function () {
                     scope.changeView(scope.data.currentView, getUTCTime());
                 });
 

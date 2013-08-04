@@ -11,7 +11,7 @@
  */
 
 describe('dropdownSelector', function () {
-    var $rootScope, element, $compile;
+    var $rootScope, $compile;
     beforeEach(module('ui.bootstrap.datetimepicker'));
     beforeEach(inject(function (_$compile_, _$rootScope_) {
         $compile = _$compile_;
@@ -30,6 +30,15 @@ describe('dropdownSelector', function () {
     describe('does NOT throw exception', function () {
         it('if value is a string', function () {
             $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: \'.dropdown\' }"></datetimepicker>')($rootScope);
+        });
+    });
+    describe('toggles dropdown', function () {
+        it('if value is a string', function () {
+            var element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'year\', minView: \'year\', dropdownSelector: \'#dropdown\' }"></datetimepicker>')($rootScope);
+            $rootScope.$digest();
+            var pastElement = jQuery('.past', element);
+            pastElement.trigger('click');
+            expect($rootScope.date).not.toEqual(null);
         });
     });
 });
