@@ -10,6 +10,7 @@ node_modules
 *.out
 *.pid
 *.gz
+*.iml
 
 pids
 logs
