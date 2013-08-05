@@ -7,7 +7,7 @@ branches:
     - gh-pages
 
 before_script:
-  - npm install -g grunt-cli
+  - npm install -g bower grunt-cli
   - npm install
   - bower install
 
