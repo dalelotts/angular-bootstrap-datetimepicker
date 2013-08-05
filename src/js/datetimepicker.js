@@ -21,10 +21,11 @@ angular.module('ui.bootstrap.datetimepicker', [])
         dropdownSelector: null
     })
     .constant('dateTimePickerConfigValidation', function (configuration) {
+        "use strict";
 
         var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
 
-        for(var prop in configuration) {
+        for (var prop in configuration) {
             if(configuration.hasOwnProperty(prop)) {
                 if (validOptions.indexOf(prop) < 0) {
                     throw ("invalid option: " + prop);
@@ -301,9 +302,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 };
 
                 // Work around issue where angular does not compile, fire, or update values ng-click events on the elements in the table header
-                $('.left', element).on('click', { viewProperty: 'currentView', dateProperty: 'leftDate'}, headerClickHandler);
-                $('.switch', element).on('click', { viewProperty: 'previousView', dateProperty: 'currentDate'}, headerClickHandler);
-                $('.right', element).on('click', { viewProperty: 'currentView', dateProperty: 'rightDate'}, headerClickHandler);
+                jQuery('.left', element).on('click', { viewProperty: 'currentView', dateProperty: 'leftDate'}, headerClickHandler);
+                jQuery('.switch', element).on('click', { viewProperty: 'previousView', dateProperty: 'currentDate'}, headerClickHandler);
+                jQuery('.right', element).on('click', { viewProperty: 'currentView', dateProperty: 'rightDate'}, headerClickHandler);
 
                 var getUTCTime = function () {
                     var tempDate = (scope.ngModel ? moment(scope.ngModel).toDate() : new Date());
