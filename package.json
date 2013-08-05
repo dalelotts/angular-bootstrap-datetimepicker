@@ -1,25 +1,24 @@
 {
-  "name": "angular-bootstrap-datetimepicker",
-  "version": "0.1.2",
-  "description": "This directive allows you to add a datetime-picker to your form elements.",
-  "author": "https://github.com/dalelotts/ng-bootstrap-datetimepicker/graphs/contributors",
-  "license": "MIT",
-  "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
-  "main": "src/js/datetimepicker.js",
-  "dependencies": {},
-  "devDependencies": {
-    "bower": "~0.10.0",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.2.0",
-    "grunt-karma": "~0.4.3",
-    "matchdep": "~0.1.1",
-    "grunt-istanbul-coverage": "0.0.1"
-  },
-  "scripts": {
-    "test": "grunt --verbose"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/dalelotts/angular-bootstrap-datetimepicker.git"
-  }
+    "name": "angular-bootstrap-datetimepicker",
+    "version": "0.1.2",
+    "description": "This directive allows you to add a datetime-picker to your form elements.",
+    "author": "https://github.com/dalelotts/ng-bootstrap-datetimepicker/graphs/contributors",
+    "license": "MIT",
+    "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
+    "main": "src/js/datetimepicker.js",
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.2.0",
+        "grunt-istanbul-coverage": "0.0.1",
+        "grunt-karma": "~0.4.3",
+        "matchdep": "~0.1.1"
+    },
+    "scripts": {
+        "test": "grunt --verbose"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/dalelotts/angular-bootstrap-datetimepicker.git"
+    }
 }
