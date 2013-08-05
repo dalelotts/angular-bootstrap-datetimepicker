@@ -6,11 +6,12 @@ branches:
   except:
     - gh-pages
 
-before_script:
-  - npm install -g bower grunt-cli
-  - npm install
-  - bower install
-
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+
+before_script:
+  - npm install -g bower grunt-cli
+  - bower install
+
+script: "grunt --verbose"
