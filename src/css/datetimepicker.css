@@ -1,12 +1,9 @@
-/*!
- * Datetimepicker for Bootstrap
- *
- * Copyright 2012 Stefan Petre
- * Improvements by Andrew Rowls
- * Licensed under the Apache License v2.0
- * http://www.apache.org/licenses/LICENSE-2.0
- *
+/**
+ * @license angular-bootstrap-datetimepicker  v0.1.2
+ * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * License: MIT
  */
+
 .datetimepicker {
   padding: 4px;
   margin-top: 1px;
