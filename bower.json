@@ -8,6 +8,7 @@
     "main": "./src/js/datetimepicker.js",
     "ignore": [
         "**/.*",
+        "screenshots",
         "node_modules",
         "bower_components",
         "test*",
