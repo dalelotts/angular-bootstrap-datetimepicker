@@ -15,7 +15,6 @@ Only the CSS file from the bootstrap-datetimepicker project was re-used.
 
 Requires:
  * AngularJS 1.1.3 or higher (1.0.x will not work)
- * jQuery for selector functionality not supported by jQuery lite that comes with Angular
  * moment.js for date parsing and formatting
  * bootstrap's dropdown component (`dropdowns.less`)
  * bootstrap's sprites (`sprites.less` and associated images) for arrows
@@ -56,7 +55,6 @@ Add the css:
 
 Load the script files in your application:
 ```html
-<script type="text/javascript" src="components/jquery/jquery.js"></script>
 <script type="text/javascript" src="components/moment/moment.js"></script>
 <script type="text/javascript" src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
 <script type="text/javascript" src="components/angular/angular.js"></script>

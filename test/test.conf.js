@@ -17,7 +17,7 @@ files = [
   'bower_components/jquery/jquery.js',
   'bower_components/moment/moment.js',
   'bower_components/bootstrap/docs/assets/js/bootstrap.js',
-  'https://ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular.js',
+  'bower_components/angular/angular.js',
   'bower_components/angular-mocks/angular-mocks.js',
   'src/js/datetimepicker.js',
   'test/*.spec.js'

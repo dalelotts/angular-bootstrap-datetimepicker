@@ -38,7 +38,8 @@ describe('configuration validation', function () {
         $compile('<datetimepicker></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("No controller: ngModel");
+      // Can't specify the error message here because it changed starting with 1.2.x
+      expect(compile).toThrow();
     });
     it('if invalid option name is specified', function () {
       function compile() {
