@@ -22,6 +22,7 @@
 </head>
 <body ng-app="ui.bootstrap.datetimepicker">
 <p>Selected Date: {{ data.date | date:'yyyy-MM-dd HH:mm' }}</p>
+<button data-ng-click="data.date = moment('2013-01-22T00:00:00.000').toDate()">Set Date</button>
 <datetimepicker data-ng-model="data.date" ></datetimepicker>
 <div class="dropdown">
     <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
