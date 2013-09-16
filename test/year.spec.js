@@ -280,3 +280,24 @@ describe('year view with with ng-model = null and minView="year"', function () {
     expect($rootScope.date).toEqual(moment('2020-01-01T00:00:00.000').toDate());
   });
 });
+describe('year view with with ng-model = 1970-1-1 (unix date of zero) and minView="year"', function () {
+  'use strict';
+  var $rootScope, $compile, element;
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
+    $rootScope.date = moment("1970-01-01T00:00:00.000").toDate();
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" data-ng-model="date"></datetimepicker>')($rootScope);
+    $rootScope.$digest();
+  }));
+  it('clicking the `.left` element will change the view to 1960-1969"', function () {
+    expect(jQuery('.switch', element).text()).toBe('1970-1979');
+
+    var selectedElement = jQuery('.left', element);
+    selectedElement.trigger('click');
+
+    expect(jQuery('.switch', element).text()).toBe('1960-1969');
+    expect($rootScope.date).toEqual(moment('1970-01-01T00:00:00.000').toDate());
+  });
+});

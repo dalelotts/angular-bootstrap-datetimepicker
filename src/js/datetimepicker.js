@@ -313,16 +313,16 @@ angular.module('ui.bootstrap.datetimepicker', [])
             event.preventDefault();
           }
 
-          if (viewName && unixDate && dataFactory[viewName]) {
+          if (viewName && (unixDate > -Infinity) && dataFactory[viewName]) {
             scope.data = dataFactory[viewName](unixDate);
           }
         };
 
+        scope.changeView(configuration.startView, getUTCTime());
+
         scope.$watch('ngModel', function () {
           scope.changeView(scope.data.currentView, getUTCTime());
         });
-
-        scope.changeView(configuration.startView, getUTCTime());
       }
     };
   }]);
