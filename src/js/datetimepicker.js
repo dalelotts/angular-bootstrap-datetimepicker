@@ -92,9 +92,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "                       data-ng-click=\"changeView(data.nextView, dateValue.date, $event)\">{{ dateValue.display }}</span> " +
         "           </td>" +
         "       </tr>" +
-        '       <tr data-ng-show=\'{{ data.currentView == "day" }}\' data-ng-repeat=\'week in data.weeks\'>' +
+        '       <tr data-ng-class=\'{ hide: data.currentView != "day" }\' data-ng-repeat=\'week in data.weeks\'>' +
         "           <td data-ng-repeat='dateValue in week.dates' " +
-        "               data-ng-click=\"changeView('{{ data.nextView }}', {{ dateValue.date }}, $event)\"" +
+        "               data-ng-click=\"changeView(data.nextView, dateValue.date, $event)\"" +
         "               class='day' " +
         "               data-ng-class='{active: dateValue.active, past: dateValue.past, future: dateValue.future}' >{{ dateValue.display }}</td>" +
         "       </tr>" +
