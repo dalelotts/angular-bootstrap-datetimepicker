@@ -34,7 +34,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      '**/src/js/*.js': ['coverage']
+      'src/js/*.js': ['coverage']
     },
 
     // test results reporter to use
@@ -42,8 +42,8 @@ module.exports = function (config) {
     reporters: ['progress', 'coverage'],
 
     coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
+      type: 'html',
+      dir: 'coverage/'
     },
 
     // web server port
