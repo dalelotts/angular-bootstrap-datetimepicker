@@ -51,7 +51,7 @@ Add the css:
 
 ```html
 <link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
-<link rel="stylesheet" href="components/angular-bootstrap-datetimepicker/css/datetimepicker.css"/>
+<link rel="stylesheet" href="components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
 ```
 
 Load the script files in your application:
@@ -59,7 +59,7 @@ Load the script files in your application:
 <script type="text/javascript" src="components/moment/moment.js"></script>
 <script type="text/javascript" src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
 <script type="text/javascript" src="components/angular/angular.js"></script>
-<script type="text/javascript" src="components/angular-bootstrap-datetimepicker/js/datetimepicker.js"></script>
+<script type="text/javascript" src="components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 ```
 
 Add the date module as a dependency to your application module:
