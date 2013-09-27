@@ -18,6 +18,13 @@ module.exports = function (config) {
 
     frameworks: ['jasmine'],
 
+    plugins: [
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-coverage'
+    ],
+
     files: [
       'bower_components/jquery/jquery.js',
       'bower_components/moment/moment.js',
