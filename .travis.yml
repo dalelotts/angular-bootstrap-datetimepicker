@@ -14,4 +14,4 @@ before_script:
   - npm install -g bower grunt-cli
   - bower install
 
-script: "grunt --verbose"
+script: "grunt karma --verbose"
