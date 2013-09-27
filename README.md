@@ -3,6 +3,7 @@
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
+[![devDependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker/dev-status.png)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker#info=devDependencies)
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
