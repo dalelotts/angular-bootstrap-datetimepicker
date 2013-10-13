@@ -154,14 +154,14 @@ the drop-down is toggled closed after the user selectes a date/time.
 ### Drop-down component with associated input box.
 ```html
 <div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
         <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
                 class="icon-calendar"></i></span>
         </div>
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
         <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
     </ul>
 </div>
 ```
