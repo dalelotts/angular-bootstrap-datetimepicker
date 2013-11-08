@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.1.5
+ * @license angular-bootstrap-datetimepicker  v0.2.0
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -71,13 +71,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "       <tr>" +
         "           <th class='left'" +
         "               data-ng-click=\"changeView(data.currentView, data.leftDate, $event)\"" +
-        "               ><i class='icon-arrow-left'/></th>" +
+        "               ><i class='glyphicon glyphicon-arrow-left'/></th>" +
         "           <th class='switch' colspan='5'" +
         "               data-ng-click=\"changeView(data.previousView, data.currentDate, $event)\"" +
         ">{{ data.title }}</th>" +
         "           <th class='right'" +
         "               data-ng-click=\"changeView(data.currentView, data.rightDate, $event)\"" +
-        "             ><i class='icon-arrow-right'/></th>" +
+        "             ><i class='glyphicon glyphicon-arrow-right'/></th>" +
         "       </tr>" +
         "       <tr>" +
         "           <th class='dow' data-ng-repeat='day in data.dayNames' >{{ day }}</th>" +
@@ -101,7 +101,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "   </tbody>" +
         "</table></div>",
       scope: {
-        ngModel: "=ngModel"
+        ngModel: "=",
+        onSetTime: "="
       },
       replace: true,
       link: function (scope, element, attrs) {
@@ -297,6 +298,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
             scope.ngModel = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
+            }
+            if (angular.isFunction(scope.onSetTime)) {
+              scope.onSetTime(scope.ngModel);
             }
             return dataFactory[scope.data.currentView](unixDate);
           }

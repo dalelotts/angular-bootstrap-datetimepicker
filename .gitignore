@@ -1,8 +1,8 @@
 .idea
-coverage
+coverage/*
 lib-cov
-bower_components
-node_modules
+bower_components/*
+node_modules/*
 *.seed
 *.log
 *.csv

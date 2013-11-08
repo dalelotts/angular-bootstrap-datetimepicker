@@ -1,7 +1,7 @@
-# Angular bootstrap date & time picker
+# Angular bootstrap date & time picker  v0.2.0
 ================================
 
-Native AngularJS datetime picker directive styled by Twitter Bootstrap
+Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
 [![devDependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker/dev-status.png)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker#info=devDependencies)
 
@@ -18,14 +18,14 @@ Requires:
  * AngularJS 1.1.3 or higher (1.0.x will not work)
  * moment.js for date parsing and formatting
  * bootstrap's dropdown component (`dropdowns.less`)
- * bootstrap's sprites (`sprites.less` and associated images) for arrows
+ * bootstrap's glyphicons for arrows
 
 #Testing
 We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use grunt:
 
 ```
 npm install -g grunt-cli
-npm install bower grunt
+npm install
 ```
 
 The karma task will try to open Chrome as a browser in which to run the tests. Make sure this is available or change the configuration in test\test.config.js
@@ -50,14 +50,14 @@ This will copy the angular-bootstrap-datetimepicker files into your components f
 Add the css:
 
 ```html
-<link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
+<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
 ```
 
 Load the script files in your application:
 ```html
 <script type="text/javascript" src="components/moment/moment.js"></script>
-<script type="text/javascript" src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="components/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="components/angular/angular.js"></script>
 <script type="text/javascript" src="components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 ```

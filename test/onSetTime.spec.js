@@ -1,0 +1,62 @@
+/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
+
+/**
+ * @license angular-bootstrap-datetimepicker
+ * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * License: MIT
+ */
+
+/**
+ *
+ *    @author        Dale "Ducky" Lotts
+ *    @since        11/8/2013
+ */
+describe('onSetTime', function () {
+  'use strict';
+  var $rootScope, $compile;
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
+    $rootScope.date = null;
+  }));
+
+  describe('does not throw exception', function () {
+    it('when onSetTime is missing', function () {
+      $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
+    });
+    it('when onSetTime is not a function', function () {
+      $compile('<datetimepicker data-ng-model="date" data-onSetTime="foo"></datetimepicker>')($rootScope);
+    });
+  });
+
+  describe('calls onSetTime when date is selected', function () {
+    it('onSetTime accepts date parameter', function () {
+
+      $rootScope.setTimeFunction = function (selectedDate) {
+        expect(selectedDate).toEqual(moment("2009-01-01T00:00:00.000").toDate());
+      };
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery('.past', element);
+      selectedElement.trigger('click');
+      expect($rootScope.date).toEqual(moment("2009-01-01T00:00:00.000").toDate());
+    });
+  });
+
+  describe('ignores onSetTime', function () {
+    it('if onSetTime is not a function', function () {
+
+      $rootScope.setTimeFunction = "notAFunction";
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery('.future', element);
+      selectedElement.trigger('click');
+    });
+  });
+});
+

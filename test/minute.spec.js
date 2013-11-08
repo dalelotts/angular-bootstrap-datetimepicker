@@ -20,7 +20,7 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2013-01-22T00:0:00.000").toDate();
+    $rootScope.date = moment("2013-01-22T00:00:00.000").toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));

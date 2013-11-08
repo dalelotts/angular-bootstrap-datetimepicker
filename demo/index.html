@@ -12,10 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Angular Bootstrap - Date Time Picker Demo</title>
     <base href=".."></base>
-    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="src/css/datetimepicker.css">
     <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap/docs/assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/moment/moment.js"></script>
     <script type="text/javascript" src="src/js/datetimepicker.js"></script>
@@ -23,7 +23,6 @@
 <body ng-app="ui.bootstrap.datetimepicker">
 <p>Formatted Date: {{ data.date | date:'yyyy-MM-dd HH:mm' }}</p>
 <p>Raw Date: {{ data.date }}</p>
-<button data-ng-click="data.date = moment('2013-01-22T00:00:00.000').toDate()">Set Date</button>
 <datetimepicker data-ng-model="data.date" data-datetimepicker-config="{ startView: 'year', minView: 'year'}"></datetimepicker>
 <div class="dropdown">
     <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
