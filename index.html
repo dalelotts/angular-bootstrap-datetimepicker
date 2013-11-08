@@ -11,7 +11,7 @@
 
 <body>
 
-<header class="hero-unit" id="overview">
+<header class="jumbotron text-center" id="overview">
     <div class="container">
 
         <h1>Angular Datetime Picker</h1>
@@ -19,7 +19,7 @@
         <p>Native AngularJS datetime picker directive styled by Twitter Bootstrap</p>
 
         <p class="btn-group">
-            <a class="btn" href="https://github.com/dalelotts/angular-bootstrap-datetimepicker"><i class="icon-github"></i> Code on Github</a>
+            <a class="btn btn-default" href="https://github.com/dalelotts/angular-bootstrap-datetimepicker"><i class="icon-github"></i> Code on Github</a>
             <a  class="btn btn-primary" href="https://github.com/dalelotts/angular-bootstrap-datetimepicker/zipball/master">
                 <i class="icon-download-alt icon-white"></i>Download  <small>(zip file)</small>
             </a>
@@ -49,7 +49,7 @@
         <h2>Examples</h2>
       </div>
       <div class="row">
-        <div class="span6">
+        <div class="col-sm-6">
           <h3>Embedded calendar </h3>
 
           <p>Display a calendar embedded in the page.</p>
@@ -63,7 +63,7 @@
 
           <p>Allows the user to select a date/time directly on the page</p>
         </div>
-        <div class="span6">
+        <div class="col-sm-6">
           <h3>How?</h3>
             <p>You can pass configuration options as a function or an object.</p>
             <pre class="prettyprint"><ol class="linenums"><li class="L0"><span class="pln">Selected Date: <span class="atv">{</span>{ data.date | date:'yyyy-MM-dd a' }<span class="atv">}</span></span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="tag">&lt;datetimepicker</span><span class="pln"> </span><span class="atn">data-ng-model</span><span class="pun">=</span><span class="atv">"data.embeddedDate"</span></li><li class="L3">    <span class="atn">data-datetimepicker-config</span><span class="pun">=</span><span class="atv">"{ startView:'day', minView:'day' }"</span><span class="tag"> /&gt;</span></li></ol></pre>
@@ -73,7 +73,7 @@
     <hr/>
     <section id="drop-down">
       <div class="row">
-        <div class="span6">
+        <div class="col-sm-6">
             <h3>Drop-down using text link </h3>
             <p>Display the calendar inside a bootstrap dropdown component.</p>
 
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="span6">
+        <div class="col-sm-6">
             <h3>Why?</h3>
 
             <p>Allows the user to select a date/time from a drop-down component to save space on the page.</p>
@@ -102,15 +102,16 @@
     <hr/>
     <section id="drop-down-input">
       <div class="row">
-        <div class="span6">
+        <div class="col-sm-6">
             <h3>Drop-down Datetime with input box</h3>
             <p>Display the calendar inside a bootstrap dropdown component.</p>
 
             <div class="well">
                 <div class="dropdown">
                     <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-                        <div class="input-append"><input type="text" class="input-large" data-ng-model="data.dateDropDownInput"><span class="add-on"><i
-                                class="icon-calendar"></i></span>
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -121,7 +122,7 @@
 
 
         </div>
-        <div class="span6">
+        <div class="col-sm-6">
             <h3>Why?</h3>
 
            <p>Allows the user to select a date/time from a drop-down component to save space on the page.</p>
@@ -139,13 +140,13 @@
                    <p>This attribute can be an object or a function.</p>
     <section id="minMaxView">
              <div class="row">
-               <div class="span6">
+               <div class="col-sm-6">
                    <h3>minView</h3>
 
                    <p>String. Default: <code>'minute'</code></p>
                    <p>The view that will trigger date selection when the user clicks on one of the date/time values.</p>
                </div>
-               <div class="span6">
+               <div class="col-sm-6">
                    <h3>minuteStep</h3>
                    <p>Number. Default: <code>5</code></p>
                    <p>The increment used to build the hour view. A button is created for each minuteStep minutes.</p>
@@ -154,7 +155,7 @@
        </section>
     <section id="startView">
          <div class="row">
-           <div class="span6">
+           <div class="col-sm-6">
                <h3>startView</h3>
 
                <p>String. Default: <code>'day'</code></p>
@@ -170,7 +171,7 @@
                </dl>
                </div>
            </div>
-           <div class="span6">
+           <div class="col-sm-6">
                <h3>dropdownSelector</h3>
                <p>String. Default: <code>null</code></p>
                <p>When used within a Bootstrap dropdown, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.</p>
@@ -192,11 +193,9 @@
   </div>
 </div>
 
-<!-- Le javascript
-================================================== -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
-<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular.js"></script>
 <script type="text/javascript" src="javascripts/datetimepicker.js"></script>
 
