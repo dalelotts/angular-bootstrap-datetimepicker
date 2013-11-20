@@ -63,7 +63,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     "use strict";
 
     return {
-      restrict: 'E',
+      restrict: 'EACM',
       require: 'ngModel',
       template: "<div class='datetimepicker'>" +
         "<table class='table-condensed'>" +
