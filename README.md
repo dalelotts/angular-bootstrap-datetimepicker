@@ -1,4 +1,5 @@
-# Angular bootstrap date & time picker  v0.2.0
+# Angular bootstrap date & time picker  v0.2.1
+================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
@@ -75,6 +76,22 @@ Apply the directive to your form elements:
 ```
 
 ## Options
+
+### on-set-time
+Attribute on datetimepicker
+
+If the value of the on-set-time attribute is a function, the date time picker will call this function
+passing in the selected value and previous value.
+```html
+<datetimepicker data-ng-model="data.date" date-on-set-time="onTimeSet"></datetimepicker>
+```
+This function will be called when the user selects a value on the minView.
+```javascript
+$scope.onTimeSet = function (newDate, oldDate) {
+    console.log(newDate);
+    console.log(oldDate);
+}
+```
 
 ### startView
 
