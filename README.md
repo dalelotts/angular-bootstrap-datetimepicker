@@ -1,9 +1,9 @@
 # Angular bootstrap date & time picker  v0.2.0
-================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
 [![devDependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker/dev-status.png)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker#info=devDependencies)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dalelotts/angular-bootstrap-datetimepicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
