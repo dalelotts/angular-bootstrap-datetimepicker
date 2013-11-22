@@ -214,3 +214,7 @@ If the minute view is the minView, which is is by default, the date will be set 
 # Idea Project Directory
 
 The .idea directory holds the IntelliJ Idea project files for this project. If you use Idea, just open the project with Idea.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dalelotts/angular-bootstrap-datetimepicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
