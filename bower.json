@@ -5,7 +5,10 @@
   "author": "https://github.com/dalelotts/angular-bootstrap-datetimepicker/graphs/contributors",
   "license": "MIT",
   "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
-  "main": "./src/js/datetimepicker.js",
+  "main": [
+    "./src/js/datetimepicker.js",
+    "./src/css/datetimepicker.css"
+    ],
   "ignore": [
     "**/.*",
     "screenshots",
