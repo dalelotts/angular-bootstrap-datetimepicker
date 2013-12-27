@@ -83,7 +83,7 @@ Attribute on datetimepicker
 If the value of the on-set-time attribute is a function, the date time picker will call this function
 passing in the selected value and previous value.
 ```html
-<datetimepicker data-ng-model="data.date" date-on-set-time="onTimeSet"></datetimepicker>
+<datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet"></datetimepicker>
 ```
 This function will be called when the user selects a value on the minView.
 ```javascript
