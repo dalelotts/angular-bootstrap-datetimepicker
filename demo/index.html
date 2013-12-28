@@ -43,5 +43,11 @@
                         data-datetimepicker-config="{ startView: 'day', dropdownSelector: '#dropdown2', minuteStep: 15 }"></datetimepicker>
     </ul>
 </div>
+<div>
+    Click me to show/hide via ng-show: <input type="checkbox" data-ng-model="data.checked"><br/>
+    <datetimepicker data-ng-model="data.date" data-ng-show="data.checked"
+                    data-datetimepicker-config="{ startView: 'day', dropdownSelector: '#dropdown2', minuteStep: 15 }"></datetimepicker>
+
+</div>
 </body>
 </html>
