@@ -24,7 +24,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
