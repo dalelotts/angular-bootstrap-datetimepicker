@@ -18,7 +18,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
     startView: 'day',
     minView: 'minute',
     minuteStep: 5,
-    dropdownSelector: null
+    dropdownSelector: null,
+    weekStart : 0
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
@@ -192,7 +193,10 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
             // ToDo: Update to account for starting on days other than Sunday.
-            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.day(), 'days');
+            var startDate = moment.utc(startOfMonth).subtract(
+                (startOfMonth.day() - configuration.weekStart >= 0)
+                    ? startOfMonth.day() - configuration.weekStart
+                    : 7 + startOfMonth.day() - configuration.weekStart, 'days');
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
@@ -208,8 +212,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'weeks': []
             };
 
-            for (var dayNumber = 0; dayNumber < 7; dayNumber++) {
-              result.dayNames.push(moment.utc().day(dayNumber).format('dd'));
+            var dayNumber = configuration.weekStart;
+            var numberOfDays = 0;
+            while (numberOfDays < 7) {
+                result.dayNames.push(moment
+                    .utc().day(dayNumber)
+                    .format('dd'));
+                (dayNumber++)%8;
+                numberOfDays++;
             }
 
             for (var i = 0; i < 6; i++) {
