@@ -155,7 +155,7 @@ Display formatting of the date field is controlled by Angular filters.
 
 ```html
 <div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
         Click here to show calendar
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -171,7 +171,7 @@ the drop-down is toggled closed after the user selectes a date/time.
 ### Drop-down component with associated input box.
 ```html
 <div class="dropdown">
-    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
         <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
                 class="icon-calendar"></i></span>
         </div>
