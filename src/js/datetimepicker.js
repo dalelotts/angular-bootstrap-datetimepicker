@@ -102,7 +102,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "</table></div>",
       scope: {
         ngModel: "=",
-        onSetTime: "="
+        onSetTime: "=",
+        onSetUtcTime: "="
       },
       replace: true,
       link: function (scope, element, attrs) {
@@ -303,6 +304,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
               scope.onSetTime(newDate, scope.ngModel);
             }
             scope.ngModel = newDate;
+            if (angular.isFunction(scope.onSetUtcTime)) {
+              scope.onSetUtcTime(getUTCTime());
+            }
             return dataFactory[scope.data.currentView](unixDate);
           }
         };
