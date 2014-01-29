@@ -18,12 +18,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     startView: 'day',
     minView: 'minute',
     minuteStep: 5,
-    dropdownSelector: null
+    dropdownSelector: null,
+    returnType: 'date'
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'returnType'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -35,6 +36,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
     // Order of the elements in the validViews array is significant.
     var validViews = ['minute', 'hour', 'day', 'month', 'year'];
+    var validReturnTypes = ['moment', 'date'];
 
     if (validViews.indexOf(configuration.startView) < 0) {
       throw ("invalid startView value: " + configuration.startView);
@@ -56,6 +58,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
     }
     if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
       throw ("dropdownSelector must be a string");
+    }
+    if (validReturnTypes.indexOf(configuration.returnType) < 0) {
+      throw ("returnType must be either moment or date. Received: " + configuration.returnType);
     }
   }
 )
@@ -302,7 +307,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             if (angular.isFunction(scope.onSetTime)) {
               scope.onSetTime(newDate, scope.ngModel);
             }
-            scope.ngModel = newDate;
+            scope.ngModel = configuration.returnType === 'date' ? newDate : moment(newDate);
             return dataFactory[scope.data.currentView](unixDate);
           }
         };
