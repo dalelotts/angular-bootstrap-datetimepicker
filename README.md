@@ -121,6 +121,17 @@ The increment used to build the hour view. A button is created for each <code>mi
 
 When used within a Bootstrap dropdown, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
 
+### weekStart
+
+Number.  Default: 0
+
+Allows to set a week's starting day. Should be between 0 and 6.
+
+```html
+<datetimepicker data-ng-model="data.date" date-datetimepicker-config="{'weekStart': 1}"></datetimepicker>
+```
+
+
 ## Working with ng-model
 The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
 
