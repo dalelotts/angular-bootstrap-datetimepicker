@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.2.0
+ * @license angular-bootstrap-datetimepicker  v0.2.2
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -15,15 +15,16 @@
 
 angular.module('ui.bootstrap.datetimepicker', [])
   .constant('dateTimePickerConfig', {
-    startView: 'day',
-    minView: 'minute',
+    dropdownSelector: null,
     minuteStep: 5,
-    dropdownSelector: null
+    minView: 'minute',
+    startView: 'day',
+    weekStart: 0
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -56,6 +57,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     }
     if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
       throw ("dropdownSelector must be a string");
+    }
+
+    if (!angular.isNumber(configuration.weekStart)) {
+      throw ("weekStart must be numeric");
+    }
+    if (configuration.weekStart < 0 || configuration.weekStart > 6) {
+      throw ("weekStart must be greater than or equal to zero and less than 7");
     }
   }
 )
@@ -191,8 +199,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var startOfMonth = moment.utc(selectedDate).startOf('month');
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
-            // ToDo: Update to account for starting on days other than Sunday.
-            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.day(), 'days');
+            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.weekday() - configuration.weekStart, 'days');
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
@@ -208,8 +215,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'weeks': []
             };
 
-            for (var dayNumber = 0; dayNumber < 7; dayNumber++) {
-              result.dayNames.push(moment.utc().day(dayNumber).format('dd'));
+
+            for (var dayNumber = configuration.weekStart; dayNumber < configuration.weekStart + 7; dayNumber++) {
+              result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
             }
 
             for (var i = 0; i < 6; i++) {
@@ -295,13 +303,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
           setTime: function (unixDate) {
             var tempDate = new Date(unixDate);
-            scope.ngModel = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+            var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
             if (angular.isFunction(scope.onSetTime)) {
-              scope.onSetTime(scope.ngModel);
+              scope.onSetTime(newDate, scope.ngModel);
             }
+            scope.ngModel = newDate;
             return dataFactory[scope.data.currentView](unixDate);
           }
         };

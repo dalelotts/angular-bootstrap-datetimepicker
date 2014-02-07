@@ -135,6 +135,19 @@
 
     <hr/>
 
+    <h2>Callback functions</h2>
+    <section id="onSetTime">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>on-set-time</h3>
+                <p>Function. Default: <code>null</code></p>
+                <p>If the value of the on-set-time attribute (not a config option) is a function, the date time picker will call this function passing in the selected value and previous value.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr/>
+
     <h2>Configuration Options</h2>
     <p>The <strong>datetimepicker-config</strong> attribute defines the configuration options.</p>
                    <p>This attribute can be an object or a function.</p>
@@ -178,7 +191,31 @@
            </div>
          </div>
    </section>
+    <section id="startWeek">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>startWeek</h3>
+
+                <p>Number. Default: <code>0</code></p>
+                <p>The view that the datetimepicker should show when it is opened.</p>
+                <div class="well">
+                    <p>Accepts values of :</p>
+                    <dl>
+                        <dt>0</dt><dd>for Sunday (Default)</dd>
+                        <dt>1</dt><dd>for Monday</dd>
+                        <dt>2</dt><dd>for Tuesday</dd>
+                        <dt>3</dt><dd>for Wednesday</dd>
+                        <dt>4</dt><dd>for Thursday</dd>
+                        <dt>5</dt><dd>for Friday</dd>
+                        <dt>6</dt><dd>for Saturday</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
+
+
 
 <hr/>
 
