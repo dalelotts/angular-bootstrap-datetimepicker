@@ -239,7 +239,3 @@ If the hour view is the minView, the date will be set to the beginning of the ho
 This view allows the user to select a specific time of day, in the selected hour.
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
-
-# Idea Project Directory
-
-The .idea directory holds the IntelliJ Idea project files for this project. If you use Idea, just open the project with Idea.
