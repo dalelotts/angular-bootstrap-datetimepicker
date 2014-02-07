@@ -18,12 +18,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     startView: 'day',
     minView: 'minute',
     minuteStep: 5,
-    dropdownSelector: null
+    dropdownSelector: null,
+    weekStart: 0
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -56,6 +57,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     }
     if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
       throw ("dropdownSelector must be a string");
+    }
+
+    if (!angular.isNumber(configuration.weekStart)) {
+      throw ("weekStart must be numeric");
+    }
+    if (configuration.weekStart < 0 || configuration.weekStart >= 7) {
+      throw ("weekStart must be greater or equal to zero and less than 7");
     }
   }
 )
@@ -208,22 +216,45 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'weeks': []
             };
 
-            for (var dayNumber = 0; dayNumber < 7; dayNumber++) {
-              result.dayNames.push(moment.utc().day(dayNumber).format('dd'));
+            var getDayName = function(dayNumber) {
+              return moment.utc().day(dayNumber).format('dd');
             }
 
-            for (var i = 0; i < 6; i++) {
+            var getWeekDay = function(weekNumber, dayNumber) {
+              var monthMoment = moment.utc(startDate).add((weekNumber * 7) + dayNumber, 'days');
+              return {
+                'date': monthMoment.valueOf(),
+                'display': monthMoment.format('D'),
+                'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
+                'past': monthMoment.isBefore(startOfMonth),
+                'future': monthMoment.isAfter(endOfMonth)
+              };
+            }
+
+            for (var dayNumber = configuration.weekStart; dayNumber < 7; dayNumber++) {
+              result.dayNames.push(getDayName(dayNumber));
+            }
+            for (var dayNumber = 0; dayNumber < configuration.weekStart; dayNumber++) {
+              result.dayNames.push(getDayName(dayNumber));
+            }
+
+            var weekNumberStart = 0;
+            var weekNumberEnd = 6;
+
+            var firstDay = getWeekDay(0, configuration.weekStart);
+
+            if (firstDay.display > 1 && !firstDay.past) {
+              weekNumberStart = weekNumberStart - 1;
+              weekNumberEnd = weekNumberEnd - 1;
+            }
+
+            for (var weekNumber = weekNumberStart; weekNumber < weekNumberEnd; weekNumber++) {
               var week = { dates: [] };
-              for (var j = 0; j < 7; j++) {
-                var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
-                var dateValue = {
-                  'date': monthMoment.valueOf(),
-                  'display': monthMoment.format('D'),
-                  'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
-                  'past': monthMoment.isBefore(startOfMonth),
-                  'future': monthMoment.isAfter(endOfMonth)
-                };
-                week.dates.push(dateValue);
+              for (var dayNumber = configuration.weekStart; dayNumber < 7; dayNumber++) {
+                week.dates.push(getWeekDay(weekNumber, dayNumber));
+              }
+              for (var dayNumber = 0; dayNumber < configuration.weekStart; dayNumber++) {
+                week.dates.push(getWeekDay(weekNumber, dayNumber + 7));
               }
               result.weeks.push(week);
             }
