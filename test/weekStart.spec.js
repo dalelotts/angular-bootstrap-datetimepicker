@@ -28,21 +28,21 @@ describe('weekStart', function () {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: -1 }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("weekStart must be greater or equal to zero and less than 7");
+      expect(compile).toThrow("weekStart must be greater than or equal to zero and less than 7");
     });
     it('if value is 7', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 7 }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("weekStart must be greater or equal to zero and less than 7");
+      expect(compile).toThrow("weekStart must be greater than or equal to zero and less than 7");
     });
     it('if value is greater 7', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 8 }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("weekStart must be greater or equal to zero and less than 7");
+      expect(compile).toThrow("weekStart must be greater than or equal to zero and less than 7");
     });
     it('if value is not numeric', function () {
       function compile() {
@@ -57,6 +57,175 @@ describe('weekStart', function () {
       for (var i = 0; i < 7; i++) {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: ' + i + ' }"></datetimepicker>')($rootScope);
       }
+    });
+  });
+  describe('with a value of 0', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 0 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of Su', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('Su');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 26', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('26');
+    });
+    it('the last `.day` element has a value of 6', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('6');
+    });
+  });
+  describe('with a value of 1', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 1 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of Mo', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('Mo');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 27', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('27');
+    });
+    it('the last `.day` element has a value of 7', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('7');
+    });
+  });
+  describe('with a value of 2', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 2 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of tu', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('Tu');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 28', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('28');
+    });
+    it('the last `.day` element has a value of 8', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('8');
+    });
+  });
+
+  describe('with a value of 3', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 3 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of We', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('We');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 29', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('29');
+    });
+    it('the last `.day` element has a value of 9', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('9');
+    });
+  });
+  describe('with a value of 4', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 4 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of Th', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('Th');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 30', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('30');
+    });
+    it('the last `.day` element has a value of 10', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('10');
+    });
+  });
+  describe('with a value of 5', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 5 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of Fr', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('Fr');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 31', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('1');
+    });
+    it('the last `.day` element has a value of 10', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('11');
+    });
+  });
+  describe('with a value of 6', function () {
+    var element;
+    beforeEach(inject(function () {
+      element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ weekStart: 6 }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.$digest();
+    }));
+    it('has seven `.dow` elements', function () {
+      expect(jQuery('.dow', element).length).toBe(7);
+    });
+    it('the first `.dow` element has a value of Sa', function () {
+      expect(jQuery(jQuery('.dow', element)[0]).text()).toBe('Sa');
+    });
+    it('there are 42 `.day` elements', function () {
+      expect(jQuery('.day', element).length).toBe(42);
+    });
+    it('the first `.day` element has a value of 1', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('2');
+    });
+    it('the last `.day` element has a value of 10', function () {
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('12');
     });
   });
 });

@@ -1,4 +1,4 @@
-# Angular bootstrap date & time picker  v0.2.1
+# Angular bootstrap date & time picker  v0.2.2
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
@@ -16,7 +16,7 @@ Only the CSS file from the bootstrap-datetimepicker project was re-used.
 #Dependencies
 
 Requires:
- * AngularJS 1.1.3 or higher (1.0.x will not work)
+ * AngularJS 1.2.11 or higher (1.0.x will not work)
  * moment.js for date parsing and formatting
  * bootstrap's dropdown component (`dropdowns.less`)
  * bootstrap's glyphicons for arrows

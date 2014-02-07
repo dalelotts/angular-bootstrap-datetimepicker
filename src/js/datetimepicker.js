@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.2.1
+ * @license angular-bootstrap-datetimepicker  v0.2.2
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -15,10 +15,10 @@
 
 angular.module('ui.bootstrap.datetimepicker', [])
   .constant('dateTimePickerConfig', {
-    startView: 'day',
-    minView: 'minute',
-    minuteStep: 5,
     dropdownSelector: null,
+    minuteStep: 5,
+    minView: 'minute',
+    startView: 'day',
     weekStart: 0
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
@@ -62,8 +62,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
     if (!angular.isNumber(configuration.weekStart)) {
       throw ("weekStart must be numeric");
     }
-    if (configuration.weekStart < 0 || configuration.weekStart >= 7) {
-      throw ("weekStart must be greater or equal to zero and less than 7");
+    if (configuration.weekStart < 0 || configuration.weekStart > 6) {
+      throw ("weekStart must be greater than or equal to zero and less than 7");
     }
   }
 )
@@ -199,8 +199,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var startOfMonth = moment.utc(selectedDate).startOf('month');
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
-            // ToDo: Update to account for starting on days other than Sunday.
-            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.day(), 'days');
+            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.weekday() - configuration.weekStart, 'days');
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
@@ -216,45 +215,23 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'weeks': []
             };
 
-            var getDayName = function(dayNumber) {
-              return moment.utc().day(dayNumber).format('dd');
+
+            for (var dayNumber = configuration.weekStart; dayNumber < configuration.weekStart + 7; dayNumber++) {
+              result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
             }
 
-            var getWeekDay = function(weekNumber, dayNumber) {
-              var monthMoment = moment.utc(startDate).add((weekNumber * 7) + dayNumber, 'days');
-              return {
-                'date': monthMoment.valueOf(),
-                'display': monthMoment.format('D'),
-                'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
-                'past': monthMoment.isBefore(startOfMonth),
-                'future': monthMoment.isAfter(endOfMonth)
-              };
-            }
-
-            for (var dayNumber = configuration.weekStart; dayNumber < 7; dayNumber++) {
-              result.dayNames.push(getDayName(dayNumber));
-            }
-            for (var dayNumber = 0; dayNumber < configuration.weekStart; dayNumber++) {
-              result.dayNames.push(getDayName(dayNumber));
-            }
-
-            var weekNumberStart = 0;
-            var weekNumberEnd = 6;
-
-            var firstDay = getWeekDay(0, configuration.weekStart);
-
-            if (firstDay.display > 1 && !firstDay.past) {
-              weekNumberStart = weekNumberStart - 1;
-              weekNumberEnd = weekNumberEnd - 1;
-            }
-
-            for (var weekNumber = weekNumberStart; weekNumber < weekNumberEnd; weekNumber++) {
+            for (var i = 0; i < 6; i++) {
               var week = { dates: [] };
-              for (var dayNumber = configuration.weekStart; dayNumber < 7; dayNumber++) {
-                week.dates.push(getWeekDay(weekNumber, dayNumber));
-              }
-              for (var dayNumber = 0; dayNumber < configuration.weekStart; dayNumber++) {
-                week.dates.push(getWeekDay(weekNumber, dayNumber + 7));
+              for (var j = 0; j < 7; j++) {
+                var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
+                var dateValue = {
+                  'date': monthMoment.valueOf(),
+                  'display': monthMoment.format('D'),
+                  'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
+                  'past': monthMoment.isBefore(startOfMonth),
+                  'future': monthMoment.isAfter(endOfMonth)
+                };
+                week.dates.push(dateValue);
               }
               result.weeks.push(week);
             }
