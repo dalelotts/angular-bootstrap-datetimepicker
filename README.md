@@ -75,10 +75,10 @@ Apply the directive to your form elements:
 <datetimepicker data-ng-model="data.date"></datetimepicker>
 ```
 
-## Options
+## Callback functions
 
 ### on-set-time
-Attribute on datetimepicker
+Attribute on datetimepicker element
 
 If the value of the on-set-time attribute is a function, the date time picker will call this function
 passing in the selected value and previous value.
@@ -92,6 +92,8 @@ $scope.onTimeSet = function (newDate, oldDate) {
     console.log(oldDate);
 }
 ```
+
+## Configuration Options
 
 ### startView
 
@@ -130,7 +132,6 @@ Allows to set a week's starting day. Should be between 0 and 6.
 ```html
 <datetimepicker data-ng-model="data.date" date-datetimepicker-config="{'weekStart': 1}"></datetimepicker>
 ```
-
 
 ## Working with ng-model
 The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
