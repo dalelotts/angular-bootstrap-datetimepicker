@@ -1,4 +1,4 @@
-/*globals angular, moment, jQuery */
+/*globals angular, moment*/
 /*jslint vars:true */
 
 /**
@@ -305,7 +305,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var tempDate = new Date(unixDate);
             var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
             if (configuration.dropdownSelector) {
-              jQuery(configuration.dropdownSelector).dropdown('toggle');
+              angular.element(document.querySelectorAll(configuration.dropdownSelector)).dropdown('toggle');
             }
             if (angular.isFunction(scope.onSetTime)) {
               scope.onSetTime(newDate, scope.ngModel);
