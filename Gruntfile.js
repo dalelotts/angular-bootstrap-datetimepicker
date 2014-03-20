@@ -29,6 +29,15 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         options: testConfig('karma.conf.js')
+      },
+      watch: {
+        options: testConfig('karma.conf.js',
+          {
+            singleRun: false,
+            autoWatch: true,
+            keepalive: true,
+            browsers: ['PhantomJS']
+          })
       }
     },
     jshint: {
