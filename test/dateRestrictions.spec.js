@@ -12,6 +12,74 @@
  *    @since        11/19/13
  */
 
+describe('invalid minimum date', function(){
+  'use strict';
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  it('throws error', inject(function ($compile, $rootScope) {
+    expect(function(){
+      $rootScope.date = moment().toDate();
+      element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minDate: \'not-a-date\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+    }).toThrow('invalid minDate: not-a-date');
+  }));
+});
+
+describe('invalid maximum date', function(){
+  'use strict';
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  it('throws error', inject(function ($compile, $rootScope) {
+    expect(function(){
+      $rootScope.date = moment().toDate();
+      element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', maxDate: \'not-a-date\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+    }).toThrow('invalid maxDate: not-a-date');
+  }));
+});
+
+describe('minimum date set to "now"', function () {
+  'use strict';
+  var $rootScope, element;
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    $rootScope = _$rootScope_;
+    $rootScope.date = moment().toDate();
+    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minDate: \'now\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    $rootScope.$digest();
+  }));
+  it('last `.disabled` element should be closest 5 minute mark prior to now', function () {
+    var expectedDateString = $rootScope.date.getHours() + ':';
+    var minutes = $rootScope.date.getMinutes();
+    minutes = minutes - ((minutes % 5 === 0)? 5 : 0) - (minutes % 5);
+    if(minutes < 10){
+      expectedDateString += '0';
+    }
+    expectedDateString += minutes;
+    expect(jQuery('.disabled', element).last().text()).toBe(expectedDateString);
+  });
+});
+
+describe('maximum date set to "now"', function () {
+  'use strict';
+  var $rootScope, element;
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    $rootScope = _$rootScope_;
+    $rootScope.date = moment().toDate();
+    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', maxDate: \'now\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    $rootScope.$digest();
+  }));
+  it('first `.disabled` element should be closest 5 minute mark after to now', function () {
+    var expectedDateString = $rootScope.date.getHours() + ':';
+    var minutes = $rootScope.date.getMinutes();
+    minutes = minutes + 5 - (minutes % 5);
+    if(minutes < 10){
+      expectedDateString += '0';
+    }
+    expectedDateString += minutes;
+    expect(jQuery('.disabled', element).first().text()).toBe(expectedDateString);
+  });
+});
+
 describe('minimum date of 2013-01-10T12:30 - minute granularity', function () {
   'use strict';
   var $rootScope, element;
