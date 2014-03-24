@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "bower": "latest",
-    "grunt": "0.4.1",
+    "grunt": "~0.4.4",
     "grunt-cli": "0.1.10",
     "grunt-contrib-jshint": "0.6.4",
     "grunt-istanbul-coverage": "0.0.2",
