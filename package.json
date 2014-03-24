@@ -22,7 +22,7 @@
     "phantomjs": "1.9.1-0"
   },
   "scripts": {
-    "test": "grunt --verbose",
+    "test": "grunt --verbose travis-test",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
