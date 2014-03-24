@@ -155,9 +155,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
           if(granularity === 'month' || granularity === 'day' || granularity === 'hour' || granularity === 'minute'){
             result.month = date.month();
           }
-          if(granularity === 'year' || granularity === 'month' || granularity === 'day' || granularity === 'hour' || granularity === 'minute'){
-            result.year = date.year();
-          }
+          result.year = date.year();
           return moment(result);
         };
 

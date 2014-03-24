@@ -27,7 +27,7 @@ module.exports = function (config) {
     ],
 
     files: [
-      'bower_components/jquery/jquery.js',
+      'bower_components/jquery/dist/jquery.js',
       'bower_components/moment/moment.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular/angular.js',
@@ -48,7 +48,12 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
     reporters: ['progress', 'coverage'],
-
+    coverageReporter: {
+        reporters: [
+            {type: 'json', dir: 'coverage/'},
+            {type: 'html', dir: 'coverage/'}
+        ]
+    },
     // web server port
     port: 9876,
 
