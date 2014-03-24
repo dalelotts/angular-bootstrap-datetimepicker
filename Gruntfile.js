@@ -4,8 +4,7 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'karma', 'coverage']);
-  grunt.registerTask('travis-test', ['jshint', 'karma:unit', 'coverage']);
+  grunt.registerTask('default', ['jshint', 'karma:unit', 'coverage']);
 
   var testConfig = function (configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
