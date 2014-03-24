@@ -21,27 +21,81 @@
     <script type="text/javascript" src="src/js/datetimepicker.js"></script>
 </head>
 <body ng-app="ui.bootstrap.datetimepicker">
-<p>Formatted Date: {{ data.date | date:'yyyy-MM-dd HH:mm' }}</p>
-<p>Raw Date: {{ data.date }}</p>
-<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{ startView: 'year', minView: 'year'}"></datetimepicker>
-<div class="dropdown">
-    <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
-        Click here to show calendar
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"></datetimepicker>
-    </ul>
-</div>
-<div class="dropdown">
-    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-        <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
-                class="icon-calendar"></i></span>
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Embedded calendar</h3>
+
+            <p><code>startView: 'year'</code> and <code>minView: 'year'</code>.</p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.embeddedYear | date:'yyyy-MM-dd' }}</p>
+
+                <datetimepicker data-ng-model="data.embeddedYear"
+                                data-datetimepicker-config="{ startView: 'year', minView: 'year'}"></datetimepicker>
+            </div>
         </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ startView: 'day', dropdownSelector: '#dropdown2', minuteStep: 15 }"></datetimepicker>
-    </ul>
+        <div class="col-sm-6">
+            <h3>Drop-down using text link</h3>
+
+            <p>Default configuration.</p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.linkCalendar | date:'medium' }}</p>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#"
+                       href="#">
+                        Click here to show calendar
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="data.linkCalendar"></datetimepicker>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Drop-down Datetime with input box</h3>
+
+            <p><code>dropdownSelector: '#dropdown2'</code> to toggle the dropdown.</p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.inputCalendar | date:'medium' }}</p>
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#"
+                       href="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="data.inputCalendar"
+                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-6">
+            <h3>Show / hide with check box</h3>
+
+            <p><code>startView: 'day'</code> and <code>minuteStep: 15</code></p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.checkboxCalendar | date:'medium' }}</p>
+                Click me to show/hide via ng-show: <input type="checkbox" data-ng-model="data.checked"><br/>
+                <datetimepicker data-ng-model="data.checkboxCalendar" data-ng-show="data.checked"
+                                data-datetimepicker-config="{ startView: 'day', minuteStep: 15 }"></datetimepicker>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
