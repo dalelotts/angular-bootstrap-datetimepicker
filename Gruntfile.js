@@ -8,7 +8,11 @@ module.exports = function (grunt) {
 
   var testConfig = function (configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
-    var travisOptions = process.env.TRAVIS && { browsers: ['Firefox'], reporters: 'dots' };
+    var travisOptions = process.env.TRAVIS && {
+      browsers: ['Firefox'],
+      reporters: ['dots', 'coverage'],
+      singleRun: true
+    };
     return grunt.util._.extend(options, customOptions, travisOptions);
   };
 
@@ -28,15 +32,12 @@ module.exports = function (grunt) {
     },
     karma: {
       unit: {
-        options: testConfig('karma.conf.js')
-      },
-      watch: {
         options: testConfig('karma.conf.js',
           {
             singleRun: false,
             autoWatch: true,
             keepalive: true,
-            browsers: ['PhantomJS']
+            browsers: ['Chrome']
           })
       }
     },
