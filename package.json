@@ -15,7 +15,7 @@
     "grunt-contrib-jshint": "0.6.4",
     "grunt-istanbul-coverage": "0.0.2",
     "grunt-karma": "0.6.2",
-    "karma-coverage": "0.1.0",
+    "karma-coverage": "0.2.0",
     "karma-phantomjs-launcher": "~0.1.2",
     "karma": "~0.10.9",
     "matchdep": "0.1.2",
