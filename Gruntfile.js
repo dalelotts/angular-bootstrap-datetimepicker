@@ -26,7 +26,7 @@ module.exports = function (grunt) {
           'lines': 100,
           'functions': 100
         },
-        dir: ''
+        dir: 'coverage'
       }
     },
     karma: {
