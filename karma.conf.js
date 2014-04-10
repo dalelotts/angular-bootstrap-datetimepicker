@@ -45,6 +45,12 @@ module.exports = function (config) {
       '**/src/js/*.js': ['coverage']
     },
 
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
+
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
     reporters: ['progress', 'coverage'],
@@ -92,6 +98,6 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: true
+    singleRun: false
   });
 };

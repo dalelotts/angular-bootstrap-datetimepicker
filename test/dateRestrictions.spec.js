@@ -18,7 +18,7 @@ describe('invalid minimum date', function(){
   it('throws error', inject(function ($compile, $rootScope) {
     expect(function(){
       $rootScope.date = moment().toDate();
-      element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minDate: \'not-a-date\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+      $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minDate: \'not-a-date\'}" data-ng-model="date"></datetimepicker>')($rootScope);
       $rootScope.$digest();
     }).toThrow('invalid minDate: not-a-date');
   }));
@@ -30,7 +30,7 @@ describe('invalid maximum date', function(){
   it('throws error', inject(function ($compile, $rootScope) {
     expect(function(){
       $rootScope.date = moment().toDate();
-      element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', maxDate: \'not-a-date\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+      $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', maxDate: \'not-a-date\'}" data-ng-model="date"></datetimepicker>')($rootScope);
       $rootScope.$digest();
     }).toThrow('invalid maxDate: not-a-date');
   }));
