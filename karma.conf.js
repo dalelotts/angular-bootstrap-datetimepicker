@@ -45,12 +45,6 @@ module.exports = function (config) {
       '**/src/js/*.js': ['coverage']
     },
 
-    // optionally, configure the reporter
-    coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
-    },
-
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
     reporters: ['progress', 'coverage'],
