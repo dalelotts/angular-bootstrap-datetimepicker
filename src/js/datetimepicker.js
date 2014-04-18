@@ -302,8 +302,20 @@ angular.module('ui.bootstrap.datetimepicker', [])
           },
 
           setTime: function (unixDate) {
-            var tempDate = new Date(unixDate);
-            var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+            var tempDate = moment(unixDate);
+            var tempModel = moment(scope.ngModel);
+            if (configuration.minView === 'day' && configuration.maxView === 'year') {
+              tempModel.year(tempDate.year());
+              tempModel.month(tempDate.month());
+              tempModel.day(tempDate.day());
+            } else if (configuration.minView === 'minute' && configuration.maxView === 'hour') {
+              tempModel.hour(tempDate.hour());
+              tempModel.minute(tempDate.minute());
+              tempModel.second(0);
+            } else {
+              tempModel = tempDate;
+            }
+            var newDate = new Date(tempModel.toDate().getTime() + (tempModel.toDate().getTimezoneOffset() * 60000));
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
