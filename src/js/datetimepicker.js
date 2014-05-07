@@ -23,8 +23,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
-
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'minDate', 'maxDate'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -33,7 +32,27 @@ angular.module('ui.bootstrap.datetimepicker', [])
         }
       }
     }
-
+    
+    //parse in the dates, checking that they are valid
+    if(configuration.minDate){
+      if(configuration.minDate === 'now'){
+        configuration.minDate = moment();
+      }else if(moment(configuration.minDate).isValid()){
+        configuration.minDate = moment(configuration.minDate);
+      }else{
+        throw ('invalid minDate: ' + configuration.minDate);
+      }
+    }
+    
+    if(configuration.maxDate){
+      if(configuration.maxDate === 'now'){
+        configuration.maxDate = moment();
+      }else if(moment(configuration.maxDate).isValid()){
+        configuration.maxDate = moment(configuration.maxDate);
+      }else{
+        throw ('invalid maxDate: ' + configuration.maxDate);
+      }
+    }
     // Order of the elements in the validViews array is significant.
     var validViews = ['minute', 'hour', 'day', 'month', 'year'];
 
@@ -96,15 +115,15 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "           <td colspan='7' >" +
         "              <span    class='{{ data.currentView }}' " +
         "                       data-ng-repeat='dateValue in data.dates'  " +
-        "                       data-ng-class='{active: dateValue.active, past: dateValue.past, future: dateValue.future}' " +
-        "                       data-ng-click=\"changeView(data.nextView, dateValue.date, $event)\">{{ dateValue.display }}</span> " +
+        "                       data-ng-class='{active: dateValue.active, past: dateValue.past, future: dateValue.future, disabled: dateValue.disabled}' " +
+        "                       data-ng-click=\"changeView(data.nextView, dateValue.date, $event, dateValue.disabled)\">{{ dateValue.display }}</span> " +
         "           </td>" +
         "       </tr>" +
         '       <tr data-ng-show=\'data.currentView == "day"\' data-ng-repeat=\'week in data.weeks\'>' +
         "           <td data-ng-repeat='dateValue in week.dates' " +
-        "               data-ng-click=\"changeView(data.nextView, dateValue.date, $event)\"" +
+        "               data-ng-click=\"changeView(data.nextView, dateValue.date, $event, dateValue.disabled)\"" +
         "               class='day' " +
-        "               data-ng-class='{active: dateValue.active, past: dateValue.past, future: dateValue.future}' >{{ dateValue.display }}</td>" +
+        "               data-ng-class='{active: dateValue.active, past: dateValue.past, future: dateValue.future, disabled: dateValue.disabled}' >{{ dateValue.display }}</td>" +
         "       </tr>" +
         "   </tbody>" +
         "</table></div>",
@@ -120,6 +139,46 @@ angular.module('ui.bootstrap.datetimepicker', [])
         if (attrs.datetimepickerConfig) {
           directiveConfig = scope.$eval(attrs.datetimepickerConfig);
         }
+
+        var fixToGranularity = function(date, granularity){
+          var result = {year: 0, month: 0, day: 0, hour: 0, minute: 0};
+          //begin illogical large scale if statements as jsLint doesn't allow fallthrough on case statements which makes this 1000 times easier
+          if(granularity === 'minute'){
+            result.minute = date.minute();
+          }
+          if(granularity === 'hour' || granularity === 'minute'){
+            result.hour = date.hour();
+          }
+          if(granularity === 'day' || granularity === 'hour' || granularity === 'minute'){
+            result.day = date.date();
+          }
+          if(granularity === 'month' || granularity === 'day' || granularity === 'hour' || granularity === 'minute'){
+            result.month = date.month();
+          }
+          result.year = date.year();
+          return moment(result);
+        };
+
+        //granularity is one of Month, Date, Year, Hour, Minute
+        //both args are required to work
+        var outsideActiveDates = function(date){
+          if(scope.data && scope.data.currentView){
+              var granularity = scope.data.currentView;
+              date = fixToGranularity(moment(date), granularity);
+              //we want this to default to false if neither are set
+              var minPass = false;
+              var maxPass = false;
+              if(configuration.minDate){
+                minPass = date.valueOf() < fixToGranularity(configuration.minDate, granularity).valueOf();
+              }
+              if(configuration.maxDate){
+                maxPass = date.valueOf() > fixToGranularity(configuration.maxDate, granularity).valueOf();
+              }
+              return minPass || maxPass;
+            }else{
+                return false;
+            }
+        };
 
         var configuration = {};
 
@@ -153,7 +212,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 'display': yearMoment.format('YYYY'),
                 'past': yearMoment.year() < startDecade,
                 'future': yearMoment.year() > startDecade + 9,
-                'active': yearMoment.year() === activeYear
+                'active': yearMoment.year() === activeYear,
+                'disabled': outsideActiveDates(yearMoment)
               };
 
               result.dates.push(dateValue);
@@ -184,7 +244,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var dateValue = {
                 'date': monthMoment.valueOf(),
                 'display': monthMoment.format('MMM'),
-                'active': monthMoment.format('YYYY-MMM') === activeDate
+                'active': monthMoment.format('YYYY-MMM') === activeDate,
+                'disabled': outsideActiveDates(monthMoment)
               };
 
               result.dates.push(dateValue);
@@ -229,7 +290,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
                   'display': monthMoment.format('D'),
                   'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
                   'past': monthMoment.isBefore(startOfMonth),
-                  'future': monthMoment.isAfter(endOfMonth)
+                  'future': monthMoment.isAfter(endOfMonth),
+                  'disabled': outsideActiveDates(monthMoment)
                 };
                 week.dates.push(dateValue);
               }
@@ -260,7 +322,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var dateValue = {
                 'date': hourMoment.valueOf(),
                 'display': hourMoment.format('H:00'),
-                'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
+                'active': hourMoment.format('YYYY-MM-DD H') === activeFormat,
+                'disabled': outsideActiveDates(hourMoment)
               };
 
               result.dates.push(dateValue);
@@ -292,7 +355,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var dateValue = {
                 'date': hourMoment.valueOf(),
                 'display': hourMoment.format('H:mm'),
-                'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
+                'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat,
+                'disabled': outsideActiveDates(hourMoment)
               };
 
               result.dates.push(dateValue);
@@ -320,7 +384,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
           return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
         };
 
-        scope.changeView = function (viewName, unixDate, event) {
+        scope.changeView = function (viewName, unixDate, event, isDisabled) {
+          if (isDisabled){ return; }
           if (event) {
             event.stopPropagation();
             event.preventDefault();

@@ -4,7 +4,7 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'karma', 'coverage']);
+  grunt.registerTask('default', ['jshint', 'karma:unit', 'coverage']);
 
   var testConfig = function (configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
@@ -26,17 +26,14 @@ module.exports = function (grunt) {
           'lines': 100,
           'functions': 100
         },
-        dir: 'coverage',
-        root: ''
+        dir: 'coverage'
       }
     },
     karma: {
       unit: {
         options: testConfig('karma.conf.js',
           {
-            singleRun: false,
-            autoWatch: true,
-            keepalive: true,
+            singleRun: true,
             browsers: ['Chrome']
           })
       }
