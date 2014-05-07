@@ -113,6 +113,12 @@ String. 'minute'
 
 The lowest view that the datetimepicker should show.
 
+### restartView
+
+Boolean.  Default: false
+
+Show the starting view if selecting a new date/time.
+
 ### minuteStep
 
 Number.  Default: 5

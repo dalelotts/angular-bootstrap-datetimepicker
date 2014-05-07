@@ -19,12 +19,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minuteStep: 5,
     minView: 'minute',
     startView: 'day',
-    weekStart: 0
+    weekStart: 0,
+    restartView: false
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+    var validOptions = ['startView', 'minView', 'restartView', 'minuteStep', 'dropdownSelector', 'weekStart'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -311,7 +312,12 @@ angular.module('ui.bootstrap.datetimepicker', [])
               scope.onSetTime(newDate, scope.ngModel);
             }
             scope.ngModel = newDate;
-            return dataFactory[scope.data.currentView](unixDate);
+            if (configuration.restartView) {
+              return dataFactory[configuration.startView](unixDate);
+            }
+            else {
+              return dataFactory[scope.data.currentView](unixDate);
+            }
           }
         };
 
