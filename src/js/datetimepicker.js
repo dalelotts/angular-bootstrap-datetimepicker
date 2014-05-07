@@ -110,10 +110,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "</table></div>",
       scope: {
         ngModel: "=",
-        onSetTime: "="
+        onSetTime: "=",
+        tzOffset: "="
       },
       replace: true,
       link: function (scope, element, attrs) {
+
+        var momDate;
 
         var directiveConfig = {};
 
@@ -135,7 +138,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             // Truncate the last digit from the current year and subtract 1 to get the start of the decade
             var startDecade = (parseInt(selectedDate.year() / 10, 10) * 10);
             var startDate = moment.utc(selectedDate).year(startDecade - 1).startOf('year');
-            var activeYear = scope.ngModel ? moment(scope.ngModel).year() : 0;
+            var activeYear = momDate ? momDate.year() : 0;
 
             var result = {
               'currentView': 'year',
@@ -166,7 +169,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
             var startDate = moment.utc(unixDate).startOf('year');
 
-            var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM') : 0;
+            var activeDate = momDate ? momDate.format('YYYY-MMM') : 0;
 
             var result = {
               'previousView': 'year',
@@ -201,7 +204,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
             var startDate = moment.utc(startOfMonth).subtract(startOfMonth.weekday() - configuration.weekStart, 'days');
 
-            var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
+            var activeDate = momDate ? momDate.format('YYYY-MMM-DD') : '';
 
             var result = {
               'previousView': 'month',
@@ -242,7 +245,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
           hour: function (unixDate) {
             var selectedDate = moment.utc(unixDate).hour(0).minute(0).second(0);
 
-            var activeFormat = scope.ngModel ? moment(scope.ngModel).format('YYYY-MM-DD H') : '';
+            var activeFormat = momDate ? momDate.format('YYYY-MM-DD H') : '';
 
             var result = {
               'previousView': 'day',
@@ -272,7 +275,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
           minute: function (unixDate) {
             var selectedDate = moment.utc(unixDate).minute(0).second(0);
 
-            var activeFormat = scope.ngModel ? moment(scope.ngModel).format('YYYY-MM-DD H:mm') : '';
+            var activeFormat = momDate ? momDate.format('YYYY-MM-DD H:mm') : '';
 
             var result = {
               'previousView': 'hour',
@@ -303,7 +306,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
           setTime: function (unixDate) {
             var tempDate = new Date(unixDate);
-            var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+            var offset = scope.tzOffset ? scope.tzOffset * -60000 : tempDate.getTimezoneOffset() * 60000;
+            var newDate = new Date(tempDate.getTime() + offset);
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
@@ -316,8 +320,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
         };
 
         var getUTCTime = function () {
-          var tempDate = (scope.ngModel ? moment(scope.ngModel).toDate() : new Date());
-          return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
+          var tempDate = (momDate ? momDate.toDate() : new Date());
+          var offset = scope.tzOffset ? scope.tzOffset * -60000 : tempDate.getTimezoneOffset() * 60000;
+          return tempDate.getTime() - offset;
         };
 
         scope.changeView = function (viewName, unixDate, event) {
@@ -333,7 +338,27 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
         scope.changeView(configuration.startView, getUTCTime());
 
+        var applyTzOffset = function () {
+          if (angular.isDefined(momDate) && angular.isNumber(scope.tzOffset)) {
+            momDate.zone(scope.tzOffset * -1);
+          }
+        };
+
+        scope.$watch('tzOffset', function (newval, oldval) {
+          if (newval !== oldval) {
+            if (angular.isDefined(newval)) {
+              applyTzOffset();
+            } else {
+              // tzOffset has been removed, so reset date
+              momDate = moment(scope.ngModel);
+            }
+            scope.changeView(scope.data.currentView, getUTCTime());
+          }
+        });
+
         scope.$watch('ngModel', function () {
+          momDate = moment(scope.ngModel);
+          applyTzOffset();
           scope.changeView(scope.data.currentView, getUTCTime());
         });
       }
