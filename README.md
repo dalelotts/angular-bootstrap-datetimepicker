@@ -130,7 +130,7 @@ Number.  Default: 0
 Allows to set a week's starting day. Should be between 0 and 6.
 
 ```html
-<datetimepicker data-ng-model="data.date" date-datetimepicker-config="{'weekStart': 1}"></datetimepicker>
+<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{'weekStart': 1}"></datetimepicker>
 ```
 
 ## Working with ng-model
