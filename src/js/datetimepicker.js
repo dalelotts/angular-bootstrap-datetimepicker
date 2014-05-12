@@ -110,7 +110,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "</table></div>",
       scope: {
         ngModel: "=",
-        onSetTime: "="
+        onSetTime: "&"
       },
       replace: true,
       link: function (scope, element, attrs) {
