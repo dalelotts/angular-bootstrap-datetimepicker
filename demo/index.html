@@ -37,6 +37,19 @@
             </div>
         </div>
         <div class="col-sm-6">
+            <h3>Embedded calendar with maxView</h3>
+
+            <p><code>startView: 'hour'</code> and <code>minView: 'minute'</code> and <code>maxView: 'hour'</code>.</p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.embeddedYearWithMaxView | date:'medium' }}</p>
+
+                <datetimepicker data-ng-model="data.embeddedYearWithMaxView"
+                                data-datetimepicker-config="{ startView: 'hour', minView: 'minute', maxView:'hour'}"></datetimepicker>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-sm-6">
             <h3>Drop-down using text link</h3>
 
             <p>Default configuration.</p>

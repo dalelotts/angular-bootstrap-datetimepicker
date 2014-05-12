@@ -18,13 +18,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
     dropdownSelector: null,
     minuteStep: 5,
     minView: 'minute',
+    maxView: 'year',
     startView: 'day',
     weekStart: 0
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+    var validOptions = ['startView', 'minView', 'maxView', 'minuteStep', 'dropdownSelector', 'weekStart'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -47,6 +48,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
     if (validViews.indexOf(configuration.minView) > validViews.indexOf(configuration.startView)) {
       throw ("startView must be greater than minView");
+    }
+
+    if (validViews.indexOf(configuration.maxView) < 0) {
+      throw ("invalid maxView value: " + configuration.maxView);
+    }
+
+    if (validViews.indexOf(configuration.maxView) < validViews.indexOf(configuration.startView)) {
+      throw ("startView must be less than maxView");
     }
 
     if (!angular.isNumber(configuration.minuteStep)) {
@@ -169,7 +178,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM') : 0;
 
             var result = {
-              'previousView': 'year',
+              'previousView': configuration.maxView === 'month' ? undefined : 'year',
               'currentView': 'month',
               'nextView': configuration.minView === 'month' ? 'setTime' : 'day',
               'currentDate': startDate.valueOf(),
@@ -204,7 +213,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
             var result = {
-              'previousView': 'month',
+              'previousView': configuration.maxView === 'day' ? undefined : 'month',
               'currentView': 'day',
               'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
               'currentDate': selectedDate.valueOf(),
@@ -245,7 +254,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var activeFormat = scope.ngModel ? moment(scope.ngModel).format('YYYY-MM-DD H') : '';
 
             var result = {
-              'previousView': 'day',
+              'previousView': configuration.maxView === 'hour' ? undefined : 'day',
               'currentView': 'hour',
               'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
               'currentDate': selectedDate.valueOf(),
@@ -275,7 +284,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var activeFormat = scope.ngModel ? moment(scope.ngModel).format('YYYY-MM-DD H:mm') : '';
 
             var result = {
-              'previousView': 'hour',
+              'previousView': configuration.maxView === 'minute' ? undefined : 'hour',
               'currentView': 'minute',
               'nextView': 'setTime',
               'currentDate': selectedDate.valueOf(),
