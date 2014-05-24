@@ -19,12 +19,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minuteStep: 5,
     minView: 'minute',
     startView: 'day',
-    weekStart: 0
+    weekStart: 0,    
+    format: 'yyyy-MM-dd hh:mm:ss'
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'format'];
 
     for (var prop in configuration) {
       if (configuration.hasOwnProperty(prop)) {
@@ -67,7 +68,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     }
   }
 )
-  .directive('datetimepicker', ['dateTimePickerConfig', 'dateTimePickerConfigValidation', function (defaultConfig, validateConfigurationFunction) {
+  .directive('datetimepicker', ['dateTimePickerConfig', 'dateTimePickerConfigValidation', 'dateFilter', function (defaultConfig, validateConfigurationFunction, dateFilter) {
     "use strict";
 
     return {
