@@ -336,6 +336,34 @@ angular.module('ui.bootstrap.datetimepicker', [])
         scope.$watch('ngModel', function () {
           scope.changeView(scope.data.currentView, getUTCTime());
         });
+        
+        // Outter change
+        ngModel.$render = function() {
+           var date = ngModel.$viewValue ? dateFilter(ngModel.$viewValue, configuration.format) : '';
+           $document.find(configuration.dropdownSelector).find('input[data-ng-model]').val(date);
+        };
+
+        function parseDate(viewValue) {
+           if (!viewValue) {
+               ngModel.$setValidity('date', true);
+               return null;
+           } else if (angular.isDate(viewValue) && !isNaN(viewValue)) {
+               ngModel.$setValidity('date', true);
+               return viewValue;
+           } else if (angular.isString(viewValue)) {
+               var date = dateParser.parse(viewValue, dateFormat) || new Date(viewValue);
+               if (isNaN(date)) {
+                   ngModel.$setValidity('date', false);
+                   return undefined;
+               } else {
+                   ngModel.$setValidity('date', true);
+                   return date;
+               }
+           } else {
+               ngModel.$setValidity('date', false);
+               return undefined;
+           }
+        }
       }
     };
   }]);
