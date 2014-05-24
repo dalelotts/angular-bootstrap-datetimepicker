@@ -66,8 +66,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     if (configuration.weekStart < 0 || configuration.weekStart > 6) {
       throw ("weekStart must be greater than or equal to zero and less than 7");
     }
-  }
-)
+  })
   .directive('datetimepicker', ['$document', 'dateTimePickerConfig', 'dateTimePickerConfigValidation', 'dateFilter', function ($document, defaultConfig, validateConfigurationFunction, dateFilter) {
     "use strict";
 
