@@ -20,7 +20,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minView: 'minute',
     startView: 'day',
     weekStart: 0,    
-    format: 'yyyy-MM-dd hh:mm:ss'
+    format: 'yyyy-MM-dd HH:mm:ss'
   })
   .constant('dateTimePickerConfigValidation', function (configuration) {
     "use strict";
