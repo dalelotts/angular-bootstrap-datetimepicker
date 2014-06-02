@@ -47,8 +47,10 @@ module.exports = function (config) {
 
     // optionally, configure the reporter
     coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
+      reporters: [
+        {type: 'json', dir: 'coverage/'},
+        {type: 'html', dir: 'coverage/'}
+      ]
     },
 
     // test results reporter to use

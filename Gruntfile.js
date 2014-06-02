@@ -22,7 +22,7 @@ module.exports = function (grunt) {
       options: {
         thresholds: {
           'statements': 100,
-          'branches': 95,
+          'branches': 100,
           'lines': 100,
           'functions': 100
         },
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
       unit: {
         options: testConfig('karma.conf.js',
           {
-            singleRun: false,
+            singleRun: true,
             autoWatch: true,
             keepalive: true,
             browsers: ['Chrome']
