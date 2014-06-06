@@ -243,7 +243,7 @@ If the minute view is the minView, which is is by default, the date will be set 
 
 
 ## Donating
-Support this project and via [gittip][gittip-dalelotts].
+Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts].
 
 [![Support via Gittip][gittip-badge]][gittip-dalelotts]
 
