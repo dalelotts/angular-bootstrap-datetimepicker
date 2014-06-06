@@ -4,6 +4,7 @@
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
 [![devDependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker/dev-status.png)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker#info=devDependencies)
+[![Code Climate](https://codeclimate.com/github/dalelotts/angular-bootstrap-datetimepicker.png)](https://codeclimate.com/github/dalelotts/angular-bootstrap-datetimepicker)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dalelotts/angular-bootstrap-datetimepicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
@@ -239,3 +240,12 @@ If the hour view is the minView, the date will be set to the beginning of the ho
 This view allows the user to select a specific time of day, in the selected hour.
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
+
+
+## Donating
+Support this project and via [gittip][gittip-dalelotts].
+
+[![Support via Gittip][gittip-badge]][gittip-dalelotts]
+
+[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
+[gittip-dalelotts]: https://www.gittip.com/dalelotts/
