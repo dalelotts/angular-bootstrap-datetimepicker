@@ -76,7 +76,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <datetimepicker data-ng-model="data.inputCalendar"
-                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
                     </ul>
                 </div>
             </div>
@@ -93,6 +93,33 @@
                 Click me to show/hide via ng-show: <input type="checkbox" data-ng-model="data.checked"><br/>
                 <datetimepicker data-ng-model="data.checkboxCalendar" data-ng-show="data.checked"
                                 data-datetimepicker-config="{ startView: 'day', minuteStep: 15 }"></datetimepicker>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Embedded calendar starting on Monday</h3>
+
+            <p><code>weekStart: 1</code>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.embeddedYear | date:'yyyy-MM-dd' }}</p>
+
+                <datetimepicker data-ng-model="data.embeddedYear"
+                                data-datetimepicker-config="{ weekStart: 1}"></datetimepicker>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3>Embedded calendar starting on Friday</h3>
+
+            <p><code>weekStart: 5</code>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.embeddedYear | date:'yyyy-MM-dd' }}</p>
+
+                <datetimepicker data-ng-model="data.embeddedYear"
+                                data-datetimepicker-config="{ weekStart: 5}"></datetimepicker>
             </div>
         </div>
     </div>

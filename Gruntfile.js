@@ -1,4 +1,7 @@
+/*globals module, require, process */
+/*jslint vars:true */
 module.exports = function (grunt) {
+  'use strict';
 
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -22,7 +25,7 @@ module.exports = function (grunt) {
       options: {
         thresholds: {
           'statements': 100,
-          'branches': 100,
+          'branches': 98,
           'lines': 100,
           'functions': 100
         },

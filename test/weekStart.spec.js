@@ -221,11 +221,11 @@ describe('weekStart', function () {
     it('there are 42 `.day` elements', function () {
       expect(jQuery('.day', element).length).toBe(42);
     });
-    it('the first `.day` element has a value of 1', function () {
-      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('2');
+    it('the first `.day` element has a value of 30', function () {
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('30');
     });
     it('the last `.day` element has a value of 10', function () {
-      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('12');
+      expect(jQuery(jQuery('.day', element)[41]).text()).toBe('10');
     });
   });
 });

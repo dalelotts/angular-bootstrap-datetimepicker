@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.2.3
+ * @license angular-bootstrap-datetimepicker  v0.2.4
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -197,7 +197,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var startOfMonth = moment.utc(selectedDate).startOf('month');
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
-            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.weekday() - configuration.weekStart, 'days');
+            var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday() - configuration.weekStart), 'days');
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 

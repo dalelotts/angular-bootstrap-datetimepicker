@@ -1,4 +1,4 @@
-# Angular bootstrap date & time picker  v0.2.3
+# Angular bootstrap date & time picker  v0.2.4
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
