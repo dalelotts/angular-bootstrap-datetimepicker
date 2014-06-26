@@ -19,13 +19,17 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minuteStep: 5,
     minView: 'minute',
     startView: 'day',
-    weekStart: 0
+    weekStart: 0,
+    updateEachView: false
   })
   .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
+    // Order of the elements in the validViews array is significant.
+    var validViews = ['minute', 'hour', 'day', 'month', 'year'];
+
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'updateEachView'];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -34,9 +38,6 @@ angular.module('ui.bootstrap.datetimepicker', [])
           }
         }
       }
-
-      // Order of the elements in the validViews array is significant.
-      var validViews = ['minute', 'hour', 'day', 'month', 'year'];
 
       if (validViews.indexOf(configuration.startView) < 0) {
         throw ("invalid startView value: " + configuration.startView);
@@ -108,11 +109,12 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "</table></div>",
       scope: {
         ngModel: "=",
-        onSetTime: "="
+        onSetTime: "=",
+        view: "=",
+        defaultHours: "="
       },
       replace: true,
       link: function (scope, element, attrs) {
-
         var directiveConfig = {};
 
         if (attrs.datetimepickerConfig) {
@@ -300,8 +302,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
           },
 
           setTime: function (unixDate) {
-            var tempDate = new Date(unixDate);
-            var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+            var newDate = getDate(unixDate);
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
@@ -311,6 +312,11 @@ angular.module('ui.bootstrap.datetimepicker', [])
             scope.ngModel = newDate;
             return dataFactory[scope.data.currentView](unixDate);
           }
+        };
+
+        var getDate = function (unixDate) {
+          var tempDate = new Date(unixDate);
+          return new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
         };
 
         var getUTCTime = function () {
@@ -325,14 +331,26 @@ angular.module('ui.bootstrap.datetimepicker', [])
           }
 
           if (viewName && (unixDate > -Infinity) && dataFactory[viewName]) {
+            if (event && configuration.updateEachView && scope.data && viewName != 'setTime') {
+              scope.ngModel = getDate(unixDate);
+            }
             scope.data = dataFactory[viewName](unixDate);
+            scope.view = viewName;          
           }
         };
 
         scope.changeView(configuration.startView, getUTCTime());
 
         scope.$watch('ngModel', function () {
-          scope.changeView(scope.data.currentView, getUTCTime());
+          if (!angular.equals(scope.ngModel, getDate(scope.data.currentDate))) {
+            scope.changeView(scope.data.currentView, getUTCTime());
+          }
+        });
+
+        scope.$watch('view', function (view) {
+          if ((scope.data.currentView !== view) && (validViews.indexOf(view) >= 0)) {
+            scope.changeView(view, getUTCTime());
+          }
         });
       }
     };
