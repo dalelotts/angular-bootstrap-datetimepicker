@@ -134,12 +134,35 @@ Allows to set a week's starting day. Should be between 0 and 6.
 <datetimepicker data-ng-model="data.date" data-datetimepicker-config="{'weekStart': 1}"></datetimepicker>
 ```
 
+### updateEachView
+
+Boolean. Default: false
+
+Update ngModel date each time you choose a year, month, day, hour or minutes.
+
+### defaultHours
+
+Number. Default: 0
+
+What hours to set by default when you choose a year, month or day.
+
 ## Working with ng-model
 The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
 
 This directive also plays nicely with validation directives such as ng-required.
 
 The angular-bootstrap-datetimepicker directive stores and expects the model value to be a standard javascript Date object.
+
+## 2 way binding view
+You can set a view attribute to have a 2 way binding on the view. This allow you to control which view is displayed from the outside of the directive.
+E.g. you can add a _today_ button, setting the date to today then setting the view to _'day'_.
+
+Accepts values of :
+ * 'minute' for the minute view
+ * 'hour' for the hour view
+ * 'day' for the day view
+ * 'month' for the 12-month view
+ * 'year' for the 10-year overview
 
 ## ng-required directive
 If you apply the required directive to element then the form element is invalid until a date is picked.

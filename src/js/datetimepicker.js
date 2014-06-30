@@ -20,7 +20,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minView: 'minute',
     startView: 'day',
     weekStart: 0,
-    updateEachView: false
+    updateEachView: false,
+    defaultHours: 0
   })
   .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
@@ -29,7 +30,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     var validViews = ['minute', 'hour', 'day', 'month', 'year'];
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'updateEachView'];
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'updateEachView', 'defaultHours'];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -134,7 +135,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             // i.e. passing in a date of 1/1/2013 will give a range of 2009 to 2020
             // Truncate the last digit from the current year and subtract 1 to get the start of the decade
             var startDecade = (parseInt(selectedDate.year() / 10, 10) * 10);
-            var startDate = moment.utc(selectedDate).year(startDecade - 1).startOf('year');
+            var startDate = moment.utc(selectedDate).year(startDecade - 1).startOf('year').hour(configuration.defaultHours);
             var activeYear = scope.ngModel ? moment(scope.ngModel).year() : 0;
 
             var result = {
@@ -164,7 +165,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
           month: function (unixDate) {
 
-            var startDate = moment.utc(unixDate).startOf('year');
+            var startDate = moment.utc(unixDate).startOf('year').hour(configuration.defaultHours);
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM') : 0;
 
@@ -199,7 +200,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var startOfMonth = moment.utc(selectedDate).startOf('month');
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
-            var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday() - configuration.weekStart), 'days');
+            var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday() - configuration.weekStart), 'days').hour(configuration.defaultHours);
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
