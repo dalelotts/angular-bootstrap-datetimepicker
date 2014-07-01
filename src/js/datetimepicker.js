@@ -336,7 +336,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               scope.ngModel = getDate(unixDate);
             }
             scope.data = dataFactory[viewName](unixDate);
-            scope.view = viewName;          
+            scope.view = viewName;
           }
         };
 
@@ -344,7 +344,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
         scope.$watch('ngModel', function () {
           if (!angular.equals(scope.ngModel, getDate(scope.data.currentDate))) {
-            scope.changeView(scope.data.currentView, getUTCTime());
+            scope.changeView(scope.view, getUTCTime());
           }
         });
 
