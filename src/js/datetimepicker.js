@@ -25,7 +25,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     "use strict";
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'returnFormat'];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -308,13 +308,17 @@ angular.module('ui.bootstrap.datetimepicker', [])
             if (angular.isFunction(scope.onSetTime)) {
               scope.onSetTime(newDate, scope.ngModel);
             }
-            scope.ngModel = newDate;
+            scope.ngModel = configuration.returnFormat ? moment(newDate).format(configuration.returnFormat): newDate;
             return dataFactory[scope.data.currentView](unixDate);
           }
         };
 
         var getUTCTime = function () {
-          var tempDate = (scope.ngModel ? moment(scope.ngModel).toDate() : new Date());
+          if (moment(scope.ngModel).isValid()) {
+            var tempDate = (scope.ngModel ? moment(scope.ngModel).toDate() : new Date());
+          } else {
+            var tempDate = new Date();
+          }
           return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
         };
 
