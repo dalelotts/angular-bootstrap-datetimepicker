@@ -19,13 +19,15 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minuteStep: 5,
     minView: 'minute',
     startView: 'day',
-    weekStart: 0
+    weekStart: 0,
+    previousIconClass: 'glyphicon glyphicon-arrow-left',
+    nextIconClass: 'glyphicon glyphicon-arrow-right'
   })
   .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'previousIconClass', 'nextIconClass'];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -77,13 +79,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "       <tr>" +
         "           <th class='left'" +
         "               data-ng-click='changeView(data.currentView, data.leftDate, $event)'" +
-        "               ><i class='glyphicon glyphicon-arrow-left'/></th>" +
+        "               ><i ng-class='previousIconClass'/></th>" +
         "           <th class='switch' colspan='5'" +
         "               data-ng-click='changeView(data.previousView, data.currentDate, $event)'" +
         ">{{ data.title }}</th>" +
         "           <th class='right'" +
         "               data-ng-click='changeView(data.currentView, data.rightDate, $event)'" +
-        "             ><i class='glyphicon glyphicon-arrow-right'/></th>" +
+        "             ><i ng-class='nextIconClass'/></th>" +
         "       </tr>" +
         "       <tr>" +
         "           <th class='dow' data-ng-repeat='day in data.dayNames' >{{ day }}</th>" +
@@ -124,6 +126,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
         angular.extend(configuration, defaultConfig, directiveConfig);
 
         validateConfiguration(configuration);
+
+        scope.previousIconClass = configuration.previousIconClass;
+        scope.nextIconClass = configuration.nextIconClass;
 
         var dataFactory = {
           year: function (unixDate) {
