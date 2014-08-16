@@ -138,6 +138,7 @@
                       <span class="label label-success" ng-show="datePickerForm.formDateValue.$valid">valid</span>
                       <span class="label label-danger" ng-show="datePickerForm.formDateValue.$invalid">invalid</span>
                     </p>
+                    <p><button type="button" class="btn btn-default" ng-click="data.formDate = null">Set to null</button></p>
 
                     <datetimepicker data-ng-model="data.formDate" required name="formDateValue"
                                     data-datetimepicker-config="{ weekStart: 1}"></datetimepicker>
