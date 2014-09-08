@@ -19,13 +19,20 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minuteStep: 5,
     minView: 'minute',
     startView: 'day',
-    weekStart: 0
+    weekStart: 0,
+    minuteTitleFormat: 'YYYY-MMM-DD H:mm',
+    hourTitleFormat: 'YYYY-MMM-DD',
+    dayTitleFormat: 'YYYY-MMM',
+    monthTitleFormat: 'YYYY',
   })
   .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+      var validOptions = [
+        'startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 
+        'minuteTitleFormat', 'hourTitleFormat', 'dayTitleFormat', 'monthTitleFormat'
+      ];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -65,6 +72,19 @@ angular.module('ui.bootstrap.datetimepicker', [])
       }
       if (configuration.weekStart < 0 || configuration.weekStart > 6) {
         throw ("weekStart must be greater than or equal to zero and less than 7");
+      }
+
+      if (configuration.minuteTitleFormat !== null && !angular.isString(configuration.minuteTitleFormat)) {
+        throw ("minuteTitleFormat must be a string");
+      }
+      if (configuration.hourTitleFormat !== null && !angular.isString(configuration.hourTitleFormat)) {
+        throw ("hourTitleFormat must be a string");
+      }
+      if (configuration.dayTitleFormat !== null && !angular.isString(configuration.dayTitleFormat)) {
+        throw ("dayTitleFormat must be a string");
+      }
+      if (configuration.monthTitleFormat !== null && !angular.isString(configuration.monthTitleFormat)) {
+        throw ("monthTitleFormat must be a string");
       }
     };
 
@@ -171,7 +191,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'month',
               'nextView': configuration.minView === 'month' ? 'setTime' : 'day',
               'currentDate': startDate.valueOf(),
-              'title': startDate.format('YYYY'),
+              'title': startDate.format(configuration.monthTitleFormat),
               'leftDate': moment.utc(startDate).subtract(1, 'year').valueOf(),
               'rightDate': moment.utc(startDate).add(1, 'year').valueOf(),
               'dates': []
@@ -206,7 +226,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'day',
               'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM'),
+              'title': selectedDate.format(configuration.dayTitleFormat),
               'leftDate': moment.utc(startOfMonth).subtract(1, 'months').valueOf(),
               'rightDate': moment.utc(startOfMonth).add(1, 'months').valueOf(),
               'dayNames': [],
@@ -247,7 +267,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'hour',
               'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM-DD'),
+              'title': selectedDate.format(configuration.hourTitleFormat),
               'leftDate': moment.utc(selectedDate).subtract(1, 'days').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'days').valueOf(),
               'dates': []
@@ -277,7 +297,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'minute',
               'nextView': 'setTime',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM-DD H:mm'),
+              'title': selectedDate.format(configuration.minuteTitleFormat),
               'leftDate': moment.utc(selectedDate).subtract(1, 'hours').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'hours').valueOf(),
               'dates': []
