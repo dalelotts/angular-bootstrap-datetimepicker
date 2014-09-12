@@ -346,7 +346,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
           if (!angular.equals(scope.ngModel, getDate(scope.data.currentDate))) {
             scope.changeView(scope.view, getUTCTime());
           }
-        });
+        }, true);
 
         scope.$watch('view', function (view) {
           if ((scope.data.currentView !== view) && (validViews.indexOf(view) >= 0)) {
