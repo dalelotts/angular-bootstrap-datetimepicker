@@ -19,13 +19,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minuteStep: 5,
     minView: 'minute',
     startView: 'day',
-    weekStart: 0
+    weekStart: 0,
+    format: 'YYYY/MM/DD hh:mm:ss'
   })
   .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart', 'format'];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -141,7 +142,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'title': startDecade + '-' + (startDecade + 9),
               'leftDate': moment.utc(startDate).subtract(9, 'year').valueOf(),
               'rightDate': moment.utc(startDate).add(11, 'year').valueOf(),
-              'dates': []
+              'dates': [],
+              'format': configuration.format
             };
 
             for (var i = 0; i < 12; i++) {
@@ -174,7 +176,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'title': startDate.format('YYYY'),
               'leftDate': moment.utc(startDate).subtract(1, 'year').valueOf(),
               'rightDate': moment.utc(startDate).add(1, 'year').valueOf(),
-              'dates': []
+              'dates': [],
+              'format': configuration.format
             };
 
             for (var i = 0; i < 12; i++) {
@@ -209,7 +212,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'title': selectedDate.format('YYYY-MMM'),
               'leftDate': moment.utc(startOfMonth).subtract(1, 'months').valueOf(),
               'rightDate': moment.utc(startOfMonth).add(1, 'months').valueOf(),
-              'dayNames': [],
+              'dates': [],
+              'format': configuration.format,
               'weeks': []
             };
 
@@ -250,7 +254,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'title': selectedDate.format('YYYY-MMM-DD'),
               'leftDate': moment.utc(selectedDate).subtract(1, 'days').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'days').valueOf(),
-              'dates': []
+              'dates': [],
+              'format': configuration.format
             };
 
             for (var i = 0; i < 24; i++) {
@@ -280,7 +285,8 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'title': selectedDate.format('YYYY-MMM-DD H:mm'),
               'leftDate': moment.utc(selectedDate).subtract(1, 'hours').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'hours').valueOf(),
-              'dates': []
+              'dates': [],
+              'format': configuration.format
             };
 
             var limit = 60 / configuration.minuteStep;
@@ -318,6 +324,10 @@ angular.module('ui.bootstrap.datetimepicker', [])
           return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
         };
 
+        var formattedDate = function(format) {
+            return (scope.ngModel ? moment(scope.ngModel).format(format) : moment().format(format));
+        };
+
         scope.changeView = function (viewName, unixDate, event) {
           if (event) {
             event.stopPropagation();
@@ -333,6 +343,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
         scope.$watch('ngModel', function () {
           scope.changeView(scope.data.currentView, getUTCTime());
+          scope.ngModel = formattedDate(configuration.format);
         });
       }
     };
