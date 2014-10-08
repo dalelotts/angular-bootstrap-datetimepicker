@@ -1,5 +1,6 @@
 .idea
 coverage/*
+complexity/*
 lib-cov
 bower_components/*
 node_modules/*
