@@ -15,8 +15,8 @@ I'm in the process of adding several requested enhancements to this directive.
 The goal is to make this directive more functional and easier to use. 
 Unfortunately, some of the changes will break existing implementations.
 
-I will attempt to gather information from developers using this directive
-by posting questions in the issues for this project. (Have a better way? Send me an email!)
+I will attempt to gather information regarding breaking changes by posting questions 
+in the issues for this project. (Have a better way? Send me an email!)
 
 Open Questions:
 
