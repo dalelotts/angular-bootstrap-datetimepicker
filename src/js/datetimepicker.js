@@ -20,7 +20,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minView: 'minute',
     startView: 'day'
   })
-  .directive('datetimepicker', ['dateTimePickerConfig', '$parse', function (defaultConfig, $parse) {
+  .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
     var validateConfiguration = function (configuration) {
@@ -116,10 +116,6 @@ angular.module('ui.bootstrap.datetimepicker', [])
         angular.extend(configuration, defaultConfig, directiveConfig);
 
         validateConfiguration(configuration);
-
-        if (attrs.onSetTime) {
-          var onSetTimeFunction = $parse(attrs.onSetTime);
-        }
 
         var dataFactory = {
           year: function (unixDate) {
@@ -298,13 +294,15 @@ angular.module('ui.bootstrap.datetimepicker', [])
           setTime: function (unixDate) {
             var tempDate = new Date(unixDate);
             var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+
+            scope.ngModel = newDate;
+
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
-            if (angular.isFunction(scope.onSetTime)) {
-              scope.onSetTime({ newDate: newDate , oldDate: scope.ngModel });
-            }
-            scope.ngModel = newDate;
+
+            scope.onSetTime({ newDate: newDate, oldDate: scope.ngModel });
+
             return dataFactory[configuration.startView](unixDate);
           }
         };
