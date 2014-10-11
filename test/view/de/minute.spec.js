@@ -18,7 +18,7 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
-    moment.locale("en");
+    moment.locale("de");
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = moment("2013-01-22T00:00:00.000").toDate();
@@ -26,7 +26,7 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
     $rootScope.$digest();
   }));
   it('has `.switch` element with a value of 2013-Jan-22 0:00', function () {
-    expect(jQuery('.switch', element).text()).toBe('Jan 22, 2013 12:00 AM');
+    expect(jQuery('.switch', element).text()).toBe('22. Jan. 2013 00:00 Uhr');
   });
   it('has 12 `.minute` elements', function () {
     expect(jQuery('.minute', element).length).toBe(12);
@@ -35,7 +35,7 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
     expect(jQuery('.active', element).length).toBe(1);
   });
   it('`.active` element with a value of 0:00', function () {
-    expect(jQuery('.active', element).text()).toBe('12:00 AM');
+    expect(jQuery('.active', element).text()).toBe('00:00 Uhr');
   });
 });
 
@@ -51,22 +51,22 @@ describe('minute view with initial date of 2013-01-22 1:15', function () {
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minuteStep: 15 }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
-  it('has `.switch` element with a value of 2013-Jan-22 1:00', function () {
-    expect(jQuery('.switch', element).text()).toBe('Jan 22, 2013 1:00 AM');
+  it('has `.switch` element with a value of 22. Jan. 2013 01:00 Uhr', function () {
+    expect(jQuery('.switch', element).text()).toBe('22. Jan. 2013 01:00 Uhr');
   });
   it('has 4 `.minute` elements', function () {
     expect(jQuery('.minute', element).length).toBe(4);
   });
   it('has 1 `.active` element with a value of 1:15', function () {
-    expect(jQuery('.active', element).text()).toBe('1:15 AM');
+    expect(jQuery('.active', element).text()).toBe('01:15 Uhr');
   });
-  it('changes date/time to 1:00 to when clicking first `.minute` element with a value of 0:00', function () {
-    expect(jQuery('.active', element).text()).toBe('1:15 AM');
+  it('changes date/time to 1:00 to when clicking first `.minute` element with a value of 01:00 Uhr', function () {
+    expect(jQuery('.active', element).text()).toBe('01:15 Uhr');
 
     var selectedElement = jQuery(jQuery('.minute', element)[0]);
     selectedElement.trigger('click');
 
-    expect(jQuery('.active', element).text()).toBe('1:00 AM');
+    expect(jQuery('.active', element).text()).toBe('01:00 Uhr');
     expect($rootScope.date).toEqual(moment("2013-01-22T01:00:00.000").toDate());
   });
 });

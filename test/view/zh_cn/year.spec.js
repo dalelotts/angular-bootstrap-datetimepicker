@@ -17,7 +17,7 @@ describe('year view with ng-model = null', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
-    moment.locale("en");
+    moment.locale("zh-cn");
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = null;
@@ -187,12 +187,12 @@ describe('year view with ng-model = null', function () {
     it('has one `.left` element, when clicked, changes the view to the previous month', function () {
       var selectedElement = jQuery('.left', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Sep');
+      expect(jQuery('.switch', element).text()).toBe('2010-9月');
     });
     it('has one `.right` element, when clicked, changes the view to the next month', function () {
       var selectedElement = jQuery('.right', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Nov');
+      expect(jQuery('.switch', element).text()).toBe('2010-11月');
 
     });
     it('has one `.switch` element, when clicked, changes the view to month view', function () {
@@ -203,23 +203,23 @@ describe('year view with ng-model = null', function () {
     it('changes to hour view after clicking a `.past` element', function () {
       var selectedElement = jQuery(jQuery('.past', element)[0]);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('Sep 26, 2010');
+      expect(jQuery('.switch', element).text()).toBe('2010年9月27日');
     });
     it('changes to hour view after clicking a `.future` element', function () {
       var selectedElement = jQuery(jQuery('.future', element)[0]);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('Nov 1, 2010');
+      expect(jQuery('.switch', element).text()).toBe('2010年11月1日');
     });
     it('has 42 `.day` elements when date is oct-2010', function () {
       expect(jQuery('.day', element).length).toBe(42);
     });
 
     it('has 5 `.past` elements when date is oct-2010', function () {
-      expect(jQuery('.past', element).length).toBe(5);
+      expect(jQuery('.past', element).length).toBe(4);
     });
 
     it('has 6 `.future` elements when date is oct-2010', function () {
-      expect(jQuery('.future', element).length).toBe(6);
+      expect(jQuery('.future', element).length).toBe(7);
     });
   });
   describe('where hour view', function () {
@@ -241,17 +241,17 @@ describe('year view with ng-model = null', function () {
     it('changes the view to the previous day when `.left` element is clicked', function () {
       var selectedElement = jQuery('.left', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('Sep 30, 2010');
+      expect(jQuery('.switch', element).text()).toBe('2010年9月30日');
     });
     it('changes the view to the next day when `.right` element is clicked', function () {
       var selectedElement = jQuery('.right', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('Oct 2, 2010');
+      expect(jQuery('.switch', element).text()).toBe('2010年10月2日');
     });
     it('changes the view to day view when `.switch` element is clicked', function () {
       var selectedElement = jQuery('.switch', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Oct');
+      expect(jQuery('.switch', element).text()).toBe('2010-10月');
     });
     it('changes the view to minute view when `.active` element is clicked', function () {
       var selectedElement = jQuery('.active', element);
