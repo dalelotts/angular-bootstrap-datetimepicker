@@ -1,7 +1,8 @@
-# Angular bootstrap date & time picker  v0.2.4
+# Angular bootstrap date & time picker  v0.3.0
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
+[![MIT License][license-image]][license-url]
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
 [![devDependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker/dev-status.png)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/dalelotts/angular-bootstrap-datetimepicker.png)](https://codeclimate.com/github/dalelotts/angular-bootstrap-datetimepicker)
@@ -9,18 +10,22 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
-# Breaking changes coming soon. =)
+# Upgrading to 0.3.x
 
-I'm in the process of adding several requested enhancements to this directive. 
-The goal is to make this directive more functional and easier to use. 
-Unfortunately, some of the changes will break existing implementations.
+<code>weekStart</code> has bee removed. This directive uses the locale aware 
+[moment.js day of week](http://momentjs.com/docs/#/get-set/weekday/) to 
+determine which day is the first day of the week. If you would like a first 
+day of week that is not standard for the locale you can create a 
+[custom locale](http://momentjs.com/docs/#/customization/) 
 
-I will attempt to gather information regarding breaking changes by posting questions 
-in the issues for this project. (Have a better way? Send me an email!)
+## Easier to control width
 
-Open Questions:
+The width of the entire control is set in css, which you can easily override.
 
-[Do you use weekStart?](https://github.com/dalelotts/angular-bootstrap-datetimepicker/issues/97)
+## Better localization support
+
+This directive uses localized date formats when available. One exception is the title
+of the month view - moment does not (yet) have a localized format for month and year.
 
 # (Almost) Complete re-write
 
@@ -30,10 +35,12 @@ Only the CSS file from the bootstrap-datetimepicker project was re-used.
 #Dependencies
 
 Requires:
- * AngularJS 1.2.11 or higher (1.0.x will not work)
- * moment.js for date parsing and formatting
+ * AngularJS 1.2.26 or higher (1.0.x will not work)
+ * moment.js 2.8.3 or higher for date parsing and formatting
+ * bootstrap's glyphicons for arrows (Can be overridden in css)
+ 
+optional:
  * bootstrap's dropdown component (`dropdowns.less`)
- * bootstrap's glyphicons for arrows
 
 #Testing
 We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use grunt:
@@ -97,7 +104,7 @@ Attribute on datetimepicker element
 If the value of the on-set-time attribute is a function, the date time picker will call this function
 passing in the selected value and previous value.
 ```html
-<datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet"></datetimepicker>
+<datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
 ```
 This function will be called when the user selects a value on the minView.
 ```javascript
@@ -106,6 +113,11 @@ $scope.onTimeSet = function (newDate, oldDate) {
     console.log(oldDate);
 }
 ```
+
+data-on-set-time="onTimeSet()"  <-- This will work
+
+data-on-set-time="onTimeSet"    <-- **This will NOT work, the ()'s are required**
+
 
 ## Configuration Options
 
@@ -135,19 +147,10 @@ The increment used to build the hour view. A button is created for each <code>mi
 
 ### dropdownSelector
 
-When used within a Bootstrap dropdown, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
+When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
 
-### weekStart
+**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option, it will cause an exception.
 
-[Do you use weekStart?](https://github.com/dalelotts/angular-bootstrap-datetimepicker/issues/97)
-
-Number.  Default: 0
-
-Allows to set a week's starting day. Should be between 0 and 6.
-
-```html
-<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{'weekStart': 1}"></datetimepicker>
-```
 
 ## Working with ng-model
 The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
@@ -256,6 +259,9 @@ This view allows the user to select a specific time of day, in the selected hour
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
 
+## License
+
+angular-bootstrap-datetimepicker is freely distributable under the terms of the [MIT license](LICENSE).
 
 ## Donating
 Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts].
@@ -264,3 +270,6 @@ Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts]
 
 [gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
 [gittip-dalelotts]: https://www.gittip.com/dalelotts/
+
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE

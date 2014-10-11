@@ -17,6 +17,7 @@ describe('year view with ng-model = null', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale("en");
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = null;
@@ -202,12 +203,12 @@ describe('year view with ng-model = null', function () {
     it('changes to hour view after clicking a `.past` element', function () {
       var selectedElement = jQuery(jQuery('.past', element)[0]);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Sep-26');
+      expect(jQuery('.switch', element).text()).toBe('Sep 26, 2010');
     });
     it('changes to hour view after clicking a `.future` element', function () {
       var selectedElement = jQuery(jQuery('.future', element)[0]);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Nov-01');
+      expect(jQuery('.switch', element).text()).toBe('Nov 1, 2010');
     });
     it('has 42 `.day` elements when date is oct-2010', function () {
       expect(jQuery('.day', element).length).toBe(42);
@@ -235,17 +236,17 @@ describe('year view with ng-model = null', function () {
     }));
     it('has one `.active` element with a value of 0:00 when view is hour and date is 2010-Oct-01 00:00', function () {
       expect(jQuery('.active', element).length).toBe(1);
-      expect(jQuery('.active', element).text()).toBe(moment($rootScope.date).format('H:mm'));
+      expect(jQuery('.active', element).text()).toBe(moment($rootScope.date).format('LT'));
     });
     it('changes the view to the previous day when `.left` element is clicked', function () {
       var selectedElement = jQuery('.left', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Sep-30');
+      expect(jQuery('.switch', element).text()).toBe('Sep 30, 2010');
     });
     it('changes the view to the next day when `.right` element is clicked', function () {
       var selectedElement = jQuery('.right', element);
       selectedElement.trigger('click');
-      expect(jQuery('.switch', element).text()).toBe('2010-Oct-02');
+      expect(jQuery('.switch', element).text()).toBe('Oct 2, 2010');
     });
     it('changes the view to day view when `.switch` element is clicked', function () {
       var selectedElement = jQuery('.switch', element);

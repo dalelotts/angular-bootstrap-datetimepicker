@@ -18,6 +18,7 @@ describe('month view with initial date of 2010-10-01', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale("de");
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = moment("2010-10-01").toDate();
@@ -31,7 +32,7 @@ describe('month view with initial date of 2010-10-01', function () {
     expect(jQuery('.month', element).length).toBe(12);
   });
   it('has 1 `.active` element with a value of Oct', function () {
-    expect(jQuery('.active', element).text()).toBe('Oct');
+    expect(jQuery('.active', element).text()).toBe('Okt.');
   });
 });
 
@@ -55,7 +56,7 @@ describe('month view with initial date of "2020-01-01T00:00:00.000" and minView=
     var selectedElement = jQuery(jQuery('.month', element)[11]);
     selectedElement.trigger('click');
 
-    expect(jQuery('.active', element).text()).toBe('Dec');
+    expect(jQuery('.active', element).text()).toBe('Dez.');
     expect($rootScope.date).toEqual(moment("2020-12-01T00:00:00.000").toDate());
   });
 });
