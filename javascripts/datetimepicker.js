@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.2.2
+ * @license angular-bootstrap-datetimepicker  v0.3.0
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -18,73 +18,63 @@ angular.module('ui.bootstrap.datetimepicker', [])
     dropdownSelector: null,
     minuteStep: 5,
     minView: 'minute',
-    startView: 'day',
-    weekStart: 0
+    startView: 'day'
   })
-  .constant('dateTimePickerConfigValidation', function (configuration) {
+  .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
-    var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+    var validateConfiguration = function (configuration) {
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
 
-    for (var prop in configuration) {
-      if (configuration.hasOwnProperty(prop)) {
-        if (validOptions.indexOf(prop) < 0) {
-          throw ("invalid option: " + prop);
+      for (var prop in configuration) {
+        if (configuration.hasOwnProperty(prop)) {
+          if (validOptions.indexOf(prop) < 0) {
+            throw ("invalid option: " + prop);
+          }
         }
       }
-    }
 
-    // Order of the elements in the validViews array is significant.
-    var validViews = ['minute', 'hour', 'day', 'month', 'year'];
+      // Order of the elements in the validViews array is significant.
+      var validViews = ['minute', 'hour', 'day', 'month', 'year'];
 
-    if (validViews.indexOf(configuration.startView) < 0) {
-      throw ("invalid startView value: " + configuration.startView);
-    }
+      if (validViews.indexOf(configuration.startView) < 0) {
+        throw ("invalid startView value: " + configuration.startView);
+      }
 
-    if (validViews.indexOf(configuration.minView) < 0) {
-      throw ("invalid minView value: " + configuration.minView);
-    }
+      if (validViews.indexOf(configuration.minView) < 0) {
+        throw ("invalid minView value: " + configuration.minView);
+      }
 
-    if (validViews.indexOf(configuration.minView) > validViews.indexOf(configuration.startView)) {
-      throw ("startView must be greater than minView");
-    }
+      if (validViews.indexOf(configuration.minView) > validViews.indexOf(configuration.startView)) {
+        throw ("startView must be greater than minView");
+      }
 
-    if (!angular.isNumber(configuration.minuteStep)) {
-      throw ("minuteStep must be numeric");
-    }
-    if (configuration.minuteStep <= 0 || configuration.minuteStep >= 60) {
-      throw ("minuteStep must be greater than zero and less than 60");
-    }
-    if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
-      throw ("dropdownSelector must be a string");
-    }
-
-    if (!angular.isNumber(configuration.weekStart)) {
-      throw ("weekStart must be numeric");
-    }
-    if (configuration.weekStart < 0 || configuration.weekStart > 6) {
-      throw ("weekStart must be greater than or equal to zero and less than 7");
-    }
-  }
-)
-  .directive('datetimepicker', ['dateTimePickerConfig', 'dateTimePickerConfigValidation', function (defaultConfig, validateConfigurationFunction) {
-    "use strict";
+      if (!angular.isNumber(configuration.minuteStep)) {
+        throw ("minuteStep must be numeric");
+      }
+      if (configuration.minuteStep <= 0 || configuration.minuteStep >= 60) {
+        throw ("minuteStep must be greater than zero and less than 60");
+      }
+      if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
+        throw ("dropdownSelector must be a string");
+      }
+    };
 
     return {
       restrict: 'E',
       require: 'ngModel',
-      template: "<div class='datetimepicker'>" +
-        "<table class='table-condensed'>" +
+      template: "<div class='datetimepicker table-responsive'>" +
+        "<table class='table table-striped'>" +
         "   <thead>" +
         "       <tr>" +
         "           <th class='left'" +
-        "               data-ng-click=\"changeView(data.currentView, data.leftDate, $event)\"" +
+        "               data-ng-click='changeView(data.currentView, data.leftDate, $event)'" +
         "               ><i class='glyphicon glyphicon-arrow-left'/></th>" +
         "           <th class='switch' colspan='5'" +
-        "               data-ng-click=\"changeView(data.previousView, data.currentDate, $event)\"" +
+        "               data-ng-click='changeView(data.previousView, data.currentDate, $event)'" +
         ">{{ data.title }}</th>" +
         "           <th class='right'" +
-        "               data-ng-click=\"changeView(data.currentView, data.rightDate, $event)\"" +
+        "               data-ng-click='changeView(data.currentView, data.rightDate, $event)'" +
         "             ><i class='glyphicon glyphicon-arrow-right'/></th>" +
         "       </tr>" +
         "       <tr>" +
@@ -92,7 +82,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "       </tr>" +
         "   </thead>" +
         "   <tbody>" +
-        '       <tr data-ng-class=\'{ hide: data.currentView == "day" }\' >' +
+        "       <tr data-ng-class='{ hide: data.currentView == \"day\" }' >" +
         "           <td colspan='7' >" +
         "              <span    class='{{ data.currentView }}' " +
         "                       data-ng-repeat='dateValue in data.dates'  " +
@@ -100,9 +90,9 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "                       data-ng-click=\"changeView(data.nextView, dateValue.date, $event)\">{{ dateValue.display }}</span> " +
         "           </td>" +
         "       </tr>" +
-        '       <tr data-ng-show=\'data.currentView == "day"\' data-ng-repeat=\'week in data.weeks\'>' +
+        "       <tr data-ng-show='data.currentView == \"day\"' data-ng-repeat='week in data.weeks'>" +
         "           <td data-ng-repeat='dateValue in week.dates' " +
-        "               data-ng-click=\"changeView(data.nextView, dateValue.date, $event)\"" +
+        "               data-ng-click='changeView(data.nextView, dateValue.date, $event)'" +
         "               class='day' " +
         "               data-ng-class='{active: dateValue.active, past: dateValue.past, future: dateValue.future}' >{{ dateValue.display }}</td>" +
         "       </tr>" +
@@ -110,7 +100,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "</table></div>",
       scope: {
         ngModel: "=",
-        onSetTime: "="
+        onSetTime: "&"
       },
       replace: true,
       link: function (scope, element, attrs) {
@@ -125,7 +115,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
         angular.extend(configuration, defaultConfig, directiveConfig);
 
-        validateConfigurationFunction(configuration);
+        validateConfiguration(configuration);
 
         var dataFactory = {
           year: function (unixDate) {
@@ -199,7 +189,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var startOfMonth = moment.utc(selectedDate).startOf('month');
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
-            var startDate = moment.utc(startOfMonth).subtract(startOfMonth.weekday() - configuration.weekStart, 'days');
+            var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days');
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
@@ -216,7 +206,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             };
 
 
-            for (var dayNumber = configuration.weekStart; dayNumber < configuration.weekStart + 7; dayNumber++) {
+            for (var dayNumber = 0; dayNumber < 7; dayNumber++) {
               result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
             }
 
@@ -249,7 +239,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'hour',
               'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM-DD'),
+              'title': selectedDate.format('ll'),
               'leftDate': moment.utc(selectedDate).subtract(1, 'days').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'days').valueOf(),
               'dates': []
@@ -259,7 +249,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var hourMoment = moment.utc(selectedDate).add(i, 'hours');
               var dateValue = {
                 'date': hourMoment.valueOf(),
-                'display': hourMoment.format('H:00'),
+                'display': hourMoment.format('LT'),
                 'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
               };
 
@@ -279,7 +269,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'minute',
               'nextView': 'setTime',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM-DD H:mm'),
+              'title': selectedDate.format('lll'),
               'leftDate': moment.utc(selectedDate).subtract(1, 'hours').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'hours').valueOf(),
               'dates': []
@@ -291,7 +281,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
               var dateValue = {
                 'date': hourMoment.valueOf(),
-                'display': hourMoment.format('H:mm'),
+                'display': hourMoment.format('LT'),
                 'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
               };
 
@@ -304,14 +294,16 @@ angular.module('ui.bootstrap.datetimepicker', [])
           setTime: function (unixDate) {
             var tempDate = new Date(unixDate);
             var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+
+            scope.ngModel = newDate;
+
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
-            if (angular.isFunction(scope.onSetTime)) {
-              scope.onSetTime(newDate, scope.ngModel);
-            }
-            scope.ngModel = newDate;
-            return dataFactory[scope.data.currentView](unixDate);
+
+            scope.onSetTime({ newDate: newDate, oldDate: scope.ngModel });
+
+            return dataFactory[configuration.startView](unixDate);
           }
         };
 
