@@ -110,6 +110,7 @@
                                 data-datetimepicker-config="{ weekStart: 1}"></datetimepicker>
             </div>
         </div>
+
         <div class="col-sm-6">
             <h3>Embedded calendar starting on Friday</h3>
 
@@ -120,6 +121,29 @@
 
                 <datetimepicker data-ng-model="data.embeddedYear"
                                 data-datetimepicker-config="{ weekStart: 5}"></datetimepicker>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>ngModel form integration</h3>
+            <p>This example shows a date picker that has the required attribute. Validity and dirty flags are tracked by ngModel. </p>
+
+            <div class="well">
+                <form name="datePickerForm" novalidate>
+                    <p>Formatted Date: {{ data.formDate | date:'yyyy-MM-dd' }}</p>
+                    <p>
+                      <span class="label label-warning" ng-show="datePickerForm.formDateValue.$dirty">dirty</span>
+                      <span class="label label-info" ng-show="datePickerForm.formDateValue.$pristine">pristine</span>
+                      <span class="label label-success" ng-show="datePickerForm.formDateValue.$valid">valid</span>
+                      <span class="label label-danger" ng-show="datePickerForm.formDateValue.$invalid">invalid</span>
+                    </p>
+                    <p><button type="button" class="btn btn-default" ng-click="data.formDate = null">Set to null</button></p>
+
+                    <datetimepicker data-ng-model="data.formDate" required name="formDateValue"
+                                    data-datetimepicker-config="{ weekStart: 1}"></datetimepicker>
+                </form>
             </div>
         </div>
     </div>
