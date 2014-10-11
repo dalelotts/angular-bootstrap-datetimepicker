@@ -12,11 +12,12 @@
  *    @since        7/21/13
  */
 
-describe('day view with initial date of 2013-01-22', function () {
+describe('English day view with initial date of 2013-01-22', function () {
   'use strict';
   var $rootScope, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale("en");
     $rootScope = _$rootScope_;
     $rootScope.date = moment("2013-01-22T00:00:00.000").toDate();
     element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
@@ -61,5 +62,33 @@ describe('day with initial date of "2020-01-01T00:00:00.000" and minView="day"',
 
     expect(jQuery('.active', element).text()).toBe('11');
     expect($rootScope.date).toEqual(moment("2020-01-11T00:00:00.000").toDate());
+  });
+});
+
+
+describe('day with initial date of "2008-02-01T00:00:00.000" (leap year) and minView="day"', function () {
+  'use strict';
+  var $rootScope, element;
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    $rootScope = _$rootScope_;
+    $rootScope.date = moment("2008-02-01T00:00:00.000").toDate();
+    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
+    $rootScope.$digest();
+  }));
+  it('clicking the 34th `.day` element will set the date value to 2008-29-11T00:00:00.000"', function () {
+    expect(jQuery('.switch', element).text()).toBe('2008-Feb');
+
+    expect(jQuery('.active', element).length).toBe(1);
+    expect(jQuery('.active', element).text()).toBe('1');
+    expect(jQuery('.day', element).length).toBe(42);
+    expect(jQuery('.past', element).length).toBe(5);
+
+    expect(jQuery('.future', element).length).toBe(8);
+    var selectedElement = jQuery(jQuery('.day', element)[33]);
+
+    selectedElement.trigger('click');
+    expect(jQuery('.active', element).text()).toBe('29');
+    expect($rootScope.date).toEqual(moment("2008-02-29T00:00:00.000").toDate());
   });
 });

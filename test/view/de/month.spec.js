@@ -18,6 +18,7 @@ describe('month view with initial date of 2010-10-01', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale("en");
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = moment("2010-10-01").toDate();
