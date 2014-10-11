@@ -33,7 +33,6 @@
 <div class="container" data-ng-controller="demoController">
 
 
-
 <ul class="nav nav-pills">
     <li data-ng-class="{active: getLocale() === 'en'}"><a data-ng-click="setLocale('en')">English</a></li>
     <li data-ng-class="{active: getLocale() === 'de'}"><a data-ng-click="setLocale('de')">German</a></li>
@@ -103,7 +102,7 @@
 
         <p>Default configuration</p>
 
-        <p><code>data-on-set-time='checkboxOnTimeSet'</code> to toggle the dropdown.</p>
+        <p><code>data-on-set-time='inputOnTimeSet()'</code> to toggle the dropdown.</p>
 
         <div class="well">
             <p>Formatted Date: {{ data.inputOnTimeSet | date:'medium' }}</p>
@@ -118,7 +117,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                     <datetimepicker data-ng-model="data.inputOnTimeSet"
-                                    data-on-set-time="inputOnTimeSet"></datetimepicker>
+                                    data-on-set-time="inputOnTimeSet(newDate)"></datetimepicker>
                 </ul>
             </div>
         </div>
@@ -126,7 +125,9 @@
 
     <div class="col-sm-6">
         <h3>Drop-down Datetime form integration</h3>
+
         <p><code>dropdownSelector: '#dropdown4'</code> to toggle the dropdown.</p>
+
         <p>This example shows a date picker that has the required attribute.
             Note that the user must type into the input to toggle dirty/pristine. </p>
 
@@ -198,14 +199,14 @@
 
         <p><code>startView: 'day'</code> and <code>minuteStep: 15</code></p>
 
-        <p><code>data-on-set-time='checkboxOnTimeSet'</code> to toggle visibility.</p>
+        <p><code>data-on-set-time='checkboxOnTimeSet()'</code> to toggle visibility.</p>
 
         <div class="well">
             <p>Formatted Date: {{ data.checkboxCalendar | date:'medium' }}</p>
             Click me to show/hide via ng-show: <input type="checkbox" data-ng-model="data.checked"><br/>
             <datetimepicker data-ng-model="data.checkboxCalendar" data-ng-show="data.checked"
                             data-datetimepicker-config="{ startView: 'day', minuteStep: 15 }"
-                            data-on-set-time="checkboxOnTimeSet"></datetimepicker>
+                            data-on-set-time="checkboxOnTimeSet(newDate)"></datetimepicker>
         </div>
     </div>
 
@@ -257,8 +258,27 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-sm-6">
+
+        <div class="well" data-ng-repeat = "guardian in data.guardians">
+            <p>{{  guardian.name }}</p>
+            <p>DOB: {{ guardian.dob | date:'yyyy-MM-dd' }} </p>
+            <div class="dropdown">
+            <a class="dropdown-toggle" id="guardian{{ $index }}" role="button" data-toggle="dropdown" data-target="#"
+               href="#">
+                Click here to show calendar
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <datetimepicker data-ng-model="guardian.dob"
+                                data-on-set-time="guardianOnTimeSet($index)"></datetimepicker>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
 </div>
 
-</div>
+
 </body>
 </html>

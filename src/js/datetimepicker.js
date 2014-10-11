@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.2.4
+ * @license angular-bootstrap-datetimepicker  v0.3.0
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -20,7 +20,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minView: 'minute',
     startView: 'day'
   })
-  .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
+  .directive('datetimepicker', ['dateTimePickerConfig', '$parse', function (defaultConfig, $parse) {
     "use strict";
 
     var validateConfiguration = function (configuration) {
@@ -100,7 +100,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         "</table></div>",
       scope: {
         ngModel: "=",
-        onSetTime: "="
+        onSetTime: "&"
       },
       replace: true,
       link: function (scope, element, attrs) {
@@ -111,12 +111,15 @@ angular.module('ui.bootstrap.datetimepicker', [])
           directiveConfig = scope.$eval(attrs.datetimepickerConfig);
         }
 
-
         var configuration = {};
 
         angular.extend(configuration, defaultConfig, directiveConfig);
 
         validateConfiguration(configuration);
+
+        if (attrs.onSetTime) {
+          var onSetTimeFunction = $parse(attrs.onSetTime);
+        }
 
         var dataFactory = {
           year: function (unixDate) {
@@ -299,7 +302,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
             if (angular.isFunction(scope.onSetTime)) {
-              scope.onSetTime(newDate, scope.ngModel);
+              scope.onSetTime({ newDate: newDate , oldDate: scope.ngModel });
             }
             scope.ngModel = newDate;
             return dataFactory[configuration.startView](unixDate);
