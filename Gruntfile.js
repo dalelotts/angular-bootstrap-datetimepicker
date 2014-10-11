@@ -7,7 +7,7 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'karma', 'coverage']);
+  grunt.registerTask('default', ['jshint', 'complexity', 'karma', 'coverage']);
 
   var testConfig = function (configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
@@ -21,6 +21,19 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    complexity: {
+      generic: {
+        src: ['src/**/*.js'],
+        options: {
+          breakOnErrors: false,
+          jsLintXML: 'complexity/report.xml',         // create XML JSLint-like report
+          errorsOnly: false,               // show only maintainability errors
+          cyclomatic: [3, 7, 12],          // or optionally a single value, like 3
+          halstead: [8, 13, 20],           // or optionally a single value, like 8
+          maintainability: 100
+        }
+      }
+    },
     coverage: {
       options: {
         thresholds: {

@@ -18,14 +18,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
     dropdownSelector: null,
     minuteStep: 5,
     minView: 'minute',
-    startView: 'day',
-    weekStart: 0
+    startView: 'day'
   })
   .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
     "use strict";
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'weekStart'];
+      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
 
       for (var prop in configuration) {
         if (configuration.hasOwnProperty(prop)) {
@@ -59,20 +58,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
       if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
         throw ("dropdownSelector must be a string");
       }
-
-      if (!angular.isNumber(configuration.weekStart)) {
-        throw ("weekStart must be numeric");
-      }
-      if (configuration.weekStart < 0 || configuration.weekStart > 6) {
-        throw ("weekStart must be greater than or equal to zero and less than 7");
-      }
     };
 
     return {
       restrict: 'E',
       require: 'ngModel',
-      template: "<div class='datetimepicker'>" +
-        "<table class='table-condensed'>" +
+      template: "<div class='datetimepicker table-responsive'>" +
+        "<table class='table table-striped'>" +
         "   <thead>" +
         "       <tr>" +
         "           <th class='left'" +
@@ -118,6 +110,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         if (attrs.datetimepickerConfig) {
           directiveConfig = scope.$eval(attrs.datetimepickerConfig);
         }
+
 
         var configuration = {};
 
@@ -197,7 +190,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var startOfMonth = moment.utc(selectedDate).startOf('month');
             var endOfMonth = moment.utc(selectedDate).endOf('month');
 
-            var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday() - configuration.weekStart), 'days');
+            var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days');
 
             var activeDate = scope.ngModel ? moment(scope.ngModel).format('YYYY-MMM-DD') : '';
 
@@ -214,7 +207,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             };
 
 
-            for (var dayNumber = configuration.weekStart; dayNumber < configuration.weekStart + 7; dayNumber++) {
+            for (var dayNumber = 0; dayNumber < 7; dayNumber++) {
               result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
             }
 
@@ -247,7 +240,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'hour',
               'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM-DD'),
+              'title': selectedDate.format('ll'),
               'leftDate': moment.utc(selectedDate).subtract(1, 'days').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'days').valueOf(),
               'dates': []
@@ -257,7 +250,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var hourMoment = moment.utc(selectedDate).add(i, 'hours');
               var dateValue = {
                 'date': hourMoment.valueOf(),
-                'display': hourMoment.format('H:00'),
+                'display': hourMoment.format('LT'),
                 'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
               };
 
@@ -277,7 +270,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               'currentView': 'minute',
               'nextView': 'setTime',
               'currentDate': selectedDate.valueOf(),
-              'title': selectedDate.format('YYYY-MMM-DD H:mm'),
+              'title': selectedDate.format('lll'),
               'leftDate': moment.utc(selectedDate).subtract(1, 'hours').valueOf(),
               'rightDate': moment.utc(selectedDate).add(1, 'hours').valueOf(),
               'dates': []
@@ -289,7 +282,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
               var dateValue = {
                 'date': hourMoment.valueOf(),
-                'display': hourMoment.format('H:mm'),
+                'display': hourMoment.format('LT'),
                 'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
               };
 
@@ -309,7 +302,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               scope.onSetTime(newDate, scope.ngModel);
             }
             scope.ngModel = newDate;
-            return dataFactory[scope.data.currentView](unixDate);
+            return dataFactory[configuration.startView](unixDate);
           }
         };
 
