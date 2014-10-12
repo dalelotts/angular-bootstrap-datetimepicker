@@ -99,6 +99,33 @@ Apply the directive to your form elements:
 
 ## Callback functions
 
+
+### before-render
+Attribute on datetimepicker element
+
+If the value of the before-render attribute is a function, the date time picker will call this function
+before rendering a new view, passing in data about the view.
+
+```html
+<datetimepicker data-ng-model="data.date" data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+```
+This function will be called every time a new view is rendered.
+```javascript
+$scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
+    var index = Math.floor(Math.random() * $dates.length);
+    $dates[index].selectable = false;
+}
+```
+
+The following parameters are supplied by this directive :
+ * '$view' the name of the view to be rendered
+ * '$dates' a (possibly empty) array of DateObject's (see source) that the user can select in the view.
+ * '$leftDate' the DateObject selected if the user clicks the left arrow.
+ * '$upDate' the DateObject selected if the user clicks the text between the arrows.
+ * '$rightDate' the DateObject selected if the user clicks the right arrow.
+
+Setting the .selectable property of a DateObject to false will prevent the user from being able to select that date value.
+
 ### on-set-time
 Attribute on datetimepicker element
 
