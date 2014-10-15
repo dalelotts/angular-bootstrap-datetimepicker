@@ -321,7 +321,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         };
 
         var getUTCTime = function () {
-          var tempDate = (scope.ngModel ? moment(scope.ngModel).toDate() : new Date());
+          var tempDate = moment(scope.ngModel).toDate();
           return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
         };
 
