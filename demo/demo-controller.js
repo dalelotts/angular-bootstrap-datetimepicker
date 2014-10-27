@@ -50,5 +50,10 @@ angular.module('demo.demoController', [])
         $('#guardian' + $index).dropdown('toggle');
       };
 
+      $scope.beforeRender = function ($dates) {
+        var index = Math.floor(Math.random() * $dates.length);
+        console.log(index);
+        $dates[index].selectable = false;
+      };
     }
   ]);
