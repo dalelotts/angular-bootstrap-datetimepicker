@@ -58,5 +58,24 @@ describe('onSetTime', function () {
       selectedElement.trigger('click');
     });
   });
+
+
+  describe('accepts additional parameter for onSetTime', function () {
+    it('if onSetTime is not a function', function () {
+
+      $rootScope.setTimeFunction = function (index, oldDate, newDate) {
+        expect(oldDate).toBe(null);
+        expect(oldDate).not.toEqual(newDate);
+        expect(newDate).toEqual(moment("2020-01-01T00:00:00.000").toDate());
+        console.log(index);
+      };
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction(3, oldDate, newDate, "foo")\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery('.future', element);
+      selectedElement.trigger('click');
+    });
+  });
 });
 
