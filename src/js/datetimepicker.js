@@ -2,8 +2,8 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.3.1
- * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * @license angular-bootstrap-datetimepicker  v0.3.2
+ * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -301,13 +301,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
             var tempDate = new Date(unixDate);
             var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
 
+            var oldDate = scope.ngModel;
             scope.ngModel = newDate;
 
             if (configuration.dropdownSelector) {
               jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
 
-            scope.onSetTime({ newDate: newDate, oldDate: scope.ngModel });
+            scope.onSetTime({ newDate: scope.ngModel, oldDate: oldDate });
 
             return dataFactory[configuration.startView](unixDate);
           }
