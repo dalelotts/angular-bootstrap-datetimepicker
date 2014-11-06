@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  v0.3.2
+ * @license angular-bootstrap-datetimepicker  v0.3.3
  * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -20,7 +20,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minView: 'minute',
     startView: 'day'
   })
-  .directive('datetimepicker', ['dateTimePickerConfig', function (defaultConfig) {
+  .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function ($log, defaultConfig) {
     "use strict";
 
     function DateObject() {
@@ -31,6 +31,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
       var validProperties = ['dateValue', 'display', 'active', 'selectable', 'past', 'future'];
 
       for (var prop in arguments[0]) {
+        /* istanbul ignore else */
         //noinspection JSUnfilteredForInLoop
         if (validProperties.indexOf(prop) >= 0) {
           //noinspection JSUnfilteredForInLoop
@@ -305,7 +306,14 @@ angular.module('ui.bootstrap.datetimepicker', [])
             scope.ngModel = newDate;
 
             if (configuration.dropdownSelector) {
-              jQuery(configuration.dropdownSelector).dropdown('toggle');
+
+              /* istanbul ignore else */
+              if (typeof jQuery !== 'undefined') {
+                jQuery(configuration.dropdownSelector).dropdown('toggle');
+              } else {
+                $log.error("Please DO NOT specify the dropdownSelector option unless you are using jQuery. " +
+                  "Please include jQuery or write code to close the dropdown in the on-set-time callback. ");
+              }
             }
 
             scope.onSetTime({ newDate: scope.ngModel, oldDate: oldDate });
