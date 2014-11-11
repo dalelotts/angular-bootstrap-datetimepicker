@@ -74,40 +74,50 @@ angular.module('ui.bootstrap.datetimepicker', [])
       if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
         throw ("dropdownSelector must be a string");
       }
+
+      if (configuration.dropdownSelector != null) {
+        /* istanbul ignore next */
+        if ((typeof jQuery === 'undefined') || (typeof jQuery().dropdown !== 'function')) {
+          $log.error("Please DO NOT specify the dropdownSelector option unless you are using jQuery AND Bootstrap.js. " +
+          "Please include jQuery AND Bootstrap.js, or write code to close the dropdown in the on-set-time callback. \n\n" +
+          "The dropdownSelector configuration option is being removed because it will not function properly.");
+          delete configuration.dropdownSelector;
+        }
+      }
     };
 
     return {
       restrict: 'E',
       require: 'ngModel',
       template: "<div class='datetimepicker table-responsive'>" +
-        "<table class='table table-striped'>" +
-        "   <thead>" +
-        "       <tr>" +
-        "           <th class='left' data-ng-click='changeView(data.currentView, data.leftDate, $event)' data-ng-show='data.leftDate.selectable'><i class='glyphicon glyphicon-arrow-left'/></th>" +
-        "           <th class='switch' colspan='5' data-ng-show='data.currentDate.selectable' data-ng-click='changeView(data.previousView, data.currentDate, $event)'>{{ data.currentDate.display }}</th>" +
-        "           <th class='right' data-ng-click='changeView(data.currentView, data.rightDate, $event)' data-ng-show='data.rightDate.selectable'><i class='glyphicon glyphicon-arrow-right'/></th>" +
-        "       </tr>" +
-        "       <tr>" +
-        "           <th class='dow' data-ng-repeat='day in data.dayNames' >{{ day }}</th>" +
-        "       </tr>" +
-        "   </thead>" +
-        "   <tbody>" +
-        "       <tr data-ng-if='data.currentView !== \"day\"' >" +
-        "           <td colspan='7' >" +
-        "              <span    class='{{ data.currentView }}' " +
-        "                       data-ng-repeat='dateObject in data.dates'  " +
-        "                       data-ng-class='{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}' " +
-        "                       data-ng-click=\"changeView(data.nextView, dateObject, $event)\">{{ dateObject.display }}</span> " +
-        "           </td>" +
-        "       </tr>" +
-        "       <tr data-ng-if='data.currentView === \"day\"' data-ng-repeat='week in data.weeks'>" +
-        "           <td data-ng-repeat='dateObject in week.dates' " +
-        "               data-ng-click='changeView(data.nextView, dateObject, $event)'" +
-        "               class='day' " +
-        "               data-ng-class='{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}' >{{ dateObject.display }}</td>" +
-        "       </tr>" +
-        "   </tbody>" +
-        "</table></div>",
+      "<table class='table table-striped'>" +
+      "   <thead>" +
+      "       <tr>" +
+      "           <th class='left' data-ng-click='changeView(data.currentView, data.leftDate, $event)' data-ng-show='data.leftDate.selectable'><i class='glyphicon glyphicon-arrow-left'/></th>" +
+      "           <th class='switch' colspan='5' data-ng-show='data.currentDate.selectable' data-ng-click='changeView(data.previousView, data.currentDate, $event)'>{{ data.currentDate.display }}</th>" +
+      "           <th class='right' data-ng-click='changeView(data.currentView, data.rightDate, $event)' data-ng-show='data.rightDate.selectable'><i class='glyphicon glyphicon-arrow-right'/></th>" +
+      "       </tr>" +
+      "       <tr>" +
+      "           <th class='dow' data-ng-repeat='day in data.dayNames' >{{ day }}</th>" +
+      "       </tr>" +
+      "   </thead>" +
+      "   <tbody>" +
+      "       <tr data-ng-if='data.currentView !== \"day\"' >" +
+      "           <td colspan='7' >" +
+      "              <span    class='{{ data.currentView }}' " +
+      "                       data-ng-repeat='dateObject in data.dates'  " +
+      "                       data-ng-class='{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}' " +
+      "                       data-ng-click=\"changeView(data.nextView, dateObject, $event)\">{{ dateObject.display }}</span> " +
+      "           </td>" +
+      "       </tr>" +
+      "       <tr data-ng-if='data.currentView === \"day\"' data-ng-repeat='week in data.weeks'>" +
+      "           <td data-ng-repeat='dateObject in week.dates' " +
+      "               data-ng-click='changeView(data.nextView, dateObject, $event)'" +
+      "               class='day' " +
+      "               data-ng-class='{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}' >{{ dateObject.display }}</td>" +
+      "       </tr>" +
+      "   </tbody>" +
+      "</table></div>",
       scope: {
         ngModel: "=",
         onSetTime: "&",
@@ -220,7 +230,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             }
 
             for (var i = 0; i < 6; i++) {
-              var week = { dates: [] };
+              var week = {dates: []};
               for (var j = 0; j < 7; j++) {
                 var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
                 var dateValue = {
@@ -306,17 +316,10 @@ angular.module('ui.bootstrap.datetimepicker', [])
             scope.ngModel = newDate;
 
             if (configuration.dropdownSelector) {
-
-              /* istanbul ignore else */
-              if (typeof jQuery !== 'undefined') {
-                jQuery(configuration.dropdownSelector).dropdown('toggle');
-              } else {
-                $log.error("Please DO NOT specify the dropdownSelector option unless you are using jQuery. " +
-                  "Please include jQuery or write code to close the dropdown in the on-set-time callback. ");
-              }
+              jQuery(configuration.dropdownSelector).dropdown('toggle');
             }
 
-            scope.onSetTime({ newDate: scope.ngModel, oldDate: oldDate });
+            scope.onSetTime({newDate: scope.ngModel, oldDate: oldDate});
 
             return dataFactory[configuration.startView](unixDate);
           }
@@ -359,10 +362,10 @@ angular.module('ui.bootstrap.datetimepicker', [])
           }
         };
 
-        scope.changeView(configuration.startView, new DateObject({ dateValue: getUTCTime(), selectable: true }));
+        scope.changeView(configuration.startView, new DateObject({dateValue: getUTCTime(), selectable: true}));
 
         scope.$watch('ngModel', function () {
-          scope.changeView(scope.data.currentView, new DateObject({ dateValue: getUTCTime() }));
+          scope.changeView(scope.data.currentView, new DateObject({dateValue: getUTCTime()}));
         });
       }
     };

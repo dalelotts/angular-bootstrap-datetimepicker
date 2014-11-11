@@ -177,7 +177,8 @@ The increment used to build the hour view. A button is created for each <code>mi
 
 When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
 
-**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option, it will cause an exception.
+**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option. If you do, an error will
+ be logged and this option will be removed.
 
 
 ## Working with ng-model
