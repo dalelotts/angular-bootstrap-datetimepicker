@@ -41,7 +41,18 @@ angular.module('ui.bootstrap.datetimepicker', [])
     }
 
     var validateConfiguration = function (configuration) {
-      var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+      var validOptions = [
+        'startView',
+        'minView',
+        'minuteStep',
+        'dropdownSelector',
+        'minuteDisplayFormat',
+        'hourDisplayFormat',
+        'dayDisplayFormat',
+        'monthDisplayFormat',
+        'yearDisplayFormat'
+      ];
+
 
       for (var prop in configuration) {
         //noinspection JSUnfilteredForInLoop
@@ -151,7 +162,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var yearMoment = moment.utc(startDate).add(i, 'years');
               var dateValue = {
                 'dateValue': yearMoment.valueOf(),
-                'display': yearMoment.format('YYYY'),
+                'display': yearMoment.format(configuration.yearDisplayFormat || 'YYYY'),
                 'past': yearMoment.year() < startDecade,
                 'future': yearMoment.year() > startDecade + 9,
                 'active': yearMoment.year() === activeYear
@@ -183,7 +194,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var monthMoment = moment.utc(startDate).add(i, 'months');
               var dateValue = {
                 'dateValue': monthMoment.valueOf(),
-                'display': monthMoment.format('MMM'),
+                'display': monthMoment.format(configuration.monthDisplayFormat || 'MMM'),
                 'active': monthMoment.format('YYYY-MMM') === activeDate
               };
 
@@ -225,7 +236,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
                 var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
                 var dateValue = {
                   'dateValue': monthMoment.valueOf(),
-                  'display': monthMoment.format('D'),
+                  'display': monthMoment.format(configuration.dayDisplayFormat || 'D'),
                   'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
                   'past': monthMoment.isBefore(startOfMonth),
                   'future': monthMoment.isAfter(endOfMonth)
@@ -257,7 +268,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var hourMoment = moment.utc(selectedDate).add(i, 'hours');
               var dateValue = {
                 'dateValue': hourMoment.valueOf(),
-                'display': hourMoment.format('LT'),
+                'display': hourMoment.format(configuration.hourDisplayFormat || 'LT'),
                 'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
               };
 
@@ -288,7 +299,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
               var dateValue = {
                 'dateValue': hourMoment.valueOf(),
-                'display': hourMoment.format('LT'),
+                'display': hourMoment.format(configuration.minuteDisplayFormat || 'LT'),
                 'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
               };
 
