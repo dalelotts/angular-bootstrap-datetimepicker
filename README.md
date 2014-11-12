@@ -13,7 +13,7 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
 # Upgrading to 0.3.x
 
-<code>weekStart</code> has bee removed. This directive uses the locale aware 
+<code>weekStart</code> has been removed. This directive uses the locale aware 
 [moment.js day of week](http://momentjs.com/docs/#/get-set/weekday/) to 
 determine which day is the first day of the week. If you would like a first 
 day of week that is not standard for the locale you can create a 
@@ -177,7 +177,8 @@ The increment used to build the hour view. A button is created for each <code>mi
 
 When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
 
-**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option, it will cause an exception.
+**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option. If you do, an error will
+ be logged and this option will be removed.
 
 
 ## Working with ng-model
