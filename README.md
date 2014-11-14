@@ -1,4 +1,4 @@
-# Angular bootstrap date & time picker  v0.3.3
+# Angular bootstrap date & time picker version: 0.3.4
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
@@ -14,7 +14,7 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 # Upgrading to 0.3.x
 
 <code>weekStart</code> has been removed. This directive uses the locale aware 
-[moment.js day of week](http://momentjs.com/docs/#/get-set/weekday/) to 
+[moment.js day of week](http://momentjs.com/docs/#/get-set/weekday/) to
 determine which day is the first day of the week. If you would like a first 
 day of week that is not standard for the locale you can create a 
 [custom locale](http://momentjs.com/docs/#/customization/) 
@@ -124,6 +124,17 @@ The following parameters are supplied by this directive :
  * '$upDate' the DateObject selected if the user clicks the text between the arrows.
  * '$rightDate' the DateObject selected if the user clicks the right arrow.
 
+
+```
+DateObject {
+    dateValue: Number - UTC time value of this date object - same as moment.valueOf() or Date.getTime(). It does NOT contain time zone information so take that into account when comparing to other dates.
+    display: String - the way this value will be displayed on the calendar.
+    active: true | false | undefined - indicates that date object is part of the model value.
+    selectable: true | false | undefined - indicates that date value is selectable by the user.
+    past: true | false | undefined - indicates that date value is prior to the date range of the current view.
+    future: true | false | undefined - indicates that date value is after the date range of the current view.
+}
+```
 Setting the .selectable property of a DateObject to false will prevent the user from being able to select that date value.
 
 ### on-set-time
@@ -177,7 +188,8 @@ The increment used to build the hour view. A button is created for each <code>mi
 
 When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
 
-**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option, it will cause an exception.
+**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option. If you do, an error will
+ be logged and this option will be removed.
 
 
 ## Working with ng-model
