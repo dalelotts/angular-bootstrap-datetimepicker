@@ -45,9 +45,12 @@ angular.module('demo.demoController', [])
       };
 
 
-      $scope.guardianOnTimeSet = function ($index) {
+      $scope.guardianOnSetTime = function ($index, guardian, newDate, oldDate) {
         console.log($index);
-        $('#guardian' + $index).dropdown('toggle');
+        console.log(guardian.name);
+        console.log(newDate);
+        console.log(oldDate);
+        angular.element('#guardian' + $index).dropdown('toggle');
       };
 
       $scope.beforeRender = function ($dates) {

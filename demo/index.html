@@ -260,7 +260,8 @@
 
 <div class="row">
     <div class="col-sm-6">
-
+        <h3>ng-repeat with drop-down using text link</h3>
+        <p><code>data-on-set-time="guardianOnSetTime($index, guardian, newDate, oldDate)"</code></p>
         <div class="well" data-ng-repeat = "guardian in data.guardians">
             <p>{{  guardian.name }}</p>
             <p>DOB: {{ guardian.dob | date:'yyyy-MM-dd' }} </p>
@@ -271,7 +272,7 @@
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 <datetimepicker data-ng-model="guardian.dob"
-                                data-on-set-time="guardianOnTimeSetDoesNotExist"></datetimepicker>
+                                data-on-set-time="guardianOnSetTime($index, guardian, newDate, oldDate)"></datetimepicker>
             </ul>
         </div>
         </div>
