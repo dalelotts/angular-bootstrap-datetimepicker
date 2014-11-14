@@ -354,7 +354,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
               $view: result.currentView,
               $dates: result.dates || weekDates,
               $leftDate: result.leftDate,
-              $upDate: result.currenDate,
+              $upDate: result.currentDate,
               $rightDate: result.rightDate
             });
 
