@@ -37,11 +37,14 @@ describe('onSetTime', function () {
         expect(selectedDate).toEqual(moment("2009-01-01T00:00:00.000").toDate());
       };
 
-      var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
+      spyOn($rootScope, 'setTimeFunction').and.callThrough();
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction(newDate)\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
       $rootScope.$digest();
 
       var selectedElement = jQuery('.past', element);
       selectedElement.trigger('click');
+      expect($rootScope.setTimeFunction).toHaveBeenCalled();
       expect($rootScope.date).toEqual(moment("2009-01-01T00:00:00.000").toDate());
     });
   });
@@ -70,11 +73,14 @@ describe('onSetTime', function () {
         expect(index).toEqual(3);
       };
 
+      spyOn($rootScope, 'setTimeFunction').and.callThrough();
+
       var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction(3, oldDate, newDate, "foo")\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
       $rootScope.$digest();
 
       var selectedElement = jQuery('.future', element);
       selectedElement.trigger('click');
+      expect($rootScope.setTimeFunction).toHaveBeenCalled();
     });
   });
 });

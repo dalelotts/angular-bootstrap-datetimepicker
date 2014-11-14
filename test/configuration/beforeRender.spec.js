@@ -18,7 +18,7 @@ describe('beforeRender', function () {
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = null;
+    // $rootScope.date = null;
   }));
 
   describe('does not throw exception', function () {
@@ -147,7 +147,6 @@ describe('beforeRender', function () {
       $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
       $rootScope.beforeRender = function ($leftDate) {
         expect($leftDate).not.toBeUndefined();
-        expect(moment($leftDate.dateValue).toDate()).toEqual(moment.utc("1990-01-01T00:00:00.000").toDate());
       };
 
       spyOn($rootScope, 'beforeRender').and.callThrough();
@@ -159,6 +158,7 @@ describe('beforeRender', function () {
       selectedElement.trigger('click');
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(631152000000); // 1990-01-01
     });
 
 
@@ -167,7 +167,6 @@ describe('beforeRender', function () {
       $rootScope.date = moment("2014-04-01T00:00:00.000").toDate();
       $rootScope.beforeRender = function ($rightDate) {
         expect($rightDate).not.toBeUndefined();
-        expect(moment($rightDate.dateValue).toDate()).toEqual(moment.utc("2015-01-01T00:00:00.000").toDate());
       };
 
       spyOn($rootScope, 'beforeRender').and.callThrough();
@@ -179,29 +178,84 @@ describe('beforeRender', function () {
       selectedElement.trigger('click');
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1420070400000); // 2015-01-01
     });
 
-    it('$upDate parameter is the beginning of the next view up ', function () {
+
+    it('startview = "day" and $upDate parameter is the beginning of the next view up ', function () {
+
+      // i.e. minute -> hour -> day -> month -> year
+
+      $rootScope.date = moment("2014-10-18T13:00:00.000").toDate();
+
+      $rootScope.beforeRender = function ($upDate) {
+        expect($upDate).not.toBeUndefined();
+      };
+
+      spyOn($rootScope, 'beforeRender').and.callThrough();
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-before-render=\'beforeRender($upDate)\' data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" ></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      expect($rootScope.beforeRender).toHaveBeenCalled();
+
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1388534400000); // 2014-01-01 - the start of the 'month' view.
+
+
+      var selectedElement = jQuery(jQuery('.day', element)[2]);
+      selectedElement.trigger('click');
+
+    });
+
+
+    it('startview = "hour" and $upDate parameter is the beginning of the next view up ', function () {
+
+      // i.e. minute -> hour -> day -> month -> year
+
+      var $scope = $rootScope.$new();
+
+
+      $scope.date = moment("2014-10-18T13:00:00.000").toDate();
+
+      $scope.beforeRender = function ($upDate) {
+        expect($upDate).not.toBeUndefined();
+      };
+
+      spyOn($scope, 'beforeRender').and.callThrough();
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-before-render=\'beforeRender($upDate)\' data-datetimepicker-config="{ startView: \'hour\', minView: \'hour\' }" ></datetimepicker>')($scope);
+      $rootScope.$digest();
+
+      expect($scope.beforeRender).toHaveBeenCalled();
+      expect($scope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1412121600000); // 2014-10-01 12:00 the start of the 'day' view
+
+      var selectedElement = jQuery(jQuery('.hour', element)[2]);
+      selectedElement.trigger('click');
+
+    });
+
+    it('startview = "minute" and $upDate parameter is the beginning of the next view up ', function () {
 
       // i.e. minute -> hour -> day -> month -> year
 
       $rootScope.date = moment("2014-10-18T13:00:00.000").toDate();
       $rootScope.beforeRender = function ($upDate) {
         expect($upDate).not.toBeUndefined();
-        expect(moment($upDate.dateValue).toDate()).toEqual(moment.utc("2014-10-18T00:00:00.000").toDate());
       };
 
       spyOn($rootScope, 'beforeRender').and.callThrough();
 
-      var element = $compile('<datetimepicker data-ng-model=\'date\' data-before-render=\'beforeRender($upDate)\' data-datetimepicker-config="{ startView: \'hour\', minView: \'hour\' }" ></datetimepicker>')($rootScope);
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-before-render=\'beforeRender($upDate)\' data-datetimepicker-config="{ startView: \'minute\', minView: \'minute\' }" ></datetimepicker>')($rootScope);
       $rootScope.$digest();
 
-      var selectedElement = jQuery(jQuery('.hour', element)[2]);
+      expect($rootScope.beforeRender).toHaveBeenCalled();
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1413590400000);   // 2014-10-18 00:00 Z
+
+
+      var selectedElement = jQuery(jQuery('.minute', element)[2]);
       selectedElement.trigger('click');
 
-      expect($rootScope.beforeRender).toHaveBeenCalled();
     });
-
 
     it('year view and 2001 date is disabled', function () {
 
