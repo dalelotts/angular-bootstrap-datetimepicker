@@ -67,7 +67,7 @@ describe('onSetTime', function () {
         expect(oldDate).toBe(null);
         expect(oldDate).not.toEqual(newDate);
         expect(newDate).toEqual(moment("2020-01-01T00:00:00.000").toDate());
-        console.log(index);
+        expect(index).toEqual(3);
       };
 
       var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction(3, oldDate, newDate, "foo")\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
