@@ -20,7 +20,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
     minView: 'minute',
     startView: 'day'
   })
-  .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function ($log, defaultConfig) {
+  .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
     'use strict';
 
     function DateObject() {
@@ -40,7 +40,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
       }
     }
 
-    var validateConfiguration = function (configuration) {
+    var validateConfiguration = function validateConfiguration(configuration) {
       var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
 
       for (var prop in configuration) {
@@ -122,7 +122,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         beforeRender: '&'
       },
       replace: true,
-      link: function (scope, element, attrs, ngModelController) {
+      link: function link(scope, element, attrs, ngModelController) {
 
         var directiveConfig = {};
 
@@ -136,13 +136,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
 
         validateConfiguration(configuration);
 
-        var startOfDecade = function (unixDate) {
+        var startOfDecade = function startOfDecade(unixDate) {
           var startYear = (parseInt(moment.utc(unixDate).year() / 10, 10) * 10);
           return moment.utc(unixDate).year(startYear).startOf('year');
         };
 
         var dataFactory = {
-          year: function (unixDate) {
+          year: function year(unixDate) {
             var selectedDate = moment.utc(unixDate).startOf('year');
             // View starts one year before the decade starts and ends one year after the decade ends
             // i.e. passing in a date of 1/1/2013 will give a range of 2009 to 2020
@@ -177,7 +177,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             return result;
           },
 
-          month: function (unixDate) {
+          month: function month(unixDate) {
 
             var startDate = moment.utc(unixDate).startOf('year');
             var previousViewDate = startOfDecade(unixDate);
@@ -210,7 +210,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             return result;
           },
 
-          day: function (unixDate) {
+          day: function day(unixDate) {
 
             var selectedDate = moment.utc(unixDate);
             var startOfMonth = moment.utc(selectedDate).startOf('month');
@@ -259,7 +259,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             return result;
           },
 
-          hour: function (unixDate) {
+          hour: function hour(unixDate) {
             var selectedDate = moment.utc(unixDate).startOf('day');
             var previousViewDate = moment.utc(selectedDate).startOf('month');
 
@@ -292,7 +292,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             return result;
           },
 
-          minute: function (unixDate) {
+          minute: function minute(unixDate) {
             var selectedDate = moment.utc(unixDate).startOf('hour');
             var previousViewDate = moment.utc(selectedDate).startOf('day');
             var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H:mm') : '';
@@ -326,7 +326,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
             return result;
           },
 
-          setTime: function (unixDate) {
+          setTime: function setTime(unixDate) {
             var tempDate = new Date(unixDate);
             var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
 
@@ -343,12 +343,12 @@ angular.module('ui.bootstrap.datetimepicker', [])
           }
         };
 
-        var getUTCTime = function (modelValue) {
+        var getUTCTime = function getUTCTime(modelValue) {
           var tempDate = (modelValue ? moment(modelValue).toDate() : new Date());
           return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
         };
 
-        scope.changeView = function (viewName, dateObject, event) {
+        scope.changeView = function changeView(viewName, dateObject, event) {
           if (event) {
             event.stopPropagation();
             event.preventDefault();
@@ -391,7 +391,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
           selectable: true
         }));
 
-        ngModelController.$render = function () {
+        ngModelController.$render = function $render() {
           scope.changeView(scope.data.currentView, new DateObject({dateValue: getUTCTime(ngModelController.$modelValue)}));
         };
       }
