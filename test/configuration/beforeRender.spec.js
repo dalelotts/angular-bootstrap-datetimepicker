@@ -16,9 +16,9 @@ describe('beforeRender', function () {
   var $rootScope, $compile;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale('en');
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    // $rootScope.date = null;
   }));
 
   describe('does not throw exception', function () {
@@ -30,7 +30,7 @@ describe('beforeRender', function () {
     });
   });
 
-  describe('calls beforeRender before a new view is rendered', function () {
+  describe('called before a new view is rendered', function () {
     it('in year view $dates parameter contains 12 members', function () {
 
       $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
@@ -52,10 +52,7 @@ describe('beforeRender', function () {
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
     });
-  });
 
-
-  describe('calls beforeRender before a new view is rendered', function () {
     it('in month view $dates parameter contains 12 members', function () {
 
       $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
@@ -77,14 +74,15 @@ describe('beforeRender', function () {
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
     });
-  });
 
-  describe('calls beforeRender before a new view is rendered', function () {
     it('in day view $dates parameter contains 42 members', function () {
 
       $rootScope.date = moment('2014-01-01T00:00:00.000').toDate();
+
       $rootScope.beforeRender = function (dates) {
         expect(dates.length).toBe(42);
+        expect(dates[0].dateValue).toBe(1388275200000);
+        expect(dates[11].dateValue).toBe(1389225600000);
       };
 
       spyOn($rootScope, 'beforeRender').and.callThrough();
@@ -92,18 +90,20 @@ describe('beforeRender', function () {
       var element = $compile('<datetimepicker data-ng-model=\'date\' data-before-render=\'beforeRender($dates)\' data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" ></datetimepicker>')($rootScope);
       $rootScope.$digest();
 
-      var selectedElement = jQuery(jQuery('.day', element)[11]);
+      expect($rootScope.date).toEqual(moment('2014-01-01T00:00:00.000').toDate());
 
+      var selectedElement = jQuery(jQuery('.day', element)[11]);
+      expect(jQuery(jQuery('.day', element)[0]).text()).toBe('29');
+      expect(selectedElement.text()).toBe('9');
       expect(selectedElement.hasClass('disabled')).toBeFalsy();
+
       selectedElement.trigger('click');
       expect($rootScope.date).toEqual(moment('2014-01-09T00:00:00.000').toDate());
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
     });
-  });
 
-  describe('calls beforeRender before a new view is rendered', function () {
     it('dates parameter has 12 members', function () {
 
       $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
