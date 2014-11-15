@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
+/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment, spyOn */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -33,7 +33,7 @@ describe('beforeRender', function () {
   describe('calls beforeRender before a new view is rendered', function () {
     it('in year view $dates parameter contains 12 members', function () {
 
-      $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function (dates) {
         expect(dates.length).toBe(12);
       };
@@ -47,7 +47,7 @@ describe('beforeRender', function () {
 
       expect(selectedElement.hasClass('disabled')).toBeFalsy();
       selectedElement.trigger('click');
-      expect($rootScope.date).toEqual(moment("2001-01-01T00:00:00.000").toDate());
+      expect($rootScope.date).toEqual(moment('2001-01-01T00:00:00.000').toDate());
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
@@ -58,7 +58,7 @@ describe('beforeRender', function () {
   describe('calls beforeRender before a new view is rendered', function () {
     it('in month view $dates parameter contains 12 members', function () {
 
-      $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function (dates) {
         expect(dates.length).toBe(12);
       };
@@ -72,7 +72,7 @@ describe('beforeRender', function () {
 
       expect(selectedElement.hasClass('disabled')).toBeFalsy();
       selectedElement.trigger('click');
-      expect($rootScope.date).toEqual(moment("2008-05-01T00:00:00.000").toDate());
+      expect($rootScope.date).toEqual(moment('2008-05-01T00:00:00.000').toDate());
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
@@ -82,7 +82,7 @@ describe('beforeRender', function () {
   describe('calls beforeRender before a new view is rendered', function () {
     it('in day view $dates parameter contains 42 members', function () {
 
-      $rootScope.date = moment("2014-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2014-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function (dates) {
         expect(dates.length).toBe(42);
       };
@@ -96,7 +96,7 @@ describe('beforeRender', function () {
 
       expect(selectedElement.hasClass('disabled')).toBeFalsy();
       selectedElement.trigger('click');
-      expect($rootScope.date).toEqual(moment("2014-01-09T00:00:00.000").toDate());
+      expect($rootScope.date).toEqual(moment('2014-01-09T00:00:00.000').toDate());
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
@@ -106,7 +106,7 @@ describe('beforeRender', function () {
   describe('calls beforeRender before a new view is rendered', function () {
     it('dates parameter has 12 members', function () {
 
-      $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function (dates) {
         expect(dates).not.toBeUndefined();
         expect(dates.length).toEqual(12);
@@ -126,7 +126,7 @@ describe('beforeRender', function () {
 
     it('view parameter is "year"', function () {
 
-      $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function (view) {
         expect(view).toEqual('year');
       };
@@ -144,7 +144,7 @@ describe('beforeRender', function () {
 
     it('$leftDate parameter is the beginning of the previous view', function () {
 
-      $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function ($leftDate) {
         expect($leftDate).not.toBeUndefined();
       };
@@ -164,7 +164,7 @@ describe('beforeRender', function () {
 
     it('$rightDate parameter is the beginning of the next view', function () {
 
-      $rootScope.date = moment("2014-04-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2014-04-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function ($rightDate) {
         expect($rightDate).not.toBeUndefined();
       };
@@ -186,7 +186,7 @@ describe('beforeRender', function () {
 
       // i.e. minute -> hour -> day -> month -> year
 
-      $rootScope.date = moment("2014-10-18T13:00:00.000").toDate();
+      $rootScope.date = moment('2014-10-18T13:00:00.000').toDate();
 
       $rootScope.beforeRender = function ($upDate) {
         expect($upDate).not.toBeUndefined();
@@ -215,7 +215,7 @@ describe('beforeRender', function () {
       var $scope = $rootScope.$new();
 
 
-      $scope.date = moment("2014-10-18T13:00:00.000").toDate();
+      $scope.date = moment('2014-10-18T13:00:00.000').toDate();
 
       $scope.beforeRender = function ($upDate) {
         expect($upDate).not.toBeUndefined();
@@ -238,7 +238,7 @@ describe('beforeRender', function () {
 
       // i.e. minute -> hour -> day -> month -> year
 
-      $rootScope.date = moment("2014-10-18T13:00:00.000").toDate();
+      $rootScope.date = moment('2014-10-18T13:00:00.000').toDate();
       $rootScope.beforeRender = function ($upDate) {
         expect($upDate).not.toBeUndefined();
       };
@@ -259,7 +259,7 @@ describe('beforeRender', function () {
 
     it('year view and 2001 date is disabled', function () {
 
-      $rootScope.date = moment("2008-01-01T00:00:00.000").toDate();
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
       $rootScope.beforeRender = function (dates) {
         dates[2].selectable = false;
       };
@@ -274,7 +274,7 @@ describe('beforeRender', function () {
       selectedElement.trigger('click'); // No change if clicked!
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
-      expect($rootScope.date).toEqual(moment("2008-01-01T00:00:00.000").toDate());
+      expect($rootScope.date).toEqual(moment('2008-01-01T00:00:00.000').toDate());
 
     });
   });

@@ -17,7 +17,7 @@ describe('year view with ng-model = null', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
-    moment.locale("zh-cn");
+    moment.locale('zh-cn');
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = null;
@@ -117,7 +117,7 @@ describe('year view with ng-model = null', function () {
     it('has one `.active` element with a value of 2010 when view is month and date is 2010', function () {
       expect(jQuery('.active', element).length).toBe(0);
 
-      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.date = moment('2010-10-01').toDate();
       $rootScope.$apply();
 
       expect(jQuery('.active', element).length).toBe(1);
@@ -127,7 +127,7 @@ describe('year view with ng-model = null', function () {
 
   describe('where month view', function () {
     beforeEach(inject(function () {
-      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.date = moment('2010-10-01').toDate();
       $rootScope.$digest();
       // Switch to month view...
       var pastElement = jQuery('.past', element);
@@ -172,7 +172,7 @@ describe('year view with ng-model = null', function () {
   });
   describe('where day view', function () {
     beforeEach(inject(function () {
-      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.date = moment('2010-10-01').toDate();
       $rootScope.$digest();
       // Switch to day view...
       var pastElement = jQuery('.active', element);
@@ -224,7 +224,7 @@ describe('year view with ng-model = null', function () {
   });
   describe('where hour view', function () {
     beforeEach(inject(function () {
-      $rootScope.date = moment("2010-10-01").toDate();
+      $rootScope.date = moment('2010-10-01').toDate();
       $rootScope.$digest();
       // Switch to day view...
       var selectedElement = jQuery('.active', element);
@@ -288,7 +288,7 @@ describe('year view with with ng-model = 1970-1-1 (unix date of zero) and minVie
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("1970-01-01T00:00:00.000").toDate();
+    $rootScope.date = moment('1970-01-01T00:00:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));

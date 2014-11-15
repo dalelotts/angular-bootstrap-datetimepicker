@@ -19,7 +19,7 @@ describe('German day view with initial date of 2013-01-22', function () {
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     moment.locale('de');
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2013-01-22T00:00:00.000").toDate();
+    $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
     element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -47,7 +47,7 @@ describe('day with initial date of "2020-01-01T00:00:00.000" and minView="day"',
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2020-01-01T00:00:00.000").toDate();
+    $rootScope.date = moment('2020-01-01T00:00:00.000').toDate();
     element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -61,7 +61,7 @@ describe('day with initial date of "2020-01-01T00:00:00.000" and minView="day"',
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('12');
-    expect($rootScope.date).toEqual(moment("2020-01-12T00:00:00.000").toDate());
+    expect($rootScope.date).toEqual(moment('2020-01-12T00:00:00.000').toDate());
   });
 });
 
@@ -73,7 +73,7 @@ describe('day with initial date of "2008-02-01T00:00:00.000" (leap year) and min
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2008-02-01T00:00:00.000").toDate();
+    $rootScope.date = moment('2008-02-01T00:00:00.000').toDate();
     element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -90,6 +90,6 @@ describe('day with initial date of "2008-02-01T00:00:00.000" (leap year) and min
 
     selectedElement.trigger('click');
     expect(jQuery('.active', element).text()).toBe('29');
-    expect($rootScope.date).toEqual(moment("2008-02-29T00:00:00.000").toDate());
+    expect($rootScope.date).toEqual(moment('2008-02-29T00:00:00.000').toDate());
   });
 });

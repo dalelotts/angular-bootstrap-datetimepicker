@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
+/*globals describe, beforeEach, it, expect, module, inject */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -28,28 +28,28 @@ describe('minView', function () {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minView: \'bar\' }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("invalid minView value: bar");
+      expect(compile).toThrow('invalid minView value: bar');
     });
     it('if value is a numeric value', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minView: 0 }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("invalid minView value: 0");
+      expect(compile).toThrow('invalid minView value: 0');
     });
     it('if value is greater than startView', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'month\',  minView: \'year\' }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("startView must be greater than minView");
+      expect(compile).toThrow('startView must be greater than minView');
     });
   });
   describe('does NOT throw exception for valid values', function () {
     it('if value is between 1 and 59', function () {
       var validViews = ['year', 'month', 'day', 'hour', 'minute'];
 
-      for (var i = 0; i < validViews.length; i++) {
+      for (var i = 0; i < validViews.length; i += 1) {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'year\', minView: \'' + validViews[i] + '\' }"></datetimepicker>')($rootScope);
       }
     });

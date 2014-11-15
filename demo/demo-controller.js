@@ -7,7 +7,7 @@ angular.module('demo.demoController', [])
       'use strict';
       $scope.controllerName = 'demoController';
 
-      moment.locale("en");
+      moment.locale('en');
 
       $scope.data = {
         guardians: [
@@ -26,7 +26,7 @@ angular.module('demo.demoController', [])
         $scope.data.checked = false;
       };
 
-      $scope.inputOnTimeSet = function (newDate, oldDate) {
+      $scope.inputOnTimeSet = function (newDate) {
         // If you are not using jQuery or bootstrap.js,
         // this will throw an error.
         // However, can write this function to take any

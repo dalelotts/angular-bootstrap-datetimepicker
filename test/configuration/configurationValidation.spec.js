@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
+/*globals describe, beforeEach, it, expect, module, inject */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -26,7 +26,7 @@ describe('configuration validation', function () {
       $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
     });
     it('when ng-model value is a valid date string (as if coming from json api)', function () {
-      $rootScope.date = "2013-08-04T23:00:00";
+      $rootScope.date = '2013-08-04T23:00:00';
       $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
       $rootScope.$digest();
     });
@@ -46,7 +46,7 @@ describe('configuration validation', function () {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minview: \'year\' }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("invalid option: minview");
+      expect(compile).toThrow('invalid option: minview');
     });
   });
 });
