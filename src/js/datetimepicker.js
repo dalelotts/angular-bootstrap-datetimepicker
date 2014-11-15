@@ -127,7 +127,7 @@ angular.module('ui.bootstrap.datetimepicker', [])
         var directiveConfig = {};
 
         if (attrs.datetimepickerConfig) {
-          directiveConfig = scope.$eval(attrs.datetimepickerConfig);
+          directiveConfig = scope.$parent.$eval(attrs.datetimepickerConfig);
         }
 
         var configuration = {};

@@ -2,14 +2,14 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
 /**
  *
  *    @author        Dale "Ducky" Lotts
- *    @since        11/8/2013
+ *    @since        11/8/2014
  */
 describe('beforeRender', function () {
   'use strict';

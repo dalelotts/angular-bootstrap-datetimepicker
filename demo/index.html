@@ -214,8 +214,6 @@
 </div>
 
 <div class="row">
-
-
     <div class="col-sm-6">
         <h3>Embedded calendar</h3>
 
@@ -257,6 +255,35 @@
         </div>
     </div>
 </div>
+
+
+<div class="row">
+        <div class="col-sm-6">
+            <h3>Embedded calendar with property configuration</h3>
+
+            <p><code>data-datetimepicker-config="config.datetimePicker"</code></p>
+            <p>which returns <code>{ startView: 'year' }</code></p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.embeddedPropertyConfig | date:'yyyy-MM-dd h:mm a' }}</p>
+
+                <datetimepicker data-ng-model="data.embeddedPropertyConfig" data-datetimepicker-config="config.datetimePicker" ></datetimepicker>
+            </div>
+        </div>
+    <div class="col-sm-6">
+        <h3>Embedded calendar with function configuration</h3>
+
+        <p><code>data-datetimepicker-config="configFunction()"</code></p>
+        <p>which returns <code>{ startView: 'month' }</code></p>
+
+        <div class="well">
+            <p>Formatted Date: {{ data.embeddedFunctionConfig | date:'yyyy-MM-dd h:mm a' }}</p>
+
+            <datetimepicker data-ng-model="data.embeddedFunctionConfig" data-datetimepicker-config="configFunction()" ></datetimepicker>
+        </div>
+    </div>
+
+    </div>
 
 <div class="row">
     <div class="col-sm-6">

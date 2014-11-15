@@ -58,5 +58,15 @@ angular.module('demo.demoController', [])
         console.log(index);
         $dates[index].selectable = false;
       };
+
+      $scope.config = {
+        datetimePicker: {
+          startView: 'year'
+        }
+      };
+
+      $scope.configFunction = function configFunction() {
+        return {startView: 'month'};
+      };
     }
   ]);
