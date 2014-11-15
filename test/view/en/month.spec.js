@@ -18,10 +18,10 @@ describe('month view with initial date of 2010-10-01', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
-    moment.locale("en");
+    moment.locale('en');
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2010-10-01").toDate();
+    $rootScope.date = moment('2010-10-01').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -44,7 +44,7 @@ describe('month view with initial date of "2020-01-01T00:00:00.000" and minView=
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2020-01-01T00:00:00.000").toDate();
+    $rootScope.date = moment('2020-01-01T00:00:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\', minView: \'month\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -57,6 +57,6 @@ describe('month view with initial date of "2020-01-01T00:00:00.000" and minView=
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('Dec');
-    expect($rootScope.date).toEqual(moment("2020-12-01T00:00:00.000").toDate());
+    expect($rootScope.date).toEqual(moment('2020-12-01T00:00:00.000').toDate());
   });
 });

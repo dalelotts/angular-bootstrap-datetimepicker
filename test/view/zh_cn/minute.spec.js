@@ -18,10 +18,10 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
   var $rootScope, $compile, element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
   beforeEach(inject(function (_$compile_, _$rootScope_) {
-    moment.locale("zh-cn");
+    moment.locale('zh-cn');
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2013-01-22T00:00:00.000").toDate();
+    $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -47,7 +47,7 @@ describe('minute view with initial date of 2013-01-22 1:15', function () {
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    $rootScope.date = moment("2013-01-22T01:15:00.000").toDate();
+    $rootScope.date = moment('2013-01-22T01:15:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'minute\', minuteStep: 15 }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
@@ -67,6 +67,6 @@ describe('minute view with initial date of 2013-01-22 1:15', function () {
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('凌晨1点00');
-    expect($rootScope.date).toEqual(moment("2013-01-22T01:00:00.000").toDate());
+    expect($rootScope.date).toEqual(moment('2013-01-22T01:00:00.000').toDate());
   });
 });

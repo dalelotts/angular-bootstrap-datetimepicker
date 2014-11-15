@@ -28,28 +28,28 @@ describe('startView', function () {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'foo\' }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("invalid startView value: foo");
+      expect(compile).toThrow('invalid startView value: foo');
     });
     it('if value is a numeric value', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: -1 }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("invalid startView value: -1");
+      expect(compile).toThrow('invalid startView value: -1');
     });
     it('if value is less than minView', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'hour\',  minView: \'day\' }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("startView must be greater than minView");
+      expect(compile).toThrow('startView must be greater than minView');
     });
   });
   describe('does NOT throw exception for valid values', function () {
     it('if value is between 1 and 59', function () {
       var validViews = ['year', 'month', 'day', 'hour', 'minute'];
 
-      for (var i = 0; i < validViews.length; i++) {
+      for (var i = 0; i < validViews.length; i += 1) {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'' + validViews[i] + '\' }"></datetimepicker>')($rootScope);
       }
     });

@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
+/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment, spyOn */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -34,7 +34,7 @@ describe('onSetTime', function () {
     it('onSetTime accepts date parameter', function () {
 
       $rootScope.setTimeFunction = function (selectedDate) {
-        expect(selectedDate).toEqual(moment("2009-01-01T00:00:00.000").toDate());
+        expect(selectedDate).toEqual(moment('2009-01-01T00:00:00.000').toDate());
       };
 
       spyOn($rootScope, 'setTimeFunction').and.callThrough();
@@ -45,14 +45,14 @@ describe('onSetTime', function () {
       var selectedElement = jQuery('.past', element);
       selectedElement.trigger('click');
       expect($rootScope.setTimeFunction).toHaveBeenCalled();
-      expect($rootScope.date).toEqual(moment("2009-01-01T00:00:00.000").toDate());
+      expect($rootScope.date).toEqual(moment('2009-01-01T00:00:00.000').toDate());
     });
   });
 
   describe('ignores onSetTime', function () {
     it('if onSetTime is not a function', function () {
 
-      $rootScope.setTimeFunction = "notAFunction";
+      $rootScope.setTimeFunction = 'notAFunction';
 
       var element = $compile('<datetimepicker data-ng-model=\'date\' data-on-set-time=\'setTimeFunction\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" ></datetimepicker>')($rootScope);
       $rootScope.$digest();
@@ -69,7 +69,7 @@ describe('onSetTime', function () {
       $rootScope.setTimeFunction = function (index, oldDate, newDate) {
         expect(oldDate).toBe(null);
         expect(oldDate).not.toEqual(newDate);
-        expect(newDate).toEqual(moment("2020-01-01T00:00:00.000").toDate());
+        expect(newDate).toEqual(moment('2020-01-01T00:00:00.000').toDate());
         expect(index).toEqual(3);
       };
 

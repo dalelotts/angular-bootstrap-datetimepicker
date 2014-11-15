@@ -7,7 +7,7 @@ angular.module('demo.demoController', [])
       'use strict';
       $scope.controllerName = 'demoController';
 
-      moment.locale("en");
+      moment.locale('en');
 
       $scope.data = {
         guardians: [
@@ -26,7 +26,7 @@ angular.module('demo.demoController', [])
         $scope.data.checked = false;
       };
 
-      $scope.inputOnTimeSet = function (newDate, oldDate) {
+      $scope.inputOnTimeSet = function (newDate) {
         // If you are not using jQuery or bootstrap.js,
         // this will throw an error.
         // However, can write this function to take any
@@ -45,15 +45,28 @@ angular.module('demo.demoController', [])
       };
 
 
-      $scope.guardianOnTimeSet = function ($index) {
+      $scope.guardianOnSetTime = function ($index, guardian, newDate, oldDate) {
         console.log($index);
-        $('#guardian' + $index).dropdown('toggle');
+        console.log(guardian.name);
+        console.log(newDate);
+        console.log(oldDate);
+        angular.element('#guardian' + $index).dropdown('toggle');
       };
 
       $scope.beforeRender = function ($dates) {
         var index = Math.floor(Math.random() * $dates.length);
         console.log(index);
         $dates[index].selectable = false;
+      };
+
+      $scope.config = {
+        datetimePicker: {
+          startView: 'year'
+        }
+      };
+
+      $scope.configFunction = function configFunction() {
+        return {startView: 'month'};
       };
     }
   ]);

@@ -214,8 +214,6 @@
 </div>
 
 <div class="row">
-
-
     <div class="col-sm-6">
         <h3>Embedded calendar</h3>
 
@@ -258,9 +256,39 @@
     </div>
 </div>
 
+
+<div class="row">
+        <div class="col-sm-6">
+            <h3>Embedded calendar with property configuration</h3>
+
+            <p><code>data-datetimepicker-config="config.datetimePicker"</code></p>
+            <p>which returns <code>{ startView: 'year' }</code></p>
+
+            <div class="well">
+                <p>Formatted Date: {{ data.embeddedPropertyConfig | date:'yyyy-MM-dd h:mm a' }}</p>
+
+                <datetimepicker data-ng-model="data.embeddedPropertyConfig" data-datetimepicker-config="config.datetimePicker" ></datetimepicker>
+            </div>
+        </div>
+    <div class="col-sm-6">
+        <h3>Embedded calendar with function configuration</h3>
+
+        <p><code>data-datetimepicker-config="configFunction()"</code></p>
+        <p>which returns <code>{ startView: 'month' }</code></p>
+
+        <div class="well">
+            <p>Formatted Date: {{ data.embeddedFunctionConfig | date:'yyyy-MM-dd h:mm a' }}</p>
+
+            <datetimepicker data-ng-model="data.embeddedFunctionConfig" data-datetimepicker-config="configFunction()" ></datetimepicker>
+        </div>
+    </div>
+
+    </div>
+
 <div class="row">
     <div class="col-sm-6">
-
+        <h3>ng-repeat with drop-down using text link</h3>
+        <p><code>data-on-set-time="guardianOnSetTime($index, guardian, newDate, oldDate)"</code></p>
         <div class="well" data-ng-repeat = "guardian in data.guardians">
             <p>{{  guardian.name }}</p>
             <p>DOB: {{ guardian.dob | date:'yyyy-MM-dd' }} </p>
@@ -271,7 +299,7 @@
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 <datetimepicker data-ng-model="guardian.dob"
-                                data-on-set-time="guardianOnTimeSetDoesNotExist"></datetimepicker>
+                                data-on-set-time="guardianOnSetTime($index, guardian, newDate, oldDate)"></datetimepicker>
             </ul>
         </div>
         </div>

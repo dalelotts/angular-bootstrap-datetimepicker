@@ -1,4 +1,5 @@
-/*globals module */
+/*globals require */
+/* jshint node:true  */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -12,6 +13,9 @@
  *    @since        7/21/13
  */
 
+
+var paths = require('./paths');
+
 module.exports = function (config) {
   'use strict';
   config.set({
@@ -24,26 +28,16 @@ module.exports = function (config) {
       'karma-firefox-launcher',
       'karma-phantomjs-launcher',
       'karma-coverage'
+      // 'karma-threshold-reporter'
     ],
 
-    files: [
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/moment/moment.js',
-      'bower_components/moment/locale/*.js',
-      'bower_components/bootstrap/dist/js/bootstrap.js',
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'src/js/datetimepicker.js',
-      'test/**/*.spec.js'
-    ],
+    files: paths.all,
 
     // list of files to exclude
-    exclude: [
-
-    ],
+    exclude: [],
 
     preprocessors: {
-      '**/src/js/*.js': ['coverage']
+      'src/**/*.js': ['coverage']
     },
 
     // optionally, configure the reporter
@@ -57,6 +51,15 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit'
     reporters: ['progress', 'coverage'],
+
+
+    // the configure thresholds
+    thresholdReporter: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100
+    },
 
     // web server port
     port: 9876,

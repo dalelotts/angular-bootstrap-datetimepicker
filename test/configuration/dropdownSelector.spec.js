@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
+/*globals describe, beforeEach, it, expect, module, inject, jQuery */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -28,7 +28,7 @@ describe('dropdownSelector', function () {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: 0 }"></datetimepicker>')($rootScope);
       }
 
-      expect(compile).toThrow("dropdownSelector must be a string");
+      expect(compile).toThrow('dropdownSelector must be a string');
     });
   });
   describe('does NOT throw exception', function () {
