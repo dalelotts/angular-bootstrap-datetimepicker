@@ -1,37 +1,45 @@
-/*jslint node: true */
+/*globals require, __dirname */
+/* jshint node:true */
 'use strict';
 
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var karma = require('karma').server;
+var bump = require('gulp-bump');
+var plato = require('gulp-plato');
+var karmaConfig = __dirname + '/karma.conf.js';
+var paths = require('./paths');
 
 
-var paths = {
-  scripts: ['gulpfile.js', 'src/**/*.js', 'test/**/*.js', 'demo/**/*.js'],
-  karmaConfig: __dirname + '/karma.conf.js'
-};
+gulp.task('bump', function () {
+  return gulp.src(paths.bump)
+    .pipe(bump())
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('complexity', function () {
+  return gulp.src('src/**/*.js')
+    .pipe(plato('complexity'));
+});
 
 gulp.task('test', function (done) {
-  karma.start({
-    configFile: paths.karmaConfig,
-    singleRun: true
-  }, done);
+  karma.start({configFile: karmaConfig, singleRun: true}, done);
 });
 
 gulp.task('tdd', function (done) {
-  gulp.watch(paths.scripts, ['lint']);
+  gulp.watch(paths.all, ['lint']);
 
   karma.start({
     configFile: paths.karmaConfig
   }, done);
 });
 
-gulp.task('jshint', function () {
+gulp.task('lint', function () {
   return gulp
-    .src(paths.scripts)
+    .src(paths.lint)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('default', ['jshint', 'test']);
+gulp.task('default', ['lint', 'complexity', 'test']);
