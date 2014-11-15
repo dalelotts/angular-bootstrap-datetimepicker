@@ -121,17 +121,13 @@ angular.module('ui.bootstrap.datetimepicker', [])
       scope: {
         ngModel: "=",
         onSetTime: "&",
-        beforeRender: "&"
+        beforeRender: "&",
+        datetimepickerConfig: "="
       },
       replace: true,
       link: function (scope, element, attrs, ngModelController) {
 
-        var directiveConfig = {};
-
-        if (attrs.datetimepickerConfig) {
-          directiveConfig = scope.$eval(attrs.datetimepickerConfig);
-        }
-
+        var directiveConfig = scope.datetimepickerConfig || {};
         var configuration = {};
 
         angular.extend(configuration, defaultConfig, directiveConfig);

@@ -13,11 +13,12 @@
  */
 describe('configuration validation', function () {
   'use strict';
-  var $rootScope, $compile;
+  var $rootScope, $compile, dateTimePickerConfig;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function (_$compile_, _$rootScope_, _dateTimePickerConfig_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
+    dateTimePickerConfig = _dateTimePickerConfig_;
     $rootScope.date = null;
   }));
 
@@ -29,6 +30,14 @@ describe('configuration validation', function () {
       $rootScope.date = "2013-08-04T23:00:00";
       $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
       $rootScope.$digest();
+    });
+    it('when config is a property of the outer scope', function () {
+      spyOn(angular, "extend").and.callThrough();
+      $rootScope.fooConfig = { minView: 'hour' };
+
+      $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="fooConfig"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+      expect(angular.extend).toHaveBeenCalledWith(jasmine.any(Object), dateTimePickerConfig, $rootScope.fooConfig);
     });
   });
 
