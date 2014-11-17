@@ -29,7 +29,7 @@
     "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.2.3",
     "karma-phantomjs-launcher": "^0.1.2",
-    "karma-threshold-reporter": "^0.1.11",
+    "karma-threshold-reporter": "^0.1.12",
     "matchdep": "^0.3.0",
     "phantomjs": "^1.9.12"
   },
