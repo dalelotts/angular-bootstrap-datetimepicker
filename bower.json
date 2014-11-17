@@ -14,9 +14,11 @@
     "bower_components",
     "demo*",
     "Gruntfile.js",
+    "gulpfile.js",
     "karma.conf.js",
     "node_modules",
     "package.json",
+    "paths.js",
     "screenshots",
     "test*"
   ],
