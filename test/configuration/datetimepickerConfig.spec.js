@@ -1,4 +1,4 @@
-/*globals ddescribe, describe, beforeEach, it, expect, module, inject, jQuery, moment, spyOn */
+/*globals describe, beforeEach, it, expect, module, inject, jQuery, moment, spyOn */
 
 /**
  * @license angular-bootstrap-datetimepicker

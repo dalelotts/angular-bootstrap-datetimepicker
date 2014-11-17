@@ -23,7 +23,11 @@ gulp.task('complexity', function () {
 });
 
 gulp.task('test', function (done) {
-  karma.start({configFile: karmaConfig, singleRun: true}, done);
+  karma.start({
+    configFile: karmaConfig,
+    singleRun: true,
+    reporters: ['progress', 'coverage', 'threshold']
+  }, done);
 });
 
 gulp.task('tdd', function (done) {

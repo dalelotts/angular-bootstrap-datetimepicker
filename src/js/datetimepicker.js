@@ -1,4 +1,4 @@
-/*globals define, angular, moment, jQuery */
+/*globals define, jQuery */
 /*jslint vars:true */
 
 /**
@@ -16,7 +16,7 @@
 (function (factory) {
   'use strict';
   /* istanbul ignore if */
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === 'function'  && /* istanbul ignore next */ define.amd) {
     define(['angular', 'moment'], factory); // AMD
   } else {
     factory(window.angular, window.moment); // Browser global
@@ -126,7 +126,6 @@
         '   </tbody>' +
         '</table></div>',
         scope: {
-          ngModel: '=',
           onSetTime: '&',
           beforeRender: '&'
         },
@@ -389,19 +388,8 @@
             }
           };
 
-          // While is **seems** like the next line should use ngModelController.$modelValue rather than scope.ngModel,
-          // in fact ngModelController.$modelValue is always NaN for the first call (even if ngModel has a value),
-          // resulting in an initial rendering with the current date. (at least on angular 1.2.26)
-          // This results in a call to the beforeRender callback with today's date as the model value when the developer
-          // would reasonably expect the current model value.
-
-          scope.changeView(configuration.startView, new DateObject({
-            dateValue: getUTCTime(scope.ngModel),
-            selectable: true
-          }));
-
           ngModelController.$render = function $render() {
-            scope.changeView(scope.data.currentView, new DateObject({dateValue: getUTCTime(ngModelController.$modelValue)}));
+            scope.changeView(configuration.startView, new DateObject({dateValue: getUTCTime(ngModelController.$viewValue)}));
           };
         }
       };

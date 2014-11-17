@@ -27,8 +27,8 @@ module.exports = function (config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-phantomjs-launcher',
-      'karma-coverage'
-      // 'karma-threshold-reporter'
+      'karma-coverage',
+      'karma-threshold-reporter'
     ],
 
     files: paths.all,
