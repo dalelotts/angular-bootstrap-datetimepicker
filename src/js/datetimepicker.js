@@ -345,7 +345,7 @@
               var tempDate = new Date(unixDate);
               var newDate = configuration.returnType === 'date'
                 ? new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000))
-                : moment(newDate).format(configuration.returnFormat);
+                : moment(tempDate).format(configuration.returnFormat);
 
               var oldDate = ngModelController.$modelValue;
               ngModelController.$setViewValue(newDate);
