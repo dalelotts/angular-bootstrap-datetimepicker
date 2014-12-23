@@ -10,12 +10,12 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['jshint', 'complexity', 'karma', 'coverage']);
 
   var testConfig = function (configFile, customOptions) {
-    var options = { configFile: configFile, keepalive: true };
+    var options = {configFile: configFile, keepalive: true};
     var travisOptions = process.env.TRAVIS && {
-      browsers: ['Firefox'],
-      reporters: ['dots', 'coverage'],
-      singleRun: true
-    };
+        browsers: ['Firefox'],
+        reporters: ['dots', 'coverage'],
+        singleRun: true
+      };
     return grunt.util._.extend(options, customOptions, travisOptions);
   };
 
@@ -36,10 +36,10 @@ module.exports = function (grunt) {
         src: ['src/**/*.js'],
         options: {
           breakOnErrors: false,
-          jsLintXML: 'complexity/report.xml',         // create XML JSLint-like report
-          errorsOnly: false,               // show only maintainability errors
-          cyclomatic: [3, 7, 12],          // or optionally a single value, like 3
-          halstead: [8, 13, 20],           // or optionally a single value, like 8
+          jsLintXML: 'complexity/report.xml',   // create XML JSLint-like report
+          errorsOnly: false,                    // show only maintainability errors
+          cyclomatic: [3, 7, 12],               // or optionally a single value, like 3
+          halstead: [8, 13, 20],                // or optionally a single value, like 8
           maintainability: 100
         }
       }
@@ -58,13 +58,12 @@ module.exports = function (grunt) {
     },
     karma: {
       unit: {
-        options: testConfig('karma.conf.js',
-          {
-            singleRun: true,
-            autoWatch: true,
-            keepalive: true,
-            browsers: ['Chrome']
-          })
+        options: testConfig('karma.conf.js', {
+          singleRun: true,
+          autoWatch: true,
+          keepalive: true,
+          browsers: ['Chrome']
+        })
       }
     },
     jshint: {

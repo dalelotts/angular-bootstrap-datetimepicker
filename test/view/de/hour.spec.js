@@ -57,7 +57,7 @@ describe('hour view with initial date of "2020-01-01T00:00:00.000", minView="hou
     var selectedElement = jQuery(jQuery('.hour', element)[3]);
     selectedElement.trigger('click');
 
-    expect(jQuery('.active', element).text()).toBe('03:00 Uhr');
+    expect(jQuery('.active', element).text()).toBe('03:00');
     expect($rootScope.date).toEqual(moment('2020-01-01T03:00:00.000').toDate());
   });
 });
