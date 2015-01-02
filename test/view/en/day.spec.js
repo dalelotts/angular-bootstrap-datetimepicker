@@ -27,7 +27,7 @@ describe('current view displayed on the markup', function(){
   }));
 
   it('should have `.day-view` class', function () {
-    expect(jQuery(element).hasClass('day-view')).toBeTruthy();
+    expect(jQuery('table', element).hasClass('day-view')).toBeTruthy();
   });
 });
 

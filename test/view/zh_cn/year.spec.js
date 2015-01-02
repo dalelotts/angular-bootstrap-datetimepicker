@@ -27,7 +27,7 @@ describe('current view displayed on the markup', function(){
   }));
 
   it('should have `.year-view` class', function () {
-    expect(jQuery(element).hasClass('year-view')).toBeTruthy();
+    expect(jQuery('table', element).hasClass('year-view')).toBeTruthy();
   });
 });
 

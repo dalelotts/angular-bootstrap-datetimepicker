@@ -27,7 +27,7 @@ describe('current view displayed on the markup', function(){
   }));
 
   it('should have `.minute-view` class', function () {
-    expect(jQuery(element).hasClass('minute-view')).toBeTruthy();
+    expect(jQuery('table', element).hasClass('minute-view')).toBeTruthy();
   });
 });
 

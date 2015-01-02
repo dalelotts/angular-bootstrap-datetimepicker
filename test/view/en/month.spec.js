@@ -27,7 +27,7 @@ describe('current view displayed on the markup', function(){
   }));
 
   it('should have `.month-view` class', function () {
-    expect(jQuery(element).hasClass('month-view')).toBeTruthy();
+    expect(jQuery('table', element).hasClass('month-view')).toBeTruthy();
   });
 });
 

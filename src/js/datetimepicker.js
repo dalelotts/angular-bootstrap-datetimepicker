@@ -96,8 +96,8 @@
       return {
         restrict: 'E',
         require: 'ngModel',
-        template: '<div class="datetimepicker table-responsive {{data.currentView}}-view">' +
-        '<table class="table table-striped">' +
+        template: '<div class="datetimepicker table-responsive">' +
+        '<table class="table table-striped  {{ data.currentView }}-view">' +
         '   <thead>' +
         '       <tr>' +
         '           <th class="left" data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"/></th>' +
