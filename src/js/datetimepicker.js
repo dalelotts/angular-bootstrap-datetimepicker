@@ -96,7 +96,7 @@
       return {
         restrict: 'E',
         require: 'ngModel',
-        template: '<div class="datetimepicker table-responsive">' +
+        template: '<div class="datetimepicker table-responsive {{data.currentView}}-view">' +
         '<table class="table table-striped">' +
         '   <thead>' +
         '       <tr>' +
