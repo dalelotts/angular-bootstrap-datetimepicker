@@ -362,30 +362,32 @@
               event.preventDefault();
             }
 
-            if (viewName && (dateObject.dateValue > -Infinity) && dateObject.selectable && dataFactory[viewName]) {
-              var result = dataFactory[viewName](dateObject.dateValue);
+			if (dateObject != null) {
+				if (viewName && (dateObject.dateValue > -Infinity) && dateObject.selectable && dataFactory[viewName]) {
+				  var result = dataFactory[viewName](dateObject.dateValue);
 
-              var weekDates = [];
-              if (result.weeks) {
-                for (var i = 0; i < result.weeks.length; i += 1) {
-                  var week = result.weeks[i];
-                  for (var j = 0; j < week.dates.length; j += 1) {
-                    var weekDate = week.dates[j];
-                    weekDates.push(weekDate);
-                  }
-                }
-              }
+				  var weekDates = [];
+				  if (result.weeks) {
+					for (var i = 0; i < result.weeks.length; i += 1) {
+					  var week = result.weeks[i];
+					  for (var j = 0; j < week.dates.length; j += 1) {
+						var weekDate = week.dates[j];
+						weekDates.push(weekDate);
+					  }
+					}
+				  }
 
-              scope.beforeRender({
-                $view: result.currentView,
-                $dates: result.dates || weekDates,
-                $leftDate: result.leftDate,
-                $upDate: result.previousViewDate,
-                $rightDate: result.rightDate
-              });
+				  scope.beforeRender({
+					$view: result.currentView,
+					$dates: result.dates || weekDates,
+					$leftDate: result.leftDate,
+					$upDate: result.previousViewDate,
+					$rightDate: result.rightDate
+				  });
 
-              scope.data = result;
-            }
+				  scope.data = result;
+				}
+			}
           };
 
           ngModelController.$render = function $render() {
