@@ -47,6 +47,57 @@
             this[prop] = arguments[0][prop];
           }
         }
+
+        function getMinAndMaxValues(periodView, minuteStep) {
+          var minValue = new Date(),
+              maxValue = new Date(minValue),
+              tzOffsetMs = minValue.getTimezoneOffset() * 60000,
+              handler = { 
+                day: function(minValue, maxValue) {
+                  minValue.setHours(0, 0, 0, 0);
+                  maxValue.setHours(23, 59, 59, 999);
+                },
+                year: function(minValue, maxValue) {
+                  minValue.setMonth(0, 1);
+                  minValue.setHours(0, 0, 0, 0);
+                  maxValue.setMonth(11, 31);
+                  maxValue.setHours(23, 59, 59, 999);
+                },
+                month: function(minValue, maxValue) {
+                  minValue.setDate(1);
+                  minValue.setHours(0, 0, 0, 0);
+                  maxValue.setDate(moment(maxValue).daysInMonth());
+                  maxValue.setHours(23, 59, 59, 999);
+                },
+                hour: function(minValue, maxValue) {
+                  minValue.setHours(minValue.getHours(), 0, 0, 0);
+                  maxValue.setHours(maxValue.getHours(), 59, 59, 999);
+                },
+                minute: function(minValue, maxValue) {
+                  minValue.setHours(minValue.getHours(), minValue.getMinutes(), 0, 0);
+                  maxValue = new Date(minValue.getTime() + (minuteStep-1) * 60000);
+                  maxValue.setHours(maxValue.getHours(), maxValue.getMinutes(), 59, 999);
+                }
+              }[periodView];
+
+          if (!handler) {
+            return;
+          }
+
+          handler(minValue, maxValue);
+
+          return {
+            min: minValue.getTime() - tzOffsetMs,
+            max: maxValue.getTime() - tzOffsetMs
+          };
+        }
+
+        this.isCurrent = function(periodView, periodNames, minuteStep) {
+          var periodFound = periodNames && periodNames.length && periodNames.indexOf(periodView) > -1,
+              minAndMax = periodFound && getMinAndMaxValues(periodView, minuteStep);
+
+          return minAndMax && this.dateValue >= minAndMax.min && this.dateValue <= minAndMax.max;
+        };
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
@@ -113,7 +164,12 @@
         '           <td colspan="7" >' +
         '              <span    class="{{ data.currentView }}" ' +
         '                       data-ng-repeat="dateObject in data.dates"  ' +
-        '                       data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
+        '                       data-ng-class="{ ' +
+        '                          active: dateObject.active, ' +
+        '                          past: dateObject.past, ' +
+        '                          future: dateObject.future, ' +
+        '                          today: dateObject.isCurrent(data.currentView, showCurrent, configuration.minuteStep), ' +
+        '                          disabled: !dateObject.selectable}" ' +
         '                       data-ng-click="changeView(data.nextView, dateObject, $event)">{{ dateObject.display }}</span> ' +
         '           </td>' +
         '       </tr>' +
@@ -121,7 +177,13 @@
         '           <td data-ng-repeat="dateObject in week.dates" ' +
         '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
         '               class="day" ' +
-        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
+        '               data-ng-class="{' +
+        '                  active: dateObject.active,' +
+        '                  past: dateObject.past,' +
+        '                  future: dateObject.future,' +
+        '                  disabled: !dateObject.selectable,' +
+        '                  today: dateObject.isCurrent(data.currentView, showCurrent, configuration.minuteStep)' +
+        '                }">{{ dateObject.display }}</td>' +
         '       </tr>' +
         '   </tbody>' +
         '</table></div>',
@@ -131,6 +193,9 @@
         },
         replace: true,
         link: function link(scope, element, attrs, ngModelController) {
+
+          scope.showCurrent = attrs.showCurrent ? scope.$parent.$eval(attrs.showCurrent)
+                                                : ['year','month','day','hour','minute'];
 
           var directiveConfig = {};
 
@@ -143,6 +208,8 @@
           angular.extend(configuration, defaultConfig, directiveConfig);
 
           validateConfiguration(configuration);
+
+          scope.configuration = configuration;
 
           var startOfDecade = function startOfDecade(unixDate) {
             var startYear = (parseInt(moment.utc(unixDate).year() / 10, 10) * 10);
