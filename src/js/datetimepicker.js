@@ -74,7 +74,8 @@
                   maxValue.setHours(maxValue.getHours(), 59, 59, 999);
                 },
                 minute: function(minValue, maxValue) {
-                  minValue.setHours(minValue.getHours(), minValue.getMinutes(), 0, 0);
+                  var roundedMinutes = minValue.getMinutes() - minValue.getMinutes() % minuteStep;
+                  minValue.setHours(minValue.getHours(), roundedMinutes, 0, 0);
                   maxValue = new Date(minValue.getTime() + (minuteStep-1) * 60000);
                   maxValue.setHours(maxValue.getHours(), maxValue.getMinutes(), 59, 999);
                 }
