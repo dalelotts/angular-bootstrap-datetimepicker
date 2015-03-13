@@ -1,4 +1,4 @@
-# Angular bootstrap date & time picker version: 0.3.8
+# Angular bootstrap date & time picker version: 0.3.10
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
@@ -127,7 +127,8 @@ The following parameters are supplied by this directive :
 
 ```
 DateObject {
-    dateValue: Number - UTC time value of this date object - same as moment.valueOf() or Date.getTime(). It does NOT contain time zone information so take that into account when comparing to other dates.
+    utcDateValue: Number - UTC time value of this date object. It does NOT contain time zone information so take that into account when comparing to other dates (or use localDateValue function).
+    localDateValue: FUNCTION that returns a Number - local time value of this date object - same as moment.valueOf() or Date.getTime().
     display: String - the way this value will be displayed on the calendar.
     active: true | false | undefined - indicates that date object is part of the model value.
     selectable: true | false | undefined - indicates that date value is selectable by the user.
