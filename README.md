@@ -314,3 +314,4 @@ Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts]
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
+
