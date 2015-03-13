@@ -12,6 +12,24 @@
  *    @since        7/21/13
  */
 
+describe('current view displayed on the markup', function(){
+  'use strict';
+
+  var $rootScope, element;
+
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale('de');
+    $rootScope = _$rootScope_;
+    $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
+    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'month\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    $rootScope.$digest();
+  }));
+
+  it('should have `.month-view` class', function () {
+    expect(jQuery('table', element).hasClass('month-view')).toBeTruthy();
+  });
+});
 
 describe('month view with initial date of 2010-10-01', function () {
   'use strict';

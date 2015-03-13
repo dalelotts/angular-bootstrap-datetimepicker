@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.8
+ * @license angular-bootstrap-datetimepicker  version: 0.3.10
  * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -16,7 +16,7 @@
 (function (factory) {
   'use strict';
   /* istanbul ignore if */
-  if (typeof define === 'function'  && /* istanbul ignore next */ define.amd) {
+  if (typeof define === 'function' && /* istanbul ignore next */ define.amd) {
     define(['angular', 'moment'], factory); // AMD
   } else {
     factory(window.angular, window.moment); // Browser global
@@ -34,10 +34,16 @@
 
       function DateObject() {
 
-        this.dateValue = new Date().getTime();
+        var tempDate = new Date();
+        var localOffset = tempDate.getTimezoneOffset() * 60000;
+        this.utcDateValue = tempDate.getTime();
         this.selectable = true;
 
-        var validProperties = ['dateValue', 'display', 'active', 'selectable', 'past', 'future'];
+        this.localDateValue = function () {
+          return this.utcDateValue + localOffset;
+        };
+
+        var validProperties = ['utcDateValue', 'localDateValue', 'display', 'active', 'selectable', 'past', 'future'];
 
         for (var prop in arguments[0]) {
           /* istanbul ignore else */
@@ -97,7 +103,7 @@
         restrict: 'E',
         require: 'ngModel',
         template: '<div class="datetimepicker table-responsive">' +
-        '<table class="table table-striped">' +
+        '<table class="table table-striped  {{ data.currentView }}-view">' +
         '   <thead>' +
         '       <tr>' +
         '           <th class="left" data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"/></th>' +
@@ -163,16 +169,16 @@
               var result = {
                 'currentView': 'year',
                 'nextView': configuration.minView === 'year' ? 'setTime' : 'month',
-                'previousViewDate': new DateObject({dateValue: null, display: startDecade + '-' + (startDecade + 9)}),
-                'leftDate': new DateObject({dateValue: moment.utc(startDate).subtract(9, 'year').valueOf()}),
-                'rightDate': new DateObject({dateValue: moment.utc(startDate).add(11, 'year').valueOf()}),
+                'previousViewDate': new DateObject({utcDateValue: null, display: startDecade + '-' + (startDecade + 9)}),
+                'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(9, 'year').valueOf()}),
+                'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(11, 'year').valueOf()}),
                 'dates': []
               };
 
               for (var i = 0; i < 12; i += 1) {
                 var yearMoment = moment.utc(startDate).add(i, 'years');
                 var dateValue = {
-                  'dateValue': yearMoment.valueOf(),
+                  'utcDateValue': yearMoment.valueOf(),
                   'display': yearMoment.format('YYYY'),
                   'past': yearMoment.year() < startDecade,
                   'future': yearMoment.year() > startDecade + 9,
@@ -196,18 +202,18 @@
                 'currentView': 'month',
                 'nextView': configuration.minView === 'month' ? 'setTime' : 'day',
                 'previousViewDate': new DateObject({
-                  dateValue: previousViewDate.valueOf(),
+                  utcDateValue: previousViewDate.valueOf(),
                   display: startDate.format('YYYY')
                 }),
-                'leftDate': new DateObject({dateValue: moment.utc(startDate).subtract(1, 'year').valueOf()}),
-                'rightDate': new DateObject({dateValue: moment.utc(startDate).add(1, 'year').valueOf()}),
+                'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(1, 'year').valueOf()}),
+                'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(1, 'year').valueOf()}),
                 'dates': []
               };
 
               for (var i = 0; i < 12; i += 1) {
                 var monthMoment = moment.utc(startDate).add(i, 'months');
                 var dateValue = {
-                  'dateValue': monthMoment.valueOf(),
+                  'utcDateValue': monthMoment.valueOf(),
                   'display': monthMoment.format('MMM'),
                   'active': monthMoment.format('YYYY-MMM') === activeDate
                 };
@@ -234,11 +240,11 @@
                 'currentView': 'day',
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
-                  dateValue: previousViewDate.valueOf(),
+                  utcDateValue: previousViewDate.valueOf(),
                   display: startOfMonth.format('YYYY-MMM')
                 }),
-                'leftDate': new DateObject({dateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
-                'rightDate': new DateObject({dateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
+                'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
+                'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
                 'dayNames': [],
                 'weeks': []
               };
@@ -253,7 +259,7 @@
                 for (var j = 0; j < 7; j += 1) {
                   var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
                   var dateValue = {
-                    'dateValue': monthMoment.valueOf(),
+                    'utcDateValue': monthMoment.valueOf(),
                     'display': monthMoment.format('D'),
                     'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
                     'past': monthMoment.isBefore(startOfMonth),
@@ -278,18 +284,18 @@
                 'currentView': 'hour',
                 'nextView': configuration.minView === 'hour' ? 'setTime' : 'minute',
                 'previousViewDate': new DateObject({
-                  dateValue: previousViewDate.valueOf(),
+                  utcDateValue: previousViewDate.valueOf(),
                   display: selectedDate.format('ll')
                 }),
-                'leftDate': new DateObject({dateValue: moment.utc(selectedDate).subtract(1, 'days').valueOf()}),
-                'rightDate': new DateObject({dateValue: moment.utc(selectedDate).add(1, 'days').valueOf()}),
+                'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'days').valueOf()}),
+                'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'days').valueOf()}),
                 'dates': []
               };
 
               for (var i = 0; i < 24; i += 1) {
                 var hourMoment = moment.utc(selectedDate).add(i, 'hours');
                 var dateValue = {
-                  'dateValue': hourMoment.valueOf(),
+                  'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
                   'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
                 };
@@ -310,11 +316,11 @@
                 'currentView': 'minute',
                 'nextView': 'setTime',
                 'previousViewDate': new DateObject({
-                  dateValue: previousViewDate.valueOf(),
+                  utcDateValue: previousViewDate.valueOf(),
                   display: selectedDate.format('lll')
                 }),
-                'leftDate': new DateObject({dateValue: moment.utc(selectedDate).subtract(1, 'hours').valueOf()}),
-                'rightDate': new DateObject({dateValue: moment.utc(selectedDate).add(1, 'hours').valueOf()}),
+                'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'hours').valueOf()}),
+                'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'hours').valueOf()}),
                 'dates': []
               };
 
@@ -323,7 +329,7 @@
               for (var i = 0; i < limit; i += 1) {
                 var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
                 var dateValue = {
-                  'dateValue': hourMoment.valueOf(),
+                  'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
                   'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
                 };
@@ -362,8 +368,8 @@
               event.preventDefault();
             }
 
-            if (viewName && (dateObject.dateValue > -Infinity) && dateObject.selectable && dataFactory[viewName]) {
-              var result = dataFactory[viewName](dateObject.dateValue);
+            if (viewName && (dateObject.utcDateValue > -Infinity) && dateObject.selectable && dataFactory[viewName]) {
+              var result = dataFactory[viewName](dateObject.utcDateValue);
 
               var weekDates = [];
               if (result.weeks) {
@@ -389,7 +395,7 @@
           };
 
           ngModelController.$render = function $render() {
-            scope.changeView(configuration.startView, new DateObject({dateValue: getUTCTime(ngModelController.$viewValue)}));
+            scope.changeView(configuration.startView, new DateObject({utcDateValue: getUTCTime(ngModelController.$viewValue)}));
           };
         }
       };

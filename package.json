@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-datetimepicker",
-  "version": "0.3.8",
+  "version": "0.3.10",
   "description": "This directive allows you to add a datetime-picker to your form elements.",
   "author": "https://github.com/dalelotts/ng-bootstrap-datetimepicker/graphs/contributors",
   "bugs": {
@@ -18,7 +18,7 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-istanbul-coverage": "^0.1.0",
     "grunt-karma": "^0.9.0",
-    "gulp": "^3.8.10",
+    "gulp": "^3.8.11",
     "gulp-bump": "^0.1.11",
     "gulp-jshint": "^1.9.0",
     "gulp-plato": "^1.0.1",

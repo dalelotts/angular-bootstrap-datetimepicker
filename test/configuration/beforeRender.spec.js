@@ -81,8 +81,10 @@ describe('beforeRender', function () {
 
       $rootScope.beforeRender = function (dates) {
         expect(dates.length).toBe(42);
-        expect(dates[0].dateValue).toBe(1388275200000);
-        expect(dates[11].dateValue).toBe(1389225600000);
+        expect(dates[0].utcDateValue).toBe(1388275200000);
+        expect(dates[0].localDateValue()).toBe(1388293200000);
+        expect(dates[11].utcDateValue).toBe(1389225600000);
+        expect(dates[11].localDateValue()).toBe(1389243600000);
       };
 
       spyOn($rootScope, 'beforeRender').and.callThrough();
@@ -158,7 +160,7 @@ describe('beforeRender', function () {
       selectedElement.trigger('click');
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
-      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(631152000000); // 1990-01-01
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].utcDateValue).toEqual(631152000000); // 1990-01-01
     });
 
 
@@ -178,7 +180,7 @@ describe('beforeRender', function () {
       selectedElement.trigger('click');
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
-      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1420070400000); // 2015-01-01
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].utcDateValue).toEqual(1420070400000); // 2015-01-01
     });
 
 
@@ -199,7 +201,7 @@ describe('beforeRender', function () {
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
 
-      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1388534400000); // 2014-01-01 - the start of the 'month' view.
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].utcDateValue).toEqual(1388534400000); // 2014-01-01 - the start of the 'month' view.
 
 
       var selectedElement = jQuery(jQuery('.day', element)[2]);
@@ -227,7 +229,7 @@ describe('beforeRender', function () {
       $rootScope.$digest();
 
       expect($scope.beforeRender).toHaveBeenCalled();
-      expect($scope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1412121600000); // 2014-10-01 12:00 the start of the 'day' view
+      expect($scope.beforeRender.calls.argsFor(0)[0].utcDateValue).toEqual(1412121600000); // 2014-10-01 12:00 the start of the 'day' view
 
       var selectedElement = jQuery(jQuery('.hour', element)[2]);
       selectedElement.trigger('click');
@@ -249,7 +251,7 @@ describe('beforeRender', function () {
       $rootScope.$digest();
 
       expect($rootScope.beforeRender).toHaveBeenCalled();
-      expect($rootScope.beforeRender.calls.argsFor(0)[0].dateValue).toEqual(1413590400000);   // 2014-10-18 00:00 Z
+      expect($rootScope.beforeRender.calls.argsFor(0)[0].utcDateValue).toEqual(1413590400000);   // 2014-10-18 00:00 Z
 
 
       var selectedElement = jQuery(jQuery('.minute', element)[2]);

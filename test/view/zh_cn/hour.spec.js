@@ -12,6 +12,24 @@
  *    @since        7/21/13
  */
 
+describe('current view displayed on the markup', function(){
+  'use strict';
+
+  var $rootScope, element;
+
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    moment.locale('zh-cn');
+    $rootScope = _$rootScope_;
+    $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
+    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'hour\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    $rootScope.$digest();
+  }));
+
+  it('should have `.hour-view` class', function () {
+    expect(jQuery('table', element).hasClass('hour-view')).toBeTruthy();
+  });
+});
 
 describe('hour view with initial date of 2013-01-22', function () {
   'use strict';
