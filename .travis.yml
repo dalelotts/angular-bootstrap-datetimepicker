@@ -1,17 +1,22 @@
 language: node_js
 node_js:
-  - "0.10"
-
+- '0.12'
 branches:
   except:
-    - gh-pages
-
+  - gh-pages
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install -g bower grunt-cli
-  - bower install
-
-script: "grunt --verbose"
+- npm install -g bower grunt-cli
+- bower install
+script: grunt --verbose
+deploy:
+  provider: npm
+  email: dale@dalelotts.com
+  api_key:
+    secure: uS3oRid+vZK5nKVqd5YNhAJGyNbJAdw0/3gHZB67ynG9HWEr1Y026uzf0Ext6XT9LHjCgGPEaN1Lyjr+LJRYt+LV7HYDVm09RrEIqJm+2+2qwQIpVtxRyr6xCr1b2EFFrYqwZPe33/Y0WradbaqQ0EKLBSygCNL8tzC7b1yxD6U=
+  on:
+    tags: true
+    repo: dalelotts/angular-bootstrap-datetimepicker
+    branch: master
