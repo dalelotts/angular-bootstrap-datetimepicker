@@ -34,13 +34,16 @@
     "karma-phantomjs-launcher": "^0.1.2",
     "karma-threshold-reporter": "^0.1.12",
     "matchdep": "^0.3.0",
-    "phantomjs": "^1.9.12"
+    "phantomjs": "^1.9.12",
+    "run-browser": "^2.0.2",
+    "tape": "^3.5.0"
   },
   "peerDependencies": {
     "grunt-cli": "0.1.13"
   },
   "scripts": {
     "test": "grunt --verbose",
+    "test-browserify": "run-browser test-browserify.js -b",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
