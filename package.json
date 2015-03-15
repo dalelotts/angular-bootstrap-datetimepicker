@@ -9,9 +9,10 @@
   "license": "MIT",
   "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
   "main": "src/js/datetimepicker.js",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "latest"
+  },
   "devDependencies": {
-    "bower": "latest",
     "grunt": "^0.4.4",
     "grunt-bump": "0.0.16",
     "grunt-complexity": "^0.2.0",
