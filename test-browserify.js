@@ -1,3 +1,4 @@
+'use strict';
 var angular = require('angular');
 var test = require('tape');
 
