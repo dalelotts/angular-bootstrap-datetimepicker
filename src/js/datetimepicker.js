@@ -18,6 +18,8 @@
   /* istanbul ignore if */
   if (typeof define === 'function' && /* istanbul ignore next */ define.amd) {
     define(['angular', 'moment'], factory); // AMD
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('angular'), require('moment')); // CommonJS
   } else {
     factory(window.angular, window.moment); // Browser global
   }
