@@ -42,7 +42,7 @@
     "grunt-cli": "0.1.13"
   },
   "scripts": {
-    "test": "grunt --verbose",
+    "test": "npm run test-browserify && grunt --verbose",
     "test-browserify": "run-browser test-browserify.js -b",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
