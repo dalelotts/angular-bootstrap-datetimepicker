@@ -1,4 +1,4 @@
-/*globals module, require, process */
+/*globals module, require */
 /*jslint vars:true */
 module.exports = function (grunt) {
   'use strict';
