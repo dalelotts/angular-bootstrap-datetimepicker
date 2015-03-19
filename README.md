@@ -47,14 +47,15 @@ optional:
  * bootstrap's dropdown component (`dropdowns.less`)
 
 #Testing
-We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use grunt:
+We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use gulp:
 
 ```
-npm install -g grunt-cli
 npm install
+npm test
 ```
 
-The karma task will try to open Chrome as a browser in which to run the tests. Make sure this is available or change the configuration in test\test.config.js
+The karma task will try to open Chrome as a browser in which to run the tests.
+Make sure Chrome is available or change the browsers setting in karma.config.js
 
 #Usage
 We use bower for dependency management. Add

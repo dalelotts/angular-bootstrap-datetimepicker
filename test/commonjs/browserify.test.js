@@ -3,9 +3,9 @@
 /** This file is intentionally named browserify.test.js so that it is not picked up by the karma runner **/
 
 var angular = require('angular');
-var test = require('tape');
+var tapeTest = require('tape');
 
-test('can load module after requiring', function (t) {
+tapeTest('can load module after requiring', function (t) {
   'use strict';
 
   function loadModule() {

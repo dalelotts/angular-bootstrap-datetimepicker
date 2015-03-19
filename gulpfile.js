@@ -41,7 +41,8 @@ gulp.task('tdd', function (done) {
 gulp.task('lint', function () {
   return gulp
     .src(paths.lint)
-    .pipe(jshint())
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default', { verbose: true }))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
 });
