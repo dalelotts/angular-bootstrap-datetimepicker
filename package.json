@@ -18,7 +18,6 @@
     "grunt": "^0.4.4",
     "grunt-bump": "^0.3.0",
     "gulp": "^3.8.11",
-    "gulp-bump": "^0.1.11",
     "gulp-jshint": "^1.9.4",
     "gulp-plato": "^1.0.2",
     "jshint": "^2.6.0",
