@@ -5,17 +5,9 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var karma = require('karma').server;
-var bump = require('gulp-bump');
 var plato = require('gulp-plato');
 var karmaConfig = __dirname + '/karma.conf.js';
 var paths = require('./paths');
-
-
-gulp.task('bump', function () {
-  return gulp.src(paths.bump)
-    .pipe(bump())
-    .pipe(gulp.dest('./'));
-});
 
 gulp.task('complexity', function () {
   return gulp.src('src/**/*.js')
