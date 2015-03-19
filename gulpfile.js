@@ -18,7 +18,8 @@ gulp.task('complexity', function () {
 var testConfig = function (options) {
   var travisOptions = process.env.TRAVIS &&
     {
-      browsers: ['Firefox']
+      browsers: ['Firefox'],
+      reporters: ['dots', 'coverage', 'threshold']
     };
 
   return lodash.assign(options, travisOptions);
