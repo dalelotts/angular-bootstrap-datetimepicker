@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-datetimepicker",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "description": "This directive allows you to add a datetime-picker to your form elements.",
   "author": "https://github.com/dalelotts/ng-bootstrap-datetimepicker/graphs/contributors",
   "bugs": {
@@ -9,35 +9,35 @@
   "license": "MIT",
   "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
   "main": "src/js/datetimepicker.js",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
+    "angular": "^1.3.14",
     "bower": "latest",
+    "moment": "^2.9.0"
+  },
+  "devDependencies": {
     "grunt": "^0.4.4",
-    "grunt-bump": "0.0.16",
-    "grunt-complexity": "^0.2.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-istanbul-coverage": "^0.1.0",
-    "grunt-karma": "^0.9.0",
+    "grunt-bump": "^0.3.0",
     "gulp": "^3.8.11",
-    "gulp-bump": "^0.1.11",
-    "gulp-jshint": "^1.9.0",
-    "gulp-plato": "^1.0.1",
-    "jshint-stylish": "^1.0.0",
-    "karma": "^0.12.25",
+    "gulp-jshint": "^1.9.4",
+    "gulp-plato": "^1.0.2",
+    "jshint": "^2.6.0",
+    "jshint-stylish": "^1.0.1",
+    "karma": "^0.12.31",
     "karma-chrome-launcher": "^0.1.5",
     "karma-coverage": "^0.2.1",
     "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.3.2",
     "karma-phantomjs-launcher": "^0.1.2",
     "karma-threshold-reporter": "^0.1.12",
+    "lodash": "^3.5.0",
     "matchdep": "^0.3.0",
-    "phantomjs": "^1.9.12"
-  },
-  "peerDependencies": {
-    "grunt-cli": "0.1.13"
+    "phantomjs": "^1.9.12",
+    "run-browser": "^2.0.2",
+    "tape": "^3.5.0"
   },
   "scripts": {
-    "test": "grunt --verbose",
+    "test": "npm run test-browserify && gulp",
+    "test-browserify": "run-browser test/commonjs/browserify.test.js -b",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
