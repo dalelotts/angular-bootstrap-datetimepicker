@@ -29,13 +29,14 @@
     "karma-jasmine": "^0.3.2",
     "karma-phantomjs-launcher": "^0.1.2",
     "karma-threshold-reporter": "^0.1.12",
+    "lodash": "^3.5.0",
     "matchdep": "^0.3.0",
     "phantomjs": "^1.9.12",
     "run-browser": "^2.0.2",
     "tape": "^3.5.0"
   },
   "scripts": {
-    "test": "npm run test-browserify && gulp --verbose",
+    "test": "npm run test-browserify && gulp",
     "test-browserify": "run-browser test/commonjs/browserify.test.js -b",
     "postinstall": "./node_modules/bower/bin/bower install"
   },

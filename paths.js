@@ -10,13 +10,13 @@ var bower = [
 ];
 var sourceFiles = ['src/**/*.js'];
 var testFiles = ['test/**/*.spec.js'];
-var miscFiles = ['test/karma.conf.js', 'demo/**/*.js'];
+var miscFiles = ['demo/**/*.js'];
 var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/css/*.css'];
 
 module.exports = {
   all: bower.concat(sourceFiles).concat(testFiles).concat(miscFiles),
   app: sourceFiles,
   bump: bumpFiles,
-  lint: ['GruntFile.js', 'gulpfile.js', 'paths.js', 'test/**/*.test.js'].concat(sourceFiles).concat(testFiles).concat(miscFiles),
+  lint: ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js', 'test/**/*.test.js'].concat(sourceFiles).concat(testFiles).concat(miscFiles),
   test: testFiles
 };
