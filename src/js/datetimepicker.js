@@ -1,8 +1,8 @@
-/*globals define, jQuery */
+/*globals define, jQuery, module, require */
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.11
+ * @license angular-bootstrap-datetimepicker  version: 0.3.12
  * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -18,6 +18,9 @@
   /* istanbul ignore if */
   if (typeof define === 'function' && /* istanbul ignore next */ define.amd) {
     define(['angular', 'moment'], factory); // AMD
+    /* istanbul ignore next */
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('angular'), require('moment')); // CommonJS
   } else {
     factory(window.angular, window.moment); // Browser global
   }
@@ -169,7 +172,10 @@
               var result = {
                 'currentView': 'year',
                 'nextView': configuration.minView === 'year' ? 'setTime' : 'month',
-                'previousViewDate': new DateObject({utcDateValue: null, display: startDecade + '-' + (startDecade + 9)}),
+                'previousViewDate': new DateObject({
+                  utcDateValue: null,
+                  display: startDecade + '-' + (startDecade + 9)
+                }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(9, 'year').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(11, 'year').valueOf()}),
                 'dates': []

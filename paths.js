@@ -9,7 +9,7 @@ var bower = [
   'bower_components/angular-mocks/angular-mocks.js'
 ];
 var sourceFiles = ['src/**/*.js'];
-var testFiles = ['test/**/*.js'];
+var testFiles = ['test/**/*.spec.js'];
 var miscFiles = ['karma.conf.js', 'demo/**/*.js'];
 var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/css/*.css'];
 
