@@ -3,7 +3,7 @@
 
 /**
  * @license angular-bootstrap-datetimepicker  version: 0.3.12
- * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2013-2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 

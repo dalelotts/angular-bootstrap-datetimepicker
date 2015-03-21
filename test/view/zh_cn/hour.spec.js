@@ -1,8 +1,8 @@
 /*globals describe, beforeEach, it, expect, module, inject, jQuery, moment */
 
- /**
+/**
  * @license angular-bootstrap-datetimepicker
- * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -12,17 +12,16 @@
  *    @since        7/21/13
  */
 
-describe('current view displayed on the markup', function(){
+describe('current view displayed on the markup', function () {
   'use strict';
 
-  var $rootScope, element;
+  var element;
 
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $rootScope = _$rootScope_;
     $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'hour\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'hour\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
 
@@ -33,12 +32,12 @@ describe('current view displayed on the markup', function(){
 
 describe('hour view with initial date of 2013-01-22', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+    rootScope = $rootScope;
     $rootScope.date = moment('2013-01-22').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'hour\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
@@ -50,18 +49,18 @@ describe('hour view with initial date of 2013-01-22', function () {
     expect(jQuery('.hour', element).length).toBe(24);
   });
   it('has 1 `.active` element with a value of 0:00', function () {
-    expect(jQuery('.active', element).text()).toBe(moment($rootScope.date).format('LT'));
+    expect(jQuery('.active', element).text()).toBe(moment(rootScope.date).format('LT'));
   });
 });
 
 
 describe('hour view with initial date of "2020-01-01T00:00:00.000", minView="hour", minuteStep: 15', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function ($compile, $rootScope) {
+    rootScope = $rootScope;
     $rootScope.date = moment('2020-01-01T00:00:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'hour\', minView: \'hour\', minuteStep: 15 }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
@@ -76,6 +75,6 @@ describe('hour view with initial date of "2020-01-01T00:00:00.000", minView="hou
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('凌晨3点00');
-    expect($rootScope.date).toEqual(moment('2020-01-01T03:00:00.000').toDate());
+    expect(rootScope.date).toEqual(moment('2020-01-01T03:00:00.000').toDate());
   });
 });

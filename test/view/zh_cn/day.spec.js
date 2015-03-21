@@ -2,7 +2,7 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -12,17 +12,16 @@
  *    @since        7/21/13
  */
 
-describe('current view displayed on the markup', function(){
+describe('current view displayed on the markup', function () {
   'use strict';
 
-  var $rootScope, element;
+  var element;
 
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $rootScope = _$rootScope_;
     $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
 
@@ -33,13 +32,12 @@ describe('current view displayed on the markup', function(){
 
 describe('Chinese day view with initial date of 2013-01-22', function () {
   'use strict';
-  var $rootScope, element;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $rootScope = _$rootScope_;
     $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
   it('has `.switch` element with a value of 2013-1', function () {
@@ -62,12 +60,13 @@ describe('Chinese day view with initial date of 2013-01-22', function () {
 
 describe('day with initial date of "2020-01-01T00:00:00.000" and minView="day"', function () {
   'use strict';
-  var $rootScope, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function ($compile, $rootScope) {
+    rootScope = $rootScope;
     $rootScope.date = moment('2020-01-01T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
   it('clicking the 14th `.day` element will set the date value to 2020-01-11T00:00:00.000"', function () {
@@ -80,19 +79,20 @@ describe('day with initial date of "2020-01-01T00:00:00.000" and minView="day"',
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('12');
-    expect($rootScope.date).toEqual(moment('2020-01-12T00:00:00.000').toDate());
+    expect(rootScope.date).toEqual(moment('2020-01-12T00:00:00.000').toDate());
   });
 });
 
 
 describe('day with initial date of "2008-02-01T00:00:00.000" (leap year) and minView="day"', function () {
   'use strict';
-  var $rootScope, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function ($compile, $rootScope) {
+    rootScope = $rootScope;
     $rootScope.date = moment('2008-02-01T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'day\', minView: \'day\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
   it('clicking the 33rd `.day` element will set the date value to 2008-29-11T00:00:00.000"', function () {
@@ -108,6 +108,6 @@ describe('day with initial date of "2008-02-01T00:00:00.000" (leap year) and min
 
     selectedElement.trigger('click');
     expect(jQuery('.active', element).text()).toBe('29');
-    expect($rootScope.date).toEqual(moment('2008-02-29T00:00:00.000').toDate());
+    expect(rootScope.date).toEqual(moment('2008-02-29T00:00:00.000').toDate());
   });
 });

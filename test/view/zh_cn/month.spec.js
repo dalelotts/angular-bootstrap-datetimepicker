@@ -2,7 +2,7 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -12,17 +12,16 @@
  *    @since        7/21/13
  */
 
-describe('current view displayed on the markup', function(){
+describe('current view displayed on the markup', function () {
   'use strict';
 
-  var $rootScope, element;
+  var element;
 
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $rootScope = _$rootScope_;
     $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'month\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
 
@@ -33,12 +32,10 @@ describe('current view displayed on the markup', function(){
 
 describe('month view with initial date of 2010-10-01', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
     $rootScope.date = moment('2010-10-01').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
@@ -57,11 +54,11 @@ describe('month view with initial date of 2010-10-01', function () {
 
 describe('month view with initial date of "2020-01-01T00:00:00.000" and minView="month"', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function ($compile, $rootScope) {
+    rootScope = $rootScope;
     $rootScope.date = moment('2020-01-01T00:00:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'month\', minView: \'month\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
@@ -75,6 +72,6 @@ describe('month view with initial date of "2020-01-01T00:00:00.000" and minView=
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('12月');
-    expect($rootScope.date).toEqual(moment('2020-12-01T00:00:00.000').toDate());
+    expect(rootScope.date).toEqual(moment('2020-12-01T00:00:00.000').toDate());
   });
 });
