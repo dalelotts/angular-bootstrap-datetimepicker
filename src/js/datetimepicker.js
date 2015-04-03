@@ -141,6 +141,11 @@
         replace: true,
         link: function link(scope, element, attrs, ngModelController) {
 
+          element.bind('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+          });
+
           var directiveConfig = {};
 
           if (attrs.datetimepickerConfig) {
