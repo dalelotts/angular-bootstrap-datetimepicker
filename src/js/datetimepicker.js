@@ -59,7 +59,7 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'minDate'];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -92,7 +92,6 @@
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
           throw ('dropdownSelector must be a string');
         }
-
         /* istanbul ignore next */
         if (configuration.dropdownSelector !== null && ((typeof jQuery === 'undefined') || (typeof jQuery().dropdown !== 'function'))) {
           $log.error('Please DO NOT specify the dropdownSelector option unless you are using jQuery AND Bootstrap.js. ' +
@@ -311,7 +310,9 @@
 
               return result;
             },
-
+            minDate: function(dateObject){
+              console.log(dateObject);
+            },
             minute: function minute(unixDate) {
               var selectedDate = moment.utc(unixDate).startOf('hour');
               var previousViewDate = moment.utc(selectedDate).startOf('day');
@@ -360,7 +361,7 @@
               scope.onSetTime({newDate: newDate, oldDate: oldDate});
 
               return dataFactory[configuration.startView](unixDate);
-            }
+            },
           };
 
           var getUTCTime = function getUTCTime(modelValue) {
@@ -387,10 +388,20 @@
                   }
                 }
               }
-
+              var mainDates = result.dates || weekDates;              
+              if(configuration.minDate){
+                console.log(configuration.minDate);
+                var date = new Date(parseInt(configuration.minDate));
+                console.log(date);
+                for(i in mainDates){
+                  if(mainDates[i].utcDateValue<date){
+                    mainDates[i].selectable = false
+                  }
+                }
+              }
               scope.beforeRender({
                 $view: result.currentView,
-                $dates: result.dates || weekDates,
+                $dates: mainDates,
                 $leftDate: result.leftDate,
                 $upDate: result.previousViewDate,
                 $rightDate: result.rightDate
