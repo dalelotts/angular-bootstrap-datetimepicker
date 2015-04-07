@@ -75,7 +75,6 @@ angular.module('demo.demoController', [])
       } 
       var setMinDate = mm+'/'+dd+'/'+yyyy;
       $scope.minDateVar = Date.parse(setMinDate);
-      console.log($scope.minDateVar);
       $scope.configFunction = function configFunction() {
         return {startView: 'month'};
       };
