@@ -333,6 +333,36 @@
 
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Drop-down Datetime with minDate input box</h3>
+        <h4>No formatting</h4>
+
+        <p>Notice that you cannot enter a date with the keyboard.</p>
+
+        <p><code>dropdownSelector: '#dropdown7', minDate: 'mm/dd/yyyy'</code> to toggle the dropdown.</p>
+        {{minDateVar}}
+        <div class="well">
+            <p>Formatted Date: {{ data.dateDropDownInputNoFormatting | date:'medium' }}</p>
+
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdown7" role="button" data-toggle="dropdown" data-target="#"
+                   href="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="data.dateDropDownInputNoFormatting">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="data.dateDropDownInputNoFormatting"
+                                    data-datetimepicker-config="{ dropdownSelector: '#dropdown7', minDate:{{minDateVar}} }"></datetimepicker>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+</div>
 </div>
 
 

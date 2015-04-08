@@ -25,7 +25,7 @@ angular.module('demo.demoController', [])
       $scope.checkboxOnTimeSet = function () {
         $scope.data.checked = false;
       };
-
+      
       $scope.inputOnTimeSet = function (newDate) {
         // If you are not using jQuery or bootstrap.js,
         // this will throw an error.
@@ -55,7 +55,6 @@ angular.module('demo.demoController', [])
 
       $scope.beforeRender = function ($dates) {
         var index = Math.floor(Math.random() * $dates.length);
-        console.log(index);
         $dates[index].selectable = false;
       };
 
@@ -64,7 +63,18 @@ angular.module('demo.demoController', [])
           startView: 'year'
         }
       };
-
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;
+      var yyyy = today.getFullYear();
+      if(dd<10) {
+          dd='0'+dd
+      } 
+      if(mm<10) {
+          mm='0'+mm
+      } 
+      var setMinDate = mm+'/'+dd+'/'+yyyy;
+      $scope.minDateVar = Date.parse(setMinDate);
       $scope.configFunction = function configFunction() {
         return {startView: 'month'};
       };
