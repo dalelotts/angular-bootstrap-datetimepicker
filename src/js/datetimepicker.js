@@ -95,7 +95,7 @@
         if(parseInt(configuration.minDate.split('/')[1]>31) || parseInt(configuration.minDate.split('/')[1]<0)){
           throw ('minDate format mm/dd/yyyy must have day between 01 and 31');
         }
-        if(parseInt(configuration.minDate.split('/')[0]>12 || parseInt(configuration.minDate.split('/')[0]<1)){
+        if(parseInt(configuration.minDate.split('/')[0]>12) || parseInt(configuration.minDate.split('/')[0]<1)){
           throw ('minDate format mm/dd/yyyy must have month between 01 and 12');
         }
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
