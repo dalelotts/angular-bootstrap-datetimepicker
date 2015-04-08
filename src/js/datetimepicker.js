@@ -92,7 +92,7 @@
         if(typeof configuration.minDate != 'string'){
           throw ('minDate must be string of the format mm/dd/yyyy');
         }        
-        if(parseInt(configuration.minDate.split('/')[1]>31 || parseInt(configuration.minDate.split('/')[1]<0)){
+        if(parseInt(configuration.minDate.split('/')[1]>31) || parseInt(configuration.minDate.split('/')[1]<0)){
           throw ('minDate format mm/dd/yyyy must have day between 01 and 31');
         }
         if(parseInt(configuration.minDate.split('/')[0]>12 || parseInt(configuration.minDate.split('/')[0]<1)){
