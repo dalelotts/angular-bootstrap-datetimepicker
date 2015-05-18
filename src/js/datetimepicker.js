@@ -31,7 +31,8 @@
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
-      startView: 'day'
+      startView: 'day',
+      utcOnly: false
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
 
@@ -59,7 +60,7 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'utcOnly'];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -347,8 +348,11 @@
             },
 
             setTime: function setTime(unixDate) {
-              var tempDate = new Date(unixDate);
-              var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+              var newDate = new Date(unixDate);
+              if (!configuration.utcOnly) {
+                var tempDate = new Date(unixDate);
+                newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+              }
 
               var oldDate = ngModelController.$modelValue;
               ngModelController.$setViewValue(newDate);

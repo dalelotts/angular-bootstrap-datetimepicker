@@ -329,12 +329,37 @@
                 </ul>
             </div>
         </div>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Drop-down Datetime with input box</h3>
+        <p>Notice that you cannot enter a date with the keyboard.</p>
 
+        <p>
+            <code>utcOnly: true</code> and <code>dropdownSelector: '#dropdown7'</code> to toggle the dropdown.
+        </p>
+
+        <div class="well">
+            <p>Formatted Date (UTC): {{ data.dateDropDownInputNoFormatting | date:'medium':'UTC' }}</p>
+
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdown7" role="button" data-toggle="dropdown" data-target="#"
+                   href="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="data.dateDropDownInputNoFormatting">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="data.dateDropDownInputNoFormatting"
+                                    data-datetimepicker-config="{ dropdownSelector: '#dropdown7', utcOnly: true }"></datetimepicker>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 </div>
-
-
 </body>
 </html>
