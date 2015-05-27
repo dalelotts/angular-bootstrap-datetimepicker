@@ -31,6 +31,44 @@ describe('beforeRender', function () {
   });
 
   describe('called before a new view is rendered', function () {
+
+    it('in year view $dates after dependent date are not selectable', function () {
+
+      $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
+      $rootScope.otherDateModel = moment('2009-01-01T00:00:00.000').toDate();
+
+      $rootScope.beforeRender = function (dates) {
+        expect(dates.length).toBe(12);
+        dates.map(function (current) {
+          //make not selectable after the dependent date
+          current.selectable = moment(new Date(current.utcDateValue)).isBefore(moment($rootScope.otherDateModel));
+        });
+      };
+
+      spyOn($rootScope, 'beforeRender').and.callThrough();
+
+      var element = $compile('<datetimepicker data-ng-model=\'date\' data-before-render=\'beforeRender($dates)\' data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" data-depend-on="otherDateModel"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery(jQuery('.year', element)[2]);
+
+      expect(selectedElement.hasClass('disabled')).toBeFalsy();
+      selectedElement.trigger('click');
+      expect($rootScope.date).toEqual(moment('2001-01-01T00:00:00.000').toDate());
+
+      $rootScope.otherDateModel = moment('2005-01-01T00:00:00.000').toDate();
+      $rootScope.$apply();
+
+      var disabledElement = jQuery(jQuery('.year', element)[10]);
+
+      expect(disabledElement.hasClass('disabled')).toBeTruthy();
+      disabledElement.trigger('click');
+      expect($rootScope.date).toEqual(moment('2001-01-01T00:00:00.000').toDate());
+
+      expect($rootScope.beforeRender).toHaveBeenCalled();
+
+    });
+
     it('in year view $dates parameter contains 12 members', function () {
 
       $rootScope.date = moment('2008-01-01T00:00:00.000').toDate();
