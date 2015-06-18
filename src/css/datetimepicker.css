@@ -12,6 +12,9 @@
     border-radius: 4px;
     direction: ltr;
     width: 320px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .datetimepicker.datetimepicker-rtl {
