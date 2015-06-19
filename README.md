@@ -51,6 +51,7 @@ We use karma and jshint to ensure the quality of the code. The easiest way to ru
 
 ```
 npm install
+bower install
 npm test
 ```
 
