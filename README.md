@@ -1,4 +1,4 @@
-# Angular bootstrap date & time picker version: 0.3.12
+# Angular bootstrap date & time picker version: 0.3.13
 ================================
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
@@ -264,7 +264,8 @@ the drop-down is toggled closed after the user selectes a date/time.
 
 ## I18N
 
-All internationalization is handled by Moment.js, see Moment's documention for details.
+All internationalization is handled by Moment.js, see Moment's documentation for details.
+In most cases, all that is needed is a call to ```moment.locale(String)```
 
 # Screenshots
 

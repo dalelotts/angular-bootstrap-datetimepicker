@@ -1,0 +1,7 @@
+{
+  "preset": "crockford",
+  "disallowDanglingUnderscores": { "allExcept": ["_$compile_", "_$rootScope_"] },
+  "disallowMultipleVarDecl": "strict",
+  "validateIndentation": 2,
+  "requireMultipleVarDecl": null
+}

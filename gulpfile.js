@@ -3,16 +3,21 @@
 'use strict';
 
 var gulp = require('gulp');
+var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var karma = require('karma').server;
-var lodash = require('lodash');
-var plato = require('gulp-plato');
 var karmaConfig = __dirname + '/karma.conf.js';
+var lodash = require('lodash');
 var paths = require('./paths');
+var plato = require('plato');
 
-gulp.task('complexity', function () {
-  return gulp.src('src/**/*.js')
-    .pipe(plato('complexity'));
+gulp.task('complexity', function (done) {
+
+  var callback = function () {
+    done();
+  };
+
+  plato.inspect(paths.lint, 'complexity', {title: 'prerender', recurse: true}, callback);
 });
 
 var testConfig = function (options) {
@@ -52,4 +57,10 @@ gulp.task('lint', function () {
     .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('default', ['lint', 'complexity', 'test']);
+gulp.task('jscs', function () {
+  return gulp
+    .src(paths.lint)
+    .pipe(jscs('.jscsrc'));
+});
+
+gulp.task('default', ['jscs', 'lint', 'complexity', 'test']);

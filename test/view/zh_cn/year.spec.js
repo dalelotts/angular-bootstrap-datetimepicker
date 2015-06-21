@@ -2,7 +2,7 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -12,17 +12,16 @@
  *    @since        7/21/13
  */
 
-describe('current view displayed on the markup', function(){
+describe('current view displayed on the markup', function () {
   'use strict';
 
-  var $rootScope, element;
+  var element;
 
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $rootScope = _$rootScope_;
     $rootScope.date = moment('2013-01-22T00:00:00.000').toDate();
-    element = _$compile_('<datetimepicker data-datetimepicker-config="{ startView: \'year\'}" data-ng-model="date"></datetimepicker>')($rootScope);
+    element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'year\'}" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
   }));
 
@@ -33,15 +32,15 @@ describe('current view displayed on the markup', function(){
 
 describe('year view with ng-model = null', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
+  beforeEach(inject(function ($compile, $rootScope) {
     moment.locale('zh-cn');
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
     $rootScope.date = null;
     element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'year\' }"></datetimepicker>')($rootScope);
     $rootScope.$digest();
+    rootScope = $rootScope;
   }));
 
   // this feels rather fragile - the implementation details are not important - consider deleting.
@@ -128,16 +127,15 @@ describe('year view with ng-model = null', function () {
       pastElement.trigger('click');
       expect(jQuery('.switch', element).text()).toBe(pastElement.text());
       // Second, click .switch and the view should update
-      var switchElement = jQuery('.switch', element);
-      switchElement.trigger('click');
+      jQuery('.switch', element).trigger('click');
       expect(jQuery('.switch', element).text()).toBe('2000-2009');
     });
 
     it('has one `.active` element with a value of 2010 when view is month and date is 2010', function () {
       expect(jQuery('.active', element).length).toBe(0);
 
-      $rootScope.date = moment('2010-10-01').toDate();
-      $rootScope.$apply();
+      rootScope.date = moment('2010-10-01').toDate();
+      rootScope.$apply();
 
       expect(jQuery('.active', element).length).toBe(1);
       expect(jQuery('.active', element).text()).toBe('2010');
@@ -146,8 +144,8 @@ describe('year view with ng-model = null', function () {
 
   describe('where month view', function () {
     beforeEach(inject(function () {
-      $rootScope.date = moment('2010-10-01').toDate();
-      $rootScope.$digest();
+      rootScope.date = moment('2010-10-01').toDate();
+      rootScope.$digest();
       // Switch to month view...
       var pastElement = jQuery('.past', element);
       pastElement.trigger('click');
@@ -182,17 +180,16 @@ describe('year view with ng-model = null', function () {
       expect(jQuery('.active', element).length).toBe(1);
       expect(jQuery('.switch', element).text()).toBe('2010');
 
-      var monthElement = jQuery('.active', element);
-      monthElement.trigger('click');
-      //expect(jQuery('.switch', element).text()).toBe('2010-Oct');
+      jQuery('.active', element).trigger('click');
+      expect(jQuery('.switch', element).text()).toBe('2010-10月');
       expect(jQuery('.active', element).length).toBe(1);
       expect(jQuery('.active', element).text()).toBe('1');
     });
   });
   describe('where day view', function () {
     beforeEach(inject(function () {
-      $rootScope.date = moment('2010-10-01').toDate();
-      $rootScope.$digest();
+      rootScope.date = moment('2010-10-01').toDate();
+      rootScope.$digest();
       // Switch to day view...
       var pastElement = jQuery('.active', element);
       pastElement.trigger('click');
@@ -243,8 +240,8 @@ describe('year view with ng-model = null', function () {
   });
   describe('where hour view', function () {
     beforeEach(inject(function () {
-      $rootScope.date = moment('2010-10-01').toDate();
-      $rootScope.$digest();
+      rootScope.date = moment('2010-10-01').toDate();
+      rootScope.$digest();
       // Switch to day view...
       var selectedElement = jQuery('.active', element);
       selectedElement.trigger('click');
@@ -255,7 +252,7 @@ describe('year view with ng-model = null', function () {
     }));
     it('has one `.active` element with a value of 0:00 when view is hour and date is 2010-Oct-01 00:00', function () {
       expect(jQuery('.active', element).length).toBe(1);
-      expect(jQuery('.active', element).text()).toBe(moment($rootScope.date).format('LT'));
+      expect(jQuery('.active', element).text()).toBe(moment(rootScope.date).format('LT'));
     });
     it('changes the view to the previous day when `.left` element is clicked', function () {
       var selectedElement = jQuery('.left', element);
@@ -281,14 +278,14 @@ describe('year view with ng-model = null', function () {
 });
 describe('year view with with ng-model = null and minView="year"', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function ($compile, $rootScope) {
     $rootScope.date = null;
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
+    rootScope = $rootScope;
   }));
   it('clicking the `.future` element will set the date value to 2020-01-01T00:00:00.000"', function () {
     expect(jQuery('.switch', element).text()).toBe('2010-2019');
@@ -297,19 +294,20 @@ describe('year view with with ng-model = null and minView="year"', function () {
     selectedElement.trigger('click');
 
     expect(jQuery('.active', element).text()).toBe('2020');
-    expect($rootScope.date).toEqual(moment('2020-01-01T00:00:00.000').toDate());
+    expect(rootScope.date).toEqual(moment('2020-01-01T00:00:00.000').toDate());
   });
 });
+
 describe('year view with with ng-model = 1970-1-1 (unix date of zero) and minView="year"', function () {
   'use strict';
-  var $rootScope, $compile, element;
+  var rootScope;
+  var element;
   beforeEach(module('ui.bootstrap.datetimepicker'));
-  beforeEach(inject(function (_$compile_, _$rootScope_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+  beforeEach(inject(function ($compile, $rootScope) {
     $rootScope.date = moment('1970-01-01T00:00:00.000').toDate();
     element = $compile('<datetimepicker data-datetimepicker-config="{ startView: \'year\', minView: \'year\' }" data-ng-model="date"></datetimepicker>')($rootScope);
     $rootScope.$digest();
+    rootScope = $rootScope;
   }));
   it('clicking the `.left` element will change the view to 1960-1969"', function () {
     expect(jQuery('.switch', element).text()).toBe('1970-1979');
@@ -318,6 +316,6 @@ describe('year view with with ng-model = 1970-1-1 (unix date of zero) and minVie
     selectedElement.trigger('click');
 
     expect(jQuery('.switch', element).text()).toBe('1960-1969');
-    expect($rootScope.date).toEqual(moment('1970-01-01T00:00:00.000').toDate());
+    expect(rootScope.date).toEqual(moment('1970-01-01T00:00:00.000').toDate());
   });
 });

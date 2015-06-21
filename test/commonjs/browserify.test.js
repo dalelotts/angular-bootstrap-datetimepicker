@@ -1,4 +1,9 @@
 /*globals  require */
+/**
+ * @license angular-bootstrap-datetimepicker
+ * Copyright 2015 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * License: MIT
+ */
 
 /** This file is intentionally named browserify.test.js so that it is not picked up by the karma runner **/
 

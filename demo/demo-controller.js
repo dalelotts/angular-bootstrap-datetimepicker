@@ -1,9 +1,10 @@
-/*globals angular, moment, $, console*/
+/*globals angular, moment, $ */
 
 angular.module('demo.demoController', [])
   .controller('demoController', [
     '$scope',
-    function ($scope) {
+    '$log',
+    function ($scope, $log) {
       'use strict';
       $scope.controllerName = 'demoController';
 
@@ -32,7 +33,7 @@ angular.module('demo.demoController', [])
         // However, can write this function to take any
         // action necessary once the user has selected a
         // date/time using the picker
-        console.log(newDate);
+        $log.info(newDate);
         $('#dropdown3').dropdown('toggle');
       };
 
@@ -46,16 +47,16 @@ angular.module('demo.demoController', [])
 
 
       $scope.guardianOnSetTime = function ($index, guardian, newDate, oldDate) {
-        console.log($index);
-        console.log(guardian.name);
-        console.log(newDate);
-        console.log(oldDate);
+        $log.info($index);
+        $log.info(guardian.name);
+        $log.info(newDate);
+        $log.info(oldDate);
         angular.element('#guardian' + $index).dropdown('toggle');
       };
 
       $scope.beforeRender = function ($dates) {
         var index = Math.floor(Math.random() * $dates.length);
-        console.log(index);
+        $log.info(index);
         $dates[index].selectable = false;
       };
 

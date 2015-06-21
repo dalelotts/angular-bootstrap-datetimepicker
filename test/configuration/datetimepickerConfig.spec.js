@@ -2,7 +2,7 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * (c) 2014 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -14,7 +14,8 @@
 
 describe('dateimePickerConfig', function () {
   'use strict';
-  var $rootScope, $compile;
+  var $rootScope;
+  var $compile;
 
   beforeEach(module('ui.bootstrap.datetimepicker'));
 

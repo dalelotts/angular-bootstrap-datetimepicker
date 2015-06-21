@@ -1,6 +1,6 @@
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.12
- * (c) 2013-2014 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * @license angular-bootstrap-datetimepicker  version: 0.3.13
+ * Copyright 2013-2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
 
@@ -109,6 +109,14 @@
     display: none;
 }
 
+.datetimepicker .hour,
+.datetimepicker .minute {
+    margin: 0;
+    height: 34px;
+    line-height: 34px;
+    width: 25%;
+}
+
 .datetimepicker.minutes div.datetimepicker-minutes {
     display: block;
 }
@@ -143,11 +151,15 @@
     border-radius: 4px;
     border: none;
 }
-.datetimepicker .table-striped > tbody > tr:nth-child(odd) > td, .datetimepicker .table-striped > tbody > tr:nth-child(odd) > td,
-.datetimepicker .table-striped > tbody > tr:nth-child(odd) > td, .datetimepicker .table-striped > tbody > tr:nth-child(odd) > th,
+
+.datetimepicker .table-striped > tbody > tr:nth-child(odd) > td,
+.datetimepicker .table-striped > tbody > tr:nth-child(odd) > td,
+.datetimepicker .table-striped > tbody > tr:nth-child(odd) > td,
+.datetimepicker .table-striped > tbody > tr:nth-child(odd) > th,
 .datetimepicker .table-striped > tbody > tr:nth-child(odd) {
-  background-color: transparent;
+    background-color: transparent;
 }
+
 .datetimepicker table tr td.minute:hover {
     background: #eeeeee;
     cursor: pointer;
@@ -294,16 +306,6 @@
     border-radius: 4px;
 }
 
-.datetimepicker span.hour {
-    height: 26px;
-    line-height: 26px;
-}
-
-.datetimepicker span.minute {
-    height: 26px;
-    line-height: 26px;
-}
-
 .datetimepicker table tr td span:hover {
     background: #eeeeee;
 }
@@ -373,8 +375,6 @@
 .datetimepicker table tr td span.future {
     color: #999999;
 }
-
-
 
 .datetimepicker thead tr:first-child th,
 .datetimepicker tfoot tr:first-child th {
