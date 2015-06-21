@@ -264,7 +264,8 @@ the drop-down is toggled closed after the user selectes a date/time.
 
 ## I18N
 
-All internationalization is handled by Moment.js, see Moment's documention for details.
+All internationalization is handled by Moment.js, see Moment's documentation for details.
+In most cases, all that is needed is a call to ```moment.locale(String)```
 
 # Screenshots
 

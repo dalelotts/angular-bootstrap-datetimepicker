@@ -8,15 +8,17 @@ var bower = [
   'bower_components/angular/angular.js',
   'bower_components/angular-mocks/angular-mocks.js'
 ];
+var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/css/*.css'];
+var miscFiles = ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js'];
+var demoFiles = ['demo/**/*.js'];
 var sourceFiles = ['src/**/*.js'];
 var testFiles = ['test/**/*.spec.js'];
-var miscFiles = ['demo/**/*.js'];
-var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/css/*.css'];
 
 module.exports = {
-  all: bower.concat(sourceFiles).concat(testFiles).concat(miscFiles),
+  all: bower.concat(sourceFiles).concat(testFiles).concat(demoFiles),
   app: sourceFiles,
   bump: bumpFiles,
-  lint: ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js', 'test/**/*.test.js'].concat(sourceFiles).concat(testFiles).concat(miscFiles),
+  lint: miscFiles.concat(sourceFiles).concat(testFiles).concat(miscFiles),
+  src: sourceFiles,
   test: testFiles
 };

@@ -9,11 +9,15 @@ var karma = require('karma').server;
 var karmaConfig = __dirname + '/karma.conf.js';
 var lodash = require('lodash');
 var paths = require('./paths');
-var plato = require('gulp-plato');
+var plato = require('plato');
 
-gulp.task('complexity', function () {
-  return gulp.src('src/**/*.js')
-    .pipe(plato('complexity'));
+gulp.task('complexity', function (done) {
+
+  var callback = function () {
+    done();
+  };
+
+  plato.inspect(paths.lint, 'complexity', {title: 'prerender', recurse: true}, callback);
 });
 
 var testConfig = function (options) {
