@@ -167,7 +167,7 @@
               var startDecade = (parseInt(selectedDate.year() / 10, 10) * 10);
               var startDate = moment.utc(startOfDecade(unixDate)).subtract(1, 'year').startOf('year');
 
-              var activeYear = ngModelController.$modelValue ? moment(ngModelController.$modelValue).year() : 0;
+              var activeYear = ngModelController.$viewValue ? moment(ngModelController.$viewValue).year() : 0;
 
               var result = {
                 'currentView': 'year',
@@ -201,7 +201,7 @@
 
               var startDate = moment.utc(unixDate).startOf('year');
               var previousViewDate = startOfDecade(unixDate);
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM') : 0;
+              var activeDate = ngModelController.$viewValue ? moment(ngModelController.$viewValue).format('YYYY-MMM') : 0;
 
               var result = {
                 'previousView': 'year',
@@ -239,7 +239,7 @@
 
               var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days');
 
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM-DD') : '';
+              var activeDate = ngModelController.$viewValue ? moment(ngModelController.$viewValue).format('YYYY-MMM-DD') : '';
 
               var result = {
                 'previousView': 'month',
@@ -283,7 +283,7 @@
               var selectedDate = moment.utc(unixDate).startOf('day');
               var previousViewDate = moment.utc(selectedDate).startOf('month');
 
-              var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H') : '';
+              var activeFormat = ngModelController.$viewValue ? moment(ngModelController.$viewValue).format('YYYY-MM-DD H') : '';
 
               var result = {
                 'previousView': 'day',
@@ -315,7 +315,7 @@
             minute: function minute(unixDate) {
               var selectedDate = moment.utc(unixDate).startOf('hour');
               var previousViewDate = moment.utc(selectedDate).startOf('day');
-              var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H:mm') : '';
+              var activeFormat = ngModelController.$viewValue ? moment(ngModelController.$viewValue).format('YYYY-MM-DD H:mm') : '';
 
               var result = {
                 'previousView': 'hour',
@@ -350,7 +350,7 @@
               var tempDate = new Date(unixDate);
               var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
 
-              var oldDate = ngModelController.$modelValue;
+              var oldDate = ngModelController.$viewValue;
               ngModelController.$setViewValue(newDate);
 
               if (configuration.dropdownSelector) {
