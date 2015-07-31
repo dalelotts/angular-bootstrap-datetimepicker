@@ -33,6 +33,16 @@
       minView: 'minute',
       startView: 'day'
     })
+    .directive('minView', ['dateTimePickerConfig', function (dateTimePickerConfig) {
+      return {
+        restrict:'A',
+        link: function($scope, element, attrs) {
+          if (attrs.minView) {
+              dateTimePickerConfig.minView = attrs.minView;
+          }
+        }
+      };
+    }])
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
 
       function DateObject() {
