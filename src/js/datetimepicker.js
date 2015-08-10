@@ -31,7 +31,9 @@
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
-      startView: 'day'
+      startView: 'day',
+      minHour : 0,
+      maxHour : 24
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
 
@@ -59,7 +61,7 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'minHour', 'maxHour'];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -74,15 +76,18 @@
         if (validViews.indexOf(configuration.startView) < 0) {
           throw ('invalid startView value: ' + configuration.startView);
         }
-
         if (validViews.indexOf(configuration.minView) < 0) {
           throw ('invalid minView value: ' + configuration.minView);
         }
-
         if (validViews.indexOf(configuration.minView) > validViews.indexOf(configuration.startView)) {
           throw ('startView must be greater than minView');
         }
-
+        if (!angular.isNumber(configuration.minHour) || configuration.minHour < 0 || configuration.minHour > 24) {
+          throw ('minHour must be numeric and in [0,24] range');
+        }
+        if (!angular.isNumber(configuration.maxHour) || configuration.maxHour < 0 || configuration.maxHour > 24) {
+          throw ('maxHour must be numeric and in [0,24] range');
+        }
         if (!angular.isNumber(configuration.minuteStep)) {
           throw ('minuteStep must be numeric');
         }
@@ -298,7 +303,7 @@
                 'dates': []
               };
 
-              for (var i = 0; i < 24; i += 1) {
+              for (var i = configuration.minHour; i < configuration.maxHour; i += 1) {
                 var hourMoment = moment.utc(selectedDate).add(i, 'hours');
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
