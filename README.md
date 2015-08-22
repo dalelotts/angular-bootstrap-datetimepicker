@@ -14,27 +14,6 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
-# Upgrading to 0.3.x
-
-<code>weekStart</code> has been removed. This directive uses the locale aware 
-[moment.js day of week](http://momentjs.com/docs/#/get-set/weekday/) to
-determine which day is the first day of the week. If you would like a first 
-day of week that is not standard for the locale you can create a 
-[custom locale](http://momentjs.com/docs/#/customization/) 
-
-## Easier to control width
-
-The width of the entire control is set in css, which you can easily override.
-
-## Better localization support
-
-This directive uses localized date formats when available. One exception is the title
-of the month view - moment does not (yet) have a localized format for month and year.
-
-# (Almost) Complete re-write
-
-This project started as an AngularJS specific re-write of the [bootstrap-datetimepicker project](https://github.com/smalot/bootstrap-datetimepicker).
-Only the CSS file from the bootstrap-datetimepicker project was re-used.
 
 #Dependencies
 
@@ -47,6 +26,8 @@ optional:
  * bootstrap's dropdown component (`dropdowns.less`)
 
 #Testing
+This directive was written using TDD and all enhancements and changes have related tests.
+
 We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use gulp:
 
 ```
@@ -164,6 +145,12 @@ data-on-set-time="onTimeSet"    <-- **This will NOT work, the ()'s are required*
 
 
 ## Configuration Options
+***NOTE*** The configuration optionss are not attributes on the element but rather members of the configuration object,
+which is specified in the data-datetimepicker-config attribute.
+
+```html
+<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+```
 
 ### startView
 
@@ -262,10 +249,18 @@ In this example, the drop-down functionality is controlled by Twitter Bootstrap.
 The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
 the drop-down is toggled closed after the user selectes a date/time.
 
-## I18N
+
+## I18N / l10n support
 
 All internationalization is handled by Moment.js, see Moment's documentation for details.
 In most cases, all that is needed is a call to ```moment.locale(String)```
+
+One exception is the title of the month view - moment does not (yet) have a localized format for month and year.
+
+```JavaScript
+moment.locale('en');        // English
+moment.locale('zh-cn');     // Simplified chinese
+```
 
 # Screenshots
 
@@ -304,6 +299,9 @@ If the hour view is the minView, the date will be set to the beginning of the ho
 This view allows the user to select a specific time of day, in the selected hour.
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
+
+##Contributing
+
 
 ## License
 

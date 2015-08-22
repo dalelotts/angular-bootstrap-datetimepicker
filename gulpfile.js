@@ -5,7 +5,7 @@
 var gulp = require('gulp');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
-var karma = require('karma').server;
+var Server = require('karma').Server;
 var karmaConfig = __dirname + '/karma.conf.js';
 var lodash = require('lodash');
 var paths = require('./paths');
@@ -31,21 +31,33 @@ var testConfig = function (options) {
 };
 
 gulp.task('test', function (done) {
-  karma.start(testConfig(
+
+  var config = testConfig(
     {
       configFile: karmaConfig,
       singleRun: true,
       reporters: ['progress', 'coverage', 'threshold']
     }
-  ), done);
+  );
+
+  var server = new Server(config, done);
+  server.start();
 });
 
 gulp.task('tdd', function (done) {
   gulp.watch(paths.all, ['lint']);
 
-  karma.start({
-    configFile: karmaConfig
-  }, done);
+  var config = testConfig(
+    {
+      autoWatch: true,
+      browsers: ['PhantomJS'],
+      configFile: karmaConfig,
+      singleRun: false
+    }
+  );
+
+  var server = new Server(config, done);
+  server.start();
 });
 
 gulp.task('lint', function () {

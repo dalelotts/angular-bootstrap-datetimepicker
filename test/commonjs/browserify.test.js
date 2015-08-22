@@ -22,3 +22,15 @@ tapeTest('can load module after requiring', function (t) {
   t.doesNotThrow(loadModule);
   t.end();
 });
+
+tapeTest('package and bower dependencies & version match', function (t) {
+  'use strict';
+
+  var packageFile = require('../../package.json');
+  var bowerFile = require('../../bower.json');
+
+  t.equal(packageFile.version, bowerFile.version, 'Version mismatch');
+  t.equal(packageFile.dependencies.angular, bowerFile.dependencies.angular, 'Angular mismatch');
+  t.equal(packageFile.dependencies.moment, bowerFile.dependencies.moment, 'moment mismatch');
+  t.end();
+});
