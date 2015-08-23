@@ -2,14 +2,15 @@
 /* jshint node:true */
 'use strict';
 
+var csslint = require('gulp-csslint');
 var gulp = require('gulp');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
-var Server = require('karma').Server;
 var karmaConfig = __dirname + '/karma.conf.js';
 var lodash = require('lodash');
 var paths = require('./paths');
 var plato = require('plato');
+var Server = require('karma').Server;
 
 gulp.task('complexity', function (done) {
 
@@ -18,6 +19,14 @@ gulp.task('complexity', function (done) {
   };
 
   plato.inspect(paths.lint, 'complexity', {title: 'prerender', recurse: true}, callback);
+});
+
+
+gulp.task('csslint', function () {
+  return gulp.src(paths.css)
+    .pipe(csslint())
+    .pipe(csslint.reporter())
+    .pipe(csslint.failReporter());
 });
 
 var testConfig = function (options) {
@@ -45,7 +54,7 @@ gulp.task('test', function (done) {
 });
 
 gulp.task('tdd', function (done) {
-  gulp.watch(paths.all, ['lint']);
+  gulp.watch(paths.all, ['jscs', 'lint', 'csslint']);
 
   var config = testConfig(
     {
@@ -75,4 +84,4 @@ gulp.task('jscs', function () {
     .pipe(jscs('.jscsrc'));
 });
 
-gulp.task('default', ['jscs', 'lint', 'complexity', 'test']);
+gulp.task('default', ['jscs', 'lint', 'csslint', 'complexity', 'test']);

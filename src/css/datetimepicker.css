@@ -33,6 +33,7 @@
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-bottom: 7px solid #ccc;
+    border-bottom-color: rgb(0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0.2);
     position: absolute;
 }
@@ -52,6 +53,7 @@
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-top: 7px solid #ccc;
+    border-top-color: rgb(0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0.2);
     border-bottom: 0;
 }
@@ -202,7 +204,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
     border-color: #fdf59a #fdf59a #fbed50;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .datetimepicker table tr td.today:hover,
@@ -254,7 +255,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
     border-color: #0044cc #0044cc #002a80;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
@@ -332,7 +332,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
     border-color: #0044cc #0044cc #002a80;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
