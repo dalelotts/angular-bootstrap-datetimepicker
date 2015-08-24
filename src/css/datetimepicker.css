@@ -11,6 +11,7 @@
     border-radius: 4px;
     direction: ltr;
     width: 320px;
+    display: block;
 }
 
 .datetimepicker.datetimepicker-rtl {
@@ -31,26 +32,6 @@
     height: 34px;
     line-height: 34px;
     width: 25%;
-}
-
-.datetimepicker.minutes {
-    display: block;
-}
-
-.datetimepicker.hours {
-    display: block;
-}
-
-.datetimepicker.days {
-    display: block;
-}
-
-.datetimepicker.months {
-    display: block;
-}
-
-.datetimepicker.years {
-    display: block;
 }
 
 .datetimepicker table {
