@@ -337,7 +337,7 @@
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
-                  'active': hourMoment.format('YYYY-MM-DD H:nn') === activeFormat
+                  'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
                 };
 
                 result.dates.push(new DateObject(dateValue));
