@@ -135,6 +135,7 @@
         '   </tbody>' +
         '</table></div>',
         scope: {
+          datetimepickerConfig: "@",
           onSetTime: '&',
           beforeRender: '&'
         },
@@ -399,6 +400,11 @@
               scope.data = result;
             }
           };
+
+          scope.$watch('datetimepickerConfig', function(){
+            angular.extend(configuration, scope.$eval(attrs.datetimepickerConfig));
+            validateConfiguration(configuration);
+          }); 
 
           ngModelController.$render = function $render() {
             scope.changeView(configuration.startView, new DateObject({utcDateValue: getUTCTime(ngModelController.$viewValue)}));
