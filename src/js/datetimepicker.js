@@ -401,7 +401,7 @@
             }
           };
 
-          scope.$watch('datetimepickerConfig', function(){
+          scope.$watch('datetimepickerConfig', function () {
             angular.extend(configuration, scope.$eval(attrs.datetimepickerConfig));
             validateConfiguration(configuration);
           }); 
