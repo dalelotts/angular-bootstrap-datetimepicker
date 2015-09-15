@@ -135,7 +135,7 @@
         '   </tbody>' +
         '</table></div>',
         scope: {
-          datetimepickerConfig: "@",
+          datetimepickerConfig: '@',
           onSetTime: '&',
           beforeRender: '&'
         },
