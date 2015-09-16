@@ -86,7 +86,7 @@
         if (!angular.isNumber(configuration.minuteStep)) {
           throw ('minuteStep must be numeric');
         }
-        if (configuration.minuteStep <= 0 || configuration.minuteStep >= 60) {
+        if (configuration.minuteStep <= 0 || (configuration.minView !== 'hour' && configuration.minuteStep >= 60)) {
           throw ('minuteStep must be greater than zero and less than 60');
         }
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
@@ -283,7 +283,7 @@
               var selectedDate = moment.utc(unixDate).startOf('day');
               var previousViewDate = moment.utc(selectedDate).startOf('month');
 
-              var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H') : '';
+              var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H:mm') : '';
 
               var result = {
                 'previousView': 'day',
@@ -298,12 +298,14 @@
                 'dates': []
               };
 
-              for (var i = 0; i < 24; i += 1) {
-                var hourMoment = moment.utc(selectedDate).add(i, 'hours');
+              var limit = configuration.minView === 'hour' ? (24 * 60 / configuration.minuteStep) : 24;
+
+              for (var i = 0; i < limit; i += 1) {
+                var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minutes');
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
-                  'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
+                  'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
                 };
 
                 result.dates.push(new DateObject(dateValue));
