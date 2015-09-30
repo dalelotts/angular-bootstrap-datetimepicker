@@ -48,15 +48,15 @@
     border: none;
 }
 
-.datetimepicker td.minute:hover,
-.datetimepicker td.hour:hover,
-.datetimepicker td.day:hover {
+.datetimepicker .minute:hover,
+.datetimepicker .hour:hover,
+.datetimepicker .day:hover {
     background: #eeeeee;
     cursor: pointer;
 }
 
-.datetimepicker td.past,
-.datetimepicker td.future {
+.datetimepicker .past,
+.datetimepicker .future {
     color: #999999;
 }
 
