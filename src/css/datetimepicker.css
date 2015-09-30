@@ -1,5 +1,5 @@
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.13
+ * @license angular-bootstrap-datetimepicker  version: 0.3.14
  * Copyright 2013-2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -41,7 +41,6 @@
 .datetimepicker .table td,
 .datetimepicker .table th {
     text-align: center;
-    width: 14.6%;
     height: 20px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
