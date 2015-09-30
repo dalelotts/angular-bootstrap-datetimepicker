@@ -33,5 +33,7 @@ tapeTest('package and bower dependencies & version match', function (t) {
   t.equal(packageFile.dependencies.angular, bowerFile.dependencies.angular, 'Angular mismatch');
   t.equal(packageFile.dependencies.angular, bowerFile.devDependencies['angular-mocks'], 'Angular mocks mismatch');
   t.equal(packageFile.dependencies.moment, bowerFile.dependencies.moment, 'moment mismatch');
+  t.equal(packageFile.devDependencies.bootstrap, bowerFile.devDependencies.bootstrap, 'bootstrap mismatch');
+  t.equal(packageFile.devDependencies.jquery, bowerFile.devDependencies.jquery, 'jquery mismatch');
   t.end();
 });

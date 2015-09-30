@@ -1,12 +1,12 @@
 /* jshint node:true */
 
-var bower = [
-  'bower_components/jquery/dist/jquery.js',
-  'bower_components/moment/moment.js',
-  'bower_components/moment/locale/*.js',
-  'bower_components/bootstrap/dist/js/bootstrap.js',
-  'bower_components/angular/angular.js',
-  'bower_components/angular-mocks/angular-mocks.js'
+var modules = [
+  'node_modules/jquery/dist/jquery.js',
+  'node_modules/moment/moment.js',
+  'node_modules/moment/locale/*.js',
+  'node_modules/bootstrap/dist/js/bootstrap.js',
+  'node_modules/angular/angular.js',
+  'node_modules/angular-mocks/angular-mocks.js'
 ];
 var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js'];
 var cssFiles = ['src/css/*.css'];
@@ -16,7 +16,7 @@ var sourceFiles = ['src/**/*.js'];
 var testFiles = ['test/**/*.spec.js'];
 
 module.exports = {
-  all: bower.concat(sourceFiles).concat(testFiles).concat(demoFiles),
+  all: modules.concat(sourceFiles).concat(testFiles).concat(demoFiles),
   app: sourceFiles,
   bump: bumpFiles.concat(cssFiles),
   css: cssFiles,

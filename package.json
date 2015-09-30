@@ -10,21 +10,24 @@
   "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
   "main": "src/js/datetimepicker.js",
   "dependencies": {
-    "angular": "^1.4.4",
+    "angular": "^1.4.7",
     "moment": "^2.10.6"
   },
   "devDependencies": {
+    "angular-mocks": "^1.4.7",
+    "bootstrap": "^3.3.5",
     "bower": "latest",
     "csslint": "^0.10.0",
     "grunt": "^0.4.4",
-    "grunt-bump": "^0.3.2",
+    "grunt-bump": "^0.6.0",
     "gulp": "^3.8.11",
     "gulp-csslint": "^0.2.0",
-    "gulp-jscs": "^2.0.0",
+    "gulp-jscs": "^3.0.0",
     "gulp-jshint": "^1.11.2",
+    "jquery": "^2.1.4",
     "jshint": "^2.6.0",
     "jshint-stylish": "^2.0.1",
-    "karma": "^0.13.9",
+    "karma": "^0.13.10",
     "karma-chrome-launcher": "^0.2.0",
     "karma-coverage": "^0.5.0",
     "karma-firefox-launcher": "^0.1.3",
@@ -32,7 +35,7 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-threshold-reporter": "^0.1.12",
     "lodash": "^3.10.1",
-    "matchdep": "^0.3.0",
+    "matchdep": "^1.0.0",
     "phantomjs": "^1.9.18",
     "plato": "^1.5.0",
     "run-browser": "^2.0.2",
@@ -40,8 +43,7 @@
   },
   "scripts": {
     "test": "npm run test-browserify && gulp",
-    "test-browserify": "run-browser test/commonjs/browserify.test.js -b",
-    "postinstall": "bower install"
+    "test-browserify": "run-browser test/commonjs/browserify.test.js -b"
   },
   "repository": {
     "type": "git",
