@@ -249,7 +249,7 @@
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: startOfMonth.format('YYYY-MMM')
+                  display: startOfMonth.format(dayPickFormat)
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
