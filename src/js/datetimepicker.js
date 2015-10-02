@@ -203,7 +203,7 @@
 
               var startDate = moment.utc(unixDate).startOf('year');
               var previousViewDate = startOfDecade(unixDate);
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format("YYYY-MMM") : 0;
+              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM') : 0;
 
               var result = {
                 'previousView': 'year',
@@ -223,7 +223,7 @@
                 var dateValue = {
                   'utcDateValue': monthMoment.valueOf(),
                   'display': monthMoment.format('MMM'),
-                  'active': monthMoment.format("YYYY-MMM") === activeDate
+                  'active': monthMoment.format('YYYY-MMM') === activeDate
                 };
 
                 result.dates.push(new DateObject(dateValue));
@@ -249,7 +249,7 @@
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: startOfMonth.format("YYYY-MMM")
+                  display: startOfMonth.format('YYYY-MMM')
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
