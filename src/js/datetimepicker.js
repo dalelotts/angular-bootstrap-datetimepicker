@@ -136,7 +136,9 @@
         '</table></div>',
         scope: {
           onSetTime: '&',
-          beforeRender: '&'
+          beforeRender: '&',
+          dayFormat: '=',
+          dayPickFormat: '='
         },
         replace: true,
         link: function link(scope, element, attrs, ngModelController) {
@@ -247,7 +249,7 @@
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: startOfMonth.format('YYYY-MMM')
+                  display: startOfMonth.format(dayPickFormat)
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
@@ -257,7 +259,7 @@
 
 
               for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-                result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
+                result.dayNames.push(moment.utc().weekday(dayNumber).format(dayFormat));
               }
 
               for (var i = 0; i < 6; i += 1) {
