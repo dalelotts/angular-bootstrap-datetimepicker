@@ -123,14 +123,14 @@
         '              <span    class="{{ data.currentView }}" ' +
         '                       data-ng-repeat="dateObject in data.dates"  ' +
         '                       data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
-        '                       data-ng-click="changeView(data.nextView, dateObject, $event)">{{ dateObject.display }}</span> ' +
+        '                       data-ng-click="changeView(data.nextView, dateObject, $event)"><p class="other-back">{{ dateObject.display }}</p></span> ' +
         '           </td>' +
         '       </tr>' +
         '       <tr data-ng-if="data.currentView === \'day\'" data-ng-repeat="week in data.weeks">' +
         '           <td data-ng-repeat="dateObject in week.dates" ' +
         '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
         '               class="day" ' +
-        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
+        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ><p class="day-back">{{ dateObject.display }}</p></td>' +
         '       </tr>' +
         '   </tbody>' +
         '</table></div>',
@@ -249,7 +249,7 @@
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: startOfMonth.format(dayPickFormat)
+                  display: startOfMonth.format(scope.dayPickFormat)
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
@@ -259,7 +259,7 @@
 
 
               for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-                result.dayNames.push(moment.utc().weekday(dayNumber).format(dayFormat));
+                result.dayNames.push(moment.utc().weekday(dayNumber).format(scope.dayFormat));
               }
 
               for (var i = 0; i < 6; i += 1) {
