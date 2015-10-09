@@ -59,7 +59,7 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'format'];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -351,7 +351,7 @@
               var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
 
               var oldDate = ngModelController.$modelValue;
-              ngModelController.$setViewValue(newDate);
+              ngModelController.$setViewValue(configuration.format ? moment(newDate).format(configuration.format) : newDate);
 
               if (configuration.dropdownSelector) {
                 jQuery(configuration.dropdownSelector).dropdown('toggle');
