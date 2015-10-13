@@ -24,6 +24,7 @@
     "gulp-csslint": "^0.2.0",
     "gulp-jscs": "^3.0.0",
     "gulp-jshint": "^1.11.2",
+    "gulp-sass": "^2.0.4",
     "jquery": "^2.1.4",
     "jshint": "^2.6.0",
     "jshint-stylish": "^2.0.1",
