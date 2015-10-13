@@ -11,16 +11,15 @@ var lodash = require('lodash');
 var paths = require('./paths');
 var plato = require('plato');
 var Server = require('karma').Server;
+var sass = require('gulp-sass');
 
 gulp.task('complexity', function (done) {
-
   var callback = function () {
     done();
   };
 
   plato.inspect(paths.lint, 'complexity', {title: 'prerender', recurse: true}, callback);
 });
-
 
 gulp.task('csslint', function () {
   return gulp.src(paths.css)
@@ -84,4 +83,14 @@ gulp.task('jscs', function () {
     .pipe(jscs('.jscsrc'));
 });
 
-gulp.task('default', ['jscs', 'lint', 'csslint', 'complexity', 'test']);
+gulp.task('sass', function () {
+  gulp.src(paths.sass)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./src/css'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch(paths.sass, ['sass']);
+});
+
+gulp.task('default', ['sass','jscs', 'lint', 'csslint', 'complexity', 'test']);

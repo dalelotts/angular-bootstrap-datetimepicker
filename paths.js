@@ -14,12 +14,14 @@ var demoFiles = ['demo/**/*.js'];
 var miscFiles = ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js'];
 var sourceFiles = ['src/**/*.js'];
 var testFiles = ['test/**/*.spec.js'];
+var sassFiles = ['src/sass/*.scss'];
 
 module.exports = {
   all: modules.concat(sourceFiles).concat(testFiles).concat(demoFiles),
   app: sourceFiles,
   bump: bumpFiles.concat(cssFiles),
   css: cssFiles,
+  sass : sassFiles,
   lint: miscFiles.concat(sourceFiles).concat(testFiles).concat(miscFiles),
   src: sourceFiles,
   test: testFiles
