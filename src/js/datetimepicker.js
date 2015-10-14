@@ -13,7 +13,7 @@
  *    @since        2013-Jul-8
  */
 
-(function (factory) {
+(function(factory) {
   'use strict';
   /* istanbul ignore if */
   if (typeof define === 'function' && /* istanbul ignore next */ define.amd) {
@@ -24,7 +24,7 @@
   } else {
     factory(window.angular, window.moment); // Browser global
   }
-}(function (angular, moment) {
+}(function(angular, moment) {
   'use strict';
   angular.module('ui.bootstrap.datetimepicker', [])
     .constant('dateTimePickerConfig', {
@@ -42,7 +42,7 @@
         this.utcDateValue = tempDate.getTime();
         this.selectable = true;
 
-        this.localDateValue = function () {
+        this.localDateValue = function() {
           return this.utcDateValue + localOffset;
         };
 
@@ -96,8 +96,8 @@
         /* istanbul ignore next */
         if (configuration.dropdownSelector !== null && ((typeof jQuery === 'undefined') || (typeof jQuery().dropdown !== 'function'))) {
           $log.error('Please DO NOT specify the dropdownSelector option unless you are using jQuery AND Bootstrap.js. ' +
-          'Please include jQuery AND Bootstrap.js, or write code to close the dropdown in the on-set-time callback. \n\n' +
-          'The dropdownSelector configuration option is being removed because it will not function properly.');
+            'Please include jQuery AND Bootstrap.js, or write code to close the dropdown in the on-set-time callback. \n\n' +
+            'The dropdownSelector configuration option is being removed because it will not function properly.');
           delete configuration.dropdownSelector;
         }
       };
@@ -106,40 +106,49 @@
         restrict: 'E',
         require: 'ngModel',
         template: '<div class="datetimepicker table-responsive">' +
-        '<table class="table table-condensed  {{ data.currentView }}-view">' +
-        '   <thead>' +
-        '       <tr>' +
-        '           <th class="left" data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"/></th>' +
-        '           <th class="switch" colspan="5" data-ng-show="data.previousViewDate.selectable" data-ng-click="changeView(data.previousView, data.previousViewDate, $event)">{{ data.previousViewDate.display }}</th>' +
-        '           <th class="right" data-ng-click="changeView(data.currentView, data.rightDate, $event)" data-ng-show="data.rightDate.selectable"><i class="glyphicon glyphicon-arrow-right"/></th>' +
-        '       </tr>' +
-        '       <tr>' +
-        '           <th class="dow" data-ng-repeat="day in data.dayNames" >{{ day }}</th>' +
-        '       </tr>' +
-        '   </thead>' +
-        '   <tbody>' +
-        '       <tr data-ng-if="data.currentView !== \'day\'" >' +
-        '           <td colspan="7" >' +
-        '              <span    class="{{ data.currentView }}" ' +
-        '                       data-ng-repeat="dateObject in data.dates"  ' +
-        '                       data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
-        '                       data-ng-click="changeView(data.nextView, dateObject, $event)">{{ dateObject.display }}</span> ' +
-        '           </td>' +
-        '       </tr>' +
-        '       <tr data-ng-if="data.currentView === \'day\'" data-ng-repeat="week in data.weeks">' +
-        '           <td data-ng-repeat="dateObject in week.dates" ' +
-        '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
-        '               class="day" ' +
-        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
-        '       </tr>' +
-        '   </tbody>' +
-        '</table></div>',
+          '<table class="table table-condensed  {{ data.currentView }}-view">' +
+          '   <thead>' +
+          '       <tr>' +
+          '           <th class="left" data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"/></th>' +
+          '           <th class="switch" colspan="5" data-ng-show="data.previousViewDate.selectable" data-ng-click="changeView(data.previousView, data.previousViewDate, $event)">{{ data.previousViewDate.display }}</th>' +
+          '           <th class="right" data-ng-click="changeView(data.currentView, data.rightDate, $event)" data-ng-show="data.rightDate.selectable"><i class="glyphicon glyphicon-arrow-right"/></th>' +
+          '       </tr>' +
+          '       <tr>' +
+          '           <th class="dow" data-ng-repeat="day in data.dayNames" >{{ day }}</th>' +
+          '       </tr>' +
+          '   </thead>' +
+          '   <tbody>' +
+          '       <tr data-ng-if="data.currentView !== \'day\'" >' +
+          '           <td colspan="7" >' +
+          '              <span    class="{{ data.currentView }}" ' +
+          '                       data-ng-repeat="dateObject in data.dates"  ' +
+          '                       data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
+          '                       data-ng-click="changeView(data.nextView, dateObject, $event)"><p class="other-back">{{ dateObject.display }}</p></span> ' +
+          '           </td>' +
+          '       </tr>' +
+          '       <tr data-ng-if="data.currentView === \'day\'" data-ng-repeat="week in data.weeks">' +
+          '           <td data-ng-repeat="dateObject in week.dates" ' +
+          '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
+          '               class="day" ' +
+          '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ><p class="day-back">{{ dateObject.display }}</p></td>' +
+          '       </tr>' +
+          '   </tbody>' +
+          '</table></div>',
         scope: {
           onSetTime: '&',
-          beforeRender: '&'
+          beforeRender: '&',
+          dayFormat: '=?',
+          dayPickFormat: '=?'
         },
         replace: true,
         link: function link(scope, element, attrs, ngModelController) {
+
+          if (!scope.dayFormat) {
+              scope.dayFormat = 'dd';
+          }
+          if (!scope.dayPickFormat) {
+              scope.dayPickFormat = 'YYYY-MMM';
+          }
 
           var directiveConfig = {};
 
@@ -176,8 +185,12 @@
                   utcDateValue: null,
                   display: startDecade + '-' + (startDecade + 9)
                 }),
-                'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(9, 'year').valueOf()}),
-                'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(11, 'year').valueOf()}),
+                'leftDate': new DateObject({
+                  utcDateValue: moment.utc(startDate).subtract(9, 'year').valueOf()
+                }),
+                'rightDate': new DateObject({
+                  utcDateValue: moment.utc(startDate).add(11, 'year').valueOf()
+                }),
                 'dates': []
               };
 
@@ -211,8 +224,12 @@
                   utcDateValue: previousViewDate.valueOf(),
                   display: startDate.format('YYYY')
                 }),
-                'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(1, 'year').valueOf()}),
-                'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(1, 'year').valueOf()}),
+                'leftDate': new DateObject({
+                  utcDateValue: moment.utc(startDate).subtract(1, 'year').valueOf()
+                }),
+                'rightDate': new DateObject({
+                  utcDateValue: moment.utc(startDate).add(1, 'year').valueOf()
+                }),
                 'dates': []
               };
 
@@ -247,21 +264,27 @@
                 'nextView': configuration.minView === 'day' ? 'setTime' : 'hour',
                 'previousViewDate': new DateObject({
                   utcDateValue: previousViewDate.valueOf(),
-                  display: startOfMonth.format('YYYY-MMM')
+                  display: startOfMonth.format(scope.dayPickFormat)
                 }),
-                'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
-                'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
+                'leftDate': new DateObject({
+                  utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()
+                }),
+                'rightDate': new DateObject({
+                  utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()
+                }),
                 'dayNames': [],
                 'weeks': []
               };
 
 
               for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-                result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
+                result.dayNames.push(moment.utc().weekday(dayNumber).format(scope.dayFormat));
               }
 
               for (var i = 0; i < 6; i += 1) {
-                var week = {dates: []};
+                var week = {
+                  dates: []
+                };
                 for (var j = 0; j < 7; j += 1) {
                   var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
                   var dateValue = {
@@ -293,8 +316,12 @@
                   utcDateValue: previousViewDate.valueOf(),
                   display: selectedDate.format('ll')
                 }),
-                'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'days').valueOf()}),
-                'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'days').valueOf()}),
+                'leftDate': new DateObject({
+                  utcDateValue: moment.utc(selectedDate).subtract(1, 'days').valueOf()
+                }),
+                'rightDate': new DateObject({
+                  utcDateValue: moment.utc(selectedDate).add(1, 'days').valueOf()
+                }),
                 'dates': []
               };
 
@@ -325,8 +352,12 @@
                   utcDateValue: previousViewDate.valueOf(),
                   display: selectedDate.format('lll')
                 }),
-                'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'hours').valueOf()}),
-                'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'hours').valueOf()}),
+                'leftDate': new DateObject({
+                  utcDateValue: moment.utc(selectedDate).subtract(1, 'hours').valueOf()
+                }),
+                'rightDate': new DateObject({
+                  utcDateValue: moment.utc(selectedDate).add(1, 'hours').valueOf()
+                }),
                 'dates': []
               };
 
@@ -357,7 +388,10 @@
                 jQuery(configuration.dropdownSelector).dropdown('toggle');
               }
 
-              scope.onSetTime({newDate: newDate, oldDate: oldDate});
+              scope.onSetTime({
+                newDate: newDate,
+                oldDate: oldDate
+              });
 
               return dataFactory[configuration.startView](unixDate);
             }
@@ -401,7 +435,9 @@
           };
 
           ngModelController.$render = function $render() {
-            scope.changeView(configuration.startView, new DateObject({utcDateValue: getUTCTime(ngModelController.$viewValue)}));
+            scope.changeView(configuration.startView, new DateObject({
+              utcDateValue: getUTCTime(ngModelController.$viewValue)
+            }));
           };
         }
       };
