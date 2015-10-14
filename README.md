@@ -305,7 +305,7 @@ If the minute view is the minView, which is is by default, the date will be set 
 
 ## License
 
-angular-bootstrap-datetimepicker is released under the MIT license and is copyright 2015 Dale Lotts. Boiled down to smaller chunks, it can be described with the following conditions.
+angular-bootstrap-datetimepicker is released under the MIT license and is copyright 2015 Knight Rider Consulting, Inc.. Boiled down to smaller chunks, it can be described with the following conditions.
 
 ## It requires you to:
 
@@ -323,8 +323,8 @@ angular-bootstrap-datetimepicker is released under the MIT license and is copyri
 * Hold the authors and license owners liable for damages as angular-bootstrap-datetimepicker is provided without warranty
 * Hold the creators or copyright holders of angular-bootstrap-datetimepicker liable
 * Redistribute any piece of angular-bootstrap-datetimepicker without proper attribution
-* Use any marks owned by Dale Lotts in any way that might state or imply that Dale Lotts endorses your distribution
-* Use any marks owned by Dale Lotts in any way that might state or imply that you created the software in question
+* Use any marks owned by Knight Rider Consulting, Inc. in any way that might state or imply that Knight Rider Consulting, Inc. endorses your distribution
+* Use any marks owned by Knight Rider Consulting, Inc. in any way that might state or imply that you created the Knight Rider Consulting, Inc. software in question
 
 ## It does not require you to:
 
