@@ -53,8 +53,28 @@ gulp.task('test', function (done) {
   server.start();
 });
 
+gulp.task('less', function () {
+  var less         = require('gulp-less');
+  var postcss      = require('gulp-postcss');
+  var sourcemaps   = require('gulp-sourcemaps');
+  var autoprefixer = require('autoprefixer');
+
+  return gulp.src('./src/less/datetimepicker.less')
+    .pipe(less())
+    .pipe(sourcemaps.init())
+    .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./src/css'));
+});
+
+gulp.task('csscomb', ['less'], function () {
+  var Comb = require('csscomb');
+  var comb = new Comb();
+  comb.processPath('./src/css');
+});
+
 gulp.task('tdd', function (done) {
-  gulp.watch(paths.all, ['jscs', 'lint', 'csslint']);
+  gulp.watch(paths.all.concat(paths.less), ['jscs', 'lint', 'makecss']);
 
   var config = testConfig(
     {
@@ -84,4 +104,5 @@ gulp.task('jscs', function () {
     .pipe(jscs('.jscsrc'));
 });
 
+gulp.task('makecss', ['less', 'csscomb']);
 gulp.task('default', ['jscs', 'lint', 'csslint', 'complexity', 'test']);

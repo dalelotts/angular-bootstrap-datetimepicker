@@ -6,11 +6,13 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  var paths = require('./paths');
+
   // Project configuration.
   grunt.initConfig({
     bump: {
       options: {
-        files: ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/css/*.css'],
+        files: paths.bump,
         updateConfigs: [],
         commit: false,
         createTag: false,

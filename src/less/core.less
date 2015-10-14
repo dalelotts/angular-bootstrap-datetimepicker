@@ -1,0 +1,139 @@
+.datetimepicker.datetimepicker-rtl {
+  direction: rtl;
+}
+
+.datetimepicker.datetimepicker-rtl table tr td span {
+  float: right;
+}
+
+.datetimepicker {
+  margin-top: 1px;
+  border-radius: 4px;
+  direction: ltr;
+  width: @abdtp-width;
+  display: block;
+
+  > div {
+    display: none;
+  }
+
+  .hour,
+  .minute {
+    margin: 0;
+    height: 34px;
+    line-height: 34px;
+    width: 25%;
+  }
+
+  table {
+    margin: 0;
+  }
+
+  .table td,
+  .table th {
+    text-align: center;
+    height: 20px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .minute:hover,
+  .hour:hover,
+  .day:hover,
+  .switch:hover,
+  .left:hover,
+  .right:hover{
+    background: @abdtp-color-hover;
+    cursor: pointer;
+  }
+
+  td.disabled,
+  td.disabled:hover,
+  span.disabled,
+  span.disabled:hover {
+    background: none;
+    color: @abdtp-color-disabled;
+    cursor: default;
+  }
+
+  td.active,
+  td.active:hover,
+  td.active.disabled,
+  td.active.disabled:hover,
+  span.active,
+  span.active:hover,
+  span.active.disabled,
+  span.active.disabled:hover {
+    background-color: @abdtp-background-color;
+    background-image: linear-gradient(to bottom, @abdtp-background-color-start, @abdtp-background-color-end);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{abdtp-background-color-start}', endColorstr='@{abdtp-background-color-end}', GradientType=0);
+    border-color: #0044cc #0044cc #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  td.active:hover,
+  td.active:hover:hover,
+  td.active.disabled:hover,
+  td.active.disabled:hover:hover,
+  td.active:active,
+  td.active:hover:active,
+  td.active.disabled:active,
+  td.active.disabled:hover:active,
+  td.active.active,
+  td.active:hover.active,
+  td.active.disabled.active,
+  td.active.disabled:hover.active,
+  td.active.disabled,
+  td.active:hover.disabled,
+  td.active.disabled.disabled,
+  td.active.disabled:hover.disabled,
+  td.active[disabled],
+  td.active:hover[disabled],
+  td.active.disabled[disabled],
+  td.active.disabled:hover[disabled],
+  span.active:hover,
+  span.active:hover:hover,
+  span.active.disabled:hover,
+  span.active.disabled:hover:hover,
+  span.active:active,
+  span.active:hover:active,
+  span.active.disabled:active,
+  span.active.disabled:hover:active,
+  span.active.active,
+  span.active:hover.active,
+  span.active.disabled.active,
+  span.active.disabled:hover.active,
+  span.active.disabled,
+  span.active:hover.disabled,
+  span.active.disabled.disabled,
+  span.active.disabled:hover.disabled,
+  span.active[disabled],
+  span.active:hover[disabled],
+  span.active.disabled[disabled],
+  span.active.disabled:hover[disabled] {
+    background-color: @abdtp-active-background-color;
+  }
+
+  span {
+    display: block;
+    width: 23%;
+    height: 54px;
+    line-height: 54px;
+    float: left;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 4px;
+    &:hover {
+      background: @abdtp-color-hover;
+    }
+  }
+
+  .past,
+  .future {
+    color: @abdtp-color-past-future;
+  }
+}
+
