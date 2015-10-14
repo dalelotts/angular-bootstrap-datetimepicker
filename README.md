@@ -305,7 +305,34 @@ If the minute view is the minView, which is is by default, the date will be set 
 
 ## License
 
-angular-bootstrap-datetimepicker is freely distributable under the terms of the [MIT license](LICENSE).
+angular-bootstrap-datetimepicker is released under the MIT license and is copyright 2015 Dale Lotts. Boiled down to smaller chunks, it can be described with the following conditions.
+
+## It requires you to:
+
+* Keep the license and copyright notice included in angular-bootstrap-datetimepicker's CSS and JavaScript files when you use them in your works
+
+## It permits you to:
+
+* Freely download and use angular-bootstrap-datetimepicker, in whole or in part, for personal, private, company internal, or commercial purposes
+* Use angular-bootstrap-datetimepicker in packages or distributions that you create
+* Modify the source code
+* Grant a sublicense to modify and distribute angular-bootstrap-datetimepicker to third parties not included in the license
+
+## It forbids you to:
+
+* Hold the authors and license owners liable for damages as angular-bootstrap-datetimepicker is provided without warranty
+* Hold the creators or copyright holders of angular-bootstrap-datetimepicker liable
+* Redistribute any piece of angular-bootstrap-datetimepicker without proper attribution
+* Use any marks owned by Dale Lotts in any way that might state or imply that Dale Lotts endorses your distribution
+* Use any marks owned by Dale Lotts in any way that might state or imply that you created the software in question
+
+## It does not require you to:
+
+* Include the source of angular-bootstrap-datetimepicker itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
+* Submit changes that you make to angular-bootstrap-datetimepicker back to the angular-bootstrap-datetimepicker project (though such feedback is encouraged)
+
+The full angular-bootstrap-datetimepicker license is located [in the project repository](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE) for more information.
+
 
 ## Donating
 Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts].
