@@ -9,20 +9,20 @@ var modules = [
   'node_modules/angular-mocks/angular-mocks.js'
 ];
 var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js'];
-var lessFiles = ['src/less/*.less'];
 var cssFiles = ['src/css/*.css'];
 var demoFiles = ['demo/**/*.js'];
 var miscFiles = ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js'];
+var scssFiles = ['src/scss/*.scss'];
 var sourceFiles = ['src/**/*.js'];
 var testFiles = ['test/**/*.spec.js'];
 
 module.exports = {
   all: modules.concat(sourceFiles).concat(testFiles).concat(demoFiles).concat(cssFiles),
   app: sourceFiles,
-  bump: bumpFiles.concat(cssFiles).concat(lessFiles),
+  bump: bumpFiles.concat(scssFiles).concat(cssFiles),
   css: cssFiles,
-  less: lessFiles,
   lint: miscFiles.concat(sourceFiles).concat(testFiles).concat(miscFiles),
+  scss: scssFiles,
   src: sourceFiles,
   test: testFiles
 };

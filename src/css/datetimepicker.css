@@ -3,38 +3,32 @@
  * Copyright 2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
-.datetimepicker.datetimepicker-rtl {
-  direction: rtl;
-}
-.datetimepicker.datetimepicker-rtl table tr td span {
-  float: right;
-}
 .datetimepicker {
-  margin-top: 1px;
   border-radius: 4px;
   direction: ltr;
-  width: 320px;
   display: block;
+  margin-top: 1px;
+  width: 320px;
 }
 .datetimepicker > div {
   display: none;
 }
 .datetimepicker .hour,
 .datetimepicker .minute {
-  margin: 0;
   height: 34px;
   line-height: 34px;
+  margin: 0;
   width: 25%;
 }
-.datetimepicker table {
+.datetimepicker .table {
   margin: 0;
 }
 .datetimepicker .table td,
 .datetimepicker .table th {
-  text-align: center;
-  height: 20px;
+  border: 0;
   border-radius: 4px;
-  border: none;
+  height: 20px;
+  text-align: center;
 }
 .datetimepicker .minute:hover,
 .datetimepicker .hour:hover,
@@ -45,67 +39,44 @@
   background: #eeeeee;
   cursor: pointer;
 }
-.datetimepicker td.disabled,
-.datetimepicker td.disabled:hover,
-.datetimepicker span.disabled,
-.datetimepicker span.disabled:hover {
+.datetimepicker .disabled,
+.datetimepicker .disabled:hover {
   background: none;
   color: #ebebeb;
   cursor: default;
 }
-.datetimepicker td.active,
-.datetimepicker td.active:hover,
-.datetimepicker td.active.disabled,
-.datetimepicker td.active.disabled:hover,
-.datetimepicker span.active,
-.datetimepicker span.active:hover,
-.datetimepicker span.active.disabled,
-.datetimepicker span.active.disabled:hover {
-  background-color: #006dcc;
+.datetimepicker .active,
+.datetimepicker .active:hover,
+.datetimepicker .active.disabled,
+.datetimepicker .active.disabled:hover {
+  background-color: #0044cc;
   background-image: linear-gradient(to bottom, #0088cc, #0044cc);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
   border-color: #0044cc #0044cc #002a80;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  color: #fff;
+  color: #ffffff;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='${abdtp-background-color-start}', endColorstr='${abdtp-background-color-end}', GradientType=0);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.datetimepicker td.active:hover,
-.datetimepicker td.active:hover:hover,
-.datetimepicker td.active.disabled:hover,
-.datetimepicker td.active.disabled:hover:hover,
-.datetimepicker td.active:active,
-.datetimepicker td.active:hover:active,
-.datetimepicker td.active.disabled:active,
-.datetimepicker td.active.disabled:hover:active,
-.datetimepicker td.active.active,
-.datetimepicker td.active:hover.active,
-.datetimepicker td.active.disabled.active,
-.datetimepicker td.active.disabled:hover.active,
-.datetimepicker td.active.disabled,
-.datetimepicker td.active:hover.disabled,
-.datetimepicker td.active.disabled.disabled,
-.datetimepicker td.active.disabled:hover.disabled,
+.datetimepicker .active:hover,
+.datetimepicker .active:hover:hover,
+.datetimepicker .active.disabled:hover,
+.datetimepicker .active.disabled:hover:hover,
+.datetimepicker .active:active,
+.datetimepicker .active:hover:active,
+.datetimepicker .active.disabled:active,
+.datetimepicker .active.disabled:hover:active,
+.datetimepicker .active.active,
+.datetimepicker .active:hover.active,
+.datetimepicker .active.disabled.active,
+.datetimepicker .active.disabled:hover.active,
+.datetimepicker .active.disabled,
+.datetimepicker .active:hover.disabled,
+.datetimepicker .active.disabled.disabled,
+.datetimepicker .active.disabled:hover.disabled,
 .datetimepicker td.active[disabled],
 .datetimepicker td.active:hover[disabled],
 .datetimepicker td.active.disabled[disabled],
 .datetimepicker td.active.disabled:hover[disabled],
-.datetimepicker span.active:hover,
-.datetimepicker span.active:hover:hover,
-.datetimepicker span.active.disabled:hover,
-.datetimepicker span.active.disabled:hover:hover,
-.datetimepicker span.active:active,
-.datetimepicker span.active:hover:active,
-.datetimepicker span.active.disabled:active,
-.datetimepicker span.active.disabled:hover:active,
-.datetimepicker span.active.active,
-.datetimepicker span.active:hover.active,
-.datetimepicker span.active.disabled.active,
-.datetimepicker span.active.disabled:hover.active,
-.datetimepicker span.active.disabled,
-.datetimepicker span.active:hover.disabled,
-.datetimepicker span.active.disabled.disabled,
-.datetimepicker span.active.disabled:hover.disabled,
 .datetimepicker span.active[disabled],
 .datetimepicker span.active:hover[disabled],
 .datetimepicker span.active.disabled[disabled],
@@ -113,14 +84,14 @@
   background-color: #0044cc;
 }
 .datetimepicker span {
+  border-radius: 4px;
+  cursor: pointer;
   display: block;
-  width: 23%;
+  float: left;
   height: 54px;
   line-height: 54px;
-  float: left;
   margin: 1%;
-  cursor: pointer;
-  border-radius: 4px;
+  width: 23%;
 }
 .datetimepicker span:hover {
   background: #eeeeee;

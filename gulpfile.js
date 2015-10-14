@@ -12,6 +12,13 @@ var paths = require('./paths');
 var plato = require('plato');
 var Server = require('karma').Server;
 
+gulp.task('build-css', ['scss'], function () {
+  var Comb = require('csscomb');
+  var config = require('./.csscomb.json');
+  var comb = new Comb(config);
+  comb.processPath('./src/css/');
+});
+
 gulp.task('complexity', function (done) {
 
   var callback = function () {
@@ -29,6 +36,43 @@ gulp.task('csslint', function () {
     .pipe(csslint.failReporter());
 });
 
+gulp.task('jscs', function () {
+  return gulp
+    .src(paths.lint)
+    .pipe(jscs('.jscsrc'));
+});
+
+gulp.task('lint', function () {
+  return gulp
+    .src(paths.lint)
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default', {verbose: true}))
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
+});
+
+
+gulp.task('scss', ['scss-lint'], function () {
+  var scss = require('gulp-sass');
+  var postcss = require('gulp-postcss');
+  var sourcemaps = require('gulp-sourcemaps');
+  var autoprefixer = require('autoprefixer');
+
+  return gulp.src(paths.scss)
+    .pipe(scss())
+    .pipe(sourcemaps.init())
+    .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./src/css'));
+});
+
+gulp.task('scss-lint', function () {
+  var scssLint = require('gulp-scss-lint');
+  var scssLintStylish = require('gulp-scss-lint-stylish');
+  return gulp.src('./src/scss/*.scss')
+    .pipe(scssLint({customReport: scssLintStylish}));
+});
+
 var testConfig = function (options) {
   var travisOptions = process.env.TRAVIS &&
     {
@@ -38,6 +82,23 @@ var testConfig = function (options) {
 
   return lodash.assign(options, travisOptions);
 };
+
+gulp.task('tdd', function (done) {
+  gulp.watch(paths.all.concat(paths.scss), ['jscs', 'lint', 'build-css']);
+
+  var config = testConfig(
+    {
+      autoWatch: true,
+      browsers: ['PhantomJS'],
+      configFile: karmaConfig,
+      singleRun: false
+    }
+  );
+
+  var server = new Server(config, done);
+  server.start();
+});
+
 
 gulp.task('test', function (done) {
 
@@ -53,56 +114,5 @@ gulp.task('test', function (done) {
   server.start();
 });
 
-gulp.task('less', function () {
-  var less         = require('gulp-less');
-  var postcss      = require('gulp-postcss');
-  var sourcemaps   = require('gulp-sourcemaps');
-  var autoprefixer = require('autoprefixer');
 
-  return gulp.src('./src/less/datetimepicker.less')
-    .pipe(less())
-    .pipe(sourcemaps.init())
-    .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./src/css'));
-});
-
-gulp.task('csscomb', ['less'], function () {
-  var Comb = require('csscomb');
-  var comb = new Comb();
-  comb.processPath('./src/css');
-});
-
-gulp.task('tdd', function (done) {
-  gulp.watch(paths.all.concat(paths.less), ['jscs', 'lint', 'makecss']);
-
-  var config = testConfig(
-    {
-      autoWatch: true,
-      browsers: ['PhantomJS'],
-      configFile: karmaConfig,
-      singleRun: false
-    }
-  );
-
-  var server = new Server(config, done);
-  server.start();
-});
-
-gulp.task('lint', function () {
-  return gulp
-    .src(paths.lint)
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default', {verbose: true}))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'));
-});
-
-gulp.task('jscs', function () {
-  return gulp
-    .src(paths.lint)
-    .pipe(jscs('.jscsrc'));
-});
-
-gulp.task('makecss', ['less', 'csscomb']);
-gulp.task('default', ['jscs', 'lint', 'csslint', 'complexity', 'test']);
+gulp.task('default', ['jscs', 'lint', 'complexity', 'csslint', 'test']);
