@@ -54,7 +54,7 @@
   background-repeat: repeat-x;
   border-color: #0044cc #0044cc #002a80;
   color: #ffffff;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='${abdtp-background-color-start}', endColorstr='${abdtp-background-color-end}', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#08c', endColorstr='#04c', GradientType=0);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .datetimepicker .active:hover,
