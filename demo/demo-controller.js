@@ -55,7 +55,7 @@ angular.module('demo.demoController', [])
       };
 
       $scope.beforeRender = function ($dates) {
-        var index = Math.floor(Math.random() * $dates.length);
+        var index = Math.ceil($dates.length / 2);
         $log.info(index);
         $dates[index].selectable = false;
       };
