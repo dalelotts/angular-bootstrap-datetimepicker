@@ -3,6 +3,7 @@
   direction: ltr;
   display: block;
   margin-top: 1px;
+  user-select: none;
   width: $abdtp-width;
 
   > div {

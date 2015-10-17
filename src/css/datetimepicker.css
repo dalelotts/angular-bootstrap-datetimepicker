@@ -8,6 +8,10 @@
   direction: ltr;
   display: block;
   margin-top: 1px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 320px;
 }
 .datetimepicker > div {
