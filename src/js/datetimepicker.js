@@ -31,7 +31,9 @@
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
-      startView: 'day'
+      startView: 'day',
+      returnType: 'date',
+      returnFormat: 'YYYY-MM-DD'
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
 
@@ -59,7 +61,7 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector', 'returnType', 'returnFormat'];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -70,6 +72,7 @@
 
         // Order of the elements in the validViews array is significant.
         var validViews = ['minute', 'hour', 'day', 'month', 'year'];
+        var validReturnTypes = ['moment', 'date'];
 
         if (validViews.indexOf(configuration.startView) < 0) {
           throw ('invalid startView value: ' + configuration.startView);
@@ -92,6 +95,10 @@
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
           throw ('dropdownSelector must be a string');
         }
+        
+        if (validReturnTypes.indexOf(configuration.returnType) < 0) {
+          throw ("returnType must be either moment or date. Received: " + configuration.returnType);
+        }        
 
         /* istanbul ignore next */
         if (configuration.dropdownSelector !== null && ((typeof jQuery === 'undefined') || (typeof jQuery().dropdown !== 'function'))) {
@@ -348,7 +355,7 @@
 
             setTime: function setTime(unixDate) {
               var tempDate = new Date(unixDate);
-              var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+              var newDate = configuration.returnType === 'date' ? new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000)) : moment(tempDate).format(configuration.returnFormat);
 
               var oldDate = ngModelController.$modelValue;
               ngModelController.$setViewValue(newDate);
