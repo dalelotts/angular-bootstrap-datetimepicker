@@ -122,7 +122,7 @@
         '           <td colspan="7" >' +
         '              <span    class="{{ data.currentView }}" ' +
         '                       data-ng-repeat="dateObject in data.dates"  ' +
-        '                       data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
+        '                       data-ng-class="[{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}, dateObject.customClass]" ' +
         '                       data-ng-click="changeView(data.nextView, dateObject, $event)">{{ dateObject.display }}</span> ' +
         '           </td>' +
         '       </tr>' +
@@ -130,7 +130,7 @@
         '           <td data-ng-repeat="dateObject in week.dates" ' +
         '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
         '               class="day" ' +
-        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
+        '               data-ng-class="[{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}, dateObject.customClass]">{{ dateObject.display }}</td>' +
         '       </tr>' +
         '   </tbody>' +
         '</table></div>',
