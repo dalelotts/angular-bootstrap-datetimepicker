@@ -14,10 +14,20 @@ var Server = require('karma').Server;
 
 gulp.task('build-css', ['scss'], function () {
   var Comb = require('csscomb');
-  var config = require('./.csscomb.json');
+  var config = require('./config/csscomb.json');
   var comb = new Comb(config);
   comb.processPath('./src/css/');
 });
+
+gulp.task('clean', function () {
+
+  var del = require('del');
+  return del([
+    'build'
+  ]);
+});
+
+gulp.task('default', ['clean:mobile']);
 
 gulp.task('complexity', function (done) {
 
@@ -25,7 +35,7 @@ gulp.task('complexity', function (done) {
     done();
   };
 
-  plato.inspect(paths.lint, 'complexity', {title: 'prerender', recurse: true}, callback);
+  plato.inspect(paths.lint, 'build/complexity', {title: 'prerender', recurse: true}, callback);
 });
 
 
