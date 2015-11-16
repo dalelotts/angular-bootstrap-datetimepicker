@@ -178,6 +178,12 @@ When used within a Bootstrap dropdown and jQuery, the selector specified in drop
 **NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option. If you do, an error will
  be logged and this option will be removed.
 
+### icons
+
+Object. Default: {left: 'glyphicon glyphicon-arrow-left', right: 'glyphicon glyphicon-arrow-right'}
+
+Specify classes for the buttons with arrows.
+
 
 ## Working with ng-model
 The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
