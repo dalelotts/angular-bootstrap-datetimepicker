@@ -43,8 +43,8 @@ module.exports = function (config) {
     // optionally, configure the reporter
     coverageReporter: {
       reporters: [
-        {type: 'json', dir: 'coverage/'},
-        {type: 'html', dir: 'coverage/'}
+        {type: 'json', dir: 'build/coverage/'},
+        {type: 'html', dir: 'build/coverage/'}
       ]
     },
 
@@ -56,7 +56,7 @@ module.exports = function (config) {
     // the configure thresholds
     thresholdReporter: {
       statements: 100,
-      branches: 97,
+      branches: 98,
       functions: 100,
       lines: 100
     },

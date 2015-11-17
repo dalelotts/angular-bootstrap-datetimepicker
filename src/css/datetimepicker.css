@@ -1,5 +1,5 @@
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.14
+ * @license angular-bootstrap-datetimepicker  version: 0.4.0
  * Copyright 2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -8,6 +8,10 @@
   direction: ltr;
   display: block;
   margin-top: 1px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 320px;
 }
 .datetimepicker > div {

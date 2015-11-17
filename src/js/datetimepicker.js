@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.15
+ * @license angular-bootstrap-datetimepicker  version: 0.4.0
  * Copyright 2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -28,9 +28,11 @@
   'use strict';
   angular.module('ui.bootstrap.datetimepicker', [])
     .constant('dateTimePickerConfig', {
+      configureOn: null,
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
+      renderOn: null,
       startView: 'day'
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
@@ -59,7 +61,15 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+
+        var validOptions = [
+          'configureOn',
+          'dropdownSelector',
+          'minuteStep',
+          'minView',
+          'renderOn',
+          'startView'
+        ];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -89,6 +99,18 @@
         if (configuration.minuteStep <= 0 || configuration.minuteStep >= 60) {
           throw ('minuteStep must be greater than zero and less than 60');
         }
+        if (configuration.configureOn !== null && !angular.isString(configuration.configureOn)) {
+          throw ('configureOn must be a string');
+        }
+        if (configuration.configureOn !== null && configuration.configureOn.length < 1) {
+          throw ('configureOn must not be an empty string');
+        }
+        if (configuration.renderOn !== null && !angular.isString(configuration.renderOn)) {
+          throw ('renderOn must be a string');
+        }
+        if (configuration.renderOn !== null && configuration.renderOn.length < 1) {
+          throw ('renderOn must not be an empty string');
+        }
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
           throw ('dropdownSelector must be a string');
         }
@@ -96,8 +118,8 @@
         /* istanbul ignore next */
         if (configuration.dropdownSelector !== null && ((typeof jQuery === 'undefined') || (typeof jQuery().dropdown !== 'function'))) {
           $log.error('Please DO NOT specify the dropdownSelector option unless you are using jQuery AND Bootstrap.js. ' +
-          'Please include jQuery AND Bootstrap.js, or write code to close the dropdown in the on-set-time callback. \n\n' +
-          'The dropdownSelector configuration option is being removed because it will not function properly.');
+            'Please include jQuery AND Bootstrap.js, or write code to close the dropdown in the on-set-time callback. \n\n' +
+            'The dropdownSelector configuration option is being removed because it will not function properly.');
           delete configuration.dropdownSelector;
         }
       };
@@ -141,17 +163,24 @@
         replace: true,
         link: function link(scope, element, attrs, ngModelController) {
 
-          var directiveConfig = {};
+          var configure = function configure() {
+            var directiveConfig = {};
 
-          if (attrs.datetimepickerConfig) {
-            directiveConfig = scope.$parent.$eval(attrs.datetimepickerConfig);
-          }
+            if (attrs.datetimepickerConfig) {
+              directiveConfig = scope.$parent.$eval(attrs.datetimepickerConfig);
+            }
 
-          var configuration = {};
+            var configuration = {};
 
-          angular.extend(configuration, defaultConfig, directiveConfig);
+            angular.extend(configuration, defaultConfig, directiveConfig);
 
-          validateConfiguration(configuration);
+            validateConfiguration(configuration);
+
+            return configuration;
+          };
+
+          var configuration = configure();
+
 
           var startOfDecade = function startOfDecade(unixDate) {
             var startYear = (parseInt(moment.utc(unixDate).year() / 10, 10) * 10);
@@ -348,7 +377,7 @@
 
             setTime: function setTime(unixDate) {
               var tempDate = new Date(unixDate);
-              var newDate = new Date(tempDate.getTime() + (tempDate.getTimezoneOffset() * 60000));
+              var newDate = new Date(tempDate.getUTCFullYear(), tempDate.getUTCMonth(), tempDate.getUTCDate(), tempDate.getUTCHours(), tempDate.getUTCMinutes(), tempDate.getUTCSeconds(), tempDate.getUTCMilliseconds());
 
               var oldDate = ngModelController.$modelValue;
               ngModelController.$setViewValue(newDate);
@@ -403,6 +432,16 @@
           ngModelController.$render = function $render() {
             scope.changeView(configuration.startView, new DateObject({utcDateValue: getUTCTime(ngModelController.$viewValue)}));
           };
+
+          if (configuration.configureOn) {
+            scope.$on(configuration.configureOn, function () {
+              configuration = configure();
+              ngModelController.$render();
+            });
+          }
+          if (configuration.renderOn) {
+            scope.$on(configuration.renderOn, ngModelController.$render);
+          }
         }
       };
     }]);

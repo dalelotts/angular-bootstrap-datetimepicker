@@ -69,5 +69,41 @@ angular.module('demo.demoController', [])
       $scope.configFunction = function configFunction() {
         return {startView: 'month'};
       };
+
+      $scope.config = {
+        configureOnConfig: {
+          startView: 'year',
+          configureOn: 'config-changed'
+        },
+        renderOnConfig: {
+          startView: 'year',
+          renderOn: 'valid-dates-changed'
+        }
+      };
+
+      var validViews = ['year', 'month', 'day', 'hour', 'minute'];
+
+      $scope.changeConfig = function changeConfig() {
+        var newIndex = validViews.indexOf($scope.config.configureOnConfig.startView) + 1;
+        console.log(newIndex);
+        if (newIndex >= validViews.length) {
+          newIndex = 0;
+        }
+        $scope.config.configureOnConfig.startView = validViews[newIndex];
+        $scope.$broadcast('config-changed');
+      };
+
+      var selectable = true;
+
+      $scope.renderOnBeforeRender = function ($dates) {
+        angular.forEach($dates, function (dateObject) {
+          dateObject.selectable = selectable;
+        });
+      };
+
+      $scope.renderOnClick = function renderOnClick() {
+        selectable = (!selectable);
+        $scope.$broadcast('valid-dates-changed');
+      };
     }
   ]);
