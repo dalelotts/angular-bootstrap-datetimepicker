@@ -31,6 +31,7 @@
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
+      configureOn: null,
       startView: 'day'
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
@@ -59,7 +60,14 @@
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
-        var validOptions = ['startView', 'minView', 'minuteStep', 'dropdownSelector'];
+
+        var validOptions = [
+          'dropdownSelector',
+          'minuteStep',
+          'minView',
+          'configureOn',
+          'startView'
+        ];
 
         for (var prop in configuration) {
           //noinspection JSUnfilteredForInLoop
@@ -88,6 +96,12 @@
         }
         if (configuration.minuteStep <= 0 || configuration.minuteStep >= 60) {
           throw ('minuteStep must be greater than zero and less than 60');
+        }
+        if (configuration.configureOn !== null && !angular.isString(configuration.configureOn)) {
+          throw ('configureOn must be a string');
+        }
+        if (configuration.configureOn !== null && configuration.configureOn.length < 1) {
+          throw ('configureOn must not be an empty string');
         }
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
           throw ('dropdownSelector must be a string');
@@ -141,17 +155,24 @@
         replace: true,
         link: function link(scope, element, attrs, ngModelController) {
 
-          var directiveConfig = {};
+          var configure = function configure() {
+            var directiveConfig = {};
 
-          if (attrs.datetimepickerConfig) {
-            directiveConfig = scope.$parent.$eval(attrs.datetimepickerConfig);
-          }
+            if (attrs.datetimepickerConfig) {
+              directiveConfig = scope.$parent.$eval(attrs.datetimepickerConfig);
+            }
 
-          var configuration = {};
+            var configuration = {};
 
-          angular.extend(configuration, defaultConfig, directiveConfig);
+            angular.extend(configuration, defaultConfig, directiveConfig);
 
-          validateConfiguration(configuration);
+            validateConfiguration(configuration);
+
+            return configuration;
+          };
+
+          var configuration = configure();
+
 
           var startOfDecade = function startOfDecade(unixDate) {
             var startYear = (parseInt(moment.utc(unixDate).year() / 10, 10) * 10);
@@ -403,6 +424,13 @@
           ngModelController.$render = function $render() {
             scope.changeView(configuration.startView, new DateObject({utcDateValue: getUTCTime(ngModelController.$viewValue)}));
           };
+
+          if (configuration.configureOn) {
+            scope.$on(configuration.configureOn, function () {
+              configuration = configure();
+              ngModelController.$render();
+            });
+          }
         }
       };
     }]);

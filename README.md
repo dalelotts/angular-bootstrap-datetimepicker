@@ -171,6 +171,15 @@ Number.  Default: 5
 
 The increment used to build the hour view. A button is created for each <code>minuteStep</code> minutes.
 
+### configureOn
+
+String. Default: null
+
+Causes the date/time picker to re-read its configuration when the specified event is received.
+
+For example, perhaps the startView option in the configuration has changed and you would like the 
+new configuration to be used. You can $broadcast the event to cause this directive to use the new configuration. 
+
 ### dropdownSelector
 
 When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
