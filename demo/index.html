@@ -377,6 +377,24 @@
 
             </div>
         </div>
+
+        <div class="col-sm-6">
+            <h3>Embedded calendar with renderOn</h3>
+            <h4>Every time you click the button, the selectable attribute is toggled.</h4>
+
+            <p><code>renderOn: 'valid-dates-changed'</code> to cause the directive to re-render.</p>
+
+            <p><button class="btn btn-default" data-ng-click="renderOnClick()">Click me to re-render</button></p>
+
+            <div class="well">
+
+                <datetimepicker data-ng-model="data.renderOnDate"
+                                data-before-render='renderOnBeforeRender($dates)'
+                                data-datetimepicker-config="config.renderOnConfig"></datetimepicker>
+
+            </div>
+        </div>
+
     </div>
 </div>
 

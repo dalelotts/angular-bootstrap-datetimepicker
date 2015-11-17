@@ -74,6 +74,10 @@ angular.module('demo.demoController', [])
         configureOnConfig: {
           startView: 'year',
           configureOn: 'config-changed'
+        },
+        renderOnConfig: {
+          startView: 'year',
+          renderOn: 'valid-dates-changed'
         }
       };
 
@@ -87,6 +91,19 @@ angular.module('demo.demoController', [])
         }
         $scope.config.configureOnConfig.startView = validViews[newIndex];
         $scope.$broadcast('config-changed');
+      };
+
+      var selectable = true;
+
+      $scope.renderOnBeforeRender = function ($dates) {
+        angular.forEach($dates, function (dateObject) {
+          dateObject.selectable = selectable;
+        });
+      };
+
+      $scope.renderOnClick = function renderOnClick() {
+        selectable = (!selectable);
+        $scope.$broadcast('valid-dates-changed');
       };
     }
   ]);

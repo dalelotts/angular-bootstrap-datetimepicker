@@ -28,10 +28,11 @@
   'use strict';
   angular.module('ui.bootstrap.datetimepicker', [])
     .constant('dateTimePickerConfig', {
+      configureOn: null,
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
-      configureOn: null,
+      renderOn: null,
       startView: 'day'
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
@@ -62,10 +63,11 @@
       var validateConfiguration = function validateConfiguration(configuration) {
 
         var validOptions = [
+          'configureOn',
           'dropdownSelector',
           'minuteStep',
           'minView',
-          'configureOn',
+          'renderOn',
           'startView'
         ];
 
@@ -102,6 +104,12 @@
         }
         if (configuration.configureOn !== null && configuration.configureOn.length < 1) {
           throw ('configureOn must not be an empty string');
+        }
+        if (configuration.renderOn !== null && !angular.isString(configuration.renderOn)) {
+          throw ('renderOn must be a string');
+        }
+        if (configuration.renderOn !== null && configuration.renderOn.length < 1) {
+          throw ('renderOn must not be an empty string');
         }
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
           throw ('dropdownSelector must be a string');
@@ -430,6 +438,9 @@
               configuration = configure();
               ngModelController.$render();
             });
+          }
+          if (configuration.renderOn) {
+            scope.$on(configuration.renderOn, ngModelController.$render);
           }
         }
       };

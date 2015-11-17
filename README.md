@@ -180,6 +180,15 @@ Causes the date/time picker to re-read its configuration when the specified even
 For example, perhaps the startView option in the configuration has changed and you would like the 
 new configuration to be used. You can $broadcast the event to cause this directive to use the new configuration. 
 
+### renderOn
+
+String. Default: null
+
+Causes the date/time picker to re-render its view when the specified event is received.
+
+For example, if you want to disable any dates or times that are in the past. 
+You can $broadcast the event at an interval to disable times in the past (or any other time valid dates change).
+
 ### dropdownSelector
 
 When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
