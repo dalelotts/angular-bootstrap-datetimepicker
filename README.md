@@ -1,4 +1,4 @@
-# Angular bootstrap date & time picker version: 0.3.15
+# Angular bootstrap date & time picker version: 0.4.0
 
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
@@ -147,19 +147,19 @@ which is specified in the data-datetimepicker-config attribute.
 
 ### startView
 
-String.  Default: 'day'
+String.  Default: ```'day'```
 
 The view that the datetimepicker should show when it is opened.
 Accepts values of :
- * 'minute' for the minute view
- * 'hour' for the hour view
- * 'day' for the day view (the default)
- * 'month' for the 12-month view
- * 'year' for the 10-year overview. Useful for date-of-birth datetimepickers.
+ * ```'minute'``` for the minute view
+ * ```'hour'``` for the hour view
+ * ```'day'``` for the day view (the default)
+ * ```'month'``` for the 12-month view
+ * ```'year'``` for the 10-year overview. Useful for date-of-birth datetimepickers.
 
 ### minView
 
-String. 'minute'
+String. ```'minute'```
 
 The lowest view that the datetimepicker should show.
 
@@ -167,13 +167,13 @@ Accepts the same values as startView.
 
 ### minuteStep
 
-Number.  Default: 5
+Number.  Default: ```5```
 
 The increment used to build the hour view. A button is created for each <code>minuteStep</code> minutes.
 
 ### configureOn
 
-String. Default: null
+String. Default: ```null```
 
 Causes the date/time picker to re-read its configuration when the specified event is received.
 
@@ -182,12 +182,37 @@ new configuration to be used. You can $broadcast the event to cause this directi
 
 ### renderOn
 
-String. Default: null
+String. Default: ```null```
 
 Causes the date/time picker to re-render its view when the specified event is received.
 
 For example, if you want to disable any dates or times that are in the past. 
 You can $broadcast the event at an interval to disable times in the past (or any other time valid dates change).
+
+### modelType
+
+String. Default: ```'Date'```
+
+Specifies the data type to use when storing the selected date in the model. 
+
+Accepts any string value, but the following values have special meaning (these values are case sensitive) :
+ * ```'Date'``` stores a Date instance in the model. Will accept Date, moment, milliseconds, and ISO 8601 strings as initial input from the model 
+ * ```'moment'``` stores a moment instance in the model. Accepts the same initial values as ```Date```
+ * ```'milliseconds'``` store the epoch milliseconds (since 1-1-1970) in the model. Accepts the same initial values as ```Date```
+
+Any other value is considered a format string. 
+
+When accepting values from, and saving values to the model, this directive tries to be as flexible as possible.
+Dates, moments, and milliseconds are all accepted as input no matter what you specify for ```modelType```.
+However, strings are problematic and often lose timezone information, so use caution when storing strings. 
+
+If you must use a string, be aware that the format stored in the model must exactly match the format specified in ```modelType```.
+For example, the value in the model is ```'2015-12-31'``` then using ```modelType: 'MM-DD-YYYY'``` will cause an exception. 
+ 
+NOTA BENE: If the only reason you are storing strings is to have it properly formatted when displaying to the user,
+please review the documentation on ngModelController $formatters and $parsers. These allow you to store a value in the model
+but display it formatted as you like in the view. In other words, stop it!  =)
+
 
 ### dropdownSelector
 
@@ -275,7 +300,7 @@ moment.locale('en');        // English
 moment.locale('zh-cn');     // Simplified chinese
 ```
 
-# Screenshots
+# Screen shots
 
 ## Year view
 

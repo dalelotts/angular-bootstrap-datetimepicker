@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.3.15
+ * @license angular-bootstrap-datetimepicker  version: 0.4.0
  * Copyright 2015 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
@@ -32,6 +32,8 @@
       dropdownSelector: null,
       minuteStep: 5,
       minView: 'minute',
+      modelType: 'Date',
+      parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZZ',
       renderOn: null,
       startView: 'day'
     })
@@ -67,6 +69,8 @@
           'dropdownSelector',
           'minuteStep',
           'minView',
+          'modelType',
+          'parseFormat',
           'renderOn',
           'startView'
         ];
@@ -110,6 +114,16 @@
         }
         if (configuration.renderOn !== null && configuration.renderOn.length < 1) {
           throw ('renderOn must not be an empty string');
+        }
+        if (configuration.modelType !== null && !angular.isString(configuration.modelType)) {
+          throw ('modelType must be a string');
+        }
+        if (configuration.modelType !== null && configuration.modelType.length < 1) {
+          throw ('modelType must not be an empty string');
+        }
+        if (configuration.modelType !== 'Date' && configuration.modelType !== 'moment' && configuration.modelType !== 'milliseconds') {
+          // modelType contains string format, overriding parseFormat with modelType
+          configuration.parseFormat = configuration.modelType;
         }
         if (configuration.dropdownSelector !== null && !angular.isString(configuration.dropdownSelector)) {
           throw ('dropdownSelector must be a string');
@@ -182,21 +196,64 @@
           var configuration = configure();
 
 
-          var startOfDecade = function startOfDecade(unixDate) {
-            var startYear = (parseInt(moment.utc(unixDate).year() / 10, 10) * 10);
-            return moment.utc(unixDate).year(startYear).startOf('year');
+          var startOfDecade = function startOfDecade(milliseconds) {
+            var startYear = (parseInt(moment.utc(milliseconds).year() / 10, 10) * 10);
+            return moment.utc(milliseconds).year(startYear).startOf('year');
+          };
+
+          var formatValue = function formatValue(timeValue, formatString) {
+            if (timeValue) {
+              return getMoment(timeValue).format(formatString);
+            } else {
+              return '';
+            }
+          };
+
+          /**
+           * Converts a time value into a moment.
+           *
+           * This function is now necessary because moment logs a warning when parsing a string without a format.
+           * @param modelValue
+           *  a time value in any of the supported formats (Date, moment, milliseconds, and string)
+           * @returns {moment}
+           *  representing the specified time value.
+           */
+
+          var getMoment = function getMoment(modelValue) {
+            return moment(modelValue, angular.isString(modelValue) ? configuration.parseFormat : undefined);
+          };
+
+          /**
+           * Converts a time value to UCT/GMT time.
+           * @param modelValue
+           *  a time value in any of the supported formats (Date, moment, milliseconds, and string)
+           * @returns {number}
+           *  number of milliseconds since 1/1/1970
+           */
+
+          var getUTCTime = function getUTCTime(modelValue) {
+            var tempDate = new Date();
+            if (modelValue) {
+              var tempMoment = getMoment(modelValue);
+              if (tempMoment.isValid()) {
+                tempDate = tempMoment.toDate();
+              } else {
+                throw 'Invalid date: ' + modelValue;
+              }
+            }
+            return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
           };
 
           var dataFactory = {
-            year: function year(unixDate) {
-              var selectedDate = moment.utc(unixDate).startOf('year');
+            year: function year(milliseconds) {
+              var selectedDate = moment.utc(milliseconds).startOf('year');
               // View starts one year before the decade starts and ends one year after the decade ends
               // i.e. passing in a date of 1/1/2013 will give a range of 2009 to 2020
               // Truncate the last digit from the current year and subtract 1 to get the start of the decade
               var startDecade = (parseInt(selectedDate.year() / 10, 10) * 10);
-              var startDate = moment.utc(startOfDecade(unixDate)).subtract(1, 'year').startOf('year');
+              var startDate = moment.utc(startOfDecade(milliseconds)).subtract(1, 'year').startOf('year');
 
-              var activeYear = ngModelController.$modelValue ? moment(ngModelController.$modelValue).year() : 0;
+              var activeYear = formatValue(ngModelController.$modelValue, 'YYYY');
 
               var result = {
                 'currentView': 'year',
@@ -217,7 +274,7 @@
                   'display': yearMoment.format('YYYY'),
                   'past': yearMoment.year() < startDecade,
                   'future': yearMoment.year() > startDecade + 9,
-                  'active': yearMoment.year() === activeYear
+                  'active': yearMoment.format('YYYY') === activeYear
                 };
 
                 result.dates.push(new DateObject(dateValue));
@@ -226,11 +283,11 @@
               return result;
             },
 
-            month: function month(unixDate) {
+            month: function month(milliseconds) {
 
-              var startDate = moment.utc(unixDate).startOf('year');
-              var previousViewDate = startOfDecade(unixDate);
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM') : 0;
+              var startDate = moment.utc(milliseconds).startOf('year');
+              var previousViewDate = startOfDecade(milliseconds);
+              var activeDate = formatValue(ngModelController.$modelValue, 'YYYY-MMM');
 
               var result = {
                 'previousView': 'year',
@@ -259,16 +316,16 @@
               return result;
             },
 
-            day: function day(unixDate) {
+            day: function day(milliseconds) {
 
-              var selectedDate = moment.utc(unixDate);
+              var selectedDate = moment.utc(milliseconds);
               var startOfMonth = moment.utc(selectedDate).startOf('month');
               var previousViewDate = moment.utc(selectedDate).startOf('year');
               var endOfMonth = moment.utc(selectedDate).endOf('month');
 
               var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days');
 
-              var activeDate = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MMM-DD') : '';
+              var activeDate = formatValue(ngModelController.$modelValue, 'YYYY-MMM-DD');
 
               var result = {
                 'previousView': 'month',
@@ -308,11 +365,11 @@
               return result;
             },
 
-            hour: function hour(unixDate) {
-              var selectedDate = moment.utc(unixDate).startOf('day');
+            hour: function hour(milliseconds) {
+              var selectedDate = moment.utc(milliseconds).startOf('day');
               var previousViewDate = moment.utc(selectedDate).startOf('month');
 
-              var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H') : '';
+              var activeFormat = formatValue(ngModelController.$modelValue, 'YYYY-MM-DD H');
 
               var result = {
                 'previousView': 'day',
@@ -341,10 +398,10 @@
               return result;
             },
 
-            minute: function minute(unixDate) {
-              var selectedDate = moment.utc(unixDate).startOf('hour');
+            minute: function minute(milliseconds) {
+              var selectedDate = moment.utc(milliseconds).startOf('hour');
               var previousViewDate = moment.utc(selectedDate).startOf('day');
-              var activeFormat = ngModelController.$modelValue ? moment(ngModelController.$modelValue).format('YYYY-MM-DD H:mm') : '';
+              var activeFormat = formatValue(ngModelController.$modelValue, 'YYYY-MM-DD H:mm');
 
               var result = {
                 'previousView': 'hour',
@@ -375,9 +432,23 @@
               return result;
             },
 
-            setTime: function setTime(unixDate) {
-              var tempDate = new Date(unixDate);
+            setTime: function setTime(milliseconds) {
+              var tempDate = new Date(milliseconds);
               var newDate = new Date(tempDate.getUTCFullYear(), tempDate.getUTCMonth(), tempDate.getUTCDate(), tempDate.getUTCHours(), tempDate.getUTCMinutes(), tempDate.getUTCSeconds(), tempDate.getUTCMilliseconds());
+
+              switch (configuration.modelType) {
+                case 'Date':
+                  // No additional work needed
+                  break;
+                case 'moment':
+                  newDate = moment(newDate);
+                  break;
+                case 'milliseconds':
+                  newDate = milliseconds;
+                  break;
+                default: // It is assumed that the modelType is a formatting string.
+                  newDate = moment(newDate).format(configuration.modelType);
+              }
 
               var oldDate = ngModelController.$modelValue;
               ngModelController.$setViewValue(newDate);
@@ -388,13 +459,8 @@
 
               scope.onSetTime({newDate: newDate, oldDate: oldDate});
 
-              return dataFactory[configuration.startView](unixDate);
+              return dataFactory[configuration.startView](milliseconds);
             }
-          };
-
-          var getUTCTime = function getUTCTime(modelValue) {
-            var tempDate = (modelValue ? moment(modelValue).toDate() : new Date());
-            return tempDate.getTime() - (tempDate.getTimezoneOffset() * 60000);
           };
 
           scope.changeView = function changeView(viewName, dateObject, event) {

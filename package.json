@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-datetimepicker",
-  "version": "0.0.0-managed-by-semantic-release",
+  "version": "0.4.0",
   "description": "This directive allows you to add a datetime-picker to your form elements.",
   "keywords": [
     "anguar",
@@ -28,7 +28,7 @@
     "autoprefixer": "^6.1.0",
     "bootstrap": "^3.3.5",
     "bower": "latest",
-    "commitizen": "^2.4.4",
+    "commitizen": "^2.4.6",
     "csscomb": "^3.1.8",
     "csslint": "^0.10.0",
     "cz-conventional-changelog": "^1.1.4",
