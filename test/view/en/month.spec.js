@@ -49,6 +49,12 @@ describe('month view with initial date of 2010-10-01', function () {
   it('has 1 `.active` element with a value of Oct', function () {
     expect(jQuery('.active', element).text()).toBe('Oct');
   });
+  it('has a `<th class=`left`>` that contains a sr description set in english', function () {
+    expect(jQuery('th[class*=left] .sr-only', element).text()).toBe('previous');
+  });
+  it('has a `<th class=`right`>` that contains a sr description set in english', function () {
+    expect(jQuery('th[class*=right] .sr-only', element).text()).toBe('next');
+  });
 });
 
 

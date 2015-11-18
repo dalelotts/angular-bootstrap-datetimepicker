@@ -55,6 +55,12 @@ describe('German day view with initial date of 2013-01-22', function () {
   it('has 1 `.active` element with a value of 22', function () {
     expect(jQuery('.active', element).text()).toBe('22');
   });
+  it('has a `<th class=`left`>` that contains a sr description set in german', function () {
+    expect(jQuery('th[class*=left] .sr-only', element).text()).toBe('vorige');
+  });
+  it('has a `<th class=`right`>` that contains a sr description set in english', function () {
+    expect(jQuery('th[class*=right] .sr-only', element).text()).toBe('weiter');
+  });
 });
 
 

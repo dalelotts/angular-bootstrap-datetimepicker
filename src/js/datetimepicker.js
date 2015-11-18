@@ -37,7 +37,36 @@
       renderOn: null,
       startView: 'day'
     })
-    .directive('datetimepicker', ['$log', 'dateTimePickerConfig', function datetimepickerDirective($log, defaultConfig) {
+    .constant('srDictionary', {
+      'bg': {prev: 'предишна', next: 'следваща'},
+      'ca': {prev: 'anterior', next: 'següent'},
+      'da': {prev: 'forrige', next: 'næste'},
+      'de': {prev: 'vorige', next: 'weiter'},
+      'en-au': {prev: 'previous', next: 'next'},
+      'en-gb': {prev: 'previous', next: 'next'},
+      'en': {prev: 'previous', next: 'next'},
+      'es-us': {prev: 'atrás', next: 'siguiente'},
+      'es': {prev: 'atrás', next: 'siguiente'},
+      'fi': {prev: 'edellinen', next: 'seuraava'},
+      'fr': {prev: 'précédent', next: 'suivant'},
+      'hu': {prev: 'előző', next: 'következő'},
+      'it': {prev: 'precedente', next: 'successivo'},
+      'ja': {prev: '前へ', next: '次へ'},
+      'ml': {prev: 'മുൻപുള്ളത്', next: 'അടുത്തത്'},
+      'nl': {prev: 'vorige', next: 'volgende'},
+      'pl': {prev: 'poprzednia', next: 'następna'},
+      'pt-br': {prev: 'anteriores', next: 'próximos'},
+      'pt': {prev: 'anterior', next: 'próximo'},
+      'ro': {prev: 'anterior', next: 'următor'},
+      'ru': {prev: 'предыдущая', next: 'следующая'},
+      'sk': {prev: 'predošlá', next: 'ďalšia'},
+      'sv': {prev: 'föregående', next: 'nästa'},
+      'tr': {prev: 'önceki', next: 'sonraki'},
+      'uk': {prev: 'назад', next: 'далі'},
+      'zh-cn': {prev: '上一页', next: '下一页'},
+      'zh-tw': {prev: '上一頁', next: '下一頁'}
+    })
+    .directive('datetimepicker', ['$log', 'dateTimePickerConfig', 'srDictionary', function datetimepickerDirective($log, defaultConfig, srDictionary) {
 
       function DateObject() {
 
@@ -45,6 +74,7 @@
         var localOffset = tempDate.getTimezoneOffset() * 60000;
         this.utcDateValue = tempDate.getTime();
         this.selectable = true;
+
 
         this.localDateValue = function () {
           return this.utcDateValue + localOffset;
@@ -145,9 +175,9 @@
         '<table class="table table-condensed  {{ data.currentView }}-view">' +
         '   <thead>' +
         '       <tr>' +
-        '           <th class="left" data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"/></th>' +
+        '           <th class="left" data-ng-click="changeView(data.currentView, data.leftDate, $event)" data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"><span class="sr-only">{{ data.srText.prev }}</span></i></th>' +
         '           <th class="switch" colspan="5" data-ng-show="data.previousViewDate.selectable" data-ng-click="changeView(data.previousView, data.previousViewDate, $event)">{{ data.previousViewDate.display }}</th>' +
-        '           <th class="right" data-ng-click="changeView(data.currentView, data.rightDate, $event)" data-ng-show="data.rightDate.selectable"><i class="glyphicon glyphicon-arrow-right"/></th>' +
+        '           <th class="right" data-ng-click="changeView(data.currentView, data.rightDate, $event)" data-ng-show="data.rightDate.selectable"><i class="glyphicon glyphicon-arrow-right"><span class="sr-only">{{ data.srText.next }}</span></i></th>' +
         '       </tr>' +
         '       <tr>' +
         '           <th class="dow" data-ng-repeat="day in data.dayNames" >{{ day }}</th>' +
@@ -194,7 +224,7 @@
           };
 
           var configuration = configure();
-
+          var srText = srDictionary[moment.locale().toLowerCase()];
 
           var startOfDecade = function startOfDecade(milliseconds) {
             var startYear = (parseInt(moment.utc(milliseconds).year() / 10, 10) * 10);
@@ -264,7 +294,8 @@
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(9, 'year').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(11, 'year').valueOf()}),
-                'dates': []
+                'dates': [],
+                'srText': srText
               };
 
               for (var i = 0; i < 12; i += 1) {
@@ -299,7 +330,8 @@
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(startDate).subtract(1, 'year').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startDate).add(1, 'year').valueOf()}),
-                'dates': []
+                'dates': [],
+                'srText': srText
               };
 
               for (var i = 0; i < 12; i += 1) {
@@ -338,7 +370,8 @@
                 'leftDate': new DateObject({utcDateValue: moment.utc(startOfMonth).subtract(1, 'months').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(startOfMonth).add(1, 'months').valueOf()}),
                 'dayNames': [],
-                'weeks': []
+                'weeks': [],
+                'srText': srText
               };
 
 
@@ -381,7 +414,8 @@
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'days').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'days').valueOf()}),
-                'dates': []
+                'dates': [],
+                'srText': srText
               };
 
               for (var i = 0; i < 24; i += 1) {
@@ -413,7 +447,8 @@
                 }),
                 'leftDate': new DateObject({utcDateValue: moment.utc(selectedDate).subtract(1, 'hours').valueOf()}),
                 'rightDate': new DateObject({utcDateValue: moment.utc(selectedDate).add(1, 'hours').valueOf()}),
-                'dates': []
+                'dates': [],
+                'srText': srText
               };
 
               var limit = 60 / configuration.minuteStep;
