@@ -21,9 +21,9 @@ Very important notes
 ====================
 
  * **Pull pull requests to the `master` branch will be closed.** Please submit all pull requests to the `develop` branch.
- * **Pull requests will not be merged without unit tests.** 
+ * **Pull requests will not be merged without unit tests.**
  * **Do not include the minified files in your pull request.**
- * **Have good tests. If you don't have tests for very line and branch in your changes, I won't accept the PR.
+ * **Have good tests. If you don't have tests for every line and branch in your changes, I won't accept the PR.
  * **If your PR fails the CI build, I won't look at it.
 
 Gulp tasks
