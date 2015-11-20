@@ -1,109 +1,126 @@
 /*globals angular, moment, $ */
+(function () {
+  'use strict';
 
-angular.module('demo.demoController', [])
-  .controller('demoController', [
-    '$scope',
-    '$log',
-    function ($scope, $log) {
-      'use strict';
-      $scope.controllerName = 'demoController';
+  angular
+    .module('demo.demoController', [])
+    .controller('demoController', demoController);
 
-      moment.locale('en');
+  demoController.$inject = ['$scope', '$log'];
 
-      $scope.data = {
-        guardians: [
-          {
-            name: 'Peter Quill',
-            dob: null
-          },
-          {
-            name: 'Groot',
-            dob: null
-          }
-        ]
-      };
+  function demoController($scope, $log) {
 
-      $scope.checkboxOnTimeSet = function () {
-        $scope.data.checked = false;
-      };
+    var validViews = ['year', 'month', 'day', 'hour', 'minute'];
+    var selectable = true;
 
-      $scope.inputOnTimeSet = function (newDate) {
-        // If you are not using jQuery or bootstrap.js,
-        // this will throw an error.
-        // However, can write this function to take any
-        // action necessary once the user has selected a
-        // date/time using the picker
-        $log.info(newDate);
-        $('#dropdown3').dropdown('toggle');
-      };
+    $scope.controllerName = 'demoController';
 
-      $scope.getLocale = function () {
-        return moment.locale();
-      };
+    /* Bindable functions
+    -----------------------------------------------*/
+    $scope.beforeRender = beforeRender;
+    $scope.changeConfig = changeConfig;
+    $scope.checkboxOnTimeSet = checkboxOnTimeSet;
+    $scope.configFunction = configFunction;
+    $scope.getLocale = getLocale;
+    $scope.guardianOnSetTime = guardianOnSetTime;
+    $scope.inputOnTimeSet = inputOnTimeSet;
+    $scope.renderOnBeforeRender = renderOnBeforeRender;
+    $scope.renderOnClick = renderOnClick;
+    $scope.setLocale = setLocale;
 
-      $scope.setLocale = function (newLocale) {
-        moment.locale(newLocale);
-      };
+    moment.locale('en');
 
+    $scope.config = {
+      datetimePicker: {
+        startView: 'year'
+      }
+    };
 
-      $scope.guardianOnSetTime = function ($index, guardian, newDate, oldDate) {
-        $log.info($index);
-        $log.info(guardian.name);
-        $log.info(newDate);
-        $log.info(oldDate);
-        angular.element('#guardian' + $index).dropdown('toggle');
-      };
+    $scope.data = {
+      guardians: [
+      {
+        name: 'Peter Quill',
+        dob: null
+      },
+      {
+        name: 'Groot',
+        dob: null
+      }
+      ]
+    };
 
-      $scope.beforeRender = function ($dates) {
-        var index = Math.ceil($dates.length / 2);
-        $log.info(index);
-        $dates[index].selectable = false;
-      };
+    $scope.config = {
+      configureOnConfig: {
+        startView: 'year',
+        configureOn: 'config-changed'
+      },
+      renderOnConfig: {
+        startView: 'year',
+        renderOn: 'valid-dates-changed'
+      }
+    };
 
-      $scope.config = {
-        datetimePicker: {
-          startView: 'year'
-        }
-      };
-
-      $scope.configFunction = function configFunction() {
-        return {startView: 'month'};
-      };
-
-      $scope.config = {
-        configureOnConfig: {
-          startView: 'year',
-          configureOn: 'config-changed'
-        },
-        renderOnConfig: {
-          startView: 'year',
-          renderOn: 'valid-dates-changed'
-        }
-      };
-
-      var validViews = ['year', 'month', 'day', 'hour', 'minute'];
-
-      $scope.changeConfig = function changeConfig() {
-        var newIndex = validViews.indexOf($scope.config.configureOnConfig.startView) + 1;
-        console.log(newIndex);
-        if (newIndex >= validViews.length) {
-          newIndex = 0;
-        }
-        $scope.config.configureOnConfig.startView = validViews[newIndex];
-        $scope.$broadcast('config-changed');
-      };
-
-      var selectable = true;
-
-      $scope.renderOnBeforeRender = function ($dates) {
-        angular.forEach($dates, function (dateObject) {
-          dateObject.selectable = selectable;
-        });
-      };
-
-      $scope.renderOnClick = function renderOnClick() {
-        selectable = (!selectable);
-        $scope.$broadcast('valid-dates-changed');
-      };
+    function checkboxOnTimeSet() {
+      $scope.data.checked = false;
     }
-  ]);
+
+    function inputOnTimeSet(newDate) {
+      // If you are not using jQuery or bootstrap.js,
+      // this will throw an error.
+      // However, can write this function to take any
+      // action necessary once the user has selected a
+      // date/time using the picker
+      $log.info(newDate);
+      $('#dropdown3').dropdown('toggle');
+    }
+
+    function getLocale() {
+      return moment.locale();
+    }
+
+    function setLocale(newLocale) {
+      moment.locale(newLocale);
+    }
+
+    function guardianOnSetTime($index, guardian, newDate, oldDate) {
+      $log.info($index);
+      $log.info(guardian.name);
+      $log.info(newDate);
+      $log.info(oldDate);
+      angular.element('#guardian' + $index).dropdown('toggle');
+    };
+
+    function beforeRender($dates) {
+      var index = Math.ceil($dates.length / 2);
+      $log.info(index);
+      $dates[index].selectable = false;
+    };
+
+    function configFunction() {
+      return {startView: 'month'};
+    }
+
+    function changeConfig() {
+      var newIndex = validViews.indexOf($scope.config.configureOnConfig.startView) + 1;
+      console.log(newIndex);
+      if (newIndex >= validViews.length) {
+        newIndex = 0;
+      }
+      $scope.config.configureOnConfig.startView = validViews[newIndex];
+      $scope.$broadcast('config-changed');
+    }
+
+    function renderOnBeforeRender($dates) {
+      angular.forEach($dates, function (dateObject) {
+        dateObject.selectable = selectable;
+      });
+    }
+
+    function renderOnClick() {
+      selectable = (!selectable);
+      $scope.$broadcast('valid-dates-changed');
+    }
+
+  }
+
+})();

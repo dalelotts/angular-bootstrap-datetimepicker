@@ -75,6 +75,12 @@ describe('year view with ng-model = null', function () {
     it('has a `<th class=`right`>` that contains a <i class=`icon-arrow-right`> element', function () {
       expect(jQuery('th[class*=right] > i[class*=icon-arrow-right]', element).length).toBe(1);
     });
+    it('has a `<th class=`left`>` that contains a sr description set in english', function () {
+      expect(jQuery('th[class*=left] .sr-only', element).text()).toBe('previous');
+    });
+    it('has a `<th class=`right`>` that contains a sr description set in english', function () {
+      expect(jQuery('th[class*=right] .sr-only', element).text()).toBe('next');
+    });
     it('has a `<table>` that contains a tbody element', function () {
       expect(element.find('table').find('tbody').length).toBe(1);
     });

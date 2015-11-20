@@ -52,6 +52,12 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
   it('`.active` element with a value of 0:00', function () {
     expect(jQuery('.active', element).text()).toBe('凌晨12点00分');
   });
+  it('has a `<th class=`left`>` that contains a sr description set in simplified chinese', function () {
+    expect(jQuery('th[class*=left] .sr-only', element).text()).toBe('上一页');
+  });
+  it('has a `<th class=`right`>` that contains a sr description set in simplified chinese', function () {
+    expect(jQuery('th[class*=right] .sr-only', element).text()).toBe('下一页');
+  });
 });
 
 
