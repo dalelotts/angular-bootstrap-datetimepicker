@@ -67,6 +67,11 @@
       'zh-tw': {prev: '上一頁', next: '下一頁'}
     })
     .directive('datetimepicker', ['$log', 'dateTimePickerConfig', 'srDictionary', function datetimepickerDirective($log, defaultConfig, srDictionary) {
+      function isToday(d) {
+        var today = moment().local().format('YYYY-MM-DD');
+        var param = moment(d).local().format('YYYY-MM-DD');
+        return today === param;
+      }
 
       function DateObject() {
 
@@ -90,6 +95,8 @@
             this[prop] = arguments[0][prop];
           }
         }
+
+        this['isToday'] = isToday(this.localDateValue());
       }
 
       var validateConfiguration = function validateConfiguration(configuration) {
@@ -196,7 +203,7 @@
         '           <td data-ng-repeat="dateObject in week.dates" ' +
         '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
         '               class="day" ' +
-        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
+        '               data-ng-class="{today: dateObject.isToday, active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
         '       </tr>' +
         '   </tbody>' +
         '</table></div>',
