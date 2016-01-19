@@ -1,10 +1,10 @@
 {
   "name": "rnp-angular-bootstrap-datetimepicker",
   "homepage": "https://github.com/rizaqpratama/angular-bootstrap-datetimepicker",
-  "version": "0.4.0",
-  "_release": "0.4.0",
+  "version": "0.4.1",
+  "_release": "0.4.1",
   "main":["src/js/datetimepicker.js","src/css/datetimepicker.css"],
   "_source": "git://github.com/rizaqpratama/angular-bootstrap-datetimepicker.git",
-  "_target": "~0.4.0",
+  "_target": "~0.4.1",
   "_originalSource": "rnp-angular-bootstrap-datetimepicker"
 }
