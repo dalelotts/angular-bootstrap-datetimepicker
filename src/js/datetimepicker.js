@@ -433,6 +433,12 @@
             scope.changeView(configuration.startView, new DateObject({utcDateValue: getUTCTime(ngModelController.$viewValue)}));
           };
 
+          scope.$on('$destroy', function(){
+            dataFactory = null;
+            scope.changeView = null;
+          });
+
+
           if (configuration.configureOn) {
             scope.$on(configuration.configureOn, function () {
               configuration = configure();
