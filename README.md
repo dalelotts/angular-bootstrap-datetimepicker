@@ -287,6 +287,56 @@ In this example, the drop-down functionality is controlled by Twitter Bootstrap.
 The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
 the drop-down is toggled closed after the user selectes a date/time.
 
+### Create a date range picker with validation controls
+```html
+<div class="dropdown form-group">
+  <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <div class="input-group date">
+      <input type="text" class="form-control" data-ng-model="dateRangeStart">
+      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    </div>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <datetimepicker data-ng-model="dateRangeStart" data-datetimepicker-config="{ dropdownSelector: '#dropdown1'}" data-before-render="beforeRenderStartDate($view, $dates, $leftDate, $upDate, $rightDate)"/>
+  </ul>
+</div>
+
+<div class="dropdown form-group">
+  <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <div class="input-group date">
+      <input type="text" class="form-control" data-ng-model="dateRangeEnd">
+      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    </div>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <datetimepicker data-ng-model="dateRangeEnd" data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}" data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"/>
+  </ul>
+</div>
+```
+In this example, two elements are created : one for the start date and the second for the end date of the range.
+
+```JavaScript
+$scope.beforeRenderStartDate = function($view, $dates, $leftDate, $upDate, $rightDate) {
+  if ($scope.dateRangeEnd) {
+    var activeDate = moment($scope.dateRangeEnd);
+    for (var i = 0; i < $dates.length; i++) {
+      if ($dates[i].localDateValue() >= activeDate.valueOf()) $dates[i].selectable = false;
+    }
+  }
+}
+
+$scope.beforeRenderEndDate = function($view, $dates, $leftDate, $upDate, $rightDate) {
+  if ($scope.dateRangeStart) {
+    var activeDate = moment($scope.dateRangeStart).subtract(1, $view).add(1, 'minute');
+    for (var i = 0; i < $dates.length; i++) {
+      if ($dates[i].localDateValue() <= activeDate.valueOf()) {
+        $dates[i].selectable = false;            
+      }
+    }
+  }
+}
+```
+Then in the controller two functions must be added. Each one is related to the concerned date. They update the selectable status of each displayed date based on the range values. The time is also taken into account.
 
 ## I18N / l10n support
 
