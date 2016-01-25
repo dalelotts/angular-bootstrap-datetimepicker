@@ -80,7 +80,7 @@
           return this.utcDateValue + localOffset;
         };
 
-        var validProperties = ['utcDateValue', 'localDateValue', 'display', 'active', 'selectable', 'past', 'future'];
+        var validProperties = ['utcDateValue', 'localDateValue', 'display', 'active', 'selectable', 'past', 'future', 'today'];
 
         for (var prop in arguments[0]) {
           /* istanbul ignore else */
@@ -188,7 +188,7 @@
         '           <td colspan="7" >' +
         '              <span    class="{{ data.currentView }}" ' +
         '                       data-ng-repeat="dateObject in data.dates"  ' +
-        '                       data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
+        '                       data-ng-class="{today: dateObject.today, active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" ' +
         '                       data-ng-click="changeView(data.nextView, dateObject, $event)">{{ dateObject.display }}</span> ' +
         '           </td>' +
         '       </tr>' +
@@ -196,7 +196,7 @@
         '           <td data-ng-repeat="dateObject in week.dates" ' +
         '               data-ng-click="changeView(data.nextView, dateObject, $event)"' +
         '               class="day" ' +
-        '               data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
+        '               data-ng-class="{today: dateObject.today, active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}" >{{ dateObject.display }}</td>' +
         '       </tr>' +
         '   </tbody>' +
         '</table></div>',
@@ -379,6 +379,7 @@
                 result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'));
               }
 
+              var today = moment.utc(new Date());
               for (var i = 0; i < 6; i += 1) {
                 var week = {dates: []};
                 for (var j = 0; j < 7; j += 1) {
@@ -387,6 +388,7 @@
                     'utcDateValue': monthMoment.valueOf(),
                     'display': monthMoment.format('D'),
                     'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
+                    'today': today.format('YYYY-MMM-DD') === monthMoment.format('YYYY-MMM-DD'),
                     'past': monthMoment.isBefore(startOfMonth),
                     'future': monthMoment.isAfter(endOfMonth)
                   };
