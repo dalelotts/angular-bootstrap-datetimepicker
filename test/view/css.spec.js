@@ -67,3 +67,37 @@ describe('css styling', function () {
   });
 });
 
+
+describe('css styling today', function () {
+  'use strict';
+
+  var element = null;
+  var header = null;
+  var day = null;
+
+
+  beforeEach(module('ui.bootstrap.datetimepicker'));
+  beforeEach(inject(function ($compile, $rootScope) {
+    moment.locale('en');
+
+    var d = moment.utc(new Date());
+    header = d.format('YYYY-MMM');
+    day = d.format('DD');
+
+    $rootScope.date = d.toDate();
+    element = $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope);
+    angular.element(document).find('body').append(element);
+    $rootScope.$digest();
+  }));
+
+  it('header is selecte to current month/year', function () {
+    var todayElement = jQuery('.switch', element);
+    expect(todayElement.text()).toBe(header);
+  });
+
+
+  it('today must have the same number', function () {
+    var todayElement = jQuery('.today', element);
+    expect(todayElement.text()).toBe(day);
+  });
+});
