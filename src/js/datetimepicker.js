@@ -35,7 +35,8 @@
       modelType: 'Date',
       parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZZ',
       renderOn: null,
-      startView: 'day'
+      startView: 'day',
+      hourDisplayFormat: 'LT'
     })
     .constant('srDictionary', {
       'bg': {prev: 'предишна', next: 'следваща'},
@@ -102,7 +103,8 @@
           'modelType',
           'parseFormat',
           'renderOn',
-          'startView'
+          'startView',
+          'hourDisplayFormat'
         ];
 
         for (var prop in configuration) {
@@ -422,7 +424,7 @@
                 var hourMoment = moment.utc(selectedDate).add(i, 'hours');
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
-                  'display': hourMoment.format('LT'),
+                  'display': hourMoment.format(configuration.hourDisplayFormat),
                   'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
                 };
 
@@ -457,7 +459,7 @@
                 var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute');
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
-                  'display': hourMoment.format('LT'),
+                  'display': hourMoment.format(configuration.hourDisplayFormat),
                   'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
                 };
 
