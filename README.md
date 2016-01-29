@@ -220,6 +220,12 @@ When used within a Bootstrap dropdown and jQuery, the selector specified in drop
 
 **NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option. If you do, an error will
  be logged and this option will be removed.
+ 
+### hourDisplayFormat
+
+String. Default: "LT"
+
+[Format](http://momentjs.com/docs/#/displaying/format/) to display hours on hour and minute view.
 
 
 ## Working with ng-model
