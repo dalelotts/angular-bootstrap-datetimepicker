@@ -154,7 +154,7 @@ data-on-set-time="onTimeSet"    <-- **This will NOT work, the ()'s are required*
 
 
 ## Configuration Options
-***NOTE*** The configuration optionss are not attributes on the element but rather members of the configuration object,
+***NOTE*** The configuration options are not attributes on the element but rather members of the configuration object,
 which is specified in the data-datetimepicker-config attribute.
 
 ```html
