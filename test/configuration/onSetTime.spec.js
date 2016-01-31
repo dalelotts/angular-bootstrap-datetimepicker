@@ -2,14 +2,11 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
- */
-
-/**
  *
- *    @author        Dale "Ducky" Lotts
- *    @since        11/8/2013
+ * @author        Dale "Ducky" Lotts
+ * @since        11/8/2013
  */
 describe('onSetTime', function () {
   'use strict';

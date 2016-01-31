@@ -2,14 +2,11 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
- */
-
-/**
  *
- *    @author        Dale "Ducky" Lotts
- *    @since        7/21/13
+ * @author        Dale "Ducky" Lotts
+ * @since        7/21/13
  */
 
 describe('minView', function () {
@@ -27,6 +24,7 @@ describe('minView', function () {
     it('if value is not a valid value', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minView: \'bar\' }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('invalid minView value: bar');
@@ -34,6 +32,7 @@ describe('minView', function () {
     it('if value is a numeric value', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minView: 0 }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('invalid minView value: 0');
@@ -41,6 +40,7 @@ describe('minView', function () {
     it('if value is greater than startView', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ startView: \'month\',  minView: \'year\' }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('startView must be greater than minView');

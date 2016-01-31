@@ -11,10 +11,11 @@ var lodash = require('lodash');
 var paths = require('./paths');
 var plato = require('plato');
 var Server = require('karma').Server;
+var path = require('path');
 
 gulp.task('build-css', ['scss'], function () {
   var Comb = require('csscomb');
-  var config = require('./config/csscomb.json');
+  var config = require('./.csscomb.json');
   var comb = new Comb(config);
   comb.processPath('./src/css/');
 });
@@ -93,6 +94,21 @@ var testConfig = function (options) {
   return lodash.assign(options, travisOptions);
 };
 
+gulp.task('templatecache', function () {
+  var templateCache = require('gulp-angular-templatecache');
+  var htmlMin = require('gulp-htmlmin');
+
+  return gulp
+    .src('src/templates/**/*.html')
+    .pipe(htmlMin({removeComments: true}))
+    .pipe(templateCache('datetimepicker.templates.js', {
+      base: path.join(__dirname, 'src'),
+      module: 'ui.bootstrap.datetimepicker'
+    }))
+    .pipe(gulp.dest('src/js'));
+});
+
+
 gulp.task('tdd', function (done) {
   gulp.watch(paths.all.concat(paths.scss), ['jscs', 'lint', 'build-css']);
 
@@ -110,7 +126,7 @@ gulp.task('tdd', function (done) {
 });
 
 
-gulp.task('test', function (done) {
+gulp.task('test', ['jscs', 'lint', 'csslint'], function (done) {
 
   var config = testConfig(
     {
@@ -125,4 +141,4 @@ gulp.task('test', function (done) {
 });
 
 
-gulp.task('default', ['jscs', 'lint', 'complexity', 'csslint', 'test']);
+gulp.task('default', ['complexity', 'test']);

@@ -13,20 +13,6 @@
     <title>Angular Bootstrap - Date Time Picker Demo</title>
     <base href="..">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/demo/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/demo/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/demo/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/demo/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/demo/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/demo/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/demo/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/demo/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/demo/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/demo/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/demo/favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/demo/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/demo/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/demo/favicons/manifest.json">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -42,6 +28,8 @@
     <script type="text/javascript" src="demo/demo-app.js"></script>
     <script type="text/javascript" src="demo/demo-controller.js"></script>
     <script type="text/javascript" src="src/js/datetimepicker.js"></script>
+    <script type="text/javascript" src="src/js/datetimepicker.templates.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/dalelotts/angular-date-time-input/v1.0.0/src/dateTimeInput.js"></script>
     <style>
         .datetimepicker {
             width: 400px;
@@ -89,7 +77,7 @@
         </div>
         <div class="col-sm-6">
             <h3>Drop-down Datetime with input box</h3>
-            <h4>Localized formatting <code>Not implemented yet</code></h4>
+            <h4>Localized formatting using <a href="https://github.com/dalelotts/angular-date-time-input"><code>angular-date-time-input</code></a> directive</h4>
 
             <p>Notice that you CAN enter a date with the keyboard.</p>
 
@@ -102,7 +90,7 @@
                     <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#"
                        href="#">
                         <div class="input-group">
-                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput">
+                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput" data-date-time-input="YYYY-MM-DD HH:mm a">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </a>

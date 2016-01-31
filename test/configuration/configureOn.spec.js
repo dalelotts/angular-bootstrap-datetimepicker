@@ -2,14 +2,11 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
- */
-
-/**
  *
- *    @author        Dale "Ducky" Lotts
- *    @since        7/21/13
+ * @author        Dale "Ducky" Lotts
+ * @since        7/21/13
  */
 
 describe('configureOn', function () {
@@ -27,6 +24,7 @@ describe('configureOn', function () {
     it('if value is an empty string', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ configureOn: \'\' }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('configureOn must not be an empty string');
@@ -34,6 +32,7 @@ describe('configureOn', function () {
     it('if value is numeric', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ configureOn: 3 }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('configureOn must be a string');

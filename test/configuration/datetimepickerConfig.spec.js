@@ -4,12 +4,9 @@
  * @license angular-bootstrap-datetimepicker
  * Copyright 2014 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
- */
-
-/**
  *
- *    @author        Dale "Ducky" Lotts
- *    @since        11/15/2014
+ * @author        Dale "Ducky" Lotts
+ * @since        11/15/2014
  */
 
 describe('dateimePickerConfig', function () {

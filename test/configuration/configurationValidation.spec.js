@@ -2,14 +2,11 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
- */
-
-/**
  *
- *    @author        Dale "Ducky" Lotts
- *    @since        8/4/13
+ * @author        Dale "Ducky" Lotts
+ * @since        8/4/13
  */
 describe('configuration validation', function () {
   'use strict';
@@ -37,6 +34,7 @@ describe('configuration validation', function () {
     it('if ng-model is not specified', function () {
       function compile() {
         $compile('<datetimepicker></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       // Can't specify the error message here because it changed starting with 1.2.x
@@ -45,6 +43,7 @@ describe('configuration validation', function () {
     it('if invalid option name is specified', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minview: \'year\' }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('invalid option: minview');

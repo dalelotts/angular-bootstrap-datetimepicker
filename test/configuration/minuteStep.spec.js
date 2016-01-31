@@ -2,14 +2,11 @@
 
 /**
  * @license angular-bootstrap-datetimepicker
- * Copyright 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
+ * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
- */
-
-/**
  *
- *    @author        Dale "Ducky" Lotts
- *    @since        7/21/13
+ * @author        Dale "Ducky" Lotts
+ * @since        7/21/13
  */
 
 describe('minuteStep', function () {
@@ -27,6 +24,7 @@ describe('minuteStep', function () {
     it('if value is zero', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minuteStep: 0 }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('minuteStep must be greater than zero and less than 60');
@@ -34,6 +32,7 @@ describe('minuteStep', function () {
     it('if value is less than zero', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minuteStep: -1 }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('minuteStep must be greater than zero and less than 60');
@@ -41,6 +40,7 @@ describe('minuteStep', function () {
     it('if value is 60', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minuteStep: 60 }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('minuteStep must be greater than zero and less than 60');
@@ -48,6 +48,7 @@ describe('minuteStep', function () {
     it('if value is greater 60', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minuteStep: 61 }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('minuteStep must be greater than zero and less than 60');
@@ -55,6 +56,7 @@ describe('minuteStep', function () {
     it('if value is not numeric', function () {
       function compile() {
         $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ minuteStep: \'5\' }"></datetimepicker>')($rootScope);
+        $rootScope.$digest();
       }
 
       expect(compile).toThrow('minuteStep must be numeric');

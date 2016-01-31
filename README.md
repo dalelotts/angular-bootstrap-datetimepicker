@@ -15,8 +15,24 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
+## Upgrading from 0.4.0 or earlier
 
-#Dependencies
+The template used by this directive has been separated from the directive to allow the developer to override
+ the template (i.e. use font-awesome styles in the template rather than glyphicons). As a result, you now 
+  need to include another javascript file in the page
+  
+```html
+<script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+```
+
+If you wan to override the template used by this directive, simply populate the ```$templateCache``` with your own template.
+
+# Formatting the date in an input box
+
+Use the [angular-date-time-input](https://github.com/dalelotts/angular-date-time-input) directive to format the 
+display of a date in an input box or allow users to enter a valid date with the keyboard.
+
+# Dependencies
 
 Requires:
  * AngularJS 1.4.x or higher (1.0.x will not work)
@@ -24,7 +40,8 @@ Requires:
  * bootstrap's glyphicons for arrows (Can be overridden in css)
  
 optional:
- * bootstrap's dropdown component (`dropdowns.less`)
+ * bootstrap's dropdown component (`dropdowns.less` or `bootstrap.css` )
+ * bootstrap's javascript (`bootstrap.js` )
 
 #Testing
 This directive was written using TDD and all enhancements and changes have related tests.
@@ -58,9 +75,9 @@ Add the css:
 Load the script files in your application:
 ```html
 <script type="text/javascript" src="node_modules/moment/moment.js"></script>
-<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="node_modules/angular/angular.js"></script>
 <script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
 ```
 
 Add the date module as a dependency to your application module:
@@ -76,7 +93,6 @@ Apply the directive to your form elements:
 ```
 
 ## Callback functions
-
 
 ### before-render
 Attribute on datetimepicker element
@@ -337,6 +353,8 @@ $scope.beforeRenderEndDate = function($view, $dates, $leftDate, $upDate, $rightD
 }
 ```
 Then in the controller two functions must be added. Each one is related to the concerned date. They update the selectable status of each displayed date based on the range values. The time is also taken into account.
+
+## Screen reader support
 
 ## I18N / l10n support
 

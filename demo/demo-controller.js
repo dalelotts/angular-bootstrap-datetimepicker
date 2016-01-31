@@ -16,7 +16,7 @@
     $scope.controllerName = 'demoController';
 
     /* Bindable functions
-    -----------------------------------------------*/
+     -----------------------------------------------*/
     $scope.beforeRender = beforeRender;
     $scope.changeConfig = changeConfig;
     $scope.checkboxOnTimeSet = checkboxOnTimeSet;
@@ -38,14 +38,14 @@
 
     $scope.data = {
       guardians: [
-      {
-        name: 'Peter Quill',
-        dob: null
-      },
-      {
-        name: 'Groot',
-        dob: null
-      }
+        {
+          name: 'Peter Quill',
+          dob: null
+        },
+        {
+          name: 'Groot',
+          dob: null
+        }
       ]
     };
 
@@ -88,13 +88,13 @@
       $log.info(newDate);
       $log.info(oldDate);
       angular.element('#guardian' + $index).dropdown('toggle');
-    };
+    }
 
     function beforeRender($dates) {
       var index = Math.ceil($dates.length / 2);
       $log.info(index);
       $dates[index].selectable = false;
-    };
+    }
 
     function configFunction() {
       return {startView: 'month'};

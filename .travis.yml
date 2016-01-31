@@ -1,19 +1,23 @@
-language: node_js
 sudo: false
+language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
 node_js:
-- '4.1'
+  - '5'
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm i -g npm@^3.0.0
+before_script:
+  - npm prune
+script:
+  - npm run test
+after_success:
+  - npm run semantic-release
 branches:
   except:
-  - gh-pages
-before_install:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-deploy:
-  provider: npm
-  email: dale@dalelotts.com
-  api_key:
-    secure: uS3oRid+vZK5nKVqd5YNhAJGyNbJAdw0/3gHZB67ynG9HWEr1Y026uzf0Ext6XT9LHjCgGPEaN1Lyjr+LJRYt+LV7HYDVm09RrEIqJm+2+2qwQIpVtxRyr6xCr1b2EFFrYqwZPe33/Y0WradbaqQ0EKLBSygCNL8tzC7b1yxD6U=
-  on:
-    tags: true
-    repo: dalelotts/angular-bootstrap-datetimepicker
-    branch: master
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
+    - gh-pages
