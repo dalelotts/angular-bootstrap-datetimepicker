@@ -229,6 +229,17 @@ NOTA BENE: If the only reason you are storing strings is to have it properly for
 please review the documentation on ngModelController $formatters and $parsers. These allow you to store a value in the model
 but display it formatted as you like in the view. In other words, stop it!  =)
 
+### screenReader
+The next and previous arrows on the directive had hidden (when useing bootstrap.css) text for screen readers. 
+It also provide some default translations for various languages. However, if you need another translation, you can specify 
+the translations in the configuration.
+
+The screenReader option must be an object with ```previous``` and ```next``` properties.
+
+```html
+<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{ screenReader: { 'previous': 'go previous', 'next': 'go next' }}"></datetimepicker>
+```
+
 
 ### dropdownSelector
 
