@@ -45,6 +45,8 @@
       },
       templateUrl: 'templates/datetimepicker.html'
     };
+    
+    DirectiveController.$inject = ['$scope', '$element', '$attrs'];
 
     function DirectiveController($scope, $element, $attrs) {
       // Configuration
