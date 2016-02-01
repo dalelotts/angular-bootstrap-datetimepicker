@@ -32,7 +32,7 @@
 
   function DatetimepickerDirective(defaultConfig, configurationValidator) {
 
-    return {
+    var directiveDefinition = {
       bindToController: false,
       controller: DirectiveController,
       controllerAs: 'dateTimePickerController',
@@ -45,6 +45,8 @@
       },
       templateUrl: 'templates/datetimepicker.html'
     };
+
+    DirectiveController.$inject = ['$scope', '$element', '$attrs'];
 
     function DirectiveController($scope, $element, $attrs) {
       // Configuration
@@ -425,6 +427,8 @@
         }
       }
     }
+
+    return directiveDefinition;
   }
 
   function DateTimePickerConfigProvider() {
