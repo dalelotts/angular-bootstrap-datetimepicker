@@ -14,7 +14,7 @@ var demoFiles = ['demo/**/*.js'];
 var miscFiles = ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js'];
 var scssFiles = ['src/scss/*.scss'];
 var sourceFiles = ['src/**/*.js'];
-var testFiles = ['test/**/*.spec.js', 'test/commonjs/**/*.js'];
+var testFiles = ['test/**/*.spec.js'];
 
 module.exports = {
   all: modules.concat(sourceFiles).concat(testFiles).concat(demoFiles).concat(cssFiles),
