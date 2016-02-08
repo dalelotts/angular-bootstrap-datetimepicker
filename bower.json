@@ -1,0 +1,11 @@
+{
+  "name": "angular-bootstrap-datetimepicker",
+  "license": "MIT",
+  "homepage": "https://github.com/dalelotts/angular-bootstrap-datetimepicker",
+  "license": "MIT",
+  "moduleType": "globals",
+  "main": [
+    "src/css/datetimepicker.css",
+    "src/js/datetimepicker.js"
+  ]
+}
