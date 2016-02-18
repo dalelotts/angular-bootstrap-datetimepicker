@@ -32,6 +32,27 @@ If you wan to override the template used by this directive, simply populate the 
 Use the [angular-date-time-input](https://github.com/dalelotts/angular-date-time-input) directive to format the 
 display of a date in an input box or allow users to enter a valid date with the keyboard.
 
+# Bower
+
+This project no longer supports bower. If you are using wiredep, you can dd the following to your 
+bower.json file to allow wiredep to use this directive.
+
+```json
+  "overrides": {
+    "angular-bootstrap-datetimepicker": {
+      "main": [
+        "src/js/datetimepicker.js",
+        "src/js/datetimepicker.templates.js",
+        "src/css/datetimepicker.css"
+      ],
+      "dependencies": {
+        "angular": "^1.x",
+        "moment": "^2.x"
+      }
+    }
+  }
+```
+
 # Dependencies
 
 Requires:
