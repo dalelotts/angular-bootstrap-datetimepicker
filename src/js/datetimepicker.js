@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.4.0
+ * @license angular-bootstrap-datetimepicker
  * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  *
