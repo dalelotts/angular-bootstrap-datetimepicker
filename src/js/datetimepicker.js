@@ -328,7 +328,7 @@
         ngModelController.$setViewValue(newDate);
 
         if (configuration.dropdownSelector) {
-          jQuery(configuration.dropdownSelector).dropdown('toggle');
+          jQuery($element).closest('.dropdown').find(configuration.dropdownSelector).dropdown('toggle'); 
         }
 
         $scope.onSetTime({newDate: newDate, oldDate: oldDate});
