@@ -28,12 +28,12 @@
     "autoprefixer": "^6.3.3",
     "bootstrap": "^3.3.6",
     "commitizen": "^2.5.0",
+    "coveralls": "^2.11.6",
     "csscomb": "^3.1.8",
     "csslint": "^0.10.0",
     "cz-conventional-changelog": "^1.1.5",
     "del": "^2.2.0",
-    "grunt": "^0.4.4",
-    "grunt-bump": "^0.7.0",
+    "eslint": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-csslint": "^0.2.0",
@@ -62,10 +62,12 @@
     "plato": "^1.5.0",
     "run-browser": "^2.0.2",
     "semantic-release": "^6.2.0",
+    "standard": "^6.0.7",
     "tape": "^4.4.0"
   },
   "scripts": {
     "test": "npm run test-browserify && gulp",
+    "coverage:upload": "cat build/coverage/lcov.info | coveralls",
     "test-browserify": "run-browser test/commonjs/browserify.test.js -b",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
