@@ -58,6 +58,7 @@
     "karma-threshold-reporter": "^0.1.12",
     "lodash": "^4.5.0",
     "matchdep": "^1.0.1",
+    "moment-timezone": "^0.5.0",
     "phantomjs-prebuilt": "^2.1.4",
     "plato": "^1.5.0",
     "run-browser": "^2.0.2",

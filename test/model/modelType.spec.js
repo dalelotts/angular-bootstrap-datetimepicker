@@ -18,6 +18,7 @@ describe('modelType', function () {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $rootScope.date = null;
+    moment.tz.setDefault(null);
   }));
 
   describe('throws exception', function () {
@@ -142,6 +143,32 @@ describe('modelType', function () {
 
       expect(moment('1999-01-01').isSame($rootScope.date)).toBeTruthy();
     });
+    it('returns a moment with correct time zone', function () {
+
+      $rootScope.date = 1132185600000;   // '2005-11-17'
+      moment.tz.setDefault('America/Los_Angeles');
+
+      var element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ modelType: \'moment\', startView: \'year\', minView: \'year\' }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery(jQuery('.year', element)[0]);
+      selectedElement.trigger('click');
+
+      expect(moment('1999-01-01T00:00:00-08:00').isSame($rootScope.date)).toBeTruthy();
+    });
+    it('returns a moment with correct time zone', function () {
+
+      $rootScope.date = 1132185600000;   // '2005-11-17'
+      moment.tz.setDefault('America/New_York');
+
+      var element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ modelType: \'moment\', startView: \'year\', minView: \'year\' }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery(jQuery('.year', element)[0]);
+      selectedElement.trigger('click');
+
+      expect(moment('1999-01-01T00:00:00-05:00').isSame($rootScope.date)).toBeTruthy();
+    });
     it('throws an exception if invalid date string is in the model', function () {
 
       $rootScope.date = 'invalid-date';
@@ -262,6 +289,32 @@ describe('modelType', function () {
       selectedElement.trigger('click');
 
       expect($rootScope.date).toBe('gibb5ri012');
+    });
+    it('returns formatted string in correct time zone', function () {
+
+      $rootScope.date = moment('2005-11-17').toDate();
+      moment.tz.setDefault('America/Los_Angeles');
+
+      var element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ modelType: \'MM-DD-YYYY Z\', startView: \'year\', minView: \'year\' }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery(jQuery('.year', element)[0]);
+      selectedElement.trigger('click');
+
+      expect($rootScope.date).toBe('01-01-1999 -08:00');
+    });
+    it('returns formatted string in correct time zone', function () {
+
+      $rootScope.date = moment('2005-11-17').toDate();
+      moment.tz.setDefault('America/New_York');
+
+      var element = $compile('<datetimepicker data-ng-model="date" data-datetimepicker-config="{ modelType: \'MM-DD-YYYY Z\', startView: \'year\', minView: \'year\' }"></datetimepicker>')($rootScope);
+      $rootScope.$digest();
+
+      var selectedElement = jQuery(jQuery('.year', element)[0]);
+      selectedElement.trigger('click');
+
+      expect($rootScope.date).toBe('01-01-1999 -05:00');
     });
     it('throws an exception if numeric string is in the model', function () {
 
