@@ -29,7 +29,7 @@
         <tr data-ng-if="data.currentView === 'day'" data-ng-repeat="week in data.weeks">
             <td data-ng-repeat="dateObject in week.dates"
                 data-ng-click="changeView(data.nextView, dateObject, $event)"
-                class="day"
+                class="day  {{dateObject.class}}"
                 data-ng-class="{active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}">{{ dateObject.display }}</td>
         </tr>
         </tbody>
