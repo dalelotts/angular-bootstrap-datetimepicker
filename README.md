@@ -25,7 +25,7 @@ The template used by this directive has been separated from the directive to all
 <script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
 ```
 
-If you wan to override the template used by this directive, simply populate the ```$templateCache``` with your own template.
+If you want to override the template used by this directive, simply populate the ```$templateCache``` with your own template.
 
 # Formatting the date in an input box
 
