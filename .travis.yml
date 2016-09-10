@@ -17,6 +17,7 @@ script:
   - npm run test
 after_success:
   - npm run semantic-release
+  - npm run coverage:upload
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"

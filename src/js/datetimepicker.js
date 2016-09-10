@@ -2,7 +2,7 @@
 /*jslint vars:true */
 
 /**
- * @license angular-bootstrap-datetimepicker  version: 0.4.0
+ * @license angular-bootstrap-datetimepicker
  * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  *
@@ -315,13 +315,13 @@
             // No additional work needed
             break;
           case 'moment':
-            newDate = moment(newDate);
+            newDate = moment([tempDate.getUTCFullYear(), tempDate.getUTCMonth(), tempDate.getUTCDate(), tempDate.getUTCHours(), tempDate.getUTCMinutes(), tempDate.getUTCSeconds(), tempDate.getUTCMilliseconds()]);
             break;
           case 'milliseconds':
             newDate = milliseconds;
             break;
           default: // It is assumed that the modelType is a formatting string.
-            newDate = moment(newDate).format(configuration.modelType);
+            newDate = moment([tempDate.getUTCFullYear(), tempDate.getUTCMonth(), tempDate.getUTCDate(), tempDate.getUTCHours(), tempDate.getUTCMinutes(), tempDate.getUTCSeconds(), tempDate.getUTCMilliseconds()]).format(configuration.modelType);
         }
 
         var oldDate = ngModelController.$modelValue;
