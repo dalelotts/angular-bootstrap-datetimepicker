@@ -1,4 +1,4 @@
-/* globals define, jQuery, module, require */
+/* globals define, jQuery, module, require, angular, moment */
 /* jslint vars:true */
 
 /**
@@ -10,18 +10,21 @@
  * @since        2013-Jul-8
  */
 
-(function (factory) {
+(function (root, factory) {
   'use strict'
   /* istanbul ignore if */
-  if (typeof define === 'function' && /* istanbul ignore next */ define.amd) {
-    define(['angular', 'moment'], factory) // AMD
+  if (typeof module !== 'undefined' && module.exports) {
+    var ng = typeof angular === 'undefined' ? require('angular') : angular
+    var mt = typeof moment === 'undefined' ? require('moment') : moment
+    factory(ng, mt)
+    module.exports = 'ui.bootstrap.datetimepicker'
     /* istanbul ignore next */
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('angular'), require('moment')) // CommonJS
+  } else if (typeof define === 'function' && /* istanbul ignore next */ define.amd) {
+    define(['angular', 'moment'], factory)
   } else {
-    factory(window.angular, window.moment) // Browser global
+    factory(root.angular, root.moment)
   }
-}(function (angular, moment) {
+}(this, function (angular, moment) {
   'use strict'
   angular.module('ui.bootstrap.datetimepicker', [])
     .service('dateTimePickerConfig', DateTimePickerConfigProvider)

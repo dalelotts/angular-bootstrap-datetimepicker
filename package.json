@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
-  "main": "src/js/datetimepicker.js",
+  "main": "index.js",
   "dependencies": {
     "angular": "^1.5.8",
     "moment": "^2.14.1"
@@ -59,6 +59,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-threshold-reporter": "^0.1.15",
+    "karma-webpack": "^1.8.0",
     "lodash": "^4.15.0",
     "matchdep": "^1.0.1",
     "moment-timezone": "^0.5.5",
@@ -68,13 +69,15 @@
     "semantic-release": "^6.2.0",
     "standard": "^8.0.0",
     "stylelint-config-standard": "^13.0.0",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "webpack": "^1.13.2"
   },
   "scripts": {
-    "test": "npm run test-browserify && gulp",
     "coverage:upload": "cat build/coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "npm run test-browserify && npm run test-webpack && gulp",
     "test-browserify": "run-browser test/commonjs/browserify.test.js -b",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test-webpack": "karma start test/webpack/karma.conf.js"
   },
   "repository": {
     "type": "git",
