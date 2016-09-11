@@ -76,6 +76,7 @@ gulp.task('templatecache', function () {
     .pipe(htmlMin({removeComments: true}))
     .pipe(templateCache('datetimepicker.templates.js', {
       base: path.join(__dirname, 'src'),
+      modulesystem: 'IIFE',
       module: 'ui.bootstrap.datetimepicker'
     }))
     .pipe(gulp.dest('src/js'))
@@ -111,7 +112,6 @@ gulp.task('test', ['lint', 'css-lint'], function (done) {
 })
 
 gulp.task('default', ['complexity', 'test'])
-gulp.task('css-build', ['scss', 'css-lint'])
 
 function testConfig (options) {
   var travisDefaultOptions = {

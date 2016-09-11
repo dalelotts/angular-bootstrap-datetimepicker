@@ -413,7 +413,7 @@
         return this.utcDateValue + localOffset
       }
 
-      var validProperties = ['utcDateValue', 'localDateValue', 'display', 'active', 'selectable', 'past', 'future']
+      var validProperties = ['utcDateValue', 'display', 'active', 'selectable', 'past', 'future']
 
       var constructorObject = arguments[0]
 
@@ -422,6 +422,8 @@
       }).forEach(function (key) {
         this[key] = constructorObject[key]
       }, this)
+
+      this.isToday = moment().utc().local().format('YYYY-MM-DD') === moment.utc(this.utcDateValue).format('YYYY-MM-DD')
     }
 
     return directiveDefinition

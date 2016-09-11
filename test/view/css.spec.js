@@ -1,4 +1,4 @@
-/* globals describe, beforeEach, it, expect, module, inject, moment, angular, afterEach, jQuery */
+/* globals describe, beforeEach, it, expect, module, inject, moment, angular, afterEach, jQuery, jasmine */
 
 /**
  * @license angular-bootstrap-datetimepicker
@@ -13,10 +13,19 @@ describe('css styling', function () {
   'use strict'
 
   var element = null
+  var $rootScope
 
   beforeEach(module('ui.bootstrap.datetimepicker'))
-  beforeEach(inject(function ($compile, $rootScope) {
+  beforeEach(inject(function ($compile, _$rootScope_) {
     moment.locale('en')
+    $rootScope = _$rootScope_
+    jasmine.clock().install()
+
+    var baseDate = moment('2013-01-23T00:00:00.000').toDate()
+    jasmine.clock().mockDate(baseDate)
+
+    expect(moment().toDate().getTime()).toEqual(baseDate.getTime())
+
     $rootScope.date = moment('2013-01-22T00:00:00.000').toDate()
     element = $compile('<datetimepicker data-ng-model="date"></datetimepicker>')($rootScope)
     angular.element(document).find('body').append(element)
@@ -57,7 +66,23 @@ describe('css styling', function () {
     })
   })
 
+  describe('of `.today` element', function () {
+    it('should have light grey background when not active', function () {
+      var todayElement = element.find('.today')
+      expect(todayElement.text()).toBe('23')
+      expect(todayElement.css('background-color')).toBe('rgb(229, 229, 229)')
+    })
+    it('should have `.active` background when active', function () {
+      $rootScope.date = moment('2013-01-23T00:00:00.000').toDate()
+      $rootScope.$digest()
+      var todayElement = element.find('.today')
+      expect(todayElement.text()).toBe('23')
+      expect(todayElement.css('background-color')).toBe('rgb(0, 68, 204)')
+    })
+  })
+
   afterEach(function () {
+    jasmine.clock().uninstall()
     angular.element(document).find('body').remove('.datetimepicker')
   })
 })

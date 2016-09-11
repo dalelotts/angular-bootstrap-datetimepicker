@@ -60,6 +60,13 @@
     text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
   }
 
+  .today,
+  .today:hover,
+  .today.disabled,
+  .today.disabled:hover {
+    background-color: $abdtp-today-border;
+  }
+
   // scss-lint:disable QualifyingElement
   .active:hover,
   .active:hover:hover,
