@@ -415,14 +415,13 @@
 
       var validProperties = ['utcDateValue', 'localDateValue', 'display', 'active', 'selectable', 'past', 'future']
 
-      for (var prop in arguments[0]) {
-        /* istanbul ignore else */
-        // noinspection JSUnfilteredForInLoop
-        if (validProperties.indexOf(prop) >= 0) {
-          // noinspection JSUnfilteredForInLoop
-          this[prop] = arguments[0][prop]
-        }
-      }
+      var constructorObject = arguments[0]
+
+      Object.keys(constructorObject).filter(function (key) {
+        return validProperties.indexOf(key) >= 0
+      }).forEach(function (key) {
+        this[key] = constructorObject[key]
+      }, this)
     }
 
     return directiveDefinition
