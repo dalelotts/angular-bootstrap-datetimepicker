@@ -8,14 +8,14 @@ var modules = [
   'node_modules/bootstrap/dist/js/bootstrap.js',
   'node_modules/angular/angular.js',
   'node_modules/angular-mocks/angular-mocks.js'
-];
-var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/scss/datetimepicker.scss'];
-var cssFiles = ['src/css/*.css'];
-var demoFiles = ['demo/**/*.js'];
-var miscFiles = ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js'];
-var scssFiles = ['src/scss/*.scss'];
-var sourceFiles = ['src/**/*.js'];
-var testFiles = ['test/**/*.spec.js'];
+]
+var bumpFiles = ['package.json', 'bower.json', 'README.md', 'src/js/*.js', 'src/scss/datetimepicker.scss']
+var cssFiles = ['src/css/*.css']
+var demoFiles = ['demo/**/*.js']
+var miscFiles = ['GruntFile.js', 'gulpfile.js', 'karma.conf.js', 'paths.js']
+var scssFiles = ['src/scss/*.scss']
+var sourceFiles = ['src/**/*.js']
+var testFiles = ['test/**/*.spec.js']
 
 module.exports = {
   all: modules.concat(sourceFiles).concat(testFiles).concat(demoFiles).concat(cssFiles),
@@ -26,4 +26,4 @@ module.exports = {
   scss: scssFiles,
   src: sourceFiles,
   test: testFiles
-};
+}

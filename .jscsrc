@@ -1,9 +1,0 @@
-{
-  "disallowDanglingUnderscores": { "allExcept": ["_$compile_", "_$rootScope_"] },
-  "disallowMultipleVarDecl": "strict",
-  "preset": "crockford",
-  "requireFunctionDeclarations": true,
-  "requireMultipleVarDecl": null,
-  "requireVarDeclFirst": null,
-  "validateIndentation": 2
-}
