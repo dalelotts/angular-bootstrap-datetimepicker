@@ -4,7 +4,6 @@
 
 var gulp = require('gulp')
 var gulpStylelint = require('gulp-stylelint')
-var jshint = require('gulp-jshint')
 var lodash = require('lodash')
 var path = require('path')
 var paths = require('./paths')
@@ -14,30 +13,7 @@ var standard = require('gulp-standard')
 
 var karmaConfig = path.join(__dirname, 'karma.conf.js')
 
-gulp.task('build-css', ['scss'], function () {
-  var Comb = require('csscomb')
-  var config = require('./.csscomb.json')
-  var comb = new Comb(config)
-  comb.processPath('./src/css/')
-})
-
-gulp.task('clean', function () {
-  var del = require('del')
-  return del([
-    'build'
-  ])
-})
-
-gulp.task('default', ['clean:mobile'])
-
-gulp.task('complexity', function (done) {
-  function callback () {
-    done()
-  }
-  plato.inspect(paths.lint, 'build/complexity', {title: 'prerender', recurse: true}, callback)
-})
-
-gulp.task('csslint', function () {
+gulp.task('css-lint', function () {
   return gulp.src(paths.css)
     .pipe(gulpStylelint({
       failAfterError: true,
@@ -47,7 +23,22 @@ gulp.task('csslint', function () {
     }))
 })
 
-gulp.task('standard', function () {
+gulp.task('clean', function () {
+  var del = require('del')
+  return del([
+    'build'
+  ])
+})
+
+gulp.task('complexity', function (done) {
+  function callback () {
+    done()
+  }
+
+  plato.inspect(paths.lint, 'build/complexity', {title: 'prerender', recurse: true}, callback)
+})
+
+gulp.task('lint', function () {
   return gulp
     .src(paths.lint)
     .pipe(standard())
@@ -57,46 +48,24 @@ gulp.task('standard', function () {
     }))
 })
 
-gulp.task('lint', function () {
-  return gulp
-    .src(paths.lint)
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default', {verbose: true}))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'))
-})
-
-gulp.task('scss', ['scss-lint'], function () {
-  var scss = require('gulp-sass')
-  var postcss = require('gulp-postcss')
-  var sourcemaps = require('gulp-sourcemaps')
+gulp.task('scss', function () {
   var autoprefixer = require('autoprefixer')
+  var csscomb = require('gulp-csscomb')
+  var postcss = require('gulp-postcss')
+  var scss = require('gulp-sass')
+  var scssLint = require('gulp-scss-lint')
+  var scssLintStylish = require('gulp-scss-lint-stylish')
+  var sourcemaps = require('gulp-sourcemaps')
 
   return gulp.src(paths.scss)
+    .pipe(scssLint({customReport: scssLintStylish}))
     .pipe(scss())
     .pipe(sourcemaps.init())
     .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
     .pipe(sourcemaps.write('.'))
+    .pipe(csscomb())
     .pipe(gulp.dest('./src/css'))
 })
-
-gulp.task('scss-lint', function () {
-  var scssLint = require('gulp-scss-lint')
-  var scssLintStylish = require('gulp-scss-lint-stylish')
-  return gulp.src('./src/scss/*.scss')
-    .pipe(scssLint({customReport: scssLintStylish}))
-})
-
-function testConfig (options) {
-  var travisDefaultOptions = {
-    browsers: ['Firefox'],
-    reporters: ['dots', 'coverage', 'threshold']
-  }
-
-  var travisOptions = process.env.TRAVIS && travisDefaultOptions
-
-  return lodash.assign(options, travisOptions)
-}
 
 gulp.task('templatecache', function () {
   var templateCache = require('gulp-angular-templatecache')
@@ -128,7 +97,7 @@ gulp.task('tdd', function (done) {
   server.start()
 })
 
-gulp.task('test', ['standard', 'lint', 'csslint'], function (done) {
+gulp.task('test', ['lint', 'css-lint'], function (done) {
   var config = testConfig(
     {
       configFile: karmaConfig,
@@ -142,3 +111,16 @@ gulp.task('test', ['standard', 'lint', 'csslint'], function (done) {
 })
 
 gulp.task('default', ['complexity', 'test'])
+gulp.task('css-build', ['scss', 'css-lint'])
+
+function testConfig (options) {
+  var travisDefaultOptions = {
+    browsers: ['Firefox'],
+    reporters: ['dots', 'coverage', 'threshold']
+  }
+
+  var travisOptions = process.env.TRAVIS && travisDefaultOptions
+
+  return lodash.assign(options, travisOptions)
+}
+

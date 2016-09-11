@@ -3,7 +3,7 @@
   "always-semicolon": true,
   "color-case": "lower",
   "block-indent": "  ",
-  "color-shorthand": false,
+  "color-shorthand": true,
   "element-case": "lower",
   "eof-newline": true,
   "leading-zero": true,
@@ -22,5 +22,5 @@
   "strip-spaces": true,
   "tab-size": true,
   "unitless-zero": true,
-  "vendor-prefix-align": true
+  "vendor-prefix-align": false
 }

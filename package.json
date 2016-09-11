@@ -37,6 +37,7 @@
     "eslint": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
+    "gulp-csscomb": "^3.0.8",
     "gulp-csslint": "^1.0.0",
     "gulp-htmlmin": "^2.0.0",
     "gulp-jscs": "^4.0.0",
