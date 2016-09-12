@@ -67,7 +67,7 @@
     "phantomjs-prebuilt": "^2.1.12",
     "plato": "^1.7.0",
     "run-browser": "^2.0.2",
-    "semantic-release": "^6.2.0",
+    "semantic-release": "^6.3.0",
     "standard": "^8.0.0",
     "stylelint-config-standard": "^13.0.0",
     "tape": "^4.6.0",
