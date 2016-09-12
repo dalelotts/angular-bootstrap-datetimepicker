@@ -129,7 +129,9 @@
         var startDecade = (parseInt(selectedDate.year() / 10, 10) * 10)
         var startDate = moment.utc(startOfDecade(milliseconds)).subtract(1, 'year').startOf('year')
 
-        var activeYear = formatValue(ngModelController.$modelValue, 'YYYY')
+        var yearFormat = 'YYYY'
+        var activeFormat = formatValue(ngModelController.$modelValue, yearFormat)
+        var currentFormat = moment().format(yearFormat)
 
         var result = {
           'currentView': 'year',
@@ -146,11 +148,12 @@
         for (var i = 0; i < 12; i += 1) {
           var yearMoment = moment.utc(startDate).add(i, 'years')
           var dateValue = {
-            'utcDateValue': yearMoment.valueOf(),
-            'display': yearMoment.format('YYYY'),
-            'past': yearMoment.year() < startDecade,
+            'active': yearMoment.format(yearFormat) === activeFormat,
+            'current': yearMoment.format(yearFormat) === currentFormat,
+            'display': yearMoment.format(yearFormat),
             'future': yearMoment.year() > startDecade + 9,
-            'active': yearMoment.format('YYYY') === activeYear
+            'past': yearMoment.year() < startDecade,
+            'utcDateValue': yearMoment.valueOf()
           }
 
           result.dates.push(new DateObject(dateValue))
@@ -162,7 +165,10 @@
       function monthModelFactory (milliseconds) {
         var startDate = moment.utc(milliseconds).startOf('year')
         var previousViewDate = startOfDecade(milliseconds)
-        var activeDate = formatValue(ngModelController.$modelValue, 'YYYY-MMM')
+
+        var monthFormat = 'YYYY-MMM'
+        var activeFormat = formatValue(ngModelController.$modelValue, monthFormat)
+        var currentFormat = moment().format(monthFormat)
 
         var result = {
           'previousView': 'year',
@@ -180,9 +186,10 @@
         for (var i = 0; i < 12; i += 1) {
           var monthMoment = moment.utc(startDate).add(i, 'months')
           var dateValue = {
-            'utcDateValue': monthMoment.valueOf(),
+            'active': monthMoment.format(monthFormat) === activeFormat,
+            'current': monthMoment.format(monthFormat) === currentFormat,
             'display': monthMoment.format('MMM'),
-            'active': monthMoment.format('YYYY-MMM') === activeDate
+            'utcDateValue': monthMoment.valueOf()
           }
 
           result.dates.push(new DateObject(dateValue))
@@ -199,7 +206,9 @@
 
         var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days')
 
-        var activeDate = formatValue(ngModelController.$modelValue, 'YYYY-MMM-DD')
+        var dayFormat = 'YYYY-MMM-DD'
+        var activeFormat = formatValue(ngModelController.$modelValue, dayFormat)
+        var currentFormat = moment().format(dayFormat)
 
         var result = {
           'previousView': 'month',
@@ -222,13 +231,14 @@
         for (var i = 0; i < 6; i += 1) {
           var week = {dates: []}
           for (var j = 0; j < 7; j += 1) {
-            var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days')
+            var dayMoment = moment.utc(startDate).add((i * 7) + j, 'days')
             var dateValue = {
-              'utcDateValue': monthMoment.valueOf(),
-              'display': monthMoment.format('D'),
-              'active': monthMoment.format('YYYY-MMM-DD') === activeDate,
-              'past': monthMoment.isBefore(startOfMonth),
-              'future': monthMoment.isAfter(endOfMonth)
+              'active': dayMoment.format(dayFormat) === activeFormat,
+              'current': dayMoment.format(dayFormat) === currentFormat,
+              'display': dayMoment.format('D'),
+              'future': dayMoment.isAfter(endOfMonth),
+              'past': dayMoment.isBefore(startOfMonth),
+              'utcDateValue': dayMoment.valueOf()
             }
             week.dates.push(new DateObject(dateValue))
           }
@@ -242,7 +252,9 @@
         var selectedDate = moment.utc(milliseconds).startOf('day')
         var previousViewDate = moment.utc(selectedDate).startOf('month')
 
-        var activeFormat = formatValue(ngModelController.$modelValue, 'YYYY-MM-DD H')
+        var hourFormat = 'YYYY-MM-DD H'
+        var activeFormat = formatValue(ngModelController.$modelValue, hourFormat)
+        var currentFormat = moment().format(hourFormat)
 
         var result = {
           'previousView': 'day',
@@ -260,9 +272,10 @@
         for (var i = 0; i < 24; i += 1) {
           var hourMoment = moment.utc(selectedDate).add(i, 'hours')
           var dateValue = {
-            'utcDateValue': hourMoment.valueOf(),
+            'active': hourMoment.format(hourFormat) === activeFormat,
+            'current': hourMoment.format(hourFormat) === currentFormat,
             'display': hourMoment.format('LT'),
-            'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
+            'utcDateValue': hourMoment.valueOf()
           }
 
           result.dates.push(new DateObject(dateValue))
@@ -274,7 +287,10 @@
       function minuteModelFactory (milliseconds) {
         var selectedDate = moment.utc(milliseconds).startOf('hour')
         var previousViewDate = moment.utc(selectedDate).startOf('day')
-        var activeFormat = formatValue(ngModelController.$modelValue, 'YYYY-MM-DD H:mm')
+
+        var minuteFormat = 'YYYY-MM-DD H:mm'
+        var activeFormat = formatValue(ngModelController.$modelValue, minuteFormat)
+        var currentFormat = moment().format(minuteFormat)
 
         var result = {
           'previousView': 'hour',
@@ -294,9 +310,10 @@
         for (var i = 0; i < limit; i += 1) {
           var hourMoment = moment.utc(selectedDate).add(i * configuration.minuteStep, 'minute')
           var dateValue = {
-            'utcDateValue': hourMoment.valueOf(),
+            'active': hourMoment.format(minuteFormat) === activeFormat,
+            'current': hourMoment.format(minuteFormat) === currentFormat,
             'display': hourMoment.format('LT'),
-            'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat
+            'utcDateValue': hourMoment.valueOf()
           }
 
           result.dates.push(new DateObject(dateValue))
@@ -413,7 +430,7 @@
         return this.utcDateValue + localOffset
       }
 
-      var validProperties = ['utcDateValue', 'display', 'active', 'selectable', 'past', 'future']
+      var validProperties = ['active', 'current', 'display', 'future', 'past', 'selectable', 'utcDateValue']
 
       var constructorObject = arguments[0]
 
@@ -422,8 +439,6 @@
       }).forEach(function (key) {
         this[key] = constructorObject[key]
       }, this)
-
-      this.isToday = moment().utc().local().format('YYYY-MM-DD') === moment.utc(this.utcDateValue).format('YYYY-MM-DD')
     }
 
     return directiveDefinition

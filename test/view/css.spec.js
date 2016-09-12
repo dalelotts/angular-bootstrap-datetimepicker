@@ -66,16 +66,16 @@ describe('css styling', function () {
     })
   })
 
-  describe('of `.today` element', function () {
+  describe('of `.current` element', function () {
     it('should have light grey background when not active', function () {
-      var todayElement = element.find('.today')
+      var todayElement = element.find('.current')
       expect(todayElement.text()).toBe('23')
       expect(todayElement.css('background-color')).toBe('rgb(229, 229, 229)')
     })
     it('should have `.active` background when active', function () {
       $rootScope.date = moment('2013-01-23T00:00:00.000').toDate()
       $rootScope.$digest()
-      var todayElement = element.find('.today')
+      var todayElement = element.find('.current')
       expect(todayElement.text()).toBe('23')
       expect(todayElement.css('background-color')).toBe('rgb(0, 68, 204)')
     })
