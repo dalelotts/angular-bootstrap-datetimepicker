@@ -457,6 +457,7 @@ If the minute view is the minView, which is is by default, the date will be set 
 
 ##Contributing
 
+See [Contributing.md](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/.github/contributing.md)
 
 ## License
 
