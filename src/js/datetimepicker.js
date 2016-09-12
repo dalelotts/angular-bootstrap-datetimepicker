@@ -10,7 +10,7 @@
  * @since        2013-Jul-8
  */
 
-(function (root, factory) {
+;(function (root, factory) {
   'use strict'
   /* istanbul ignore if */
   if (typeof module !== 'undefined' && module.exports) {
