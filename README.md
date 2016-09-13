@@ -341,11 +341,11 @@ the drop-down is toggled closed after the user selectes a date/time.
 ### Create a date range picker with validation controls
 ```html
 <div class="dropdown form-group">
-    <label for="dateRangeStart">Start Date</label>
+    <label>Start Date</label>
     <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#"
        href="#">
         <div class="input-group date">
-            <input id="dateRangeStart" type="text" class="form-control" data-ng-model="dateRangeStart">
+            <input type="text" class="form-control" data-ng-model="dateRangeStart">
             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
         </div>
     </a>
@@ -358,7 +358,7 @@ the drop-down is toggled closed after the user selectes a date/time.
 </div>
 
 <div class="dropdown form-group">
-    <label for="dateRangeStart">End Date</label>
+    <label>End Date</label>
     <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#"
        href="#">
         <div class="input-group date">
@@ -385,12 +385,10 @@ $scope.startDateBeforeRender = startDateBeforeRender
 $scope.startDateOnSetTime = startDateOnSetTime
 
 function startDateOnSetTime () {
-  selectable = (!selectable);
   $scope.$broadcast('start-date-changed');
 }
 
 function endDateOnSetTime () {
-  selectable = (!selectable);
   $scope.$broadcast('end-date-changed');
 }
 

@@ -126,12 +126,10 @@
     }
 
     function startDateOnSetTime () {
-      selectable = (!selectable);
       $scope.$broadcast('start-date-changed');
     }
 
     function endDateOnSetTime () {
-      selectable = (!selectable);
       $scope.$broadcast('end-date-changed');
     }
 
