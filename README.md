@@ -341,49 +341,80 @@ the drop-down is toggled closed after the user selectes a date/time.
 ### Create a date range picker with validation controls
 ```html
 <div class="dropdown form-group">
-  <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
-    <div class="input-group date">
-      <input type="text" class="form-control" data-ng-model="dateRangeStart">
-      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-    </div>
-  </a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <datetimepicker data-ng-model="dateRangeStart" data-datetimepicker-config="{ dropdownSelector: '#dropdown1'}" data-before-render="beforeRenderStartDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-  </ul>
+    <label for="dateRangeStart">Start Date</label>
+    <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#"
+       href="#">
+        <div class="input-group date">
+            <input id="dateRangeStart" type="text" class="form-control" data-ng-model="dateRangeStart">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <datetimepicker data-ng-model="dateRangeStart"
+                        data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }"
+                        data-on-set-time="startDateOnSetTime()"
+                        data-before-render="startDateBeforeRender($dates)"></datetimepicker>
+    </ul>
 </div>
 
 <div class="dropdown form-group">
-  <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-    <div class="input-group date">
-      <input type="text" class="form-control" data-ng-model="dateRangeEnd">
-      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-    </div>
-  </a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <datetimepicker data-ng-model="dateRangeEnd" data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}" data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-  </ul>
+    <label for="dateRangeStart">End Date</label>
+    <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#"
+       href="#">
+        <div class="input-group date">
+            <input type="text" class="form-control" data-ng-model="dateRangeEnd">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        </div>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <datetimepicker data-ng-model="dateRangeEnd"
+                        data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
+                        data-on-set-time="endDateOnSetTime()"
+                        data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+    </ul>
 </div>
 ```
 In this example, two elements are created : one for the start date and the second for the end date of the range.
 
 ```JavaScript
-$scope.beforeRenderStartDate = function($view, $dates, $leftDate, $upDate, $rightDate) {
+/* Bindable functions
+ -----------------------------------------------*/
+$scope.endDateBeforeRender = endDateBeforeRender
+$scope.endDateOnSetTime = endDateOnSetTime
+$scope.startDateBeforeRender = startDateBeforeRender
+$scope.startDateOnSetTime = startDateOnSetTime
+
+function startDateOnSetTime () {
+  selectable = (!selectable);
+  $scope.$broadcast('start-date-changed');
+}
+
+function endDateOnSetTime () {
+  selectable = (!selectable);
+  $scope.$broadcast('end-date-changed');
+}
+
+function startDateBeforeRender ($dates) {
   if ($scope.dateRangeEnd) {
     var activeDate = moment($scope.dateRangeEnd);
-    for (var i = 0; i < $dates.length; i++) {
-      if ($dates[i].localDateValue() >= activeDate.valueOf()) $dates[i].selectable = false;
-    }
+
+    $dates.filter(function (date) {
+      return date.localDateValue() >= activeDate.valueOf()
+    }).forEach(function (date) {
+      date.selectable = false;
+    })
   }
 }
 
-$scope.beforeRenderEndDate = function($view, $dates, $leftDate, $upDate, $rightDate) {
+function endDateBeforeRender ($view, $dates) {
   if ($scope.dateRangeStart) {
     var activeDate = moment($scope.dateRangeStart).subtract(1, $view).add(1, 'minute');
-    for (var i = 0; i < $dates.length; i++) {
-      if ($dates[i].localDateValue() <= activeDate.valueOf()) {
-        $dates[i].selectable = false;            
-      }
-    }
+
+    $dates.filter(function (date) {
+      return date.localDateValue() <= activeDate.valueOf()
+    }).forEach(function (date) {
+      date.selectable = false;
+    })
   }
 }
 ```

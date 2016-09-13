@@ -77,7 +77,8 @@
         </div>
         <div class="col-sm-6">
             <h3>Drop-down Datetime with input box</h3>
-            <h4>Localized formatting using <a href="https://github.com/dalelotts/angular-date-time-input"><code>angular-date-time-input</code></a> directive</h4>
+            <h4>Localized formatting using <a href="https://github.com/dalelotts/angular-date-time-input"><code>angular-date-time-input</code></a>
+                directive</h4>
 
             <p>Notice that you CAN enter a date with the keyboard.</p>
 
@@ -90,7 +91,8 @@
                     <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#"
                        href="#">
                         <div class="input-group">
-                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput" data-date-time-input="YYYY-MM-DD HH:mm a">
+                            <input type="text" class="form-control" data-ng-model="data.dateDropDownInput"
+                                   data-date-time-input="YYYY-MM-DD HH:mm a">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </a>
@@ -355,7 +357,9 @@
 
             <p><code>configureOn: 'config-changed'</code> to cause the directive to re-read its configuration.</p>
 
-            <p><button class="btn btn-default" data-ng-click="changeConfig()">Click me to change startView</button></p>
+            <p>
+                <button class="btn btn-default" data-ng-click="changeConfig()">Click me to change startView</button>
+            </p>
 
             <div class="well">
                 <p>Start View: {{ config.configureOnConfig.startView }}</p>
@@ -372,7 +376,9 @@
 
             <p><code>renderOn: 'valid-dates-changed'</code> to cause the directive to re-render.</p>
 
-            <p><button class="btn btn-default" data-ng-click="renderOnClick()">Click me to re-render</button></p>
+            <p>
+                <button class="btn btn-default" data-ng-click="renderOnClick()">Click me to re-render</button>
+            </p>
 
             <div class="well">
 
@@ -384,8 +390,65 @@
         </div>
 
     </div>
-</div>
 
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Date range picker</h3>
+            <h4>Every time you select a start date, dates before the start date are disabled in the end date.</h4>
+
+            <p>This is a little more complex than the other examples.</p>
+            <p><strong>Start Date:</strong> <code>renderOn: 'end-date-changed'</code> to cause the directive to re-render when the end date changes,
+            and <code>data-on-set-time="startDateOnSetTime()"</code> to broadcast when the start date changes,
+            and finally <code>data-before-render="beforeRenderStartDate($dates)"</code>
+                to disable the dates after the selected end date.</p>
+
+            <p><strong>End Date:</strong> <code>renderOn: 'start-date-changed'</code> to cause the directive to re-render when the start date changes,
+                and <code>data-on-set-time="endDateOnSetTime()"</code> to broadcast when the end date changes,
+                and finally <code>data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"</code>
+                to disable the dates before the selected start date.</p>
+
+            <p>NB: It is possible that data coming from the server (or via a defect in the controller) that the start date is after the end date.
+                To allow the user to get themselves out of this situation, your implementation might not disable any dates if the start date is greater than the end date.
+            </p>
+
+            <div class="well">
+                <div class="dropdown form-group">
+                    <label for="dateRangeStart">Start Date</label>
+                    <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#"
+                       href="#">
+                        <div class="input-group date">
+                            <input id="dateRangeStart" type="text" class="form-control" data-ng-model="dateRangeStart">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="dateRangeStart"
+                                        data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }"
+                                        data-on-set-time="startDateOnSetTime()"
+                                        data-before-render="startDateBeforeRender($dates)"></datetimepicker>
+                    </ul>
+                </div>
+
+                <div class="dropdown form-group">
+                    <label for="dateRangeStart">End Date</label>
+                    <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#"
+                       href="#">
+                        <div class="input-group date">
+                            <input type="text" class="form-control" data-ng-model="dateRangeEnd">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="dateRangeEnd"
+                                        data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
+                                        data-on-set-time="endDateOnSetTime()"
+                                        data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
