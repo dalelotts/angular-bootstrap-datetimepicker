@@ -36,9 +36,9 @@ We use Gulp for managing the build. Here are some useful Gulp tasks:
   * `gulp css-lint` Lint the css files after generating.
   * `gulp templatecache` Generates src/js/datetimepicker.templates.js. You must re-add the IIFE around the generated code after it is generated (PR to fix this would be apprecaited)
 
-# Contributing to AngularJS
+# Contributing to angular-bootstrap-datetimepicker
 
-We'd love for you to contribute to our source code and to make AngularJS even better than it is
+We'd love for you to contribute to our source code and to make angular-bootstrap-datetimepicker even better than it is
 today! Here are the guidelines we'd like you to follow:
 
  - [Question or Problem?](#question)
@@ -203,7 +203,7 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 
 We have very precise rules over how our git commit messages can be formatted.  This leads to **more
 readable messages** that are easy to follow when looking through the **project history**.  But also,
-we use the git commit messages to **generate the AngularJS change log**.
+we use the git commit messages to **generate the angular-bootstrap-datetimepicker change log**.
 
 The commit message formatting can be added using a typical git workflow or through the use of a CLI wizard ([Commitizen](https://github.com/commitizen/cz-cli)). To use the wizard, run `npm run commit` in your terminal after staging your changes in git.
 
