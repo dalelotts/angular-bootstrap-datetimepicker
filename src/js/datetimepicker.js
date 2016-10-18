@@ -420,7 +420,13 @@
     }
 
     function DateObject () {
+      var constructorObject = arguments[0]
       var tempDate = new Date()
+
+      if (constructorObject && constructorObject.utcDateValue) {
+        tempDate.setTime(constructorObject.utcDateValue)
+      }
+
       var localOffset = tempDate.getTimezoneOffset() * 60000
 
       this.utcDateValue = tempDate.getTime()
@@ -431,8 +437,6 @@
       }
 
       var validProperties = ['active', 'current', 'display', 'future', 'past', 'selectable', 'utcDateValue']
-
-      var constructorObject = arguments[0]
 
       Object.keys(constructorObject).filter(function (key) {
         return validProperties.indexOf(key) >= 0
