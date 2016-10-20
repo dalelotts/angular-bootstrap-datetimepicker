@@ -320,25 +320,26 @@ Display formatting of the date field is controlled by Angular filters.
 ```
 In this example, the drop-down functionality is controlled by Twitter Bootstrap.
 The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
-the drop-down is toggled closed after the user selectes a date/time.
+the drop-down is toggled closed after the user selects a date/time.
 
 ### Drop-down component with associated input box.
 ```html
 <div class="dropdown">
-    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-        <div class="input-append"><input type="text" class="input-large" data-ng-model="data.date"><span class="add-on"><i
-                class="icon-calendar"></i></span>
-        </div>
+    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
+      <div class="input-group">
+        <input type="text" id="date" name="date" class="form-control" data-ng-model="data.date">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+      <datetimepicker   data-ng-model="data.date" 
+                        data-datetimepicker-config="{ dropdownSelector: '#dropdown' }"></datetimepicker>
     </ul>
-</div>
+  </div>
 ```
 In this example, the drop-down functionality is controlled by Twitter Bootstrap.
 The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
-the drop-down is toggled closed after the user selectes a date/time.
+the drop-down is toggled closed after the user selects a date/time.
 
 ### Create a date range picker with validation controls
 ```html
