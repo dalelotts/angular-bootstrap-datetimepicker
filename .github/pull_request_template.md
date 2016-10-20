@@ -15,6 +15,7 @@
 
 
 **Please check if the PR fulfills these requirements**
+- [ ] This PR is against the `develop` branch. (Please do not submit PR's to the master branch)
 - [ ] The commit message follows our guidelines: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format
 - [ ] Tests for the changes have been added (for bug fixes / features)
 - [ ] Docs have been added / updated (for bug fixes / features)
