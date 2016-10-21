@@ -420,7 +420,7 @@
     }
 
     function DateObject () {
-      var tempDate = new Date()
+      var tempDate = new Date(arguments[0].utcDateValue)
       var localOffset = tempDate.getTimezoneOffset() * 60000
 
       this.utcDateValue = tempDate.getTime()
