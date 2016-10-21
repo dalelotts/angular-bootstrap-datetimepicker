@@ -72,14 +72,16 @@ describe('beforeRender', function () {
     it('in day view $dates parameter contains 42 members', function () {
       $rootScope.date = moment('2014-01-01T00:00:00.000').toDate()
 
-      var offset = new Date().getTimezoneOffset() * 60000
+      var offsetDate = new Date()
 
       $rootScope.beforeRender = function (dates) {
         expect(dates.length).toBe(42)
         expect(dates[0].utcDateValue).toBe(1388275200000)
-        expect(dates[0].localDateValue()).toBe(1388275200000 + offset)
+        offsetDate.setTime(dates[0].utcDateValue)
+        expect(dates[0].localDateValue()).toBe(1388275200000 + (offsetDate.getTimezoneOffset() * 60000))
         expect(dates[11].utcDateValue).toBe(1389225600000)
-        expect(dates[11].localDateValue()).toBe(1389225600000 + offset)
+        offsetDate.setTime(dates[11].utcDateValue)
+        expect(dates[11].localDateValue()).toBe(1389225600000 + (offsetDate.getTimezoneOffset() * 60000))
       }
 
       spyOn($rootScope, 'beforeRender').and.callThrough()
