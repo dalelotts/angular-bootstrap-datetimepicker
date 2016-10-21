@@ -1,3 +1,10 @@
+### Supprt Question?
+For support questions, please use one of these channels: 
+Gitter: https://gitter.im/dalelotts/angular-bootstrap-datetimepicker
+Stack Overflow: http://stackoverflow.com/search?q=angular-bootstrap-datetimepicker
+
+**This repository's issues are reserved for feature requests and bug reports.**
+
 ### Bug Reports
 You MUST have a JSBin recreation, or else your issue will be CLOSED without explanation.
 
