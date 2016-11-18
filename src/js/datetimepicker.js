@@ -204,7 +204,7 @@
         var previousViewDate = moment.utc(selectedDate).startOf('year')
         var endOfMonth = moment.utc(selectedDate).endOf('month')
 
-        var startDate = moment.utc(startOfMonth).subtract(Math.abs(startOfMonth.weekday()), 'days')
+        var startDate = moment.utc(startOfMonth).weekday(configuration.weekStart)
 
         var dayFormat = 'YYYY-MMM-DD'
         var activeFormat = formatValue(ngModelController.$modelValue, dayFormat)
@@ -224,8 +224,8 @@
           'weeks': []
         }
 
-        for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-          result.dayNames.push(moment.utc().weekday(dayNumber).format('dd'))
+        for (var dayNumber = configuration.weekStart; dayNumber < configuration.weekStart+7; dayNumber += 1) {
+          result.dayNames.push(moment.utc().weekday(dayNumber%7).format('dd'))
         }
 
         for (var i = 0; i < 6; i += 1) {
@@ -453,7 +453,8 @@
       modelType: 'Date',
       parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZZ',
       renderOn: null,
-      startView: 'day'
+      startView: 'day',
+      weekStart: 0
     }
 
     var defaultLocalization = {
@@ -508,7 +509,8 @@
         'parseFormat',
         'renderOn',
         'startView',
-        'screenReader'
+        'screenReader',
+        'weekStart'
       ]
 
       var invalidOptions = Object.keys(configuration).filter(function (key) {
