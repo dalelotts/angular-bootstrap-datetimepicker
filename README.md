@@ -23,17 +23,13 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 ## Support the project
 I know this is a tiny directive but many people use it in production (high 5 to all of us) - if you happen to use this directive please click the star button (at the top of the page) - it means a lot to all the contributors.
 
-## Upgrading from 0.4.0 or earlier
-
-The template used by this directive has been separated from the directive to allow the developer to override
- the template (i.e. use font-awesome styles in the template rather than glyphicons). As a result, you now 
-  need to include another javascript file in the page
-  
-```html
-<script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
-```
+## Overriding html template
 
 If you want to override the template used by this directive, simply populate the ```$templateCache``` with your own template.
+
+```JavaScript
+ $templateCache.put('templates/datetimepicker.html', '<div>...your custom template here...</div>')
+```
 
 # Formatting the date in an input box
 
