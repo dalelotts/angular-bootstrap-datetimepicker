@@ -20,6 +20,9 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
+## Support the project
+I know this is a tiny directive but many people use it in production (high 5 to all of us) - if you happen to use this directive please click the star button (at the top of the page) - it means a lot to all the contributors.
+
 ## Upgrading from 0.4.0 or earlier
 
 The template used by this directive has been separated from the directive to allow the developer to override
