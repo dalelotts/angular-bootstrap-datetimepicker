@@ -38,7 +38,7 @@ display of a date in an input box or allow users to enter a valid date with the 
 
 # Bower
 
-This project no longer supports bower. If you are using wiredep, you can dd the following to your 
+This project no longer supports bower. If you are using wiredep, you can add the following to your 
 bower.json file to allow wiredep to use this directive.
 
 ```json
