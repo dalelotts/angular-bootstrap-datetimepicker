@@ -394,6 +394,7 @@
       function getUTCTime (modelValue) {
         var tempDate = new Date()
         if (modelValue && modelValue.lenght > 4) {
+
           var tempMoment = getMoment(modelValue)
           if (tempMoment.isValid()) {
             tempDate = tempMoment.toDate()
