@@ -77,5 +77,13 @@ describe('onSetTime', function () {
       expect($rootScope.setTimeFunction).toHaveBeenCalled()
     })
   })
+
+  describe('Manually typing date', function () {
+    it('if date value is manually typed should not thrown an error when the date value is not completed', function () {
+      $rootScope.setManuallyDateFunction = function (modelValue) {
+        expect(modelValue).toEqual(moment('20-0').isValid() === false)
+      }
+    })
+  })
 })
 
