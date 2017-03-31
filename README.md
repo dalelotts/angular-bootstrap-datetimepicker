@@ -340,6 +340,27 @@ In this example, the drop-down functionality is controlled by Twitter Bootstrap.
 The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
 the drop-down is toggled closed after the user selects a date/time.
 
+### Restrict past dates from being selected
+
+```html
+<datetimepicker data-ng-model="startDate" data-before-render="startDateBeforeRender($dates)">
+</datetimepicker>
+```
+
+We filter dates that are past today and set selectable to false
+
+```javascript
+$scope.startDateBeforeRender = function($dates) {
+  const todaySinceMidnight = new Date();
+    todaySinceMidnight.setUTCHours(0,0,0,0);
+    $dates.filter(function (date) {
+      return date.utcDateValue < todaySinceMidnight.getTime();
+    }).forEach(function (date) {
+      date.selectable = false;
+    });
+};
+```
+
 ### Create a date range picker with validation controls
 ```html
 <div class="dropdown form-group">
