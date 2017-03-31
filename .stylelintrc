@@ -1,6 +1,6 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
-    "rule-non-nested-empty-line-before": "never"
+    "rule-empty-line-before": "never"
   }
 }

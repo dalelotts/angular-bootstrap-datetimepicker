@@ -65,4 +65,3 @@ describe('configureOn', function () {
     })
   })
 })
-

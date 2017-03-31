@@ -39,7 +39,7 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
     $rootScope.$digest()
   }))
   it('has `.switch` element with a value of 2013-Jan-22 0:00', function () {
-    expect(jQuery('.switch', element).text()).toBe('2013年1月22日凌晨12点00分')
+    expect(jQuery('.switch', element).text()).toBe('2013年1月22日 00:00')
   })
   it('has 12 `.minute` elements', function () {
     expect(jQuery('.minute', element).length).toBe(12)
@@ -48,7 +48,7 @@ describe('minute view with initial date of 2013-01-22 0:00', function () {
     expect(jQuery('.active', element).length).toBe(1)
   })
   it('`.active` element with a value of 0:00', function () {
-    expect(jQuery('.active', element).text()).toBe('凌晨12点00分')
+    expect(jQuery('.active', element).text()).toBe('00:00')
   })
   it('has a `<th class=`left`>` that contains a sr description set in simplified chinese', function () {
     expect(jQuery('th[class*=left] .sr-only', element).text()).toBe('上一页')
@@ -70,21 +70,21 @@ describe('minute view with initial date of 2013-01-22 1:15', function () {
     $rootScope.$digest()
   }))
   it('has `.switch` element with a value of 2013-Jan-22 1:00', function () {
-    expect(jQuery('.switch', element).text()).toBe('2013年1月22日凌晨1点00分')
+    expect(jQuery('.switch', element).text()).toBe('2013年1月22日 01:00')
   })
   it('has 4 `.minute` elements', function () {
     expect(jQuery('.minute', element).length).toBe(4)
   })
   it('has 1 `.active` element with a value of 1:15', function () {
-    expect(jQuery('.active', element).text()).toBe('凌晨1点15分')
+    expect(jQuery('.active', element).text()).toBe('01:15')
   })
   it('changes date/time to 1:00 to when clicking first `.minute` element with a value of 0:00', function () {
-    expect(jQuery('.active', element).text()).toBe('凌晨1点15分')
+    expect(jQuery('.active', element).text()).toBe('01:15')
 
     var selectedElement = jQuery(jQuery('.minute', element)[0])
     selectedElement.trigger('click')
 
-    expect(jQuery('.active', element).text()).toBe('凌晨1点00分')
+    expect(jQuery('.active', element).text()).toBe('01:00')
     expect(rootScope.date).toEqual(moment('2013-01-22T01:00:00.000').toDate())
   })
 })

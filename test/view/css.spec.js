@@ -86,4 +86,3 @@ describe('css styling', function () {
     angular.element(document).find('body').remove('.datetimepicker')
   })
 })
-

@@ -56,4 +56,3 @@ describe('startView', function () {
     })
   })
 })
-

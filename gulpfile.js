@@ -123,4 +123,3 @@ function testConfig (options) {
 
   return lodash.assign(options, travisOptions)
 }
-

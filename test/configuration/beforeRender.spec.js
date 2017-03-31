@@ -257,4 +257,3 @@ describe('beforeRender', function () {
     })
   })
 })
-

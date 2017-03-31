@@ -59,4 +59,3 @@ describe('configuration validation', function () {
     })
   })
 })
-
