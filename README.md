@@ -68,7 +68,7 @@ optional:
  * bootstrap's dropdown component (`dropdowns.less` or `bootstrap.css` )
  * bootstrap's javascript (`bootstrap.js` )
 
-#Testing
+# Testing
 This directive was written using TDD and all enhancements and changes have related tests.
 
 We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use gulp:
@@ -81,7 +81,7 @@ npm test
 The karma task will try to open Chrome as a browser in which to run the tests.
 Make sure Chrome is available or change the browsers setting in karma.config.js
 
-#Usage
+# Usage
 We use npm for dependency management, run
 
 ```shell
@@ -486,7 +486,7 @@ This view allows the user to select a specific time of day, in the selected hour
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
 
-##Contributing
+## Contributing
 
 See [Contributing.md](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/.github/contributing.md)
 
