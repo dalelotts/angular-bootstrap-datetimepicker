@@ -45,7 +45,7 @@ describe('dropdownSelector', function () {
     })
     it('and calls bootstrap methods', function () {
       var html = '<div class="dropdown">' +
-        '<a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target="#" href="#">' +
+        '<a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target=".dropdown" href="#">' +
         ' <div class="input-group">' +
         '   <input type="text" class="form-control" data-ng-model="data.dateDropDownInputNoFormatting">' +
         '   <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>' +

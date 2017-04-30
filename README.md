@@ -17,7 +17,6 @@ Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
   <img src="http://jpillora.com/github-twitter-button/img/tweet.png"></img>
 </a>
 
-
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
 ## Support the project
@@ -56,6 +55,50 @@ bower.json file to allow wiredep to use this directive.
     }
   }
 ```
+
+# Bootstrap Dropdown with JQuery 3
+
+If you see this error: `Uncaught Error: Syntax error, unrecognized expression: #`, it is because you are using Bootstrap 
+dropdown's with JQuery 3 and the HTML from the the official Bootstrap documentation. 
+
+Fortunately, you can get Bootstrap dropdowns to work with JQuery 3 by making a minor change to the HTML!
+
+## Bootstrap dropdown using jQuery 2
+This example will not work with will not work with jQuery3.
+ ```html
+ <div class="dropdown">
+     <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+         Click here to show calendar
+     </a>
+     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+         <datetimepicker data-ng-model="data.date"
+                         data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+     </ul>
+ </div>
+ ```
+ 
+ ## Bootstrap dropdown using jQuery 3
+ To use jQuery 3 with Bootstrap 3, you need to change the `data-toggle` to a selector that will select the parent `div.dropdown` element.
+ 
+ If you only have one drop down on the page, the change is very simple.
+ 1. Change `data-toggle="#"` to `data-toggle=".dropdown"`.
+ 
+ To support multiple drop down's on a page, you need to make two changes:
+ 1. Add a new class to the `div.dropdown` element (`dropdown1-parent` in the below example). This will be used as a selector in the `data-target` attribute.
+ 2. Change `data-toggle="#"` to `data-target=".dropdown1-parent" `. 
+ 
+  ```html
+  <div class="dropdown dropdown1-parent">
+      <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target=".dropdown1-parent" href="#">
+          Click here to show calendar
+      </a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <datetimepicker data-ng-model="data.date"
+                          data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+      </ul>
+  </div>
+  ```
+**NB**: All examples in this project now use the jQuery 3 HMTL because it also works with jQuery 2.
 
 # Dependencies
 
@@ -308,7 +351,7 @@ Display formatting of the date field is controlled by Angular filters.
 
 ```html
 <div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target=".dropdown" href="#">
         Click here to show calendar
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -324,7 +367,7 @@ the drop-down is toggled closed after the user selects a date/time.
 ### Drop-down component with associated input box.
 ```html
 <div class="dropdown">
-    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
+    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target=".dropdown" href="#">
       <div class="input-group">
         <input type="text" id="date" name="date" class="form-control" data-ng-model="data.date">
         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -363,9 +406,9 @@ $scope.startDateBeforeRender = function($dates) {
 
 ### Create a date range picker with validation controls
 ```html
-<div class="dropdown form-group">
+<div class="dropdown form-group dropdown-start-parent">
     <label>Start Date</label>
-    <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#"
+    <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target=".dropdown-start-parent"
        href="#">
         <div class="input-group date">
             <input type="text" class="form-control" data-ng-model="dateRangeStart">
@@ -380,9 +423,9 @@ $scope.startDateBeforeRender = function($dates) {
     </ul>
 </div>
 
-<div class="dropdown form-group">
+<div class="dropdown form-group dropdown-end-parent">
     <label>End Date</label>
-    <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#"
+    <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target=".dropdown-end-parent"
        href="#">
         <div class="input-group date">
             <input type="text" class="form-control" data-ng-model="dateRangeEnd">
