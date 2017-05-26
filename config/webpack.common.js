@@ -42,7 +42,7 @@ module.exports = function(options = {}) {
           test: /\.css/,
           loaders: [
             ExtractTextPlugin.extract({
-              fallbackLoader: "style-loader",
+              fallback: "style-loader",
               loader: 'css-loader'
             }),
             'to-string-loader',
@@ -54,7 +54,7 @@ module.exports = function(options = {}) {
           test: /\.scss$/,
           loaders: [
             ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
+              fallback: 'style-loader',
               loader: 'css-loader'
             }),
             'to-string-loader',
