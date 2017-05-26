@@ -1,5 +1,7 @@
 # Angular bootstrap date & time picker
 
+## Angular4+ Work
+
 Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
 
 [![Join the chat at https://gitter.im/dalelotts/angular-bootstrap-datetimepicker](https://badges.gitter.im/dalelotts/angular-bootstrap-datetimepicker.svg)](https://gitter.im/dalelotts/angular-bootstrap-datetimepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -595,4 +597,3 @@ Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts]
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
-
