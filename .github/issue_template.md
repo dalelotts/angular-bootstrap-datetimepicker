@@ -1,4 +1,4 @@
-### Support Question?
+### Supprt Question?
 For support questions, please use one of these channels: 
 Gitter: https://gitter.im/dalelotts/angular-bootstrap-datetimepicker
 Stack Overflow: http://stackoverflow.com/search?q=angular-bootstrap-datetimepicker
