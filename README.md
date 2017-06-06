@@ -118,6 +118,7 @@ We use karma and jshint to ensure the quality of the code. The easiest way to ru
 
 ```shell
 npm install
+bower install
 npm test
 ```
 
