@@ -404,6 +404,42 @@ $scope.startDateBeforeRender = function($dates) {
 };
 ```
 
+### Restrict past dates and time from dateTimeNow()
+
+```javascript
+$scope.startDateAndTimeBeforeRender = function ($dates) {
+var ranChecker = false;
+var dateNow = new Date();
+$dates.filter(function (date) {
+return date.localDateValue() < dateNow;
+}).forEach(function (date) {
+var mo = moment();
+var localTime = new Date(date.utcDateValue);
+var isDisplayLengthNotDay = date.display.length > 2;
+var isToday = mo.isSame(moment(date.utcDateValue), 'day');
+var isMonth = mo.isSame(moment(date.utcDateValue), 'month');
+var isYear = mo.isSame(moment(date.utcDateValue), 'year');
+var isHoursSame = localTime.getHours() == dateNow.getHours();
+var isMinutesLess = localTime.getMinutes() < dateNow.getMinutes();
+var dateFormat = mo.minute(0).format("h:mm A");
+var monthFormat = mo.minute(0).format("MMM");
+var yearFormat = mo.minute(0).format("YYYY");
+var display = date.display;
+var isDisplayDateSame = display == dateFormat;
+var isDisplayMonthSame = display == monthFormat;
+var isDisplayYearSame = display == yearFormat;
+var displaySame = ((isDisplayDateSame && isToday) || (isDisplayMonthSame && isMonth) || (isDisplayYearSame && isYear));
+if (!isToday && !displaySame) {
+date.selectable = false;
+} else if ((((isDisplayLengthNotDay || date.past) || (!isHoursSame && isMinutesLess && !isToday)) && !displaySame) || !ranChecker) {
+date.selectable = false;
+};
+ranChecker = true;
+});
+}
+};
+```
+
 ### Create a date range picker with validation controls
 ```html
 <div class="dropdown form-group dropdown-start-parent">
