@@ -413,16 +413,17 @@ scope.startDateBeforeRender = function ($dates) {
                 $dates.filter(function (date) {
                     return date.localDateValue() < dateNow;
                 }).forEach(function (date) {
+                    var mo = moment();
                     var localTime = new Date(date.utcDateValue);
                     var isDisplayLengthNotDay = date.display.length > 2;
-                    var isToday = dateService.isSameDayAsNow(date.utcDateValue);
-                    var isMonth = dateService.isSameMonthAsNow(date.utcDateValue);
-                    var isYear = dateService.isSameYearAsNow(date.utcDateValue);
+                    var isToday = mo.isSame(moment(date.utcDateValue), 'day');
+                    var isMonth = mo.isSame(moment(date.utcDateValue), 'month');
+                    var isYear = mo.isSame(moment(date.utcDateValue), 'year');
                     var isHoursSame = localTime.getHours() == dateNow.getHours();
                     var isMinutesLess = localTime.getMinutes() < dateNow.getMinutes();
-                    var dateFormat = dateService.getNowHour();
-                    var monthFormat = dateService.getNowMonth();
-                    var yearFormat = dateService.getNowYear();
+                    var dateFormat = mo.minute(0).format("h:mm A");
+                    var monthFormat = mo.minute(0).format("MMM");
+                    var yearFormat = mo.minute(0).format("YYYY");
                     var display = date.display;
                     var isDisplayDateSame = display == dateFormat;
                     var isDisplayMonthSame = display == monthFormat;
@@ -430,13 +431,13 @@ scope.startDateBeforeRender = function ($dates) {
                     var displaySame = ((isDisplayDateSame && isToday) || (isDisplayMonthSame && isMonth) || (isDisplayYearSame && isYear));
                     if (!isToday && !displaySame) {
                         date.selectable = false;
-                    } else if ((((isDisplayLengthNotDay || date.past) || (!isHoursSame && isMinutesLess && !isToday)) && !displaySame) || !ranChecker) {
-                        date.selectable = false;
-                    }
-                    ranChecker = true;
-                });
-            };
+                        } else if ((((isDisplayLengthNotDay || date.past) || (!isHoursSame && isMinutesLess && !isToday)) && !displaySame) || !ranChecker) {
+                          date.selectable = false;
+                        };
+                           ranChecker = true;
+                        });
         }
+};
 ```
 
 ### Create a date range picker with validation controls
