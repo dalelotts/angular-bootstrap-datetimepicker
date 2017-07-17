@@ -404,6 +404,29 @@ $scope.startDateBeforeRender = function($dates) {
 };
 ```
 
+### Restrict past dates and time from date time now
+
+```javascript
+scope.startDateBeforeRender = function ($dates, $view) {
+                var dateNow = new Date();
+                $dates.filter(function (date) {
+                    var isDay = moment().isSame(moment(date.utcDateValue), 'day');
+                    var isHour = date.display == moment().minute(0).format("h:mm A");
+                    var isMonth = moment().isSame(moment(date.utcDateValue), 'month');
+                    var isYear = moment().isSame(moment(date.utcDateValue), 'year');
+                    if ((isDay && $view == "hour" && isHour) ||
+                        ($view == "day" && isDay) ||
+                        ($view == "month" && isMonth) ||
+                        ($view == "year" && isYear)) {
+                            return false;
+                        }
+                    return date.localDateValue() < dateNow;
+                }).forEach(function (date) {
+                    date.selectable = false;
+                });
+            };
+```
+
 ### Create a date range picker with validation controls
 ```html
 <div class="dropdown form-group dropdown-start-parent">
