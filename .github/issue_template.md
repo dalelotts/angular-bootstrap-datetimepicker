@@ -4,12 +4,12 @@ For support questions, please use one of these channels:
 Gitter: https://gitter.im/dalelotts/angular-bootstrap-datetimepicker
 Stack Overflow: http://stackoverflow.com/search?q=angular-bootstrap-datetimepicker
 
-**Support questions will be immediatly closed without comment.**
+**Support questions will be CLOSED without explanation.**
 
 **This repository's issues are reserved for feature requests and bug reports.**
 
 ### Bug Reports
-**You MUST have a JSBin recreation of the defect or your issue will be CLOSED without explanation**
+**You MUST have a JSBin recreation of the defect or your issue will be CLOSED without explanation.**
 
 **NB:** Search the existing issues (open and closed) to see if someone has already reported your bug. If so, vote with a 👍 reaction on the topmost description of the issue [(learn how)](https://github.com/blog/2119-add-reactions-to-pull-requests-issues-and-comments) and press the Subscribe button to receive updates when progress is made.
 
