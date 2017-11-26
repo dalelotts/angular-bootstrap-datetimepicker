@@ -1,4 +1,4 @@
-### Is this Support Question?
+### Is this a Support Question?
 A support question starts with `how`, `why`, or some other statement indicating you are trying to understand how to use this directive.
 For support questions, please use one of these channels: 
 Gitter: https://gitter.im/dalelotts/angular-bootstrap-datetimepicker
