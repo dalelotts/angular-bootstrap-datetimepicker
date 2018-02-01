@@ -97,7 +97,7 @@ describe('day with initial date of "2008-02-01T00:00:00.000" (leap year) and min
     $rootScope.$digest()
   }))
   it('clicking the 33rd `.day` element will set the date value to 2008-29-11T00:00:00.000"', function () {
-    expect(jQuery('.switch', element).text()).toBe('2008-Febr.')
+    expect(jQuery('.switch', element).text()).toBe('2008-Feb.')
 
     expect(jQuery('.active', element).length).toBe(1)
     expect(jQuery('.active', element).text()).toBe('1')
