@@ -208,7 +208,7 @@ describe('year view with ng-model = null', function () {
     it('has one `.left` element, when clicked, changes the view to the previous month', function () {
       var selectedElement = jQuery('.left', element)
       selectedElement.trigger('click')
-      expect(jQuery('.switch', element).text()).toBe('2010-Sept.')
+      expect(jQuery('.switch', element).text()).toBe('2010-Sep.')
     })
     it('has one `.right` element, when clicked, changes the view to the next month', function () {
       var selectedElement = jQuery('.right', element)
@@ -223,7 +223,7 @@ describe('year view with ng-model = null', function () {
     it('changes to hour view after clicking a `.past` element', function () {
       var selectedElement = jQuery(jQuery('.past', element)[0])
       selectedElement.trigger('click')
-      expect(jQuery('.switch', element).text()).toBe('27. Sept. 2010')
+      expect(jQuery('.switch', element).text()).toBe('27. Sep. 2010')
     })
     it('changes to hour view after clicking a `.future` element', function () {
       var selectedElement = jQuery(jQuery('.future', element)[0])
@@ -262,7 +262,7 @@ describe('year view with ng-model = null', function () {
     it('changes the view to the previous day when `.left` element is clicked', function () {
       var selectedElement = jQuery('.left', element)
       selectedElement.trigger('click')
-      expect(jQuery('.switch', element).text()).toBe('30. Sept. 2010')
+      expect(jQuery('.switch', element).text()).toBe('30. Sep. 2010')
     })
     it('changes the view to the next day when `.right` element is clicked', function () {
       var selectedElement = jQuery('.right', element)
