@@ -366,8 +366,8 @@ the drop-down is toggled closed after the user selects a date/time.
 
 ### Drop-down component with associated input box.
 ```html
-<div class="dropdown date-dropdown">
-    <a class="dropdown-toggle" id="date_dropdown" role="button" data-toggle="dropdown" data-target=".date-dropdown" href="#">
+<div class="dropdown" id="#date-dropdown">
+    <a class="dropdown-toggle" id="date_dropdown" role="button" data-toggle="dropdown" data-target="#date-dropdown" href="#">
         <div class="input-group">
             <input type="text" class="form-control" ng-model="data.date">
             <span class="input-group-addon">
@@ -385,7 +385,7 @@ In this example, the drop-down functionality is controlled by Twitter Bootstrap.
 The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
 the drop-down is toggled closed after the user selects a date/time.
 
-In addition, this example has a second class <code>date-dropdown</code> which enables use when other dropdowns are present.
+In addition, this example has an id of <code>date-dropdown</code> which, because ids should be unique for elements, ensures that your dropdown will function when other dropdowns are present on your page.
 
 ### Restrict past dates from being selected
 
