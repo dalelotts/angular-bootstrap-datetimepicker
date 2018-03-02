@@ -1,118 +1,225 @@
-# Angular bootstrap date & time picker
+# Angular 5+ bootstrap date & time picker
 
-Native AngularJS datetime picker directive styled by Twitter Bootstrap 3
+Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 
-[![Join the chat at https://gitter.im/dalelotts/angular-bootstrap-datetimepicker](https://badges.gitter.im/dalelotts/angular-bootstrap-datetimepicker.svg)](https://gitter.im/dalelotts/angular-bootstrap-datetimepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![MIT License][license-image]][license-url]
+[![npm downloads](https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg)](https://www.npmjs.com/package/angular-bootstrap-datetimepicker)
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
 [![Coverage Status](https://coveralls.io/repos/github/dalelotts/angular-bootstrap-datetimepicker/badge.svg?branch=master)](https://coveralls.io/github/dalelotts/angular-bootstrap-datetimepicker?branch=master)
 [![Dependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker.svg)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker)
 [![devDependency Status](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker/dev-status.png)](https://david-dm.org/dalelotts/angular-bootstrap-datetimepicker#info=devDependencies)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/npm/angular-bootstrap-datetimepicker/badge.svg)](https://snyk.io/test/npm/angular-bootstrap-datetimepicker)
-[![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=F3FX5W6S2U4BW&lc=US&item_name=Dale%20Lotts&item_number=angular%2dbootstrap%2ddatetimepicker&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted "Donate one-time to this project using Paypal")
-<a href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fabout.twitter.com%2Fresources%2Fbuttons&amp;text=Check%20out%20this%20%23AngularJS%20directive%20that%20makes%20it%20dead%20simple%20for%20users%20to%20select%20dates%20%26%20times&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fgithub.com%2Fdalelotts%2Fangular-bootstrap-datetimepicker&amp;via=dalelotts" target="_blank">
-  <img src="http://jpillora.com/github-twitter-button/img/tweet.png"></img>
-</a>
+
+[![Join the chat at https://gitter.im/dalelotts/angular-bootstrap-datetimepicker](https://badges.gitter.im/dalelotts/angular-bootstrap-datetimepicker.svg)](https://gitter.im/dalelotts/angular-bootstrap-datetimepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![MIT License][license-image]][license-url]
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
+## On Angular 1.x?
+
+See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angular-bootstrap-datetimepicker)
+
+or 
+
+`npm install --save angularjs-bootstrap-datetimepicker`
+
 ## Support the project
-I know this is a tiny directive but many people use it in production (high 5 to all of us) - if you happen to use this directive please click the star button (at the top of the page) - it means a lot to all the contributors.
+I know this is a tiny component but many people use it in production (high 5 to all of us) - if you happen to use this component please click the star button (at the top of the page) - it means a lot to all the contributors.
 
-## Overriding html template
+**NOTE:** Before submitting new issues, have a look at [issues marked with the `type: faq` label](https://github.com/dalelotts/angular-bootstrap-datetimepicker/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3A%22type%3A%20faq%22%20).
 
-If you want to override the template used by this directive, simply populate the ```$templateCache``` with your own template.
+## Peer Dependencies
 
-```JavaScript
- $templateCache.put('templates/datetimepicker.html', '<div>...your custom template here...</div>')
-```
-
-# Formatting the date in an input box
-
-Use the [angular-date-time-input](https://github.com/dalelotts/angular-date-time-input) directive to format the 
-display of a date in an input box or allow users to enter a valid date with the keyboard.
-
-# Bower
-
-This project no longer supports bower. If you are using wiredep, you can add the following to your 
-bower.json file to allow wiredep to use this directive.
-
-```json
-  "overrides": {
-    "angular-bootstrap-datetimepicker": {
-      "main": [
-        "src/js/datetimepicker.js",
-        "src/js/datetimepicker.templates.js",
-        "src/css/datetimepicker.css"
-      ],
-      "dependencies": {
-        "angular": "^1.x",
-        "moment": "^2.x"
-      }
-    }
-  }
-```
-
-# Bootstrap Dropdown with JQuery 3
-
-If you see this error: `Uncaught Error: Syntax error, unrecognized expression: #`, it is because you are using Bootstrap 
-dropdown's with JQuery 3 and the HTML from the the official Bootstrap documentation. 
-
-Fortunately, you can get Bootstrap dropdowns to work with JQuery 3 by making a minor change to the HTML!
-
-## Bootstrap dropdown using jQuery 2
-This example will not work with will not work with jQuery3.
- ```html
- <div class="dropdown">
-     <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
-         Click here to show calendar
-     </a>
-     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-         <datetimepicker data-ng-model="data.date"
-                         data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
-     </ul>
- </div>
- ```
- 
- ## Bootstrap dropdown using jQuery 3
- To use jQuery 3 with Bootstrap 3, you need to change the `data-toggle` to a selector that will select the parent `div.dropdown` element.
- 
- If you only have one drop down on the page, the change is very simple.
- 1. Change `data-toggle="#"` to `data-toggle=".dropdown"`.
- 
- To support multiple drop down's on a page, you need to make two changes:
- 1. Add a new class to the `div.dropdown` element (`dropdown1-parent` in the below example). This will be used as a selector in the `data-target` attribute.
- 2. Change `data-toggle="#"` to `data-target=".dropdown1-parent" `. 
- 
-  ```html
-  <div class="dropdown dropdown1-parent">
-      <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target=".dropdown1-parent" href="#">
-          Click here to show calendar
-      </a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <datetimepicker data-ng-model="data.date"
-                          data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
-      </ul>
-  </div>
-  ```
-**NB**: All examples in this project now use the jQuery 3 HMTL because it also works with jQuery 2.
-
-# Dependencies
-
-Requires:
- * AngularJS 1.4.x or higher (1.0.x will not work)
+Peer dependencies:
+ * AngularJS 5.x or higher (1.x will not work)
  * moment.js 2.8.3 or higher for date parsing and formatting
- * bootstrap's glyphicons for arrows (Can be overridden in css)
+ * bootstrap 4.x for css/layout
+ * open-iconic for the default icon's (you can use any icon libary you like)
+ 
+jQuery is NOT required.
+
+## Usage with Angular CLI
+If you are using the [Angular CLI](https://cli.angular.io/) there are a few simple steps to 
+add this component to your project.
+
+First, install this module and it's peer dependencies.
+
+```shell
+npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic
+```
+
+Then update `./src/app/app.module.ts` to include the following:
+
+```TypeScript
+import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    DlDateTimePickerModule,
+  ],
+  providers: [FormsModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+Next, add the following to `./src/app/app.component.html`
+
+```html
+<dl-date-time-picker></dl-date-time-picker>
+```
+
+Next, add the following to `./src/styles.css`
+
+```css
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
+```
+
+**Note:** This component uses `open-iconic` icons by default, but you can use any icon library 
+that supports styling with `classes`.
+
+Finally, run `npm start` and you should see the date/time picker on [http://localhost:4200/](http://localhost:4200/)
+
+By default, the date/time picker is as wide as it's container `{ width:100% }`. 
+It uses bootstrap's flex `row` and `col` classes to layout the date/time picker into rows and columns.
+If the parent container is too narrow (less than 340px in english), the row and column layout may wrap in ways that are not attractive. 
+Other languages/locals may require a wider container to fit the contents.
+
+## Configuration
+
+Use the automated configuration generator (NOT AVAILABLE YET!) (please let me know if it does not work for your use case!), 
+or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+for the automatically generated documentation.
+
+### First day of week
+
+The first day of the week is determined by  [moment's i18n settings](https://momentjs.com/docs/#/i18n/).
+For example, setting the locale to `'fr'` will cause Monday to be the first day of the week.  
+
+### Display of year, month, day, hour, am/pm, and minute formats
+
+The format of hours and minutes is also determined by [moment's i18n settings](https://momentjs.com/docs/#/i18n/).
+
+hours are displayed using `ll` as the format.
+minutes are displayed using `lll` as the format. 
+
+I recommend you use the default locale settings from Moment (if they are incorrect, submit a PR to moment to correct the settings)
+If for some reason the default Moment settings will not work, you can [customize the existing locale](https://momentjs.com/docs/#/customization/) or [create a custom locale](https://momentjs.com/docs/#/i18n/adding-locale/) with the desired formats.
+
+
+## Documentation
+
+You can generate the documentation by running `npm run documentation`
+or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+
+## Accessibility
+
+The `DlDateTimePickerComponent` component adds `aria-label` attributes to the left, right, and up buttons
+in addition to all calendar cells where the text of the cell may not fully describe the value.
+
+### Keyboard shortcuts
+
+The `DlDateTimePickerComponent` component supports the following keyboard shortcuts in all views:
+
+| Shortcut             | Action                                          |
+|----------------------|-------------------------------------------------|
+| `LEFT_ARROW`         | Go to the cell to the left                      |
+| `RIGHT_ARROW`        | Go to the cell to the right                     |
+| `UP_ARROW`           | Go to the cell above                            |
+| `DOWN_ARROW`         | Go to the cell below                            |
+| `HOME`               | Go to the first cell in the view                |
+| `END`                | Go to the last cell in the view                 |
+| `PAGE_UP`            | Go to the same cell in the previous time period |
+| `PAGE_DOWN`          | Go to the same cell in the next time period     |
+| `ENTER` or `SPACE`   | Select current cell                             |
+
+## Examples
+
+### Date picker only
+
+### Time picker only
+
+### Inline date/time picker
+
+### Inline date/time picker with data bound to the page with the format specified via date filter
+
+### As a drop-down date/time picker
+
+#### Bootstrap 4 dropdown
+
+### Drop-down date/time picker with associated input box
+
+### Minimum date/time
+
+### Restrict past dates from being selected
+
+### Create a date range picker with validation controls
+
+### Fixed time zone
+By default, all dates and times are in the users local time zone. If you want all dates and times
+to be in a specific fixed time zone (regardless of users time zone) you can ... `TBD`
+
+### UTC Mode
+
+### Touch mode (for use on mobile devices)
+
+## Screen shots
+
+### Year view
+
+![Datetimepicker year view](./screenshots/year.png)
+
+This view allows the user to select the year for the target date.
+If the year view is the minView, the date will be set to midnight on the first day of the year
+
+### Month view
+
+![Datetimepicker month view](./screenshots/month.png)
+
+This view allows the user to select the month in the selected year.
+If the month view is the minView, the date will be set to midnight on the first day of the month.
+
+### Day view (Default)
+
+![Datetimepicker day view](./screenshots/day.png)
+
+This view allows the user to select the the day of the month, in the selected month.
+If the day view is the minView, the date will be set to midnight on the day selected.
+
+### Hour view
+
+![Datetimepicker hour view](./screenshots/hour.png)
+
+This view allows the user to select the hour of the day, on the selected day.
+If the hour view is the minView, the date will be set to the beginning of the hour on the day selected.
+
+### Minute view
+
+![Datetimepicker minute view](./screenshots/minute.png)
+
+This view allows the user to select a specific time of day, in the selected hour.
+By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
+If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
  
 optional:
- * bootstrap's dropdown component (`dropdowns.less` or `bootstrap.css` )
- * bootstrap's javascript (`bootstrap.js` )
 
-# Testing
-This directive was written using TDD and all enhancements and changes have related tests.
+## Contributing
+
+See [Contributing.md](.github/contributing.md)
+
+### Testing
+This component was written using TDD and all enhancements and changes have related tests.
 
 We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use gulp:
 
@@ -123,436 +230,6 @@ npm test
 
 The karma task will try to open Chrome as a browser in which to run the tests.
 Make sure Chrome is available or change the browsers setting in karma.config.js
-
-# Usage
-We use npm for dependency management, run
-
-```shell
-npm install --save angular-bootstrap-datetimepicker
-```
-
-This will copy the angular-bootstrap-datetimepicker files into your components folder, along with its dependencies.
-
-Add the css:
-
-```html
-<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-<link rel="stylesheet" href="node_modules/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
-```
-
-Load the script files in your application:
-```html
-<script type="text/javascript" src="node_modules/moment/moment.js"></script>
-<script type="text/javascript" src="node_modules/angular/angular.js"></script>
-<script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-<script type="text/javascript" src="node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
-```
-
-Add the date module as a dependency to your application module:
-
-```html
-var myAppModule = angular.module('MyApp', ['ui.bootstrap.datetimepicker'])
-```
-
-Apply the directive to your form elements:
-
-```html
-<datetimepicker data-ng-model="data.date"></datetimepicker>
-```
-
-## Callback functions
-
-### before-render
-Attribute on datetimepicker element
-
-If the value of the before-render attribute is a function, the date time picker will call this function
-before rendering a new view, passing in data about the view.
-
-```html
-<datetimepicker data-ng-model="data.date" data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-```
-This function will be called every time a new view is rendered.
-```javascript
-$scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
-    var index = Math.floor(Math.random() * $dates.length);
-    $dates[index].selectable = false;
-}
-```
-
-The following parameters are supplied by this directive :
- * '$view' the name of the view to be rendered
- * '$dates' a (possibly empty) array of DateObject's (see source) that the user can select in the view.
- * '$leftDate' the DateObject selected if the user clicks the left arrow.
- * '$upDate' the DateObject selected if the user clicks the text between the arrows.
- * '$rightDate' the DateObject selected if the user clicks the right arrow.
-
-
-```
-DateObject {
-    utcDateValue: Number - UTC time value of this date object. It does NOT contain time zone information so take that into account when comparing to other dates (or use localDateValue function).
-    localDateValue: FUNCTION that returns a Number - local time value of this date object - same as moment.valueOf() or Date.getTime().
-    display: String - the way this value will be displayed on the calendar.
-    active: true | false | undefined - indicates that date object is part of the model value.
-    selectable: true | false | undefined - indicates that date value is selectable by the user.
-    past: true | false | undefined - indicates that date value is prior to the date range of the current view.
-    future: true | false | undefined - indicates that date value is after the date range of the current view.
-}
-```
-Setting the .selectable property of a DateObject to false will prevent the user from being able to select that date value.
-
-### on-set-time
-Attribute on datetimepicker element
-
-If the value of the on-set-time attribute is a function, the date time picker will call this function
-passing in the selected value and previous value.
-```html
-<datetimepicker data-ng-model="data.date" data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
-```
-This function will be called when the user selects a value on the minView.
-```javascript
-$scope.onTimeSet = function (newDate, oldDate) {
-    console.log(newDate);
-    console.log(oldDate);
-}
-```
-
-data-on-set-time="onTimeSet()"  <-- This will work
-
-data-on-set-time="onTimeSet"    <-- **This will NOT work, the ()'s are required**
-
-
-## Configuration Options
-***NOTE*** The configuration options are not attributes on the element but rather members of the configuration object,
-which is specified in the data-datetimepicker-config attribute.
-
-```html
-<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
-```
-
-### startView
-
-String.  Default: ```'day'```
-
-The view that the datetimepicker should show when it is opened.
-Accepts values of :
- * ```'minute'``` for the minute view
- * ```'hour'``` for the hour view
- * ```'day'``` for the day view (the default)
- * ```'month'``` for the 12-month view
- * ```'year'``` for the 10-year overview. Useful for date-of-birth datetimepickers.
-
-### minView
-
-String. ```'minute'```
-
-The lowest view that the datetimepicker should show.
-
-Accepts the same values as startView.
-
-### minuteStep
-
-Number.  Default: ```5```
-
-The increment used to build the hour view. A button is created for each <code>minuteStep</code> minutes.
-
-### configureOn
-
-String. Default: ```null```
-
-Causes the date/time picker to re-read its configuration when the specified event is received.
-
-For example, perhaps the startView option in the configuration has changed and you would like the 
-new configuration to be used. You can $broadcast the event to cause this directive to use the new configuration. 
-
-### renderOn
-
-String. Default: ```null```
-
-Causes the date/time picker to re-render its view when the specified event is received.
-
-For example, if you want to disable any dates or times that are in the past. 
-You can $broadcast the event at an interval to disable times in the past (or any other time valid dates change).
-
-### modelType
-
-String. Default: ```'Date'```
-
-Specifies the data type to use when storing the selected date in the model. 
-
-Accepts any string value, but the following values have special meaning (these values are case sensitive) :
- * ```'Date'``` stores a Date instance in the model. Will accept Date, moment, milliseconds, and ISO 8601 strings as initial input from the model 
- * ```'moment'``` stores a moment instance in the model. Accepts the same initial values as ```Date```
- * ```'milliseconds'``` store the epoch milliseconds (since 1-1-1970) in the model. Accepts the same initial values as ```Date```
-
-Any other value is considered a format string. 
-
-When accepting values from, and saving values to the model, this directive tries to be as flexible as possible.
-Dates, moments, and milliseconds are all accepted as input no matter what you specify for ```modelType```.
-However, strings are problematic and often lose timezone information, so use caution when storing strings. 
-
-If you must use a string, be aware that the format stored in the model must exactly match the format specified in ```modelType```.
-For example, the value in the model is ```'2015-12-31'``` then using ```modelType: 'MM-DD-YYYY'``` will cause an exception. 
- 
-NOTA BENE: If the only reason you are storing strings is to have it properly formatted when displaying to the user,
-please review the documentation on ngModelController $formatters and $parsers. These allow you to store a value in the model
-but display it formatted as you like in the view. In other words, stop it!  =)
-
-### screenReader
-The next and previous arrows on the directive had hidden (when useing bootstrap.css) text for screen readers. 
-It also provide some default translations for various languages. However, if you need another translation, you can specify 
-the translations in the configuration.
-
-The screenReader option must be an object with ```previous``` and ```next``` properties.
-
-```html
-<datetimepicker data-ng-model="data.date" data-datetimepicker-config="{ screenReader: { 'previous': 'go previous', 'next': 'go next' }}"></datetimepicker>
-```
-
-
-### dropdownSelector
-
-When used within a Bootstrap dropdown and jQuery, the selector specified in dropdownSelector will toggle the dropdown when a date/time is selected.
-
-**NOTE:** dropdownSelector **requires** jquery and bootstrap.js. If do not have these available do not specify this option. If you do, an error will
- be logged and this option will be removed.
-
-
-## Working with ng-model
-The angular-bootstrap-datetimepicker directive requires ng-model and the picked date/time is automatically synchronized with the model value.
-
-This directive also plays nicely with validation directives such as ng-required.
-
-The angular-bootstrap-datetimepicker directive stores and expects the model value to be a standard javascript Date object.
-
-## ng-required directive
-If you apply the required directive to element then the form element is invalid until a date is picked.
-
-Note: Remember that the ng-required directive must be explicitly set, i.e. to "true".
-
-## Examples
-
-### Inline component.
-
-```html
-<datetimepicker data-ng-model="data.date" ></datetimepicker>
-```
-### Inline component with data bound to the page with the format specified via date filter:
-
-```html
-<datetimepicker data-ng-model="data.date" ></datetimepicker>
-```
-```
-<p>Selected Date: {{ data.date | date:'yyyy-MM-dd HH:mm' }}</p>
-```
-
-Display formatting of the date field is controlled by Angular filters.
-
-### As a drop-down:
-
-```html
-<div class="dropdown">
-    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target=".dropdown" href="#">
-        Click here to show calendar
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="data.date"
-                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
-    </ul>
-</div>
-```
-In this example, the drop-down functionality is controlled by Twitter Bootstrap.
-The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
-the drop-down is toggled closed after the user selects a date/time.
-
-### Drop-down component with associated input box.
-```html
-<div class="dropdown">
-    <a class="dropdown-toggle" id="dropdown" role="button" data-toggle="dropdown" data-target=".dropdown" href="#">
-      <div class="input-group">
-        <input type="text" id="date" name="date" class="form-control" data-ng-model="data.date">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-      </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-      <datetimepicker   data-ng-model="data.date" 
-                        data-datetimepicker-config="{ dropdownSelector: '#dropdown' }"></datetimepicker>
-    </ul>
-  </div>
-```
-In this example, the drop-down functionality is controlled by Twitter Bootstrap.
-The <code>dropdownSelector</code> tells the datetimepicker which element is bound to the Twitter Bootstrap drop-down so
-the drop-down is toggled closed after the user selects a date/time.
-
-### Restrict past dates from being selected
-
-```html
-<datetimepicker data-ng-model="startDate" data-before-render="startDateBeforeRender($dates)">
-</datetimepicker>
-```
-
-We filter dates that are past today and set selectable to false
-
-```javascript
-$scope.startDateBeforeRender = function($dates) {
-  const todaySinceMidnight = new Date();
-    todaySinceMidnight.setUTCHours(0,0,0,0);
-    $dates.filter(function (date) {
-      return date.utcDateValue < todaySinceMidnight.getTime();
-    }).forEach(function (date) {
-      date.selectable = false;
-    });
-};
-```
-
-### Create a date range picker with validation controls
-```html
-<div class="dropdown form-group dropdown-start-parent">
-    <label>Start Date</label>
-    <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target=".dropdown-start-parent"
-       href="#">
-        <div class="input-group date">
-            <input type="text" class="form-control" data-ng-model="dateRangeStart">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-        </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="dateRangeStart"
-                        data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }"
-                        data-on-set-time="startDateOnSetTime()"
-                        data-before-render="startDateBeforeRender($dates)"></datetimepicker>
-    </ul>
-</div>
-
-<div class="dropdown form-group dropdown-end-parent">
-    <label>End Date</label>
-    <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target=".dropdown-end-parent"
-       href="#">
-        <div class="input-group date">
-            <input type="text" class="form-control" data-ng-model="dateRangeEnd">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-        </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="dateRangeEnd"
-                        data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
-                        data-on-set-time="endDateOnSetTime()"
-                        data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-    </ul>
-</div>
-```
-In this example, two elements are created : one for the start date and the second for the end date of the range.
-
-```JavaScript
-/* Bindable functions
- -----------------------------------------------*/
-$scope.endDateBeforeRender = endDateBeforeRender
-$scope.endDateOnSetTime = endDateOnSetTime
-$scope.startDateBeforeRender = startDateBeforeRender
-$scope.startDateOnSetTime = startDateOnSetTime
-
-function startDateOnSetTime () {
-  $scope.$broadcast('start-date-changed');
-}
-
-function endDateOnSetTime () {
-  $scope.$broadcast('end-date-changed');
-}
-
-function startDateBeforeRender ($dates) {
-  if ($scope.dateRangeEnd) {
-    var activeDate = moment($scope.dateRangeEnd);
-
-    $dates.filter(function (date) {
-      return date.localDateValue() >= activeDate.valueOf()
-    }).forEach(function (date) {
-      date.selectable = false;
-    })
-  }
-}
-
-function endDateBeforeRender ($view, $dates) {
-  if ($scope.dateRangeStart) {
-    var activeDate = moment($scope.dateRangeStart).subtract(1, $view).add(1, 'minute');
-
-    $dates.filter(function (date) {
-      return date.localDateValue() <= activeDate.valueOf()
-    }).forEach(function (date) {
-      date.selectable = false;
-    })
-  }
-}
-```
-Then in the controller two functions must be added. Each one is related to the concerned date. They update the selectable status of each displayed date based on the range values. The time is also taken into account.
-
-## Screen reader support
-
-## I18N / l10n support
-
-All internationalization is handled by Moment.js, see Moment's documentation for details.
-In most cases, all that is needed is a call to ```moment.locale(String)```
-
-One exception is the title of the month view - moment does not (yet) have a localized format for month and year.
-
-```JavaScript
-moment.locale('en');        // English
-moment.locale('zh-cn');     // Simplified chinese
-```
-
-### First day of week
-
-The first day of the week is also determined by moment's locale settings. For example, setting the locale to ```'fr'```
-will cause Monday to be the first day of the week.  
-
-### Hour and minute formats
-
-The format of hours and mintues is also determined by moment's locale settings.
- 
-hours are displayed using 'll' as the format.
-minutes are displayed using 'lll' as the format. 
-
-You can change the format by setting moment to the desired locale, or creating a custom locale with the desired format.
-
-# Screen shots
-
-## Year view
-
-![Datetimepicker year view](https://raw.github.com/dalelotts/angular-bootstrap-datetimepicker/master/screenshots/year.png)
-
-This view allows the user to select the year for the target date.
-If the year view is the minView, the date will be set to midnight on the first day of the year
-
-## Month view
-
-![Datetimepicker month view](https://raw.github.com/dalelotts/angular-bootstrap-datetimepicker/master/screenshots/month.png)
-
-This view allows the user to select the month in the selected year.
-If the month view is the minView, the date will be set to midnight on the first day of the month.
-
-## Day view (Default)
-
-![Datetimepicker day view](https://raw.github.com/dalelotts/angular-bootstrap-datetimepicker/master/screenshots/day.png)
-
-This view allows the user to select the the day of the month, in the selected month.
-If the day view is the minView, the date will be set to midnight on the day selected.
-
-## Hour view
-
-![Datetimepicker hour view](https://raw.github.com/dalelotts/angular-bootstrap-datetimepicker/master/screenshots/hour.png)
-
-This view allows the user to select the hour of the day, on the selected day.
-If the hour view is the minView, the date will be set to the beginning of the hour on the day selected.
-
-## Minute view
-
-![Datetimepicker minute view](https://raw.github.com/dalelotts/angular-bootstrap-datetimepicker/master/screenshots/minute.png)
-
-This view allows the user to select a specific time of day, in the selected hour.
-By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
-If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
-
-## Contributing
-
-See [Contributing.md](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/.github/contributing.md)
 
 ## License
 
@@ -582,7 +259,7 @@ angular-bootstrap-datetimepicker is released under the MIT license and is copyri
 * Include the source of angular-bootstrap-datetimepicker itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
 * Submit changes that you make to angular-bootstrap-datetimepicker back to the angular-bootstrap-datetimepicker project (though such feedback is encouraged)
 
-The full angular-bootstrap-datetimepicker license is located [in the project repository](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE) for more information.
+The full angular-bootstrap-datetimepicker license is located [in the project repository](LICENSE) for more information.
 
 
 ## Donating
@@ -595,4 +272,3 @@ Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts]
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
-

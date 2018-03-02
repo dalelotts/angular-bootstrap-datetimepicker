@@ -1,94 +1,121 @@
 {
   "name": "angular-bootstrap-datetimepicker",
-  "version": "0.0.0-semantic-release",
-  "description": "This directive allows you to add a datetime-picker to your form elements.",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "author": "https://github.com/dalelotts/angular-bootstrap-datetimepicker/graphs/contributors",
+  "bugs": {
+    "url": "https://github.com/dalelotts/angular-bootstrap-datetimepicker/issues"
+  },
+  "homepage": "https://dalelotts.github.io/angular-bootstrap-datetimepicker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dalelotts/angular-bootstrap-datetimepicker.git"
+  },
+  "scripts": {
+    "build": "ng build",
+    "build:lib": "ng-packagr -p ng-package.json && npm run build:styles",
+    "build:styles": "scss-bundle -c scss-bundle.config.json",
+    "coverage:upload": "cat build/coverage/lcov.info | coveralls",
+    "document": "compodoc --disableInternal --disablePrivate --disableLifeCycleHooks --assetsFolder screenshots -p src/tsconfig.doc.json -n \"Angular Bootstrap Date/Time Picker\"",
+    "e2e": "ng e2e",
+    "lint": "ng lint",
+    "ng": "ng",
+    "start": "ng serve",
+    "test": "ng lint && ng test --single-run --code-coverage && npm run build:lib ",
+    "test:tdd": "ng test",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
+  },
   "keywords": [
+    "angular 5",
     "angular",
+    "angular5",
     "calendar",
+    "component",
     "date picker",
+    "date time picker",
     "date",
     "directive",
     "moment",
     "time picker",
     "time"
   ],
-  "author": "https://github.com/dalelotts/angular-bootstrap-datetimepicker/graphs/contributors",
-  "bugs": {
-    "url": "https://github.com/dalelotts/angular-bootstrap-datetimepicker/issues"
-  },
-  "license": "MIT",
-  "homepage": "http://dalelotts.github.io/angular-bootstrap-datetimepicker",
-  "main": "index.js",
-  "style": "src/css/datetimepicker.css",
-  "scss": "src/scss/datetimepicker.scss",
-  "dependencies": {
-    "angular": "^1.6.4",
-    "moment": "^2.18.1"
+  "peerDependencies": {
+    "@angular/common": ">=5.1.1",
+    "@angular/core": ">=5.1.1",
+    "@angular/platform-browser": ">=5.1.1",
+    "@angular/platform-browser-dynamic": ">=5.1.1",
+    "bootstrap": ">=4.0.0-beta.2",
+    "core-js": ">=2.5.3",
+    "moment": ">=2.20.0",
+    "rxjs": ">=5.5.5",
+    "zone.js": ">=0.8.18"
   },
   "devDependencies": {
-    "angular-date-time-input": "^1.2.1",
-    "angular-mocks": "^1.6.4",
-    "autoprefixer": "^6.7.7",
-    "bootstrap": "^3.3.7",
-    "commitizen": "^2.9.6",
-    "coveralls": "^2.13.1",
-    "csscomb": "^4.0.1",
-    "csslint": "^1.0.5",
-    "cz-conventional-changelog": "^2.0.0",
-    "del": "^2.2.2",
-    "eslint": "^3.19.0",
-    "gulp": "^3.9.1",
-    "gulp-angular-templatecache": "^2.0.0",
-    "gulp-csscomb": "^3.0.8",
-    "gulp-csslint": "^1.0.0",
-    "gulp-htmlmin": "^3.0.0",
-    "gulp-jscs": "^4.0.0",
-    "gulp-jshint": "^2.0.4",
-    "gulp-postcss": "^6.4.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-scss-lint": "^0.4.0",
-    "gulp-scss-lint-stylish": "^1.0.1",
-    "gulp-sourcemaps": "^2.6.0",
-    "gulp-standard": "^10.0.0",
-    "gulp-stylelint": "^3.9.0",
-    "jasmine-core": "^2.6.1",
-    "jquery": "^3.2.1",
-    "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1",
-    "karma": "^1.6.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
-    "karma-firefox-launcher": "^1.0.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-threshold-reporter": "^0.1.15",
-    "karma-webpack": "^2.0.3",
-    "lodash": "^4.17.4",
-    "matchdep": "^1.0.1",
-    "moment-timezone": "^0.5.13",
-    "phantomjs-prebuilt": "^2.1.14",
-    "plato": "^1.7.0",
-    "run-browser": "^2.0.2",
-    "semantic-release": "^6.3.2",
-    "standard": "^10.0.2",
-    "stylelint-config-standard": "^16.0.0",
-    "tape": "^4.6.3",
-    "webpack": "^2.4.1"
+    "@angular/animations": "^5.2.4",
+    "@angular/cli": "^1.6.8",
+    "@angular/common": "^5.2.4",
+    "@angular/compiler": "^5.2.4",
+    "@angular/compiler-cli": "^5.2.4",
+    "@angular/core": "^5.2.4",
+    "@angular/forms": "^5.2.4",
+    "@angular/http": "^5.2.4",
+    "@angular/language-service": "^5.2.4",
+    "@angular/platform-browser": "^5.2.4",
+    "@angular/platform-browser-dynamic": "^5.2.4",
+    "@angular/router": "^5.2.4",
+    "@compodoc/compodoc": "^1.0.5",
+    "@types/jasmine": "~2.8.6",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~9.3.0",
+    "bootstrap": "^4.0.0",
+    "codelyzer": "~4.1.0",
+    "core-js": "^2.5.3",
+    "coveralls": "^3.0.0",
+    "jasmine-core": "^2.99.1",
+    "jasmine-spec-reporter": "^4.2.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cli": "^1.0.1",
+    "karma-coverage-istanbul-reporter": "^1.4.1",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "moment": "^2.20.1",
+    "ng-packagr": "^2.0.0",
+    "open-iconic": "^1.1.1",
+    "protractor": "^5.3.0",
+    "rxjs": "^5.5.6",
+    "scss-bundle": "^2.1.2",
+    "semantic-release": "^12.4.1",
+    "stylelint": "^8.4.0",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.9.1",
+    "typescript": "~2.6.2",
+    "zone.js": "^0.8.20",
+    "travis-deploy-once": "^4.3.4"
   },
-  "scripts": {
-    "coverage:upload": "cat build/coverage/lcov.info | coveralls",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "npm run test-browserify && npm run test-webpack && gulp",
-    "test-browserify": "run-browser test/commonjs/browserify.test.js -b",
-    "test-webpack": "karma start test/webpack/karma.conf.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dalelotts/angular-bootstrap-datetimepicker.git"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "dist"
+      },
+      {
+        "path": "@semantic-release/github",
+        "assets": [
+          "dist/**"
+        ]
+      }
+    ],
+    "success": [
+      "@semantic-release/github"
+    ],
+    "fail": [
+      "@semantic-release/github"
+    ]
   }
 }

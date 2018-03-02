@@ -1,0 +1,71 @@
+@import '../../scss/variables';
+
+:host {
+  user-select: none;
+}
+
+.dl-abdtp-col-label,
+.dl-abdtp-view-label {
+  font-weight: bold;
+}
+
+.dl-abdtp-view-label,
+.dl-abdtp-left-button,
+.dl-abdtp-right-button,
+.dl-abdtp-date-button {
+  padding: 5px;
+  border-radius: $dl-abdtp-date-button-border-radius;
+  cursor: pointer;
+  color: $dl-abdtp-date-button-color;
+  outline: 0;
+}
+
+.dl-abdtp-left-button,
+.dl-abdtp-up-button,
+.dl-abdtp-right-button,
+.dl-abdtp-date-button {
+  border-width: 0;
+}
+
+.dl-abdtp-active:focus,
+.dl-abdtp-date-button:focus,
+.dl-abdtp-date-button:hover,
+.dl-abdtp-left-button:focus,
+.dl-abdtp-left-button:hover,
+.dl-abdtp-right-button:focus,
+.dl-abdtp-right-button:hover,
+.dl-abdtp-up-button:focus,
+.dl-abdtp-up-button:hover,
+.dl-abdtp-view-label:focus {
+  background: $dl-abdtp-hover-background;
+}
+
+.dl-abdtp-past,
+.dl-abdtp-future {
+  color: $dl-abdtp-past-future-color;
+}
+
+.dl-abdtp-now,
+.dl-abdtp-now:hover,
+.dl-abdtp-now.disabled,
+.dl-abdtp-now.disabled:hover {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $dl-abdtp-date-button-border-radius;
+  border-color: $dl-abdtp-now-border-color;
+}
+
+.dl-abdtp-selected {
+  color: $dl-abdtp-selected-color;
+  background: $dl-abdtp-selected-background;
+}
+
+.dl-abdtp-selected:focus,
+.dl-abdtp-selected:hover {
+  background: $dl-abdtp-selected-hover-background;
+}
+
+.dl-abdtp-disabled {
+  cursor: default;
+  color: $dl-abdtp-disabled;
+}

@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 language: node_js
 cache:
   directories:
@@ -6,9 +6,7 @@ cache:
 notifications:
   email: false
 node_js:
-  - '7'
-addons:
-  firefox: 'latest'
+  - '9'
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -17,9 +15,18 @@ before_script:
 script:
   - npm run test
 after_success:
-  - npm run semantic-release
-  - npm run coverage:upload
+  - npm run travis-deploy-once "npm run semantic-release"
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
     - gh-pages
+before_deploy:
+  - npm run document
+deploy:
+  provider: pages
+  local-dir: documentation
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: false
+  on:
+    branch: master

@@ -1,0 +1,55 @@
+<div class="text-center dl-abdtp-{{_model.viewName}}-view ">
+  <div class="row align-items-center no-gutters">
+    <button class="col dl-abdtp-left-button align-items-center"
+            type="button"
+            [attr.aria-label]="_model.leftButton.ariaLabel"
+            [attr.title]="_model.leftButton.ariaLabel"
+            [ngClass]="_model.leftButton.classes"
+            (click)="_onLeftClick()">
+      <span class="left-icon" [ngClass]="leftIconClass"></span>
+    </button>
+
+    <div *ngIf="_model.viewName === (this.maxView || 'year'); then maxViewLabel else defaultViewLabel;"></div>
+
+    <button class="col dl-abdtp-right-button"
+            type="button"
+            [attr.aria-label]="_model.rightButton.ariaLabel"
+            [attr.title]="_model.rightButton.ariaLabel"
+            (click)="_onRightClick()"
+            [ngClass]="_model.rightButton.classes">
+      <span class="right-icon" [ngClass]="rightIconClass"></span>
+    </button>
+  </div>
+  <div (keydown)="_handleKeyDown($event)">
+    <div *ngIf="_model.rowLabels?.length" class="row no-gutters">
+      <div *ngFor="let label of _model.rowLabels" class="col align-items-center no-gutters dl-abdtp-col-label">{{label}}</div>
+    </div>
+    <div *ngFor="let row of _model.rows" class="row align-items-center no-gutters">
+      <div *ngFor="let cell of row.cells"
+           role="gridcell"
+           class="col dl-abdtp-date-button dl-abdtp-{{_model.viewName}} {{cell.value}}"
+           [ngClass]="cell.classes"
+           [attr.aria-label]="cell.ariaLabel"
+           [attr.aria-disabled]="cell.classes['dl-abdtp-disabled']"
+           [attr.tabindex]="cell.classes['dl-abdtp-active'] ? 0 : -1"
+           (click)="_onDateClick(cell)"
+           (keydown.space)="_onDateClick(cell)"
+           (keydown.enter)="_onDateClick(cell)"
+      >{{cell.display}}</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #maxViewLabel>
+  <div class="col-10 dl-abdtp-view-label">{{_model.viewLabel}}</div>
+</ng-template>
+<ng-template #defaultViewLabel>
+  <button class="col-10 dl-abdtp-view-label dl-abdtp-up-button"
+          type="button"
+          [attr.aria-label]="_model.upButton.ariaLabel"
+          [attr.title]="_model.upButton.ariaLabel"
+          (click)="_onUpClick()"
+          [ngClass]="_model.upButton.classes"
+  >{{_model.viewLabel}}&nbsp;<span class="up-icon" [ngClass]="upIconClass"></span>
+  </button>
+</ng-template>

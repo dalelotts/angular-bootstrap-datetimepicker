@@ -1,0 +1,67 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <div class="form-group">
+    <label for="startView">Start View</label>
+    <select id="startView" [(ngModel)]="startView">
+      <option>year</option>
+      <option>month</option>
+      <option>day</option>
+      <option>hour</option>
+      <option>minute</option>
+    </select>
+    <small class="form-text text-muted">Determines the initial view for the calendar.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="minuteStep">Minute step</label>
+    <select id="minuteStep" [(ngModel)]="minuteStep">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+      <option>13</option>
+      <option>14</option>
+      <option>15</option>
+      <option>20</option>
+      <option>25</option>
+      <option>30</option>
+      <option>35</option>
+      <option>40</option>
+      <option>45</option>
+      <option>50</option>
+      <option>55</option>
+      <option>57</option>
+      <option>58</option>
+      <option>59</option>
+    </select>
+    <small class="form-text text-muted">Determines the initial view for the calendar.</small>
+  </div>
+
+  <div class="dtp-wrapper card">
+    <dl-date-time-picker
+      class="en"
+      [startView]="startView"
+      [minuteStep]="minuteStep"
+      [selectFilter]="selectFilter"
+      [(ngModel)]="selectedDate"
+    >
+    </dl-date-time-picker>
+  </div>
+
+  <p>&nbsp;</p>
+
+  <div>
+    Selected Date: {{selectedDate}}
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "entryFile": "src/lib/dl-date-time-picker/index.ts",
+    "comments" : "none",
+    "licensePath": "LICENSE",
+    "umdModuleIds": {
+      "moment" : "moment"
+    }
+  }
+}

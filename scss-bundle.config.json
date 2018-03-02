@@ -1,0 +1,4 @@
+{
+  "entry": "./src/lib/dl-date-time-picker/dl-date-time-picker.component.scss",
+  "dest": "dist/dl-date-time-picker.component.scss"
+}
