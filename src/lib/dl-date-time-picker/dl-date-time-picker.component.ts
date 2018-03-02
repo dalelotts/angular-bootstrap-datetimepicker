@@ -163,12 +163,6 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
   minView: 'year' | 'month' | 'day' | 'hour' | 'minute' = 'minute';
 
   /**
-   *
-   */
-  @Input()
-  modelType: Date | Number | Moment | string;
-
-  /**
    * Specifies the classes used to display the right icon.
    *
    * This component uses OPENICONIC https://useiconic.com/open
