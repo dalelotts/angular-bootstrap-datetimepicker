@@ -10,7 +10,7 @@
 import {DlModelProvider} from './dl-model-provider';
 import {DlDateTimePickerModel} from './dl-date-time-picker-model';
 import {Component, SimpleChanges} from '@angular/core';
-import * as _moment from 'moment'
+import * as _moment from 'moment';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.
