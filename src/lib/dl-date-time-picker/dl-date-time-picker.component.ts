@@ -30,6 +30,8 @@ import {DlDayModelComponent} from './dl-day-model.component';
 import {DlHourModelComponent} from './dl-hour-model.component';
 import {DlMinuteModelComponent} from './dl-minute-model.component';
 import {DlDateTimePickerChange} from './dl-date-time-picker-change';
+import * as _moment from 'moment';
+import {Moment} from 'moment';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.
@@ -44,9 +46,6 @@ import {DlDateTimePickerChange} from './dl-date-time-picker-change';
  *
  * @internal
  **/
-
-import * as _moment from 'moment';
-import {Moment} from 'moment';
 const moment = _moment;
 
 
