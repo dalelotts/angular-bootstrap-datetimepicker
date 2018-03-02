@@ -26,7 +26,7 @@ deploy:
   provider: pages
   local-dir: documentation
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN
+  github-token: $GH_TOKEN
   keep-history: false
   on:
     branch: master
