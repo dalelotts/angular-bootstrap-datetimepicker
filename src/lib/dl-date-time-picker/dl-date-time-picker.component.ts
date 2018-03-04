@@ -526,7 +526,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    *  Determine whether or not the `DateButton` is selectable by the end user.
    */
   @Input()
-  selectFilter: (dateButton: DateButton, viewName: string) => boolean = () => true;
+  selectFilter: (dateButton: DateButton, viewName: string) => boolean = () => true
 
   /**
    * Returns `D` value of the date/time picker or undefined/null if no value is set.

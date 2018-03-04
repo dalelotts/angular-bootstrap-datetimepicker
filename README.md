@@ -56,7 +56,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,7 @@ import { DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
   imports: [
     BrowserModule,
     FormsModule,
-    DlDateTimePickerModule,
+    DlDateTimePickerDateModule,
   ],
   providers: [FormsModule],
   bootstrap: [AppComponent]
