@@ -27,17 +27,13 @@ import {
   UP_ARROW
 } from '../dispatch-events';
 import {DEC, JAN} from '../month-constants';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker startView="month"></dl-date-time-picker>'
 })
 class MonthStartViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -46,25 +42,20 @@ class MonthStartViewComponent {
 })
 class MonthStartViewWithNgModelComponent {
   selectedDate = new Date(2017, DEC, 22).getTime();
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent startView=month', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
+      ],
       declarations: [
-        DlDateTimePickerComponent,
         MonthStartViewComponent,
         MonthStartViewWithNgModelComponent
-      ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
       ]
     })
       .compileComponents();

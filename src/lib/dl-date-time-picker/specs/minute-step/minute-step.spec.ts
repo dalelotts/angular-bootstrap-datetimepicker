@@ -12,18 +12,14 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker [minuteStep]="minuteStep" startView="minute"></dl-date-time-picker>'
 })
 class MinuteStepComponent {
   minuteStep = 1;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -31,25 +27,20 @@ class MinuteStepComponent {
 })
 class UndefinedMinuteStepComponent {
   minuteStep: number;  // intentionally did not assign value
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent minuteStep', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-        imports: [FormsModule],
+        imports: [
+          FormsModule,
+          DlDateTimePickerNumberModule
+        ],
         declarations: [
-          DlDateTimePickerComponent,
           MinuteStepComponent,
           UndefinedMinuteStepComponent,
-        ],
-        providers: [
-          DlYearModelComponent,
-          DlMonthModelComponent,
-          DlDayModelComponent,
-          DlHourModelComponent,
-          DlMinuteModelComponent
         ]
       }
     ).compileComponents();

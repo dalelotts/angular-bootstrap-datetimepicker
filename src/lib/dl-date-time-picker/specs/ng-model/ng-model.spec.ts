@@ -14,35 +14,26 @@ import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {dispatchKeyboardEvent, ENTER, SPACE} from '../dispatch-events';
 import {JAN} from '../month-constants';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker [(ngModel)]="selectedDate" startView="year" minView="year"></dl-date-time-picker>'
 })
 class YearSelectorComponent {
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [
-        DlDateTimePickerComponent,
-        YearSelectorComponent
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
       ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
+      declarations: [
+        YearSelectorComponent
       ]
     })
       .compileComponents();

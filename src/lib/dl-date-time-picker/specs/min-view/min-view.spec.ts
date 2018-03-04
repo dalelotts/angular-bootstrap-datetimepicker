@@ -12,18 +12,14 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker minView="year" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class YearMinViewComponent {
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -31,7 +27,7 @@ class YearMinViewComponent {
 })
 class MonthMinViewComponent {
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -39,7 +35,7 @@ class MonthMinViewComponent {
 })
 class DayMinViewComponent {
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -47,7 +43,7 @@ class DayMinViewComponent {
 })
 class HourMinViewComponent {
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -55,7 +51,7 @@ class HourMinViewComponent {
 })
 class MinuteMinViewComponent {
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -64,29 +60,24 @@ class MinuteMinViewComponent {
 class UndefinedMinViewComponent {
   minView: string;  // intentionally did not assign value
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent minView', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
+      ],
       declarations: [
-        DlDateTimePickerComponent,
         YearMinViewComponent,
         MonthMinViewComponent,
         DayMinViewComponent,
         HourMinViewComponent,
         MinuteMinViewComponent,
         UndefinedMinViewComponent,
-      ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
       ]
     })
       .compileComponents();

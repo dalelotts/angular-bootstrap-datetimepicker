@@ -29,15 +29,7 @@ const moment = _moment;
 /**
  * Default implementation for the `minute` view.
  */
-@Component({
-  providers: [
-    {
-      provide: DlMinuteModelComponent,
-      useClass: DlMinuteModelComponent,
-    },
-  ],
-})
-export class DlMinuteModelComponent implements DlModelProvider {
+export class DlMinuteModelProvider implements DlModelProvider {
 
   private step = 5;
 

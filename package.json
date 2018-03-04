@@ -117,5 +117,8 @@
     "fail": [
       "@semantic-release/github"
     ]
+  },
+  "dependencies": {
+    "npm": "^5.7.1"
   }
 }

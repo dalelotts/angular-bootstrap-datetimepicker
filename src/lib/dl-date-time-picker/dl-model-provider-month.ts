@@ -29,15 +29,7 @@ const moment = _moment;
 /**
  * Default implementation for the `month` view.
  */
-@Component({
-  providers: [
-    {
-      provide: DlMonthModelComponent,
-      useClass: DlMonthModelComponent,
-    },
-  ],
-})
-export class DlMonthModelComponent implements DlModelProvider {
+export class DlMonthModelProvider implements DlModelProvider {
 
   /**
    * Receives input changes detected by Angular.

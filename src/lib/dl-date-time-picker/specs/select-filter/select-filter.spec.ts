@@ -12,12 +12,8 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
 import {DateButton} from '../../dl-date-time-picker-model';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker [selectFilter]="selectFilter" [(ngModel)]="selectedDate" maxView="day"></dl-date-time-picker>'
@@ -25,7 +21,7 @@ import {DateButton} from '../../dl-date-time-picker-model';
 class SelectFilterComponent {
   now = Date.now();
   selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
   selectFilter = (dateButton: DateButton) => dateButton.value > this.now;
 }
 
@@ -34,7 +30,7 @@ class SelectFilterComponent {
 })
 class UndefinedSelectFilterComponent {
   selectedDate: number; // intentionally did not assign value
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
   selectFilter: (viewName: string, dateButton: DateButton) => boolean;   // intentionally did not assign value
 }
 
@@ -42,18 +38,13 @@ describe('DlDateTimePickerComponent startDate', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
+      ],
       declarations: [
-        DlDateTimePickerComponent,
         SelectFilterComponent,
         UndefinedSelectFilterComponent,
-      ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
       ]
     })
       .compileComponents();

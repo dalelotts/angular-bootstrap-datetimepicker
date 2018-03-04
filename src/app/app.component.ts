@@ -22,8 +22,7 @@ export class AppComponent {
   title = 'Dale Lotts\' angular bootstrap date & time picker';
   startView = 'day';
   minuteStep = 5;
-  selectedDate: number;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  selectedDate: Date;
   selectFilter = (dateButton: DateButton, viewName: string) => {
     const now = moment().startOf(viewName as unitOfTime.StartOf).valueOf();
     return dateButton.value >= now;

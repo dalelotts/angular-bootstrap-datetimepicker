@@ -18,7 +18,7 @@ Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 
 ## On Angular 1.x?
 
-See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angular-bootstrap-datetimepicker)
+See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
 
 or 
 

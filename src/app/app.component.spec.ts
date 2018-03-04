@@ -9,31 +9,19 @@
 
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {
-  DlDateTimePickerComponent,
-  DlDayModelComponent,
-  DlHourModelComponent,
-  DlMinuteModelComponent,
-  DlMonthModelComponent,
-  DlYearModelComponent
-} from '../lib/dl-date-time-picker';
+import {DlDateTimePickerNumberModule} from '../lib/dl-date-time-picker';
 import {FormsModule} from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [
-        AppComponent,
-        DlDateTimePickerComponent
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
       ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
-      ]
+      declarations: [
+        AppComponent
+      ],
     }).compileComponents();
   }));
   it('should create the app', async(() => {

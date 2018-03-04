@@ -30,15 +30,7 @@ const moment = _moment;
 /**
  * Default implementation for the `day` view.
  */
-@Component({
-  providers: [
-    {
-      provide: DlDayModelComponent,
-      useClass: DlDayModelComponent,
-    },
-  ],
-})
-export class DlDayModelComponent implements DlModelProvider {
+export class DlDayModelProvider implements DlModelProvider {
 
   /**
    * Receives input changes detected by Angular.

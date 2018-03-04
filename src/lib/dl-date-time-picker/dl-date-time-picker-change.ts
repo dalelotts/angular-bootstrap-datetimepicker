@@ -10,20 +10,20 @@
 /**
  * Emitted when the value of a date/time picker changes.
  */
-export class DlDateTimePickerChange {
+export class DlDateTimePickerChange<D> {
 
   /**
    * The new value of the picker.
    */
-  private _value: number;
+  private _value: D;
 
   /**
    * Constructs a new instance.
-   * @param milliseconds
-   * the new value of the date/time picker.
+   * @param newValue
+   *  the new value of the date/time picker.
    */
-  constructor(milliseconds: number) {
-    this._value = milliseconds;
+  constructor(newValue: D) {
+    this._value = newValue;
   }
 
   /**
@@ -31,7 +31,7 @@ export class DlDateTimePickerChange {
    * @returns
    *    the new value or null.
    */
-  get value() {
+  get value(): D {
     return this._value;
   }
 }

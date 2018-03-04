@@ -29,15 +29,7 @@ const moment = _moment;
 /**
  * Default implementation for the `hour` view.
  */
-@Component({
-  providers: [
-    {
-      provide: DlHourModelComponent,
-      useClass: DlHourModelComponent,
-    },
-  ],
-})
-export class DlHourModelComponent implements DlModelProvider {
+export class DlHourModelProvider implements DlModelProvider {
 
   /**
    * Receives input changes detected by Angular.

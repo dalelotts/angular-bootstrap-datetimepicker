@@ -12,17 +12,13 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker></dl-date-time-picker>'
 })
 class DefaultButtonClassComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -37,26 +33,21 @@ class ConfigurableButtonClassComponent {
   leftIconClass: string | string[] | Set<string> | {};
   rightIconClass: string | string[] | Set<string> | {};
   upIconClass: string | string[] | Set<string> | {};
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent button-classes', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
+      ],
       declarations: [
-        DlDateTimePickerComponent,
         DefaultButtonClassComponent,
         ConfigurableButtonClassComponent,
       ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
-      ]
     })
       .compileComponents();
   }));

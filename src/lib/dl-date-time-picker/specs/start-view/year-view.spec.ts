@@ -27,53 +27,42 @@ import {
 } from '../dispatch-events';
 import * as moment from 'moment';
 import {DEC, JAN} from '../month-constants';
-import {DlYearModelComponent} from '../../dl-year-model.component';
-import {DlMonthModelComponent} from '../../dl-month-model.component';
-import {DlHourModelComponent} from '../../dl-hour-model.component';
-import {DlDayModelComponent} from '../../dl-day-model.component';
-import {DlMinuteModelComponent} from '../../dl-minute-model.component';
+import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
-
   template: '<dl-date-time-picker startView="year"></dl-date-time-picker>'
 })
 class YearStartViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
-
   template: '<dl-date-time-picker startView="year" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class YearStartViewWithNgModelComponent {
   selectedDate = new Date(2017, DEC, 22).getTime();
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
   template: '<dl-date-time-picker startView="year" minView="year" maxView="year"></dl-date-time-picker>'
 })
 class YearSelectorComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        DlDateTimePickerNumberModule
+      ],
       declarations: [
-        DlDateTimePickerComponent,
         YearStartViewComponent,
         YearStartViewWithNgModelComponent,
         YearSelectorComponent
-      ],
-      providers: [
-        DlYearModelComponent,
-        DlMonthModelComponent,
-        DlDayModelComponent,
-        DlHourModelComponent,
-        DlMinuteModelComponent
       ]
     })
       .compileComponents();

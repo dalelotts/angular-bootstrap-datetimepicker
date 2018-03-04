@@ -24,14 +24,14 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {take} from 'rxjs/operators';
 import {DateButton, DlDateTimePickerModel} from './dl-date-time-picker-model';
 import {DlModelProvider} from './dl-model-provider';
-import {DlYearModelComponent} from './dl-year-model.component';
-import {DlMonthModelComponent} from './dl-month-model.component';
-import {DlDayModelComponent} from './dl-day-model.component';
-import {DlHourModelComponent} from './dl-hour-model.component';
-import {DlMinuteModelComponent} from './dl-minute-model.component';
 import {DlDateTimePickerChange} from './dl-date-time-picker-change';
 import * as _moment from 'moment';
-import {Moment} from 'moment';
+import {DlDateAdapter} from './dl-date-adapter';
+import {DlYearModelProvider} from './dl-model-provider-year';
+import {DlMonthModelProvider} from './dl-model-provider-month';
+import {DlDayModelProvider} from './dl-model-provider-day';
+import {DlHourModelProvider} from './dl-model-provider-hour';
+import {DlMinuteModelProvider} from './dl-model-provider-minute';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.
@@ -117,7 +117,7 @@ const VIEWS = [
   styleUrls: ['./dl-date-time-picker.component.scss'],
   templateUrl: './dl-date-time-picker.component.html',
 })
-export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValueAccessor {
+export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlValueAccessor {
 
   /**
    * Specifies the classes used to display the left icon.
@@ -207,14 +207,14 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * the value of the date/time picker changes.
    **/
   @Output()
-  readonly change = new EventEmitter<DlDateTimePickerChange>();
+  readonly change = new EventEmitter<DlDateTimePickerChange<D>>();
 
   /**
    * Change listener callback functions registered
    * via `registerOnChange`
    * @internal
    **/
-  private _changed: ((value: number) => void)[] = [];
+  private _changed: ((value: D) => void)[] = [];
 
   /**
    * Model for the current view.
@@ -256,7 +256,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * Stores the selected value for this picker.
    * @internal
    **/
-  private _value: number;
+  private _value: D;
 
   /**
    * Maps view name to the model provider for that view.
@@ -277,6 +277,8 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    *  reference to this element.
    * @param _ngZone
    *  reference to an NgZone instance used to select the active element outside of angular.
+   * @param _dateAdapter
+   *  date adapter for the date type in the model.
    * @param yearModelComponent
    *  provider for the year view model.
    * @param monthModelComponent
@@ -290,11 +292,12 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    */
   constructor(private _elementRef: ElementRef,
               private _ngZone: NgZone,
-              private yearModelComponent: DlYearModelComponent,
-              private monthModelComponent: DlMonthModelComponent,
-              private dayModelComponent: DlDayModelComponent,
-              private hourModelComponent: DlHourModelComponent,
-              private minuteModelComponent: DlMinuteModelComponent) {
+              private _dateAdapter: DlDateAdapter<D>,
+              private yearModelComponent: DlYearModelProvider,
+              private monthModelComponent: DlMonthModelProvider,
+              private dayModelComponent: DlDayModelProvider,
+              private hourModelComponent: DlHourModelProvider,
+              private minuteModelComponent: DlMinuteModelProvider) {
 
     this._viewToModelProvider = {
       year: yearModelComponent,
@@ -319,7 +322,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
       .forEach((provider: DlModelProvider) => provider.onChanges(changes));
 
     if (this._model) { // only update the model after ngOnInit has set it the first time.
-      this.model = this._viewToModelProvider[this._model.viewName].getModel(this._model.activeDate, this.value);
+      this.model = this._viewToModelProvider[this._model.viewName].getModel(this._model.activeDate, this.valueOf);
     }
   }
 
@@ -329,7 +332,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * @internal
    **/
   ngOnInit(): void {
-    this.model = this._viewToModelProvider[this.getStartView()].getModel(this.getStartDate(), this.value);
+    this.model = this._viewToModelProvider[this.getStartView()].getModel(this.getStartDate(), this.valueOf);
   }
 
   /**
@@ -351,11 +354,11 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
     let nextView = this._nextView[this._model.viewName];
 
     if ((this.minView || 'minute') === this._model.viewName) {
-      this.value = dateButton.value;
+      this.value = this._dateAdapter.fromMilliseconds(dateButton.value);
       nextView = this.startView;
     }
 
-    this.model = this._viewToModelProvider[nextView].getModel(dateButton.value, this.value);
+    this.model = this._viewToModelProvider[nextView].getModel(dateButton.value, this.valueOf);
 
     this.onTouch();
   }
@@ -369,7 +372,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * @internal
    **/
   _onLeftClick() {
-    this.model = this._viewToModelProvider[this._model.viewName].getModel(this._model.leftButton.value, this.value);
+    this.model = this._viewToModelProvider[this._model.viewName].getModel(this._model.leftButton.value, this.valueOf);
     this.onTouch();
   }
 
@@ -382,7 +385,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * @internal
    **/
   _onUpClick() {
-    this.model = this._viewToModelProvider[this._previousView[this._model.viewName]].getModel(this._model.upButton.value, this.value);
+    this.model = this._viewToModelProvider[this._previousView[this._model.viewName]].getModel(this._model.upButton.value, this.valueOf);
   }
 
   /**
@@ -394,7 +397,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * @internal
    **/
   _onRightClick() {
-    this.model = this._viewToModelProvider[this._model.viewName].getModel(this._model.rightButton.value, this.value);
+    this.model = this._viewToModelProvider[this._model.viewName].getModel(this._model.rightButton.value, this.valueOf);
     this.onTouch();
   }
 
@@ -408,7 +411,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
 
     if (functionName) {
       const modelProvider = this._viewToModelProvider[this._model.viewName];
-      this.model = modelProvider[functionName](this._model.activeDate, this.value);
+      this.model = modelProvider[functionName](this._model.activeDate, this.valueOf);
 
       this.focusActiveCell();
       // Prevent unexpected default actions such as form submission.
@@ -507,7 +510,7 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * Implements ControlValueAccessor.registerOnChange to register change listeners.
    * @internal
    **/
-  registerOnChange(fn: (value: number) => void) {
+  registerOnChange(fn: (value: D) => void) {
     this._changed.push(fn);
   }
 
@@ -523,12 +526,12 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    *  Determine whether or not the `DateButton` is selectable by the end user.
    */
   @Input()
-  selectFilter: (dateButton: DateButton, viewName: string) => boolean = () => true
+  selectFilter: (dateButton: DateButton, viewName: string) => boolean = () => true;
 
   /**
-   * Returns value of the date/time picker or undefined/null if no value is set.
+   * Returns `D` value of the date/time picker or undefined/null if no value is set.
    **/
-  get value() {
+  get value(): D {
     return this._value;
   }
 
@@ -536,20 +539,28 @@ export class DlDateTimePickerComponent implements OnChanges, OnInit, ControlValu
    * Sets value of the date/time picker and emits a change event if the
    * new value is different from the previous value.
    **/
-  set value(value: number) {
+  set value(value: D) {
     if (this._value !== value) {
       this._value = value;
-      this.model = this._viewToModelProvider[this._model.viewName].getModel(this.getStartDate(), this.value);
+      this.model = this._viewToModelProvider[this._model.viewName].getModel(this.getStartDate(), this.valueOf);
       this._changed.forEach(f => f(value));
-      this.change.emit(new DlDateTimePickerChange(value));
+      this.change.emit(new DlDateTimePickerChange<D>(value));
     }
   }
+
+  /**
+   * Returns `milliseconds` value of the date/time picker or undefined/null if no value is set.
+   **/
+  get valueOf(): number | null {
+    return this._dateAdapter.toMilliseconds(this._value);
+  }
+
 
   /**
    * Implements ControlValueAccessor.writeValue to store the value from the model.
    * @internal
    **/
-  writeValue(value: number) {
+  writeValue(value: D) {
     this.value = value;
   }
 

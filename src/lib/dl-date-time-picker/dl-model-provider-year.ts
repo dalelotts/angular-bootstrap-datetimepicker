@@ -30,15 +30,7 @@ const moment = _moment;
 /**
  * Default implementation for the `year` view.
  */
-@Component({
-  providers: [
-    {
-      provide: DlYearModelComponent,
-      useClass: DlYearModelComponent,
-    },
-  ],
-})
-export class DlYearModelComponent implements DlModelProvider {
+export class DlYearModelProvider implements DlModelProvider {
 
   /**
    * Create a moment at midnight january 1 at the start of the current decade.
@@ -89,7 +81,7 @@ export class DlYearModelComponent implements DlModelProvider {
     const columnNumbers = [0, 1, 2, 3, 4];
 
     const startYear = moment(milliseconds).startOf('year');
-    const startDate = DlYearModelComponent.getStartOfDecade(milliseconds);
+    const startDate = DlYearModelProvider.getStartOfDecade(milliseconds);
 
     const futureYear = startDate.year() + 9;
     const pastYear = startDate.year();
@@ -280,7 +272,7 @@ export class DlYearModelComponent implements DlModelProvider {
    */
   goEnd(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
     return this.getModel(
-      DlYearModelComponent.getStartOfDecade(fromMilliseconds)
+      DlYearModelProvider.getStartOfDecade(fromMilliseconds)
         .add(9, 'years')
         .endOf('year')
         .valueOf(),
@@ -303,7 +295,7 @@ export class DlYearModelComponent implements DlModelProvider {
    */
   goHome(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
     return this.getModel(
-      DlYearModelComponent.getStartOfDecade(fromMilliseconds)
+      DlYearModelProvider.getStartOfDecade(fromMilliseconds)
         .startOf('year')
         .valueOf(),
       selectedMilliseconds
