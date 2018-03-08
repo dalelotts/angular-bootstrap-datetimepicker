@@ -132,7 +132,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       expect(tabIndexElements.length).toBe(1);
     });
 
-    it('should contain 1 .dl-abdtp-selectedelement for the current value', () => {
+    it('should contain 1 .dl-abdtp-selected element for the current value', () => {
       component.picker.value = moment().startOf('hour').valueOf();
       fixture.detectChanges();
 
@@ -141,7 +141,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       // I think it is related to https://github.com/angular/angular/issues/10816
       const activeElement = debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
       activeElement.focus();
-      dispatchKeyboardEvent(activeElement, 'keydown', RIGHT_ARROW);
+      dispatchKeyboardEvent(activeElement, 'keydown', HOME);
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-selected'));

@@ -221,7 +221,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    *
    * @internal
    **/
-  private _model: DlDateTimePickerModel;
+  _model: DlDateTimePickerModel;
 
   /**
    * Maps view name to the next view (the view for the next smallest increment of time).

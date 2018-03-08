@@ -150,7 +150,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
       // I think it is related to https://github.com/angular/angular/issues/10816
       const activeElement = debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
       activeElement.focus();
-      dispatchKeyboardEvent(activeElement, 'keydown', RIGHT_ARROW);
+      dispatchKeyboardEvent(activeElement, 'keydown', HOME);
       fixture.detectChanges();
 
       const selectedElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-selected'));

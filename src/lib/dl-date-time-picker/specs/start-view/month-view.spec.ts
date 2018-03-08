@@ -130,7 +130,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
       expect(currentElements[0].nativeElement.classList).toContain(moment().startOf('month').valueOf().toString());
     });
 
-    it('should contain 1 .dl-abdtp-selectedelement for the current month', () => {
+    it('should contain 1 .dl-abdtp-selected element for the current month', () => {
       component.picker.value = moment().startOf('month').valueOf();
       fixture.detectChanges();
 
@@ -139,7 +139,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
       // I think it is related to https://github.com/angular/angular/issues/10816
       const activeElement = debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
       activeElement.focus();
-      dispatchKeyboardEvent(activeElement, 'keydown', RIGHT_ARROW);
+      dispatchKeyboardEvent(activeElement, 'keydown', HOME);
       fixture.detectChanges();
 
       const selectedElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-selected'));

@@ -7,10 +7,9 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, ViewChild} from '@angular/core';
-import {DlDateTimePickerComponent} from '../lib/dl-date-time-picker';
+import {Component} from '@angular/core';
 import {DateButton} from '../lib/dl-date-time-picker';
-import moment = require('moment');
+import * as moment from 'moment';
 import {unitOfTime} from 'moment';
 
 @Component({

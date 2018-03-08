@@ -151,7 +151,7 @@ describe('DlDateTimePickerComponent startView=minute', () => {
       expect(currentElements[0].nativeElement.classList).toContain(currentMoment.valueOf().toString());
     });
 
-    it('should contain 1 .dl-abdtp-selectedelement for the current minute', () => {
+    it('should contain 1 .dl-abdtp-selected element for the current minute', () => {
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-active'));
       expect(currentElements.length).toBe(1);
 

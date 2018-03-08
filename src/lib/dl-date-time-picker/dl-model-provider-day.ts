@@ -9,7 +9,7 @@
 
 import {DlModelProvider} from './dl-model-provider';
 import {DlDateTimePickerModel} from './dl-date-time-picker-model';
-import {Component, SimpleChanges} from '@angular/core';
+import {SimpleChanges} from '@angular/core';
 import * as _moment from 'moment';
 
 /**
