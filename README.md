@@ -144,36 +144,6 @@ The `DlDateTimePickerComponent` component supports the following keyboard shortc
 | `PAGE_DOWN`          | Go to the same cell in the next time period     |
 | `ENTER` or `SPACE`   | Select current cell                             |
 
-## Examples
-
-### Date picker only
-
-### Time picker only
-
-### Inline date/time picker
-
-### Inline date/time picker with data bound to the page with the format specified via date filter
-
-### As a drop-down date/time picker
-
-#### Bootstrap 4 dropdown
-
-### Drop-down date/time picker with associated input box
-
-### Minimum date/time
-
-### Restrict past dates from being selected
-
-### Create a date range picker with validation controls
-
-### Fixed time zone
-By default, all dates and times are in the users local time zone. If you want all dates and times
-to be in a specific fixed time zone (regardless of users time zone) you can ... `TBD`
-
-### UTC Mode
-
-### Touch mode (for use on mobile devices)
-
 ## Screen shots
 
 ### Year view

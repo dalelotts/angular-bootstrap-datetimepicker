@@ -16,7 +16,7 @@
     "build:lib": "ng-packagr -p ng-package.json && npm run build:styles",
     "build:styles": "scss-bundle -c scss-bundle.config.json",
     "coverage:upload": "cat build/coverage/lcov.info | coveralls",
-    "document": "compodoc --disableInternal --disablePrivate --disableLifeCycleHooks --assetsFolder screenshots -p src/tsconfig.doc.json -n \"Angular Bootstrap Date/Time Picker\"",
+    "document": "compodoc --disableInternal --disablePrivate --disableLifeCycleHooks --assetsFolder screenshots -p src/tsconfig.doc.json --gaID UA-325325-19 -n \"Angular Bootstrap Date/Time Picker\"",
     "e2e": "ng e2e",
     "lint": "ng lint",
     "ng": "ng",
