@@ -415,7 +415,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
 
       this.focusActiveCell();
       // Prevent unexpected default actions such as form submission.
-      event.preventDefault();
+      $event.preventDefault();
     }
   }
 
