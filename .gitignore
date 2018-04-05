@@ -23,6 +23,7 @@
 /out-tsc
 /tmp
 /typings
+dist.tgz
 npm-debug.log
 testem.log
 Thumbs.db
