@@ -96,10 +96,6 @@
     "zone.js": "^0.8.25"
   },
   "release": {
-    "pkgRoot": "dist",
-    "assets": [
-      "dist/*.zip",
-      "dist/*.tar.gz"
-    ]
+    "pkgRoot": "dist"
   }
 }

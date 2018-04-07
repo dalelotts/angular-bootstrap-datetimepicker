@@ -20,14 +20,8 @@ Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 
 See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
 
-or 
-
-`npm install --save angularjs-bootstrap-datetimepicker`
-
 ## Support the project
 I know this is a tiny component but many people use it in production (high 5 to all of us) - if you happen to use this component please click the star button (at the top of the page) - it means a lot to all the contributors.
-
-**NOTE:** Before submitting new issues, have a look at [issues marked with the `type: faq` label](https://github.com/dalelotts/angular-bootstrap-datetimepicker/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3A%22type%3A%20faq%22%20).
 
 ## Peer Dependencies
 
@@ -128,7 +122,7 @@ or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://d
 The `DlDateTimePickerComponent` component adds `aria-label` attributes to the left, right, and up buttons
 in addition to all calendar cells where the text of the cell may not fully describe the value.
 
-### Keyboard shortcuts
+### Keyboard Accessibility 
 
 The `DlDateTimePickerComponent` component supports the following keyboard shortcuts in all views:
 
@@ -182,7 +176,6 @@ This view allows the user to select a specific time of day, in the selected hour
 By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
 If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
  
-optional:
 
 ## Contributing
 

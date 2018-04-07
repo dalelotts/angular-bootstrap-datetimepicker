@@ -86,21 +86,6 @@ const VIEWS = [
 
 /**
  * Component that provides all of the user facing functionality of the date/time picker.
- *
- * This component supports the following keyboard shortcuts in all views:
- *
- * | Shortcut             | Action                                          |
- * |----------------------|-------------------------------------------------|
- * | `LEFT_ARROW`         | Go to the cell to the left                      |
- * | `RIGHT_ARROW`        | Go to the cell to the right                     |
- * | `UP_ARROW`           | Go to the cell above                            |
- * | `DOWN_ARROW`         | Go to the cell below                            |
- * | `HOME`               | Go to the first cell in the view                |
- * | `END`                | Go to the last cell in the view                 |
- * | `PAGE_UP`            | Go to the same cell in the previous time period |
- * | `PAGE_DOWN`          | Go to the same cell in the next time period     |
- * | `ENTER` or `SPACE`   | Select current cell                             |
- *
  */
 
 @Component({
