@@ -28,7 +28,7 @@ export class DlDateTimePickerChange<D> {
 
   /**
    * Get the new value of the date/time picker.
-   * @returns {D} the new value or null.
+   * @returns the new value or null.
    */
   get value(): D {
     return this._value;
