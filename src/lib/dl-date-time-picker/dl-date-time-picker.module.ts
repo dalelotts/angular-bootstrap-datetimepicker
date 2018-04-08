@@ -40,6 +40,24 @@ import * as _moment from 'moment';
 const moment = _moment;
 
 /**
+ * `Moment`'s long date format `lll` used as the default output format
+ * for string date's
+ */
+export const LONG_DATE_FORMAT = moment.localeData().longDateFormat('lll');
+
+/**
+ *  Default input format's used by `DlDateAdapterString`
+ */
+export const INPUT_FORMATS = [
+  'YYYY-MM-DDTHH:mm',
+  'YYYY-MM-DDTHH:mm:ss',
+  'YYYY-MM-DDTHH:mm:ss.SSS',
+  'YYYY-MM-DD',
+  LONG_DATE_FORMAT,
+  moment.ISO_8601
+];
+
+/**
  * Import this module to supply your own `DateAdapter` provider.
  * @internal
  **/
@@ -99,17 +117,8 @@ export class DlDateTimePickerMomentModule {
   imports: [DlDateTimePickerModule],
   exports: [DlDateTimePickerComponent],
   providers: [
-    {
-      provide: DL_STRING_DATE_INPUT_FORMATS, useValue: [
-        moment.localeData().longDateFormat('lll'),
-        'YYYY-MM-DDTHH:mm',
-        'YYYY-MM-DDTHH:mm:ss',
-        'YYYY-MM-DDTHH:mm:ss.SSS',
-        'YYYY-MM-DD',
-        moment.ISO_8601
-      ]
-    },
-    {provide: DL_STRING_DATE_OUTPUT_FORMAT, useValue: moment.localeData().longDateFormat('lll')},
+    {provide: DL_STRING_DATE_INPUT_FORMATS, useValue: INPUT_FORMATS},
+    {provide: DL_STRING_DATE_OUTPUT_FORMAT, useValue: LONG_DATE_FORMAT},
     {provide: DlDateAdapter, useClass: DlDateAdapterString}
   ],
 })
