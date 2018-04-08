@@ -15,16 +15,43 @@ The following keyboard shortcuts are supported in in all views:
 | `PAGE_DOWN`          | Go to the same cell in the next time period     |
 | `ENTER` or `SPACE`   | Select current cell                             |
 
-## Date Adapter
+## Supported date types
+
+Import the module corresponding to the desired data type of the date in the model.
+* Native JavaScript Date: import 'DlDateTimePickerDateModule'
+* Moment Date: import 'DlDateTimePickerMomentModule'
+* Milliseconds (local): import 'DlDateTimePickerNumberModule'
+* String (local): import 'DlDateTimePickerStringModule'
 
 A `DateAdapter` is used to adapt the data type in the model to the `number` data type 
 used internally by the date/time picker.
- 
+
 If you need a different data type than what is currently supported, you can extend 
 `DlDateAdapter<D>` to provide the data type you need then override the `DlDateAdapter` 
 provider in `app.module.ts` to use your new class. 
 
 `providers: [{provide: DlDateAdapter, useClass: MyCustomDateAdapter}],`
+
+### String Date Adapter Formats
+The input and output formats for dates are injected into the `DlDateAdapterString` class 
+using the `DL_STRING_DATE_INPUT_FORMATS` and `DL_STRING_DATE_OUTPUT_FORMAT` tokens.
+
+`DL_STRING_DATE_OUTPUT_FORMAT` defaults to `moment`'s `lll` long date format.
+
+`DL_STRING_DATE_INPUT_FORMATS` defaults to the following:
+```typescript
+[
+  moment.localeData().longDateFormat('lll'),
+  'YYYY-MM-DDTHH:mm',
+  'YYYY-MM-DDTHH:mm:ss',
+  'YYYY-MM-DDTHH:mm:ss.SSS',
+  'YYYY-MM-DD',
+  'YYYY-MM-DDTHH:mm:ss.SSS[Z]' // ISO_8601
+]
+```
+
+If you want different formats, override the injection tokens in `app.module.ts` 
+i.e `{provide: DL_STRING_DATE_OUTPUT_FORMAT, useValue: '<what ever format you want goes here>'}` 
 
 ## Model Provider
 

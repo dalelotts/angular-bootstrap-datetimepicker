@@ -19,6 +19,25 @@ import {DlMonthModelProvider} from './dl-model-provider-month';
 import {DlDayModelProvider} from './dl-model-provider-day';
 import {DlHourModelProvider} from './dl-model-provider-hour';
 import {DlMinuteModelProvider} from './dl-model-provider-minute';
+import {DL_STRING_DATE_INPUT_FORMATS, DL_STRING_DATE_OUTPUT_FORMAT, DlDateAdapterString} from './dl-date-adapter-string';
+
+import * as _moment from 'moment';
+
+/**
+ * Work around for moment namespace conflict when used with webpack and rollup.
+ * See https://github.com/dherges/ng-packagr/issues/163
+ *
+ * Depending on whether rollup is used, moment needs to be imported differently.
+ * Since Moment.js doesn't have a default export, we normally need to import using
+ * the `* as`syntax.
+ *
+ * rollup creates a synthetic default module and we thus need to import it using
+ * the `default as` syntax.
+ *
+ * @internal
+ *
+ **/
+const moment = _moment;
 
 /**
  * Import this module to supply your own `DateAdapter` provider.
@@ -72,3 +91,28 @@ export class DlDateTimePickerDateModule {
 })
 export class DlDateTimePickerMomentModule {
 }
+
+/**
+ * Import this module to store a `string` in the model.
+ */
+@NgModule({
+  imports: [DlDateTimePickerModule],
+  exports: [DlDateTimePickerComponent],
+  providers: [
+    {
+      provide: DL_STRING_DATE_INPUT_FORMATS, useValue: [
+        moment.localeData().longDateFormat('lll'),
+        'YYYY-MM-DDTHH:mm',
+        'YYYY-MM-DDTHH:mm:ss',
+        'YYYY-MM-DDTHH:mm:ss.SSS',
+        'YYYY-MM-DD',
+        moment.ISO_8601
+      ]
+    },
+    {provide: DL_STRING_DATE_OUTPUT_FORMAT, useValue: moment.localeData().longDateFormat('lll')},
+    {provide: DlDateAdapter, useClass: DlDateAdapterString}
+  ],
+})
+export class DlDateTimePickerStringModule {
+}
+

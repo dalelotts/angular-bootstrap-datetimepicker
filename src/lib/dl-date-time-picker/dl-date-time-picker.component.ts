@@ -455,7 +455,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    **/
   private getStartDate() {
     if (hasValue(this._value)) {
-      return this._value;
+      return this._dateAdapter.toMilliseconds(this._value);
     }
     if (hasValue(this.startDate)) {
       return this.startDate;
