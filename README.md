@@ -14,7 +14,7 @@ Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-[Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+[Home](http://dalelotts.github.io/angular-bootstrap-datetimepicker/) | [Demo page](https://angularjs-bootstrap-datetimepicker.stackblitz.io/)
 
 ## On Angular 1.x?
 
