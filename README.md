@@ -16,34 +16,34 @@ Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 
 [Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
-## On Angular 1.x?
+## Angular 1.x?
 
-See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
+Visita [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
 
-## Support the project
+## Apoya el proyecto
+Sé que este es un pequeño componente sin embargo mucha gente lo utiliza en producción (estoy completamente agradecido con ello) - si llegas a utilizar este componente por favor dale click al botón de estrella (en la parte superior derecha de la página) - 
 I know this is a tiny component but many people use it in production (high 5 to all of us) - if you happen to use this component please click the star button (at the top of the page) - it means a lot to all the contributors.
 
-## Peer Dependencies
+## Versiones de Dependencias Mínimas
 
-Peer dependencies:
- * AngularJS 5.x or higher (1.x will not work)
- * moment.js 2.8.3 or higher for date parsing and formatting
- * bootstrap 4.x for css/layout
- * open-iconic for the default icon's (you can use any icon libary you like)
+Versiones de Dependencias mínimas:
+ * AngularJS 5.x ó mayor (1.x no funcionará)
+ * moment.js 2.8.3 ó mayor para parseo de fecha y formateo
+ * bootstrap 4.x para css/layout
+ * open-iconic para los íconos predeterminados (puedes usar cualquier librería de íconos de tu preferencia)
  
-jQuery is NOT required.
+jQuery NO se necesita.
 
-## Usage with Angular CLI
-If you are using the [Angular CLI](https://cli.angular.io/) there are a few simple steps to 
-add this component to your project.
+## Uso con Angular CLI
+Si estas usando [Angular CLI](https://cli.angular.io/) hay unos pequeños y simples pasos para agregar este componente a tu proyecto.
 
-First, install this module and it's peer dependencies.
+Primero, instala este módulo y las dependencias minimas
 
 ```shell
 npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic
 ```
 
-Then update `./src/app/app.module.ts` to include the following:
+Después actualiza `./src/app/app.module.ts` para que incluya lo siguiente:
 
 ```TypeScript
 import { AppComponent } from './app.component';
@@ -67,28 +67,27 @@ import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 export class AppModule { }
 ```
 
-Next, add the following to `./src/app/app.component.html`
+Posterior, agrega lo siguiente a  `./src/app/app.component.html`
 
 ```html
 <dl-date-time-picker></dl-date-time-picker>
 ```
 
-Next, add the following to `./src/styles.css`
+A continuación, agrega lo siguiente a `./src/styles.css`
 
 ```css
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 ```
 
-**Note:** This component uses `open-iconic` icons by default, but you can use any icon library 
-that supports styling with `classes`.
+**Nota:** Este componente utiliza íconos de la libreria `open-iconic` de manera predeterminada, pero puedes utilizar cualquier librería de íconos que soporten estilizado por medio de `classes`.
 
-Finally, run `npm start` and you should see the date/time picker on [http://localhost:4200/](http://localhost:4200/)
+Por último, ejecuta `npm start` y deberás ver el selector de fecha/tiempo en  [http://localhost:4200/](http://localhost:4200/)
 
-By default, the date/time picker is as wide as it's container `{ width:100% }`. 
-It uses bootstrap's flex `row` and `col` classes to layout the date/time picker into rows and columns.
-If the parent container is too narrow (less than 340px in english), the row and column layout may wrap in ways that are not attractive. 
-Other languages/locals may require a wider container to fit the contents.
+De manera predeterminada, el selector de fecha/tiempo es tan ancho como su contenedor `{ width:100% }`. 
+Utiliza las clases `row` y `col` de bootstrap flex para el acomodo del componente en filas y columnas.
+Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño de la fila y columna que contiene el componente puede que no se muestre de manera atractiva.
+Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
 ## Configuration
 
