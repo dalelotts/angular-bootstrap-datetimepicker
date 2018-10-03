@@ -89,83 +89,78 @@ Utiliza las clases `row` y `col` de bootstrap flex para el acomodo del component
 Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño de la fila y columna que contiene el componente puede que no se muestre de manera atractiva.
 Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
-## Configuration
+## Configuración
+Utiliza el generador de configuración automatizado (AÚN NO DISPONIBLE) (por favor hazme saber si no funciona para tu caso!), 
+o ve a [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+para visualizar la documentación generada por automático.
 
-Use the automated configuration generator (NOT AVAILABLE YET!) (please let me know if it does not work for your use case!), 
-or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
-for the automatically generated documentation.
+### Primer día de la semana
+El primer día de la semana es determinado por los [ajustes de moment i18n ](https://momentjs.com/docs/#/i18n/).
+Por ejemplo, configurando el locale a `'fr'` hará que día Lunes sea el primer día de la semana.
 
-### First day of week
+### Formato para visualización de año, mes, dia, hora, am/pm y minutos
+El formato para horas y minutos es determinado por los [ajustes de moment i18n](https://momentjs.com/docs/#/i18n/).
 
-The first day of the week is determined by  [moment's i18n settings](https://momentjs.com/docs/#/i18n/).
-For example, setting the locale to `'fr'` will cause Monday to be the first day of the week.  
+Las horas son desplegadas utilizando `ll` como formato.
+Los miuntos son desplegados utilizando `lll` como formato. 
 
-### Display of year, month, day, hour, am/pm, and minute formats
-
-The format of hours and minutes is also determined by [moment's i18n settings](https://momentjs.com/docs/#/i18n/).
-
-hours are displayed using `ll` as the format.
-minutes are displayed using `lll` as the format. 
-
-I recommend you use the default locale settings from Moment (if they are incorrect, submit a PR to moment to correct the settings)
-If for some reason the default Moment settings will not work, you can [customize the existing locale](https://momentjs.com/docs/#/customization/) or [create a custom locale](https://momentjs.com/docs/#/i18n/adding-locale/) with the desired formats.
+Recomiendo que utilices los ajustes del predeterminados del locale de Moment (si con incorrectos puedes enviar un PR  a momento para corregir los ajustes)
+Si por alguna razón los ajustes predeterminados de Moment no funcionan, puedes [configurar el locale existente](https://momentjs.com/docs/#/customization/) ó [crear un locale cutomizado](https://momentjs.com/docs/#/i18n/adding-locale/) with the desired formats.
 
 
-## Documentation
+## Documentación
+Puedes generar la documentación ejecutando `npm run documentation`
+ó ver [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
-You can generate the documentation by running `npm run documentation`
-or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+## Accesibilidad
 
-## Accessibility
+El componente `DlDateTimePickerComponent` agrega el atributo `aria-label` a la izquierda, derecha y botones 'arriba' adicional a todas las celdas del calendario donde el texto de la celda no pueda describir completamente el valor.
 
-The `DlDateTimePickerComponent` component adds `aria-label` attributes to the left, right, and up buttons
-in addition to all calendar cells where the text of the cell may not fully describe the value.
+### Accesibilidad por medio del teclado 
 
-### Keyboard Accessibility 
-
-The `DlDateTimePickerComponent` component supports the following keyboard shortcuts in all views:
+El componente `DlDateTimePickerComponent` soporta los siguiente atajos de teclado en todas las vistas:
 
 | Shortcut             | Action                                          |
 |----------------------|-------------------------------------------------|
-| `LEFT_ARROW`         | Go to the cell to the left                      |
-| `RIGHT_ARROW`        | Go to the cell to the right                     |
-| `UP_ARROW`           | Go to the cell above                            |
-| `DOWN_ARROW`         | Go to the cell below                            |
-| `HOME`               | Go to the first cell in the view                |
-| `END`                | Go to the last cell in the view                 |
-| `PAGE_UP`            | Go to the same cell in the previous time period |
-| `PAGE_DOWN`          | Go to the same cell in the next time period     |
-| `ENTER` or `SPACE`   | Select current cell                             |
+| `FLECHA_IZQ`         | Ir a la celda de la izquierda                      |
+| `FLECHA_DER`        | Ir a la celda de la derecha                     |
+| `FLECHA_ARRIBA`           | Ir a la celda de arriba                           |
+| `FLECHA_ABAJO`         | Ir a la celda de abajo                            |
+| `INICIO`               | Ir a la primera celda de la vista                |
+| `FIN`                | Ir a la última celda de la vista                |
+| `PAGINA_ARRIBA`            | Ir a la misma celda en el periodo anterior de tiempo |
+| `PAGINA_ABAJO`          | Ir a la misma celda en el periodo siguiente de tiempo     |
+| `ENTRAR` or `ESPACIO`   | Seleccionar la celda actual                             |
 
-## Screen shots
+## Capturas de pantalla
 
-### Year view
+### Vista de año
 
-![Datetimepicker year view](./screenshots/year.png)
+![Datetimepicker vista de año](./screenshots/year.png)
 
-This view allows the user to select the year for the target date.
-If the year view is the minView, the date will be set to midnight on the first day of the year
+Esta vista permite al usuario seleccionar el año de la fecha a elegir.
+Si la vista de año es la minView, la fecha se configurará a medianoche del primer día del año.
 
-### Month view
+### Vista de mes
 
-![Datetimepicker month view](./screenshots/month.png)
+![Datetimepicker vista de mes](./screenshots/month.png)
 
-This view allows the user to select the month in the selected year.
-If the month view is the minView, the date will be set to midnight on the first day of the month.
+Esta vista permite al usuario seleccionar el mes del año seleccionado.
+Si el mes es minView, la fecha se configurará a medianoche del primer día del mes.
 
-### Day view (Default)
+### Vista de día (Predeterminado)
 
-![Datetimepicker day view](./screenshots/day.png)
+![Datetimepicker vista de día](./screenshots/day.png)
 
-This view allows the user to select the the day of the month, in the selected month.
-If the day view is the minView, the date will be set to midnight on the day selected.
+Esta vista permite al usuario seleccionar el día del mes seleccionado.
+Si el día es minView, la fecha se configurará a medianoche del día seleccionado.
 
-### Hour view
+### Vista de hora
 
-![Datetimepicker hour view](./screenshots/hour.png)
+![Datetimepicker vista de hora](./screenshots/hour.png)
 
-This view allows the user to select the hour of the day, on the selected day.
-If the hour view is the minView, the date will be set to the beginning of the hour on the day selected.
+Esta vista permite al usuario seleccionar la hora del día del día seleccionado.
+Si la hora es igual a minView, la fecha se configurará al inicio de la hora del día seleccionado.
 
 ### Minute view
 
