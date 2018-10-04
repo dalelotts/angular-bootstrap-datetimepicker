@@ -124,8 +124,8 @@ El componente `DlDateTimePickerComponent` soporta los siguiente atajos de teclad
 |----------------------|-------------------------------------------------|
 | `FLECHA_IZQ`         | Ir a la celda de la izquierda                      |
 | `FLECHA_DER`        | Ir a la celda de la derecha                     |
-| `FLECHA_ARRIBA`           | Ir a la celda de arriba                           |
-| `FLECHA_ABAJO`         | Ir a la celda de abajo                            |
+| `FLECHA_ARRIBA`           | Ir a la celda superior                           |
+| `FLECHA_ABAJO`         | Ir a la celda inferior                            |
 | `INICIO`               | Ir a la primera celda de la vista                |
 | `FIN`                | Ir a la última celda de la vista                |
 | `PAGINA_ARRIBA`            | Ir a la misma celda en el periodo anterior de tiempo |
@@ -162,67 +162,64 @@ Si el día es minView, la fecha se configurará a medianoche del día selecciona
 Esta vista permite al usuario seleccionar la hora del día del día seleccionado.
 Si la hora es igual a minView, la fecha se configurará al inicio de la hora del día seleccionado.
 
-### Minute view
+### Visa de minuto
 
-![Datetimepicker minute view](./screenshots/minute.png)
-
-This view allows the user to select a specific time of day, in the selected hour.
-By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
-If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.
+![Datetimepicker vista de minutos](./screenshots/minute.png)
+Esta vista permite al usuario seleccionar una hora específica del dia en la hora seleccionada.
+De manera predeterminada el tiempo es visualizado en incrementos de 5 minutos, la propiedad  <code>minuteStep</code> controla los incrementos del tiempo visualizado.
+Si la vista de minutos es la minView, la cual es de manera predefinida, la fecha se configurará al inicio de la hora del día seleccionado.
  
 
-## Contributing
+## Contribuir
 
-See [Contributing.md](.github/contributing.md)
+Ver [Contributing.md](.github/contributing.md)
 
-### Testing
-This component was written using TDD and all enhancements and changes have related tests.
+### Pruebas
+Este componente fué realizado utilizando TDD y todas las mejoras y cambios tiene tests.
 
-We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use gulp:
+Utilizamos karma y jshint para así garantizar la calidad del código. La manera mas sencilla de correr estas pruebas es usando gulp de la siguiente manera:
 
 ```shell
 npm install
 npm test
 ```
+Karma tratará de abrir Chrome como navegador con el cual se correrán los tests.
+Asegúrate de que chrome esté instalado o cambia la configuración de navegador en karma.config.js
 
-The karma task will try to open Chrome as a browser in which to run the tests.
-Make sure Chrome is available or change the browsers setting in karma.config.js
+## Licencia
 
-## License
+angular-bootstrap-datetimepicker fué liberada con la licencia MIT y copyright 2015 Knight Rider Consulting, Inc.. Lo que anterior implica lo podrás encontrar a continuación.
 
-angular-bootstrap-datetimepicker is released under the MIT license and is copyright 2015 Knight Rider Consulting, Inc.. Boiled down to smaller chunks, it can be described with the following conditions.
+## Se te pide que:
 
-## It requires you to:
+* Mantengas la licencia y el aviso de copyright incluidos en los archivos CSS y Javascript de angular-bootstrap-datetimepicker cuanto utilices esta librería en tus proyectos.
 
-* Keep the license and copyright notice included in angular-bootstrap-datetimepicker's CSS and JavaScript files when you use them in your works
+## Te permite:
 
-## It permits you to:
+* De manera libre descargar y usar angular-bootstrap-datetimepicker de manera completa o sus componentes para proposito personal, privado, de manera interna en una compañía o con fines comerciales.
+* Usar angular-bootstrap-datetimepicker en paquetes o distribuciones creados por ti.
+* Modificar el código fuente
+* Acceder a una sublicencia para modificar y distribuir angular-bootstrap-datetimepicker a terceros no incluidos en la licencia.
 
-* Freely download and use angular-bootstrap-datetimepicker, in whole or in part, for personal, private, company internal, or commercial purposes
-* Use angular-bootstrap-datetimepicker in packages or distributions that you create
-* Modify the source code
-* Grant a sublicense to modify and distribute angular-bootstrap-datetimepicker to third parties not included in the license
+## Te prohibe:
 
-## It forbids you to:
+* Responsabilizar a los autores y propietarios de las licencias por daños ya que se proporciona sin garantía angular-bootstrap-datetimepicker.
+* Responsabilizar a los creadores o titulares de derechos de autor de angular-bootstrap-datetimepicker.
+* Redistribuir algún componente de angular-bootstrap-datetimepicker sin la atribución adecuada.
+* Utilizar alguna marca o logo propiedad de Knight Rider Consulting, Inc. de alguna manera en la que se puede entender que  Knight Rider Consulting, Inc. respalda tu distribución.
+* Utilizar alguna marca o logo propiedad de Knight Rider Consulting, Inc. de alguna manera en la que se pueda entender o deducir que tu creaste este software.
 
-* Hold the authors and license owners liable for damages as angular-bootstrap-datetimepicker is provided without warranty
-* Hold the creators or copyright holders of angular-bootstrap-datetimepicker liable
-* Redistribute any piece of angular-bootstrap-datetimepicker without proper attribution
-* Use any marks owned by Knight Rider Consulting, Inc. in any way that might state or imply that Knight Rider Consulting, Inc. endorses your distribution
-* Use any marks owned by Knight Rider Consulting, Inc. in any way that might state or imply that you created the Knight Rider Consulting, Inc. software in question
+## No requiere el que tu:
 
-## It does not require you to:
+* Incluyas el código fuente angular-bootstrap-datetimepicker o el de alguna modificación que tú le hayas hecho al código original, in any redistribution you may assemble that includes it
+* Envíes los cambios que hiciste a angular-bootstrap-datetimepicker al proyecto  angular-bootstrap-datetimepicker (sin embargo sugerencias o cambios son bienvenidos).
 
-* Include the source of angular-bootstrap-datetimepicker itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
-* Submit changes that you make to angular-bootstrap-datetimepicker back to the angular-bootstrap-datetimepicker project (though such feedback is encouraged)
+La licencia completa de angular-bootstrap-datetimepicker se encuentra [en el repositorio del proyecto](LICENSE) para más información.
 
-The full angular-bootstrap-datetimepicker license is located [in the project repository](LICENSE) for more information.
+## Donativos
+Puedes apoyar este proyecto y otros relizados por Dale Lotts por medio de [gittip][gittip-dalelotts].
 
-
-## Donating
-Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts].
-
-[![Support via Gittip][gittip-badge]][gittip-dalelotts]
+[![Apoya via Gittip][gittip-badge]][gittip-dalelotts]
 
 [gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
 [gittip-dalelotts]: https://www.gittip.com/dalelotts/
