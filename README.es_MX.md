@@ -16,6 +16,8 @@ Componente selector de fecha/hora nativo para Angular (5+) estilizado con Bootst
 
 [Inicio / Página de demo](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
+*Leer la documentación en otro idioma: [Inglés](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/README.md)*
+
 ## Angular 1.x?
 
 Visita [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
