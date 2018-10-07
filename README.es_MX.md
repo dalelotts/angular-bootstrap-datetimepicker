@@ -72,7 +72,12 @@ export class AppModule { }
 Posterior, agrega lo siguiente a  `./src/app/app.component.html`
 
 ```html
-<dl-date-time-picker></dl-date-time-picker>
+<dl-date-time-picker
+	startView="day"
+	maxView="year"
+	minView="minute"
+	minuteStep="5">
+</dl-date-time-picker>
 ```
 
 A continuación, agrega lo siguiente a `./src/styles.css`
