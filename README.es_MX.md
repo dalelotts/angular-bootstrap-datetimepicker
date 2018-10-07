@@ -14,7 +14,9 @@ Componente selector de fecha/hora nativo para Angular (5+) estilizado con Bootst
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-[Inicio / Página de demo](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+[documentación](http://dalelotts.github.io/angular-bootstrap-datetimepicker/) (Inglés)
+
+[Página de demo](https://angular-bootstrap-datetimepicker.stackblitz.io/)
 
 *Leer la documentación en otro idioma: [Inglés](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/README.md)*
 
@@ -72,7 +74,12 @@ export class AppModule { }
 Posterior, agrega lo siguiente a  `./src/app/app.component.html`
 
 ```html
-<dl-date-time-picker></dl-date-time-picker>
+<dl-date-time-picker
+	startView="day"
+	maxView="year"
+	minView="minute"
+	minuteStep="5">
+</dl-date-time-picker>
 ```
 
 A continuación, agrega lo siguiente a `./src/styles.css`
@@ -92,7 +99,7 @@ Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño
 Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
 ## Configuración
-Utiliza el generador de configuración automatizado (AÚN NO DISPONIBLE) (por favor hazme saber si no funciona para tu caso!), 
+Utiliza el [generador de configuración automatizado](https://angular-bootstrap-datetimepicker.stackblitz.io/)  (por favor hazme saber si no funciona para tu caso!), 
 o ve a [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 para visualizar la documentación generada por automático.
 

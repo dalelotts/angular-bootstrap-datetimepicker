@@ -14,7 +14,10 @@ Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-[Home / demo page](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+[Documentation](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
+
+[Demo Page](https://angular-bootstrap-datetimepicker.stackblitz.io/)
+
 
 *Read this in other languages: [Spanish](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/README.es_MX.md)*
 ## On Angular 1.x?
@@ -71,7 +74,12 @@ export class AppModule { }
 Next, add the following to `./src/app/app.component.html`
 
 ```html
-<dl-date-time-picker></dl-date-time-picker>
+<dl-date-time-picker
+	startView="day"
+	maxView="year"
+	minView="minute"
+	minuteStep="5">
+</dl-date-time-picker>
 ```
 
 Next, add the following to `./src/styles.css`
@@ -93,7 +101,7 @@ Other languages/locals may require a wider container to fit the contents.
 
 ## Configuration
 
-Use the automated configuration generator (NOT AVAILABLE YET!) (please let me know if it does not work for your use case!), 
+Use the [automated configuration generator](https://angular-bootstrap-datetimepicker.stackblitz.io/) (please let me know if it does not work for your use case!), 
 or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 for the automatically generated documentation.
 
