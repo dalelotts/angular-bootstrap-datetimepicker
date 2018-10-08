@@ -78,7 +78,9 @@ Next, add the following to `./src/app/app.component.html`
 	startView="day"
 	maxView="year"
 	minView="minute"
-	minuteStep="5">
+	minuteStep="5"
+	[(ngModel)]="selectedDate"
+>
 </dl-date-time-picker>
 ```
 
