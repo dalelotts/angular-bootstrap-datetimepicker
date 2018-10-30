@@ -7,12 +7,8 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-export * from './dl-date-adapter';
-export * from './dl-date-adapter-moment';
-export * from './dl-date-adapter-native';
-export * from './dl-date-adapter-number';
-export * from './dl-date-adapter-string';
 export * from './dl-date-time-picker-change';
+export * from './dl-date-time-picker-date-button';
 export * from './dl-date-time-picker-model';
 export * from './dl-date-time-picker.component';
 export * from './dl-date-time-picker.module';

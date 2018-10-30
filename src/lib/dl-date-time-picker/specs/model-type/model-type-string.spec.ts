@@ -7,11 +7,12 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {DlDateTimePickerStringModule} from '../../index';
+import {DlDateTimeStringModule} from '../../../core';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../index';
 
 
 @Component({
@@ -26,7 +27,8 @@ describe('DlDateTimePickerComponent modelType', () => {
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
       imports: [
-        DlDateTimePickerStringModule
+        DlDateTimeStringModule,
+        DlDateTimePickerModule,
       ],
       declarations: [
         ModelTypeComponent,

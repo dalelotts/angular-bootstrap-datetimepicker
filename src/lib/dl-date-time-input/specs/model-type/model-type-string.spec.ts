@@ -7,27 +7,39 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DlDateTimePickerDateModule} from '../../dl-date-time-picker.module';
+import {By} from '@angular/platform-browser';
+import * as _moment from 'moment';
+import {DlDateTimeStringModule} from '../../../core';
+import {DlDateTimeInputDirective, DlDateTimeInputModule} from '../../index';
 
-@Component({
-  template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'
-})
-class ModelTypeComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<Date>;
+let moment = _moment;
+if ('default' in _moment) {
+  moment = _moment['default'];
 }
 
-describe('DlDateTimePickerComponent modelType', () => {
+@Component({
+  template: `<input id="dateInput"
+                    name="dateValue"
+                    type="text"
+                    dlDateTimeInput
+                    [dlDateTimeInputFilter]="dateTimeFilter"
+                    [(ngModel)]="dateValue"/>`
+})
+class ModelTypeComponent {
+  @ViewChild(DlDateTimeInputDirective) input: DlDateTimeInputDirective<number>;
+}
+
+describe('DlDateTimeInputDirective modelType', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimePickerDateModule
+        DlDateTimeStringModule,
+        DlDateTimeInputModule,
       ],
       declarations: [
         ModelTypeComponent,
@@ -36,7 +48,7 @@ describe('DlDateTimePickerComponent modelType', () => {
       .compileComponents();
   }));
 
-  describe('native Date', () => {
+  describe('String', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;
@@ -53,11 +65,12 @@ describe('DlDateTimePickerComponent modelType', () => {
       });
     }));
 
-    it('should be Date type', () => {
-      const nowElement = fixture.debugElement.query(By.css('.dl-abdtp-now'));
-      nowElement.nativeElement.click();
-
-      expect(component.picker.value).toEqual(jasmine.any(Date));
+    it('should be String type', () => {
+      const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
+      inputElement.value = '2001-10-01';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      expect(component.input.value).toEqual(jasmine.any(String));
     });
   });
 });

@@ -12,24 +12,28 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule} from '../../../core';
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
-import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
+import {DlDateTimeInputDirective, DlDateTimeInputModule} from '../../index';
 
 @Component({
-  template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'
+  template: `<input id="dateInput"
+                    name="dateValue"
+                    type="text"
+                    dlDateTimeInput
+                    [dlDateTimeInputFilter]="dateTimeFilter"
+                    [(ngModel)]="dateValue"/>`
 })
 class ModelTypeComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimeInputDirective) input: DlDateTimeInputDirective<number>;
 }
 
-describe('DlDateTimePickerComponent modelType', () => {
+describe('DlDateTimeInputDirective modelType', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
-        DlDateTimePickerModule,
+        DlDateTimeInputModule,
       ],
       declarations: [
         ModelTypeComponent,
@@ -56,10 +60,11 @@ describe('DlDateTimePickerComponent modelType', () => {
     }));
 
     it('should be Number type', () => {
-      const nowElement = fixture.debugElement.query(By.css('.dl-abdtp-now'));
-      nowElement.nativeElement.click();
-
-      expect(component.picker.value).toEqual(jasmine.any(Number));
+      const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
+      inputElement.value = '2002-10-01';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      expect(component.input.value).toEqual(jasmine.any(Number));
     });
   });
 });

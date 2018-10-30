@@ -1,6 +1,7 @@
-import {DlDateAdapter} from './dl-date-adapter';
+import {Inject} from '@angular/core';
 import * as _moment from 'moment';
-import {Inject, InjectionToken} from '@angular/core';
+import {DlDateAdapter} from './dl-date-adapter';
+import {DL_DATE_TIME_INPUT_FORMATS, DL_DATE_TIME_MODEL_FORMAT} from './dl-date-time-string-format';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.
@@ -18,27 +19,24 @@ import {Inject, InjectionToken} from '@angular/core';
  **/
 const moment = _moment;
 
-
-/**
- * InjectionToken for string dates that can be used to override default output format.
- **/
-export const DL_STRING_DATE_OUTPUT_FORMAT = new InjectionToken<string>('DL_STRING_DATE_OUTPUT_FORMAT');
-
-/**
- * InjectionToken for string dates that can be used to override default input formats.
- **/
-export const DL_STRING_DATE_INPUT_FORMATS = new InjectionToken<string[]>('DL_STRING_DATE_INPUT_FORMATS');
-
 /**
  * Adapts `string` to be usable as a date by date/time components that work with dates.
  **/
 export class DlDateAdapterString extends DlDateAdapter<string> {
 
-  private readonly modelFormat: string;
   private readonly inputFormats: string[];
+  private readonly modelFormat: string;
 
-  constructor(@Inject(DL_STRING_DATE_INPUT_FORMATS) inputFormats: string[],
-              @Inject(DL_STRING_DATE_OUTPUT_FORMAT) modelFormat: string) {
+  /**
+   *  Constructs a new instance of this class.
+   *
+   * @param inputFormats
+   *  see {@link DL_DATE_TIME_INPUT_FORMATS}
+   * @param modelFormat
+   *  see {@link DL_DATE_TIME_MODEL_FORMAT}
+   */
+  constructor(@Inject(DL_DATE_TIME_INPUT_FORMATS) inputFormats: string[],
+              @Inject(DL_DATE_TIME_MODEL_FORMAT) modelFormat: string) {
     super();
     this.inputFormats = inputFormats;
     this.modelFormat = modelFormat;

@@ -8,9 +8,9 @@
  */
 
 /**
- * Emitted when the value of a date/time picker changes.
+ * Emitted when the value of a date/time input changes.
  */
-export class DlDateTimePickerChange<D> {
+export class DlDateTimeInputChange<D> {
 
   /**
    * The new value of the picker.

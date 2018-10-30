@@ -7,11 +7,11 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlModelProvider} from './dl-model-provider';
-import {DlDateTimePickerModel} from './dl-date-time-picker-model';
 import {SimpleChanges} from '@angular/core';
 import * as _moment from 'moment';
 import {Moment} from 'moment';
+import {DlDateTimePickerModel} from './dl-date-time-picker-model';
+import {DlModelProvider} from './dl-model-provider';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.

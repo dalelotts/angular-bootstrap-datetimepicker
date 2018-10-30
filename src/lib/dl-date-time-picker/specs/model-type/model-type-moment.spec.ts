@@ -7,14 +7,15 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {DlDateTimePickerMomentModule} from '../../dl-date-time-picker.module';
 
 import * as _moment from 'moment';
 import {Moment} from 'moment';
+import {DlDateTimeMomentModule} from '../../../core';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.
@@ -43,7 +44,8 @@ describe('DlDateTimePickerComponent modelType', () => {
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
       imports: [
-        DlDateTimePickerMomentModule
+        DlDateTimeMomentModule,
+        DlDateTimePickerModule,
       ],
       declarations: [
         ModelTypeComponent,
@@ -52,7 +54,7 @@ describe('DlDateTimePickerComponent modelType', () => {
       .compileComponents();
   }));
 
-  describe('native Date', () => {
+  describe('moment Date', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;

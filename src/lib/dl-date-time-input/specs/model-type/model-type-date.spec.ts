@@ -11,25 +11,29 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {DlDateTimeNumberModule} from '../../../core';
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
-import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
+import {DlDateTimeDateModule} from '../../../core';
+import {DlDateTimeInputDirective, DlDateTimeInputModule} from '../../index';
 
 @Component({
-  template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'
+  template: `<input id="dateInput"
+                    name="dateValue"
+                    type="text"
+                    dlDateTimeInput
+                    [dlDateTimeInputFilter]="dateTimeFilter"
+                    [(ngModel)]="dateValue"/>`
 })
 class ModelTypeComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimeInputDirective) input: DlDateTimeInputDirective<number>;
 }
 
-describe('DlDateTimePickerComponent modelType', () => {
+describe('DlDateTimeInputDirective modelType', () => {
 
   beforeEach(async(() => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimeNumberModule,
-        DlDateTimePickerModule,
+        DlDateTimeDateModule,
+        DlDateTimeInputModule,
       ],
       declarations: [
         ModelTypeComponent,
@@ -38,7 +42,7 @@ describe('DlDateTimePickerComponent modelType', () => {
       .compileComponents();
   }));
 
-  describe('number', () => {
+  describe('Date', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;
@@ -55,11 +59,12 @@ describe('DlDateTimePickerComponent modelType', () => {
       });
     }));
 
-    it('should be Number type', () => {
-      const nowElement = fixture.debugElement.query(By.css('.dl-abdtp-now'));
-      nowElement.nativeElement.click();
-
-      expect(component.picker.value).toEqual(jasmine.any(Number));
+    it('should be Date type', () => {
+      const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
+      inputElement.value = '2004-10-01';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      expect(component.input.value).toEqual(jasmine.any(Date));
     });
   });
 });

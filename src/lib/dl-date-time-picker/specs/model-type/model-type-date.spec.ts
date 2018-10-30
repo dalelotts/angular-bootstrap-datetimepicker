@@ -11,7 +11,7 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {DlDateTimeNumberModule} from '../../../core';
+import {DlDateTimeDateModule} from '../../../core';
 import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 
@@ -19,7 +19,7 @@ import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
   template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'
 })
 class ModelTypeComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<Date>;
 }
 
 describe('DlDateTimePickerComponent modelType', () => {
@@ -28,7 +28,7 @@ describe('DlDateTimePickerComponent modelType', () => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimeNumberModule,
+        DlDateTimeDateModule,
         DlDateTimePickerModule,
       ],
       declarations: [
@@ -38,7 +38,7 @@ describe('DlDateTimePickerComponent modelType', () => {
       .compileComponents();
   }));
 
-  describe('number', () => {
+  describe('native Date', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;
@@ -55,11 +55,11 @@ describe('DlDateTimePickerComponent modelType', () => {
       });
     }));
 
-    it('should be Number type', () => {
+    it('should be Date type', () => {
       const nowElement = fixture.debugElement.query(By.css('.dl-abdtp-now'));
       nowElement.nativeElement.click();
 
-      expect(component.picker.value).toEqual(jasmine.any(Number));
+      expect(component.picker.value).toEqual(jasmine.any(Date));
     });
   });
 });

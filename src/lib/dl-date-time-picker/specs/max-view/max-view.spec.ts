@@ -7,51 +7,52 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
+import {By} from '@angular/platform-browser';
+import {DlDateTimeNumberModule} from '../../../core';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker maxView="year" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class YearMaxViewComponent {
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 @Component({
   template: '<dl-date-time-picker maxView="month" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class MonthMaxViewComponent {
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 @Component({
   template: '<dl-date-time-picker maxView="day" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class DayMaxViewComponent {
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 @Component({
   template: '<dl-date-time-picker maxView="hour" startView="hour" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class HourMaxViewComponent {
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 @Component({
   template: '<dl-date-time-picker maxView="minute"  startView="minute" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class MinuteMaxViewComponent {
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 @Component({
@@ -59,8 +60,8 @@ class MinuteMaxViewComponent {
 })
 class UndefinedMaxViewComponent {
   maxView: string;  // intentionally did not assign value
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 describe('DlDateTimePickerComponent maxView', () => {
@@ -69,7 +70,8 @@ describe('DlDateTimePickerComponent maxView', () => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimePickerNumberModule
+        DlDateTimeNumberModule,
+        DlDateTimePickerModule
       ],
       declarations: [
         YearMaxViewComponent,

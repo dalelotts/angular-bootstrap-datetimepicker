@@ -7,12 +7,14 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
 import * as moment from 'moment';
+import {DlDateTimeNumberModule} from '../../../core';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 import {
   dispatchKeyboardEvent,
   DOWN_ARROW,
@@ -27,7 +29,6 @@ import {
   UP_ARROW
 } from '../dispatch-events';
 import {JAN} from '../month-constants';
-import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
 
@@ -41,8 +42,8 @@ class MinuteStartViewComponent {
   template: '<dl-date-time-picker startView="minute" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class MinuteStartViewWithNgModelComponent {
-  selectedDate = new Date(2018, JAN, 26, 15, 52, 26).getTime(); // 26 Jan 2018 15:53:27
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate = new Date(2018, JAN, 26, 15, 52, 26).getTime(); // 26 Jan 2018 15:53:27
 }
 
 
@@ -52,7 +53,8 @@ describe('DlDateTimePickerComponent startView=minute', () => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimePickerNumberModule
+        DlDateTimeNumberModule,
+        DlDateTimePickerModule,
       ],
       declarations: [
         MinuteStartViewComponent,

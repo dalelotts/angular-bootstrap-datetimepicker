@@ -7,21 +7,22 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {DlDateTimeNumberModule} from '../../../core';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 import {dispatchKeyboardEvent, ENTER, SPACE} from '../dispatch-events';
 import {JAN} from '../month-constants';
-import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker [(ngModel)]="selectedDate" startView="year" minView="year"></dl-date-time-picker>'
 })
 class YearSelectorComponent {
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
 }
 
 describe('DlDateTimePickerComponent', () => {
@@ -30,7 +31,8 @@ describe('DlDateTimePickerComponent', () => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimePickerNumberModule
+        DlDateTimeNumberModule,
+        DlDateTimePickerModule,
       ],
       declarations: [
         YearSelectorComponent

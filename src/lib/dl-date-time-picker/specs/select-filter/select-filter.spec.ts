@@ -7,21 +7,22 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {DateButton} from '../../dl-date-time-picker-model';
-import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
+import {By} from '@angular/platform-browser';
+import {DlDateTimeNumberModule} from '../../../core';
+import {DateButton} from '../../dl-date-time-picker-date-button';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 
 @Component({
   template: '<dl-date-time-picker [selectFilter]="selectFilter" [(ngModel)]="selectedDate" maxView="day"></dl-date-time-picker>'
 })
 class SelectFilterComponent {
   now = Date.now();
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
   selectFilter = (dateButton: DateButton) => dateButton.value > this.now;
 }
 
@@ -29,9 +30,9 @@ class SelectFilterComponent {
   template: '<dl-date-time-picker [selectFilter]="selectFilter" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class UndefinedSelectFilterComponent {
-  selectedDate: number; // intentionally did not assign value
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
   selectFilter: (viewName: string, dateButton: DateButton) => boolean;   // intentionally did not assign value
+  selectedDate: number; // intentionally did not assign value
 }
 
 describe('DlDateTimePickerComponent startDate', () => {
@@ -40,7 +41,8 @@ describe('DlDateTimePickerComponent startDate', () => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimePickerNumberModule
+        DlDateTimeNumberModule,
+        DlDateTimePickerModule,
       ],
       declarations: [
         SelectFilterComponent,

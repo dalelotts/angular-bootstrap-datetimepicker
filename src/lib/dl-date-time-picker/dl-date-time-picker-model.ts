@@ -7,32 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-/**
- * Represents the configuration for a cell in the picker.
- */
-export interface DateButton {
-
-  /**
-   * The text to display in the cell.
-   */
-  display: string;
-
-  /**
-   * The accessible label for the cell.
-   * Used by screen readers.
-   */
-  ariaLabel: string;
-
-  /**
-   * The value for the cell.
-   */
-  value: number;
-
-  /**
-   * The classes to add to the cell button
-   */
-  classes: {};
-}
+import {DateButton} from './dl-date-time-picker-date-button';
 
 /**
  * Interface that represents the model for every view in a date/time picker.
@@ -41,20 +16,9 @@ export interface DateButton {
  */
 export interface DlDateTimePickerModel {
   /**
-   * The name of the view represented by this model.
-   */
-  viewName: string;
-
-  /**
-   * The label displayed in the top-center of the date/time picker
-   */
-  viewLabel: string;
-
-  /**
    * The date value of the currently active cell in the model.
    */
   activeDate: number;
-
   /**
    * Represent the configuration for the left button.
    */
@@ -75,29 +39,6 @@ export interface DlDateTimePickerModel {
      */
     classes: {};
   };
-
-  /**
-   * Represent the configuration for the up button.
-   */
-  upButton?: {
-
-    /**
-     * The value for the model above this model.
-     */
-    value: number;
-
-    /**
-     * The accessible label for the up button.
-     * Used by screen readers.
-     */
-    ariaLabel: string;
-
-    /**
-     * The classes to add to the up button
-     */
-    classes: {};
-  };
-
   /**
    * Represents the configuration for the right button.
    */
@@ -119,13 +60,11 @@ export interface DlDateTimePickerModel {
      */
     classes: {};
   };
-
   /**
    * Optional row labels.
    * Used to include the weekday labels in the `day` view
    */
   rowLabels?: string[];
-
   /**
    * The rows in the current view.
    */
@@ -135,4 +74,33 @@ export interface DlDateTimePickerModel {
      */
     cells: Array<DateButton>
   }>;
+  /**
+   * Represent the configuration for the up button.
+   */
+  upButton?: {
+
+    /**
+     * The value for the model above this model.
+     */
+    value: number;
+
+    /**
+     * The accessible label for the up button.
+     * Used by screen readers.
+     */
+    ariaLabel: string;
+
+    /**
+     * The classes to add to the up button
+     */
+    classes: {};
+  };
+  /**
+   * The label displayed in the top-center of the date/time picker
+   */
+  viewLabel: string;
+  /**
+   * The name of the view represented by this model.
+   */
+  viewName: string;
 }

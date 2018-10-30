@@ -7,31 +7,41 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {DlDateTimeNumberModule} from '../../../core';
+import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
+import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
 import {APR, MAY, OCT} from '../month-constants';
-import {DlDateTimePickerNumberModule} from '../../dl-date-time-picker.module';
-import moment = require('moment');
+import * as _moment from 'moment';
+
+/**
+ * @internal
+ */
+let moment = _moment;
+/* istanbul ignore if */
+if ('default' in _moment) {
+  moment = _moment['default'];
+}
 
 @Component({
   template: '<dl-date-time-picker [startDate]="startDate" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class StartDateComponent {
-  startDate = new Date(1985, OCT, 18).getTime();
-  selectedDate: number;
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number;
+  startDate = new Date(1985, OCT, 18).getTime();
 }
 
 @Component({
   template: '<dl-date-time-picker [startDate]="startDate" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class UndefinedStartDateComponent {
-  startDate: number;   // intentionally did not assign value
-  selectedDate: number; // intentionally did not assign value
   @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  selectedDate: number; // intentionally did not assign value
+  startDate: number;   // intentionally did not assign value
 }
 
 describe('DlDateTimePickerComponent startDate', () => {
@@ -40,7 +50,8 @@ describe('DlDateTimePickerComponent startDate', () => {
     return TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        DlDateTimePickerNumberModule
+        DlDateTimeNumberModule,
+        DlDateTimePickerModule,
       ],
       declarations: [
         StartDateComponent,

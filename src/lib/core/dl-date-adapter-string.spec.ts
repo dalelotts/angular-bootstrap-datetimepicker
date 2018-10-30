@@ -1,8 +1,6 @@
-import {DlDateAdapterString} from '../../dl-date-adapter-string';
-import {DlDateAdapter} from '../../dl-date-adapter';
-
 import * as _moment from 'moment';
 import {Moment} from 'moment';
+import {DlDateAdapterString} from './dl-date-adapter-string';
 
 /**
  * Work around for moment namespace conflict when used with webpack and rollup.

@@ -7,8 +7,8 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {DlDateTimePickerModel} from './dl-date-time-picker-model';
 import {SimpleChanges} from '@angular/core';
+import {DlDateTimePickerModel} from './dl-date-time-picker-model';
 
 /**
  * Implemented by classes that provide models for the date/time picker.
