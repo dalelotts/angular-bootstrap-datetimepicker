@@ -17,10 +17,6 @@ import {DlDateTimeInputChange} from './dl-date-time-input-change';
  * @internal
  */
 let moment = _moment;
-/* istanbul ignore if */
-if ('default' in _moment) {
-  moment = _moment['default'];
-}
 
 /**
  * @internal
@@ -135,6 +131,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
 
     this._isValid = testDate && testDate.isValid();
     this._value = this._isValid ? this._dateAdapter.fromMilliseconds(testDate.valueOf()) : undefined;
+    console.log(this._changed, value, this._value);
     this._changed.forEach(onChanged => onChanged(this._value));
   }
 

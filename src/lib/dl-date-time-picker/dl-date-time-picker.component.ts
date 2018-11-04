@@ -500,7 +500,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    * @internal
    **/
   _handleKeyDown($event: KeyboardEvent): void {
-    const functionName = keyCodeToModelProviderMethod[$event.keyCode];
+    const functionName = keyCodeToModelProviderMethod[$event.code];
 
     if (functionName) {
       const modelProvider = this._viewToModelProvider[this._model.viewName];

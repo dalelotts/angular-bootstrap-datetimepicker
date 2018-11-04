@@ -1,4 +1,4 @@
-# Angular 5+ bootstrap date & time picker
+# Angular 7+ bootstrap date & time picker
 
 Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 
@@ -30,8 +30,8 @@ I know this is a tiny component but many people use it in production (high 5 to 
 ## Peer Dependencies
 
 Peer dependencies:
- * AngularJS 5.x or higher (1.x will not work)
- * moment.js 2.8.3 or higher for date parsing and formatting
+ * Angular 7.x or higher (1.x will not work)
+ * moment.js 2.22.2 or higher for date parsing and formatting
  * bootstrap 4.x for css/layout
  * open-iconic for the default icon's (you can use any icon libary you like)
  
@@ -54,7 +54,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,8 @@ import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
   imports: [
     BrowserModule,
     FormsModule,
-    DlDateTimePickerDateModule,
+    DlDateTimeDateModule,  // <--- Determines the data type of the model
+    DlDateTimePickerModule,
   ],
   providers: [FormsModule],
   bootstrap: [AppComponent]

@@ -1,30 +1,46 @@
-!.vscode/extensions.json
-!.vscode/launch.json
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/documentation
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
-*.launch
-*.metadata.json
-*.sublime-workspace
-.c9/
-.classpath
-.DS_Store
-.project
-.settings/
-.vscode/*
-/.idea
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
 /.sass-cache
 /connect.lock
 /coverage
-/dist
-/documentation
-/e2e/*.js
-/e2e/*.map
 /libpeerconnection.log
-/node_modules
-/out-tsc
-/tmp
-/typings
-dist.tgz
 npm-debug.log
+yarn-error.log
 testem.log
+/typings
+
+# System Files
+.DS_Store
 Thumbs.db
+
+/e2e/*.js
+!/e2e/protractor.conf.js
+/e2e/*.map
+
+*.metadata.json

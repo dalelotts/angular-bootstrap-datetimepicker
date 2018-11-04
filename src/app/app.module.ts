@@ -4,6 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {DlDateTimeDateModule} from '../lib/core';
 import {DlDateTimeInputModule} from '../lib/dl-date-time-input';
 import {DlDateTimePickerModule} from '../lib/dl-date-time-picker';
+
 import {AppComponent} from './app.component';
 
 @NgModule({
@@ -11,14 +12,14 @@ import {AppComponent} from './app.component';
     AppComponent
   ],
   imports: [
-    DlDateTimeDateModule,
-    DlDateTimeInputModule,
-    DlDateTimePickerModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule,
+    DlDateTimeInputModule
   ],
-  providers: [FormsModule],
-  bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

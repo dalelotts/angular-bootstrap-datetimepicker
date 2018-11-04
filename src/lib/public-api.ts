@@ -7,7 +7,8 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-export * from './dl-date-time-input';
-export * from './dl-date-time-picker';
+export * from './core/public-api';
+export * from './dl-date-time-input/public-api';
+export * from './dl-date-time-picker/public-api';
 
 
