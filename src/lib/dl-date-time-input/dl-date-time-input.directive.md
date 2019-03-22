@@ -19,10 +19,17 @@ provider in `app.module.ts` to use your new class.
 
 ### String Date Adapter Formats
 The display, input and `model` formats for dates are injected using the 
-`DL_DATE_TIME_DISPLAY_FORMAT`, `DL_STRING_DATE_MODEL_FORMAT` and `DL_DATE_TIME_INOUT_FORMATS` tokens.
+`DL_DATE_TIME_DISPLAY_FORMAT`, `DL_STRING_DATE_MODEL_FORMAT` and `DL_DATE_TIME_INPUT_FORMATS` tokens.
 
 `DL_DEFAULT_DATE_TIME_FORMAT` defaults to `moment`'s `lll` long date format. 
 This is the default display format for this directive.
 
-If you want different formats, override the injection tokens in `app.module.ts` 
+If you want a different display, override the injection token in `app.module.ts` 
 i.e `{provide: DL_DATE_TIME_DISPLAY_FORMAT, useValue: '<what ever format you want goes here>'}` 
+
+**Nota bene** For convenience `DL_DATE_TIME_INPUT_FORMATS` defaults to multiple formats, 
+which can dramatically slow down paring performance. Consider overriding this token to only include 
+the formats required by your project. 
+ 
+See moment's [parsing multiple formats](https://momentjs.com/guides/#/parsing/multiple-formats/) 
+page for more information on how these date formats are used. 

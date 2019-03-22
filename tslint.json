@@ -8,7 +8,9 @@
       true,
       "eval",
       "fdescribe",
-      "fit"
+      "xdescribe",
+      "fit",
+      "xit"
     ],
     "callable-types": true,
     "class-name": true,

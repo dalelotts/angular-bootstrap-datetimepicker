@@ -1,103 +1,65 @@
-<div class="row">
-  <div class="col">
-    <div class="form-group">
-      <label for="maxView">Max View:</label>
-      <select id="maxView" [(ngModel)]="maxView"  class="form-control">
-        <option *ngFor="let view of views" [value]="view" [disabled]="isMaxViewDisabled(view)">{{view}}</option>
-      </select>
-      <small class="form-text text-muted"><code>maxView</code> must be &gt;= <code>minView</code> and <code>startView</code></small>
-    </div>
-    <div class="form-group">
-      <label for="minView">Min View:</label>
-      <select id="minView" [(ngModel)]="minView"  class="form-control">
-        <option *ngFor="let view of views" [value]="view" [disabled]="isMinViewDisabled(view)">{{view}}</option>
-      </select>
-      <small class="form-text text-muted"><code>minView</code> must be &lt;= <code>maxView</code> and <code>startView</code></small>
-      <small class="form-text text-muted"><code>minView</code> determines when selection is triggered. </small>
-    </div>
-    <div class="form-group">
-      <label for="startView">Start View:</label>
-      <select id="startView" [(ngModel)]="startView"  class="form-control" (change)="refresh()">
-        <option *ngFor="let view of views" [value]="view" [disabled]="isStartViewDisabled(view)">{{view}}</option>
-      </select>
-      <small class="form-text text-muted"><code>startView</code> must be between (or equal to) <code>maxView</code> and <code>minView</code></small>
-    </div>
-    <div class="form-group">
-      <label for="minuteStep">Minute step:</label>
-      <select id="minuteStep" [(ngModel)]="minuteStep" class="form-control">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-        <option>13</option>
-        <option>14</option>
-        <option>15</option>
-        <option>20</option>
-        <option>25</option>
-        <option>30</option>
-        <option>35</option>
-        <option>40</option>
-        <option>45</option>
-        <option>50</option>
-        <option>55</option>
-        <option>57</option>
-        <option>58</option>
-        <option>59</option>
-      </select>
-      <small class="form-text text-muted"><code>minuteStep</code> has not effect if <code>minView</code> is not set to <code>'minute'</code> </small>
-    </div>
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <h1>Welcome to {{title}}!</h1>
+  <div class="form-group">
+    <label for="startView">Start View</label>
+    <select id="startView" [(ngModel)]="startView">
+      <option>year</option>
+      <option>month</option>
+      <option>day</option>
+      <option>hour</option>
+      <option>minute</option>
+    </select>
+    <small class="form-text text-muted">Determines the initial view for the calendar.</small>
   </div>
 
-  <div class="col">
-      <pre class="bg-light">
-      <code class=" bg-light">
-  &lt;dl-date-time-picker
-    maxView=&#x22;{{maxView}}&#x22;
-    minView=&#x22;{{minView}}&#x22;
-    startView=&#x22;{{startView}}&#x22;
-    minuteStep=&#x22;{{minuteStep}}&#x22;
-    [(ngModel)]="selectedDate"
-  &gt;
-  &lt;/dl-date-time-picker&gt;</code>
-    </pre>
+  <div class="form-group">
+    <label for="minuteStep">Minute step</label>
+    <select id="minuteStep" [(ngModel)]="minuteStep">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+      <option>13</option>
+      <option>14</option>
+      <option>15</option>
+      <option>20</option>
+      <option>25</option>
+      <option>30</option>
+      <option>35</option>
+      <option>40</option>
+      <option>45</option>
+      <option>50</option>
+      <option>55</option>
+      <option>57</option>
+      <option>58</option>
+      <option>59</option>
+    </select>
+    <small class="form-text text-muted">Determines the initial view for the calendar.</small>
   </div>
-  <div class="col mx-3" style="min-width:360px;">
-    <div class="border" *ngIf="showCalendar">
-      <dl-date-time-picker
-        [(maxView)]="maxView"
-        [(minView)]="minView"
-        [(startView)]="startView"
-        [(minuteStep)]="minuteStep"
-        [(ngModel)]="selectedDate"
-        (change)="onCustomDateChange($event)"></dl-date-time-picker>
-    </div>
-    <p>Selected Date: {{selectedDate}}</p>
+
+  <div class="dtp-wrapper card">
+    <dl-date-time-picker
+      class="en"
+      [startView]="startView"
+      [minuteStep]="minuteStep"
+      [selectFilter]="selectFilter"
+      [(ngModel)]="selectedDate"
+    >
+    </dl-date-time-picker>
   </div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="form-group">
-      <label for="startDate">Start Date:</label>
-      <div class="input-group">
-        <input id="startDate" type="text" class="form-control" aria-label="Start date" dlDateTimeInput [(ngModel)]="startDate" [placeholder]="placeHolder">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary dropdown-toggle start-date" type="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false"><i class="oi oi-calendar"></i></button>
-          <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
-            <div style="width:360px;">
-              <dl-date-time-picker [(ngModel)]="startDate" (change)="startDateSelected($event)"></dl-date-time-picker>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <p>&nbsp;</p>
+
+  <div>
+    Selected Date: {{selectedDate}}
   </div>
 </div>
