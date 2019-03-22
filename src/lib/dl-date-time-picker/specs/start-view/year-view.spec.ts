@@ -279,7 +279,7 @@ describe('DlDateTimePickerComponent', () => {
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
       expect(activeElement.nativeElement.textContent).toBe('2017');
 
-      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', 65); // A
+      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', 'A');
       fixture.detectChanges();
 
       expect(activeElement.nativeElement.textContent).toBe('2017');
@@ -288,7 +288,7 @@ describe('DlDateTimePickerComponent', () => {
     it('should change to .dl-abdtp-month-view when hitting ENTER', () => {
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
 
-      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', ENTER, 'enter');
+      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', ENTER);
       fixture.detectChanges();
 
       const monthView = fixture.debugElement.query(By.css('.dl-abdtp-month-view'));
@@ -304,7 +304,7 @@ describe('DlDateTimePickerComponent', () => {
 
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
 
-      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', SPACE, 'space');
+      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', SPACE);
       fixture.detectChanges();
 
       const monthView = fixture.debugElement.query(By.css('.dl-abdtp-month-view'));

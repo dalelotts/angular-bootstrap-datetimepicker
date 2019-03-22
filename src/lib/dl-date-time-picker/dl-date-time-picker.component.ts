@@ -58,6 +58,18 @@ const moment = _moment;
  **/
 
 const keyCodeToModelProviderMethod = {
+  'ArrowDown': 'goDown',
+  'ArrowLeft': 'goLeft',
+  'ArrowRight': 'goRight',
+  'ArrowUp': 'goUp',
+  'Down': 'goDown',
+  'End': 'goEnd',
+  'Home': 'goHome',
+  'Left': 'goLeft',
+  'PageDown': 'pageDown',
+  'PageUp': 'pageUp',
+  'Right': 'goRight',
+  'Up': 'goUp',
   33: 'pageUp',
   34: 'pageDown',
   35: 'goEnd',
@@ -152,7 +164,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    * Maps view name to the model provider for that view.
    * @internal
    **/
-  private _viewToModelProvider: {
+  private readonly _viewToModelProvider: {
     year: DlModelProvider;
     month: DlModelProvider;
     day: DlModelProvider;
@@ -288,6 +300,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
       minute: minuteModelComponent,
     };
   }
+
   /* tslint:enable:member-ordering */
   /**
    * Set's the model for the current view after applying the selection filter.
@@ -500,7 +513,9 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    * @internal
    **/
   _handleKeyDown($event: KeyboardEvent): void {
-    const functionName = keyCodeToModelProviderMethod[$event.code];
+    const functionName = keyCodeToModelProviderMethod[$event.key];
+
+    console.log($event, functionName);
 
     if (functionName) {
       const modelProvider = this._viewToModelProvider[this._model.viewName];

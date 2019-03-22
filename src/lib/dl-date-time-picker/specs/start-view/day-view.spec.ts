@@ -489,7 +489,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
       let activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
       expect(activeElement.nativeElement.textContent).toBe('11');
 
-      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', 65); // A
+      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', 'A'); // A
       fixture.detectChanges();
 
       activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
@@ -499,7 +499,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
     it('should change to .dl-abdtp-hour-view when hitting ENTER', () => {
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
 
-      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', ENTER, 'enter');
+      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', ENTER);
       fixture.detectChanges();
 
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));
@@ -512,7 +512,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
     it('should change to .dl-abdtp-hour-view when hitting SPACE', () => {
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
 
-      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', SPACE, 'space');
+      dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', SPACE);
       fixture.detectChanges();
 
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));

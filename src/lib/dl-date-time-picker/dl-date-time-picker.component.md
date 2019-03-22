@@ -18,10 +18,10 @@ The following keyboard shortcuts are supported in in all views:
 ## Supported date types
 
 Import the module corresponding to the desired data type of the date in the model.
-* Native JavaScript Date: import 'DlDateTimePickerDateModule'
-* Moment Date: import 'DlDateTimePickerMomentModule'
-* Milliseconds (local): import 'DlDateTimePickerNumberModule'
-* String (local): import 'DlDateTimePickerStringModule'
+* Native JavaScript Date: import `DlDateTimePickerDateModule`
+* Moment Date: import `DlDateTimePickerMomentModule`
+* Milliseconds (local): import `DlDateTimePickerNumberModule`
+* String (local): import `DlDateTimePickerStringModule`
 
 A `DateAdapter` is used to adapt the data type in the model to the `number` data type 
 used internally by the date/time picker.

@@ -24,7 +24,10 @@ const moment = _moment;
 const alwaysTrueInputFilter: (value: any) => boolean = () => true;
 
 /**
- *  This directive allows the user to input dates into an input and store a date value in various formats.
+ *  This directive allows the user to enter dates, using the keyboard, into an input box and
+ *  angular will then store a date value in the model.
+ *
+ *  The input format(s), display format, and model format are independent and fully customizable.
  */
 @Directive({
   selector: 'input[dlDateTimeInput]',
@@ -68,9 +71,9 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    * @param _dateAdapter
    *  date adapter for the date type in the model.
    * @param _displayFormat
-   *  the format to use for a valid date/time value.
+   *  from `DL_DATE_TIME_DISPLAY_FORMAT`, which defines the format to use for a valid date/time value.
    * @param _inputFormats
-   *  the input formats that allowed as valid date/time values.
+   *  from `DL_DATE_TIME_INPUT_FORMATS`, which defines the input formats that allowed as valid date/time values.
    *  NB: moment is always in strict parse mode for this directive.
    */
   constructor(
