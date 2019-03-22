@@ -1,6 +1,6 @@
 # Angular 7+ bootstrap date & time picker
 
-Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
+Native Angular (7+) datetime picker component styled by Twitter Bootstrap 4.
 
 [![npm downloads](https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg)](https://www.npmjs.com/package/angular-bootstrap-datetimepicker)
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)

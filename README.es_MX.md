@@ -33,7 +33,7 @@ I know this is a tiny component but many people use it in production (high 5 to 
 ## Versiones de Dependencias Mínimas
 
 Versiones de Dependencias mínimas:
- * AngularJS 5.x ó mayor (1.x no funcionará)
+ * AngularJS 7.x ó mayor (1.x no funcionará)
  * moment.js 2.8.3 ó mayor para parseo de fecha y formateo
  * bootstrap 4.x para css/layout
  * open-iconic para los íconos predeterminados (puedes usar cualquier librería de íconos de tu preferencia)
