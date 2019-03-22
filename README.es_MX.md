@@ -103,7 +103,7 @@ Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño
 Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
 ## Configuración
-Utiliza el [generador de configuración automatizado](https://angular-bootstrap-datetimepicker.stackblitz.io/)  (por favor hazme saber si no funciona para tu caso!), 
+Utiliza el [generador de configuración automatizado](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)  (por favor hazme saber si no funciona para tu caso!), 
 o ve a [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 para visualizar la documentación generada por automático.
 
