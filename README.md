@@ -16,7 +16,7 @@ Native Angular (5+) datetime picker component styled by Twitter Bootstrap 4.
 
 [Documentation](http://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 
-[Demo Page](https://angular-bootstrap-datetimepicker.stackblitz.io/)
+[Demo Page](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)
 
 [Github](https://github.com/dalelotts/angular-bootstrap-datetimepicker)
 
