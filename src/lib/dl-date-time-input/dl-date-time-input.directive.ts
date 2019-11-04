@@ -19,11 +19,6 @@ import {DlDateTimeInputChange} from './dl-date-time-input-change';
 const moment = _moment;
 
 /**
- * @internal
- */
-const alwaysTrueInputFilter: (value: any) => boolean = () => true;
-
-/**
  *  This directive allows the user to enter dates, using the keyboard, into an input box and
  *  angular will then store a date value in the model.
  *
@@ -40,10 +35,10 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
 
   /* tslint:disable:member-ordering */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    return (this._inputFilter || alwaysTrueInputFilter)(this._value) ?
+    return (this._inputFilter || (() => true))(this._value) ?
       null : {'dlDateTimeInputFilter': {'value': control.value}};
   }
-  private _inputFilter: (value: (D | null)) => boolean = alwaysTrueInputFilter;
+  private _inputFilter: (value: (D | null)) => boolean = () => true;
   private _isValid = true;
   private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
     return this._isValid ?
