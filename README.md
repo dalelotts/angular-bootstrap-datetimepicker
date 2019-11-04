@@ -106,7 +106,7 @@ Other languages/locals may require a wider container to fit the contents.
 
 ## Configuration
 
-Use the [automated configuration generator](https://angular-bootstrap-datetimepicker.stackblitz.io/) (please let me know if it does not work for your use case!), 
+Use the [automated configuration generator](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo) (please let me know if it does not work for your use case!), 
 or see [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 for the automatically generated documentation.
 

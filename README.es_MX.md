@@ -1,6 +1,6 @@
-# Selector de fecha y hora con bootstrap para Angular 5+
+# Selector de fecha y hora con bootstrap para Angular 7+
 
-Componente selector de fecha/hora nativo para Angular (5+) estilizado con Bootstrap 4.
+Componente selector de fecha/hora nativo para Angular (7+) estilizado con Bootstrap 4.
 
 [![npm downloads](https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg)](https://www.npmjs.com/package/angular-bootstrap-datetimepicker)
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
@@ -103,7 +103,7 @@ Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño
 Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
 ## Configuración
-Utiliza el [generador de configuración automatizado](https://angular-bootstrap-datetimepicker.stackblitz.io/)  (por favor hazme saber si no funciona para tu caso!), 
+Utiliza el [generador de configuración automatizado](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)  (por favor hazme saber si no funciona para tu caso!), 
 o ve a [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 para visualizar la documentación generada por automático.
 
