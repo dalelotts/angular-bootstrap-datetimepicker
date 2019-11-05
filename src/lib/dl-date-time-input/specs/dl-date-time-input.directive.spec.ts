@@ -3,10 +3,13 @@ import {async, ComponentFixture, fakeAsync, flush, TestBed} from '@angular/core/
 import {FormsModule, NgForm} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import * as _moment from 'moment';
-import {DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT, DlDateTimeNumberModule} from '../../core';
-import {JAN, OCT} from '../../dl-date-time-picker/specs/month-constants';
-import {DlDateTimeInputDirective} from '../dl-date-time-input.directive';
-import {DlDateTimeInputModule} from '../dl-date-time-input.module';
+import {
+  DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT,
+  DlDateTimeInputDirective,
+  DlDateTimeInputModule,
+  DlDateTimeNumberModule
+} from '../../public-api';
+import {OCT} from '../../dl-date-time-picker/specs/month-constants';
 
 let moment = _moment;
 if ('default' in _moment) {
@@ -15,10 +18,10 @@ if ('default' in _moment) {
 
 @Component({
   template: `
-    <form>
-      <input id="dateInput" name="dateValue" type="text" dlDateTimeInput [dlDateTimeInputFilter]="dateTimeFilter"
-             [(ngModel)]="dateValue"/>
-    </form>`
+      <form>
+          <input id="dateInput" name="dateValue" type="text" dlDateTimeInput [dlDateTimeInputFilter]="dateTimeFilter"
+                 [(ngModel)]="dateValue"/>
+      </form>`
 })
 class DateModelComponent {
   dateValue: any;

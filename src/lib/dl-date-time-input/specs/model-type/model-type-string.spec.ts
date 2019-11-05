@@ -12,8 +12,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import * as _moment from 'moment';
-import {DlDateTimeStringModule} from '../../../core';
-import {DlDateTimeInputDirective, DlDateTimeInputModule} from '../../index';
+import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeStringModule} from '../../../public-api';
 
 let moment = _moment;
 if ('default' in _moment) {

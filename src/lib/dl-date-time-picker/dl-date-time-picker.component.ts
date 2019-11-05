@@ -23,7 +23,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import * as _moment from 'moment';
 import {take} from 'rxjs/operators';
-import {DlDateAdapter} from '../core';
+import {DlDateAdapter} from '../core/public-api';
 import {DlDateTimePickerChange} from './dl-date-time-picker-change';
 import {DateButton} from './dl-date-time-picker-date-button';
 import {DlDateTimePickerModel} from './dl-date-time-picker-model';
@@ -514,8 +514,6 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    **/
   _handleKeyDown($event: KeyboardEvent): void {
     const functionName = keyCodeToModelProviderMethod[$event.key];
-
-    console.log($event, functionName);
 
     if (functionName) {
       const modelProvider = this._viewToModelProvider[this._model.viewName];

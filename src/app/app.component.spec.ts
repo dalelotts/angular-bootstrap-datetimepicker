@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
-import {DlDateTimeDateModule} from '../lib/core';
-import {DlDateTimePickerModule} from '../lib/dl-date-time-picker';
+import {DlDateTimeDateModule} from '../lib';
+import {DlDateTimePickerModule} from '../lib';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {

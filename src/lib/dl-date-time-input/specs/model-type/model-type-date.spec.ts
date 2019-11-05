@@ -11,8 +11,7 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {DlDateTimeDateModule} from '../../../core';
-import {DlDateTimeInputDirective, DlDateTimeInputModule} from '../../index';
+import {DlDateTimeDateModule, DlDateTimeInputDirective, DlDateTimeInputModule} from '../../../public-api';
 
 @Component({
   template: `<input id="dateInput"

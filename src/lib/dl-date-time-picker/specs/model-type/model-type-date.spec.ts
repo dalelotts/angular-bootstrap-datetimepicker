@@ -11,9 +11,7 @@ import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {DlDateTimeDateModule} from '../../../core';
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
-import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
+import {DlDateTimeDateModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
 
 @Component({
   template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'

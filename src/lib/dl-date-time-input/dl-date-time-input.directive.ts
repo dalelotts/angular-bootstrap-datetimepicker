@@ -10,7 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import * as _moment from 'moment';
-import {DL_DATE_TIME_DISPLAY_FORMAT, DL_DATE_TIME_INPUT_FORMATS, DlDateAdapter} from '../core';
+import {DL_DATE_TIME_DISPLAY_FORMAT, DL_DATE_TIME_INPUT_FORMATS, DlDateAdapter} from '../core/public-api';
 import {DlDateTimeInputChange} from './dl-date-time-input-change';
 
 /**

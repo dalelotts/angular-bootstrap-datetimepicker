@@ -8,7 +8,7 @@
  */
 
 import {Component} from '@angular/core';
-import {DlDateTimePickerChange} from '../lib/dl-date-time-picker';
+import {DlDateTimePickerChange} from '../lib';
 
 @Component({
   selector: 'dl-root',

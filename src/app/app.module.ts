@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
-import {DlDateTimeDateModule} from '../lib/core';
-import {DlDateTimeInputModule} from '../lib/dl-date-time-input';
-import {DlDateTimePickerModule} from '../lib/dl-date-time-picker';
+import {DlDateTimeDateModule} from '../lib';
+import {DlDateTimeInputModule} from '../lib';
+import {DlDateTimePickerModule} from '../lib';
 
 import {AppComponent} from './app.component';
 

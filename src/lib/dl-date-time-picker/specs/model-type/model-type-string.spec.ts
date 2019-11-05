@@ -10,9 +10,7 @@
 import {Component, DebugElement, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {DlDateTimeStringModule} from '../../../core';
-import {DlDateTimePickerComponent} from '../../dl-date-time-picker.component';
-import {DlDateTimePickerModule} from '../../index';
+import {DlDateTimePickerComponent, DlDateTimePickerModule, DlDateTimeStringModule} from '../../../public-api';
 
 
 @Component({
