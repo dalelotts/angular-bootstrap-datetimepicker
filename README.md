@@ -239,13 +239,5 @@ angular-bootstrap-datetimepicker is released under the MIT license and is copyri
 The full angular-bootstrap-datetimepicker license is located [in the project repository](LICENSE) for more information.
 
 
-## Donating
-Support this project and other work by Dale Lotts via [gittip][gittip-dalelotts].
-
-[![Support via Gittip][gittip-badge]][gittip-dalelotts]
-
-[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
-[gittip-dalelotts]: https://www.gittip.com/dalelotts/
-
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
