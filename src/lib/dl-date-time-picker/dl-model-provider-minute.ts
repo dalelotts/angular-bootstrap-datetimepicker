@@ -107,7 +107,7 @@ export class DlMinuteModelProvider implements DlModelProvider {
         return {cells: minuteSteps.slice((value * 4), (value * 4) + 4).map(rowOfMinutes)};
       });
 
-    const result: DlDateTimePickerModel = {
+    return {
       viewName: 'minute',
       viewLabel: startDate.format('lll'),
       activeDate: activeValue,
@@ -128,11 +128,6 @@ export class DlMinuteModelProvider implements DlModelProvider {
       },
       rows
     };
-
-    result.leftButton.classes[`${result.leftButton.value}`] = true;
-    result.rightButton.classes[`${result.rightButton.value}`] = true;
-
-    return result;
 
     function rowOfMinutes(stepMinutes): {
       display: string;

@@ -1,4 +1,5 @@
 sudo: required
+dist: xenial
 language: node_js
 notifications:
   email: false
@@ -6,6 +7,8 @@ node_js:
   - '10'
 services:
   - xvfb
+addons:
+  chrome: stable
 before_script:
   - npm prune
 script:

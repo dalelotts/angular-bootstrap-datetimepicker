@@ -73,7 +73,7 @@ export class DlMonthModelProvider implements DlModelProvider {
       ? selectedMilliseconds
       : moment(selectedMilliseconds).startOf('month').valueOf();
 
-    const result = {
+    return {
       viewName: 'month',
       viewLabel: startDate.format('YYYY'),
       activeDate: activeValue,
@@ -94,11 +94,6 @@ export class DlMonthModelProvider implements DlModelProvider {
       },
       rows: rowNumbers.map(rowOfMonths)
     };
-
-    result.leftButton.classes[`${result.leftButton.value}`] = true;
-    result.rightButton.classes[`${result.rightButton.value}`] = true;
-
-    return result;
 
     function rowOfMonths(rowNumber) {
 

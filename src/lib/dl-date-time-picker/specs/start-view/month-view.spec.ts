@@ -97,7 +97,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now'));
       expect(currentElements.length).toBe(1);
       expect(currentElements[0].nativeElement.textContent.trim()).toBe(moment().format('MMM'));
-      expect(currentElements[0].nativeElement.classList).toContain(moment().startOf('month').valueOf().toString());
+      expect(currentElements[0].attributes['dl-abdtp-value']).toBe(moment().startOf('month').valueOf().toString());
     });
 
     it('should NOT contain an .dl-abdtp-now element in the previous year', () => {
@@ -127,7 +127,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-active'));
       expect(currentElements.length).toBe(1);
       expect(currentElements[0].nativeElement.textContent.trim()).toBe(moment().format('MMM'));
-      expect(currentElements[0].nativeElement.classList).toContain(moment().startOf('month').valueOf().toString());
+      expect(currentElements[0].attributes['dl-abdtp-value']).toBe(moment().startOf('month').valueOf().toString());
     });
 
     it('should contain 1 .dl-abdtp-selected element for the current month', () => {
@@ -145,7 +145,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
       const selectedElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-selected'));
       expect(selectedElements.length).toBe(1);
       expect(selectedElements[0].nativeElement.textContent.trim()).toBe(moment().format('MMM'));
-      expect(selectedElements[0].nativeElement.classList).toContain(moment().startOf('month').valueOf().toString());
+      expect(selectedElements[0].attributes['dl-abdtp-value']).toBe(moment().startOf('month').valueOf().toString());
     });
 
   });
@@ -175,7 +175,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
 
     it('should contain 12 .dl-abdtp-month elements with start of month utc time as class and role of gridcell', () => {
 
-      const expectedClass = new Array(12)
+      const expectedValues = new Array(12)
         .fill(0)
         .map((value, index) => new Date(2017, JAN + index, 1).getTime());
 
@@ -183,9 +183,9 @@ describe('DlDateTimePickerComponent startView=month', () => {
       expect(monthElements.length).toBe(12);
 
       monthElements.forEach((monthElement, index) => {
-        const key = expectedClass[index];
-        const ariaLabel = moment(key).format('MMM YYYY');
-        expect(monthElement.nativeElement.classList).toContain(key.toString());
+        const expectedValue = expectedValues[index];
+        const ariaLabel = moment(expectedValue).format('MMM YYYY');
+        expect(monthElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
         expect(monthElement.attributes['role']).toBe('gridcell', index);
         expect(monthElement.attributes['aria-label']).toBe(ariaLabel, index);
       });
@@ -201,9 +201,9 @@ describe('DlDateTimePickerComponent startView=month', () => {
       expect(leftButton.attributes['aria-label']).toBe('Go to 2016');
     });
 
-    it('should have a class for previous year value on .dl-abdtp-left-button ', () => {
+    it('should have a dl-abdtp-value attribute with the previous year value on .dl-abdtp-left-button ', () => {
       const leftButton = fixture.debugElement.query(By.css('.dl-abdtp-left-button'));
-      expect(leftButton.nativeElement.classList).toContain(new Date(2016, JAN, 1).getTime().toString());
+      expect(leftButton.attributes['dl-abdtp-value']).toBe(new Date(2016, JAN, 1).getTime().toString());
     });
 
     it('should switch to previous year value after clicking .dl-abdtp-left-button', () => {
@@ -216,7 +216,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
 
       const monthElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-month'));
       expect(monthElements[0].nativeElement.textContent.trim()).toBe('Jan');
-      expect(monthElements[0].nativeElement.classList).toContain(new Date(2016, JAN, 1).getTime().toString());
+      expect(monthElements[0].attributes['dl-abdtp-value']).toBe(new Date(2016, JAN, 1).getTime().toString());
     });
 
     it('.dl-abdtp-right-button should contain a title', () => {
@@ -229,9 +229,9 @@ describe('DlDateTimePickerComponent startView=month', () => {
       expect(leftButton.attributes['aria-label']).toBe('Go to 2018');
     });
 
-    it('should have a class for next year value on .dl-abdtp-right-button ', () => {
+    it('should have a dl-abdtp-value attribute with the next year value on .dl-abdtp-right-button ', () => {
       const rightButton = fixture.debugElement.query(By.css('.dl-abdtp-right-button'));
-      expect(rightButton.nativeElement.classList).toContain(new Date(2018, JAN, 1).getTime().toString());
+      expect(rightButton.attributes['dl-abdtp-value']).toBe(new Date(2018, JAN, 1).getTime().toString());
     });
 
     it('should switch to next year value after clicking .dl-abdtp-right-button', () => {
@@ -244,7 +244,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
 
       const monthElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-month'));
       expect(monthElements[0].nativeElement.textContent.trim()).toBe('Jan');
-      expect(monthElements[0].nativeElement.classList).toContain(new Date(2018, JAN, 1).getTime().toString());
+      expect(monthElements[0].attributes['dl-abdtp-value']).toBe(new Date(2018, JAN, 1).getTime().toString());
     });
 
     it('.dl-abdtp-up-button should contain a title', () => {

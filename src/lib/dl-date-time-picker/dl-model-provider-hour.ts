@@ -73,7 +73,7 @@ export class DlHourModelProvider implements DlModelProvider {
       ? selectedMilliseconds
       : moment(selectedMilliseconds).startOf('hour').valueOf();
 
-    const result: DlDateTimePickerModel = {
+    return {
       viewName: 'hour',
       viewLabel: startDate.format('ll'),
       activeDate: activeValue,
@@ -94,11 +94,6 @@ export class DlHourModelProvider implements DlModelProvider {
       },
       rows: rowNumbers.map(rowOfHours)
     };
-
-    result.leftButton.classes[`${result.leftButton.value}`] = true;
-    result.rightButton.classes[`${result.rightButton.value}`] = true;
-
-    return result;
 
     function rowOfHours(rowNumber) {
 

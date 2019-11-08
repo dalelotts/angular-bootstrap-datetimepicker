@@ -104,7 +104,7 @@ describe('DlDateTimePickerComponent', () => {
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now'));
       expect(currentElements.length).toBe(1);
       expect(currentElements[0].nativeElement.textContent.trim()).toBe(moment().year().toString());
-      expect(currentElements[0].nativeElement.classList).toContain(moment().startOf('year').valueOf().toString());
+      expect(currentElements[0].attributes['dl-abdtp-value']).toBe(moment().startOf('year').valueOf().toString());
     });
 
     it('should contain 1 [tabindex=1] element', () => {
@@ -134,7 +134,7 @@ describe('DlDateTimePickerComponent', () => {
       const activeElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-active'));
       expect(activeElements.length).toBe(1);
       expect(activeElements[0].nativeElement.textContent.trim()).toBe(moment().year().toString());
-      expect(activeElements[0].nativeElement.classList).toContain(moment().startOf('year').valueOf().toString());
+      expect(activeElements[0].attributes['dl-abdtp-value']).toBe(moment().startOf('year').valueOf().toString());
     });
 
     it('should contain 1 .dl-abdtp-selected element for the current year', () => {
@@ -152,7 +152,7 @@ describe('DlDateTimePickerComponent', () => {
       const selectedElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-selected'));
       expect(selectedElements.length).toBe(1);
       expect(selectedElements[0].nativeElement.textContent.trim()).toBe(moment().year().toString());
-      expect(selectedElements[0].nativeElement.classList).toContain(moment().startOf('year').valueOf().toString());
+      expect(selectedElements[0].attributes['dl-abdtp-value']).toBe(moment().startOf('year').valueOf().toString());
     });
   });
 
@@ -182,24 +182,24 @@ describe('DlDateTimePickerComponent', () => {
       // Truncate the last digit from the current year to get the start of the decade
       const startDecade = (Math.trunc(moment().year() / 10) * 10);
 
-      const expectedClass = new Array(10)
+      const expectedValues = new Array(10)
         .fill(0)
-        .map((value, index) => new Date(startDecade + index, JAN, 1).getTime().toString());
+        .map((value, index) => new Date(startDecade + index, JAN, 1).getTime());
 
       const yearElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-year'));
 
       yearElements.forEach((yearElement, index) => {
-        const key = expectedClass[index];
-        expect(yearElement.nativeElement.classList).toContain(key);
+        const expectedValue = expectedValues[index];
+        expect(yearElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
         expect(yearElement.attributes['role']).toBe('gridcell', index);
         expect(yearElement.attributes['aria-label']).toBeNull(); // why isn't this undefined?
       });
     });
 
-    it('should have a class for previous decade value on .dl-abdtp-left-button ', () => {
+    it('should have a dl-abdtp-value attribute with the previous decade value on .dl-abdtp-left-button ', () => {
       const leftButton = fixture.debugElement.query(By.css('.dl-abdtp-left-button'));
       const expected = new Date(2000, JAN, 1).getTime();
-      expect(leftButton.nativeElement.classList).toContain(expected.toString());
+      expect(leftButton.attributes['dl-abdtp-value']).toBe(expected.toString());
     });
 
     it('should switch to previous decade value after clicking .dl-abdtp-left-button', () => {
@@ -214,10 +214,10 @@ describe('DlDateTimePickerComponent', () => {
       expect(yearElements[0].nativeElement.textContent.trim()).toBe('2000');
     });
 
-    it('should has a class for next decade on .dl-abdtp-right-button ', () => {
-      const rightButton = fixture.debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement;
+    it('should has a dl-abdtp-value attribute with the next decade value on .dl-abdtp-right-button ', () => {
+      const rightButton = fixture.debugElement.query(By.css('.dl-abdtp-right-button'));
       const expected = new Date(2020, JAN, 1).getTime();
-      expect(rightButton.classList).toContain(expected.toString());
+      expect(rightButton.attributes['dl-abdtp-value']).toBe(expected.toString());
     });
 
     it('should switch to next decade after clicking .dl-abdtp-right-button', () => {
