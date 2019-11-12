@@ -2,8 +2,6 @@
   "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
   "lib": {
     "entryFile": "src/lib/index.ts",
-    "comments" : "none",
-    "licensePath": "LICENSE",
     "umdModuleIds": {
       "moment" : "moment"
     }

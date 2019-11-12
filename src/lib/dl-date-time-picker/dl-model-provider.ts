@@ -17,7 +17,7 @@ import {DlDateTimePickerModel} from './dl-date-time-picker-model';
  * `previous`, `next`, etc so that the model provider is UI centric
  * rather than time direction centric.
  *
- * For example, another calendar implementations may render `future` dates to the `left`.
+ * For example, another calendar implementation may render `future` dates to the `left`.
  *
  * Having the api method `goLeft` may move the `active` cell to a
  * future or past value depending on the calendar implementation,

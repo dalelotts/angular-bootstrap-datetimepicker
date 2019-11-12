@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import {DlDateTimeDateModule, DlDateTimePickerComponent, DlDateTimePickerModule}
   template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'
 })
 class ModelTypeComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<Date>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<Date>;
 }
 
 describe('DlDateTimePickerComponent modelType', () => {
@@ -39,8 +39,6 @@ describe('DlDateTimePickerComponent modelType', () => {
   describe('native Date', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(ModelTypeComponent);
@@ -48,8 +46,6 @@ describe('DlDateTimePickerComponent modelType', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 

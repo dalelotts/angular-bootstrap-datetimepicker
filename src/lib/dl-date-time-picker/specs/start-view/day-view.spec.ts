@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -32,14 +32,14 @@ import {DEC, FEB, JAN, NOV} from '../month-constants';
   template: '<dl-date-time-picker></dl-date-time-picker>'
 })
 class DayStartViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
   template: '<dl-date-time-picker [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class DayStartViewWithNgModelComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate = new Date(2018, JAN, 11).getTime();
 }
 
@@ -47,7 +47,7 @@ class DayStartViewWithNgModelComponent {
   template: '<dl-date-time-picker [startView]="startView"></dl-date-time-picker>'
 })
 class UndefinedStartViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   startView: string;  // intentionally did not assign value
 }
 
@@ -72,8 +72,6 @@ describe('DlDateTimePickerComponent startView=day', () => {
   describe('default behavior ', () => {
     let component: DayStartViewComponent;
     let fixture: ComponentFixture<DayStartViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(DayStartViewComponent);
@@ -81,8 +79,6 @@ describe('DlDateTimePickerComponent startView=day', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -113,7 +109,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
 
     it('should NOT contain an .dl-abdtp-now element in the previous month', () => {
       // click on the left button to move to the previous hour
-      debugElement.query(By.css('.dl-abdtp-left-button')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dl-abdtp-left-button')).nativeElement.click();
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now:not(.dl-abdtp-future):not(.dl-abdtp-past)'));
@@ -122,7 +118,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
 
     it('should NOT contain an .dl-abdtp-now element in the next month', () => {
       // click on the left button to move to the previous hour
-      debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement.click();
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now:not(.dl-abdtp-future):not(.dl-abdtp-past)'));
@@ -148,7 +144,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
       // Bug: The value change is not detected until there is some user interaction
       // **ONlY** when there is no ngModel binding on the component.
       // I think it is related to https://github.com/angular/angular/issues/10816
-      const activeElement = debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
+      const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
       activeElement.focus();
       dispatchKeyboardEvent(activeElement, 'keydown', HOME);
       fixture.detectChanges();
@@ -161,19 +157,13 @@ describe('DlDateTimePickerComponent startView=day', () => {
   });
 
   describe('undefined start view', () => {
-    let component: DayStartViewComponent;
     let fixture: ComponentFixture<UndefinedStartViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(UndefinedStartViewComponent);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         fixture.detectChanges();
-        component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -186,8 +176,6 @@ describe('DlDateTimePickerComponent startView=day', () => {
   describe('ngModel=2018-01-11', () => {
     let component: DayStartViewWithNgModelComponent;
     let fixture: ComponentFixture<DayStartViewWithNgModelComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(DayStartViewWithNgModelComponent);
@@ -195,8 +183,6 @@ describe('DlDateTimePickerComponent startView=day', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -222,7 +208,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
       const startMoment = moment(new Date(2017, DEC, 31));
       const expectedValues = new Array(42)
         .fill(0)
-        .map((value, index) => moment(startMoment).add(index, 'days').valueOf());
+        .map((zero, index) => moment(startMoment).add(zero + index, 'days').valueOf());
 
       const dayElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-day'));
       expect(dayElements.length).toBe(42);

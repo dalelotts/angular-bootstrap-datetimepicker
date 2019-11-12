@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -18,7 +18,7 @@ import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModul
 })
 class MinuteStepComponent {
   minuteStep = 1;
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -26,7 +26,7 @@ class MinuteStepComponent {
 })
 class UndefinedMinuteStepComponent {
   minuteStep: number;  // intentionally did not assign value
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent minuteStep', () => {
@@ -49,8 +49,6 @@ describe('DlDateTimePickerComponent minuteStep', () => {
   describe('defined', () => {
     let component: MinuteStepComponent;
     let fixture: ComponentFixture<MinuteStepComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(MinuteStepComponent);
@@ -58,8 +56,6 @@ describe('DlDateTimePickerComponent minuteStep', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -102,8 +98,8 @@ describe('DlDateTimePickerComponent minuteStep', () => {
 
     it('should render all minute step values between 1 and 59', () => {
       const stepValues = new Array(59)
-        .fill(0)
-        .map((value, index) => index + 1);
+        .fill(1)
+        .map((one, index) => index + one);
 
       stepValues.forEach((minuteStep) => {
         component.minuteStep = minuteStep;
@@ -118,19 +114,13 @@ describe('DlDateTimePickerComponent minuteStep', () => {
   });
 
   describe('undefined', () => {
-    let component: UndefinedMinuteStepComponent;
     let fixture: ComponentFixture<UndefinedMinuteStepComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(UndefinedMinuteStepComponent);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         fixture.detectChanges();
-        component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 

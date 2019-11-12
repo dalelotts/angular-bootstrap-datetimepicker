@@ -35,7 +35,8 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
 
   /* tslint:disable:member-ordering */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    return (this._inputFilter || (() => true))(this._value) ?
+    // @ts-ignore
+    return (this._inputFilter || ((value: any) => true))(this._value) ?
       null : {'dlDateTimeInputFilter': {'value': control.value}};
   }
   private _inputFilter: (value: (D | null)) => boolean = () => true;

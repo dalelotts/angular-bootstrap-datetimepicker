@@ -1,6 +1,6 @@
-# Angular 7+ bootstrap date & time picker
+# Angular 8+ bootstrap date & time picker
 
-Native Angular (7+) datetime picker component styled by Twitter Bootstrap 4.
+Native Angular (8+) datetime picker component styled by Twitter Bootstrap 4.
 
 [![npm downloads](https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg)](https://www.npmjs.com/package/angular-bootstrap-datetimepicker)
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
@@ -22,6 +22,13 @@ Native Angular (7+) datetime picker component styled by Twitter Bootstrap 4.
 
 
 *Read this in other languages: [Spanish](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/README.es_MX.md)*
+
+## On Angular 7.x?
+
+Use install version 3.1.0
+
+`npm install angularjs-bootstrap-datetimepicker@3.1.0`
+
 ## On Angular 1.x?
 
 See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
@@ -32,10 +39,10 @@ I know this is a tiny component but many people use it in production (high 5 to 
 ## Peer Dependencies
 
 Peer dependencies:
- * Angular 7.x or higher (1.x will not work)
+ * Angular 8.x or higher (1.x will not work)
  * moment.js 2.22.2 or higher for date parsing and formatting
  * bootstrap 4.x for css/layout
- * open-iconic for the default icon's (you can use any icon libary you like)
+ * open-iconic for the default icon's (you can use any icon library you like)
  
 jQuery is NOT required.
 

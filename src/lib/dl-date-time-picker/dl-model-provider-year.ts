@@ -55,8 +55,10 @@ export class DlYearModelProvider implements DlModelProvider {
    * @param changes
    *  the input changes detected by Angular.
    */
-  onChanges(changes: SimpleChanges): void {
-  }
+  onChanges(
+    // @ts-ignore
+    changes: SimpleChanges
+  ): void {}
 
   /**
    * Returns the `year` model for the specified moment in `local` time with the

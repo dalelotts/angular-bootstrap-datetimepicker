@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -33,7 +33,7 @@ import {JAN} from '../month-constants';
   template: '<dl-date-time-picker startView="hour"></dl-date-time-picker>'
 })
 class HourStartViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
@@ -41,7 +41,7 @@ class HourStartViewComponent {
   template: '<dl-date-time-picker startView="hour" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class HourStartViewWithNgModelComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate = new Date(2018, JAN, 26, 15, 53, 27).getTime();
 }
 
@@ -66,8 +66,6 @@ describe('DlDateTimePickerComponent startView=hour', () => {
   describe('default behavior ', () => {
     let component: HourStartViewComponent;
     let fixture: ComponentFixture<HourStartViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(HourStartViewComponent);
@@ -75,8 +73,6 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -104,7 +100,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
 
     it('should NOT contain an .dl-abdtp-now element in the previous day', () => {
       // click on the left button to move to the previous hour
-      debugElement.query(By.css('.dl-abdtp-left-button')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dl-abdtp-left-button')).nativeElement.click();
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now'));
@@ -113,7 +109,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
 
     it('should NOT contain an .dl-abdtp-now element in the next day', () => {
       // click on the left button to move to the previous hour
-      debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement.click();
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now'));
@@ -139,7 +135,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       // Bug: The value change is not detected until there is some user interaction
       // **ONlY** when there is no ngModel binding on the component.
       // I think it is related to https://github.com/angular/angular/issues/10816
-      const activeElement = debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
+      const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
       activeElement.focus();
       dispatchKeyboardEvent(activeElement, 'keydown', HOME);
       fixture.detectChanges();
@@ -154,8 +150,6 @@ describe('DlDateTimePickerComponent startView=hour', () => {
   describe('ngModel=2018-01-26T15:53:27Z', () => {
     let component: HourStartViewWithNgModelComponent;
     let fixture: ComponentFixture<HourStartViewWithNgModelComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(HourStartViewWithNgModelComponent);
@@ -163,8 +157,6 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -177,7 +169,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
 
       const expectedValues = new Array(24)
         .fill(0)
-        .map((value, index) => new Date(2018, JAN, 26, index).getTime());
+        .map((zero, index) => new Date(2018, JAN, 26, zero + index).getTime());
 
       const hourElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-hour'));
       expect(hourElements.length).toBe(24);

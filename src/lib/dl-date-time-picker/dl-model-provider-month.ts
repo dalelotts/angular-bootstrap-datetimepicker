@@ -38,8 +38,10 @@ export class DlMonthModelProvider implements DlModelProvider {
    * @param changes
    *  the input changes detected by Angular.
    */
-  onChanges(changes: SimpleChanges): void {
-  }
+  onChanges(
+    // @ts-ignore
+    changes: SimpleChanges
+  ): void {}
 
   /**
    * Returns the `month` model for the specified moment in `local` time with the

@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -19,20 +19,20 @@ import {DlDateTimePickerModule} from '../../dl-date-time-picker.module';
   template: '<dl-date-time-picker></dl-date-time-picker>'
 })
 class DefaultButtonClassComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
   template: `
-    <dl-date-time-picker
-      [leftIconClass]="leftIconClass"
-      [rightIconClass]="rightIconClass"
-      [upIconClass]="upIconClass"
-    ></dl-date-time-picker>`
+      <dl-date-time-picker
+              [leftIconClass]="leftIconClass"
+              [rightIconClass]="rightIconClass"
+              [upIconClass]="upIconClass"
+      ></dl-date-time-picker>`
 })
 class ConfigurableButtonClassComponent {
   leftIconClass: string | string[] | Set<string> | {};
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   rightIconClass: string | string[] | Set<string> | {};
   upIconClass: string | string[] | Set<string> | {};
 }
@@ -55,19 +55,13 @@ describe('DlDateTimePickerComponent button-classes', () => {
   }));
 
   describe('default', () => {
-    let component: DefaultButtonClassComponent;
     let fixture: ComponentFixture<DefaultButtonClassComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(DefaultButtonClassComponent);
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         fixture.detectChanges();
-        component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -93,8 +87,6 @@ describe('DlDateTimePickerComponent button-classes', () => {
   describe('custom icons', () => {
     let component: ConfigurableButtonClassComponent;
     let fixture: ComponentFixture<ConfigurableButtonClassComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(ConfigurableButtonClassComponent);
@@ -102,8 +94,6 @@ describe('DlDateTimePickerComponent button-classes', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 

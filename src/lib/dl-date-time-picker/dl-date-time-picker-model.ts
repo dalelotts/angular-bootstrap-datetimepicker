@@ -11,8 +11,6 @@ import {DateButton} from './dl-date-time-picker-date-button';
 
 /**
  * Interface that represents the model for every view in a date/time picker.
- *
- * This interface should probably be broken up into several classes.
  */
 export interface DlDateTimePickerModel {
   /**

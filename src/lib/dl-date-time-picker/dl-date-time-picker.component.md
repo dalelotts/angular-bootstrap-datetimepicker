@@ -50,8 +50,19 @@ using the `DL_STRING_DATE_INPUT_FORMATS` and `DL_STRING_DATE_OUTPUT_FORMAT` toke
 ]
 ```
 
-If you want different formats, override the injection tokens in `app.module.ts` 
+If you want a different display (output) format, override the injection tokens in `app.module.ts` 
 i.e `{provide: DL_STRING_DATE_OUTPUT_FORMAT, useValue: '<what ever format you want goes here>'}` 
+
+**Nota bene** For convenience `DL_DATE_TIME_INPUT_FORMATS` defaults to support multiple formats, 
+which can dramatically slow down parsing performance. It can also result in successfully parsing 
+a date using a format that is not appropriate for your use case. 
+
+Consider overriding the `DL_DATE_TIME_INPUT_FORMATS` token to only include the specific formats required by your project. 
+ 
+`{provide: DL_DATE_TIME_INPUT_FORMATS, useValue: ['<input format zero>', ..., '<input format N>']}` 
+ 
+See moment's [parsing multiple formats](https://momentjs.com/guides/#/parsing/multiple-formats/) 
+page for more information on how these date formats are used. 
 
 ## Model Provider
 

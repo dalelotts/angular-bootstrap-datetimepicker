@@ -1,6 +1,6 @@
-# Selector de fecha y hora con bootstrap para Angular 7+
+# Selector de fecha y hora con bootstrap para Angular 8+
 
-Componente selector de fecha/hora nativo para Angular (7+) estilizado con Bootstrap 4.
+Componente selector de fecha/hora nativo para Angular (8+) estilizado con Bootstrap 4.
 
 [![npm downloads](https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg)](https://www.npmjs.com/package/angular-bootstrap-datetimepicker)
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
@@ -22,6 +22,12 @@ Componente selector de fecha/hora nativo para Angular (7+) estilizado con Bootst
 
 *Leer la documentación en otro idioma: [Inglés](https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/README.md)*
 
+## Angular 7.x?
+
+Use install version 3.1.0
+
+`npm install angularjs-bootstrap-datetimepicker@3.1.0`
+
 ## Angular 1.x?
 
 Visita [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
@@ -33,8 +39,8 @@ I know this is a tiny component but many people use it in production (high 5 to 
 ## Versiones de Dependencias Mínimas
 
 Versiones de Dependencias mínimas:
- * AngularJS 7.x ó mayor (1.x no funcionará)
- * moment.js 2.8.3 ó mayor para parseo de fecha y formateo
+ * AngularJS 8.x ó mayor (1.x no funcionará)
+ * moment.js 2.x ó mayor para parseo de fecha y formateo
  * bootstrap 4.x para css/layout
  * open-iconic para los íconos predeterminados (puedes usar cualquier librería de íconos de tu preferencia)
  

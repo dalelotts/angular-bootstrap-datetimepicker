@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModul
   template: '<dl-date-time-picker minView="year" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class YearMinViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -25,7 +25,7 @@ class YearMinViewComponent {
   template: '<dl-date-time-picker minView="month" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class MonthMinViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -33,7 +33,7 @@ class MonthMinViewComponent {
   template: '<dl-date-time-picker minView="day" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class DayMinViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -41,7 +41,7 @@ class DayMinViewComponent {
   template: '<dl-date-time-picker minView="hour" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class HourMinViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -49,7 +49,7 @@ class HourMinViewComponent {
   template: '<dl-date-time-picker minView="minute" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class MinuteMinViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -58,7 +58,7 @@ class MinuteMinViewComponent {
 })
 class UndefinedMinViewComponent {
   minView: string;  // intentionally did not assign value
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -86,8 +86,6 @@ describe('DlDateTimePickerComponent minView', () => {
   describe('year', () => {
     let component: YearMinViewComponent;
     let fixture: ComponentFixture<YearMinViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(YearMinViewComponent);
@@ -95,8 +93,6 @@ describe('DlDateTimePickerComponent minView', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -126,8 +122,6 @@ describe('DlDateTimePickerComponent minView', () => {
   describe('month', () => {
     let component: MonthMinViewComponent;
     let fixture: ComponentFixture<MonthMinViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(MonthMinViewComponent);
@@ -135,8 +129,6 @@ describe('DlDateTimePickerComponent minView', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -166,8 +158,6 @@ describe('DlDateTimePickerComponent minView', () => {
   describe('day', () => {
     let component: DayMinViewComponent;
     let fixture: ComponentFixture<DayMinViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(DayMinViewComponent);
@@ -175,8 +165,6 @@ describe('DlDateTimePickerComponent minView', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -206,8 +194,6 @@ describe('DlDateTimePickerComponent minView', () => {
   describe('hour', () => {
     let component: HourMinViewComponent;
     let fixture: ComponentFixture<HourMinViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(HourMinViewComponent);
@@ -215,8 +201,6 @@ describe('DlDateTimePickerComponent minView', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -253,8 +237,6 @@ describe('DlDateTimePickerComponent minView', () => {
   describe('minute', () => {
     let component: MinuteMinViewComponent;
     let fixture: ComponentFixture<MinuteMinViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(MinuteMinViewComponent);
@@ -262,8 +244,6 @@ describe('DlDateTimePickerComponent minView', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -308,8 +288,6 @@ describe('DlDateTimePickerComponent minView', () => {
   describe('undefined', () => {
     let component: UndefinedMinViewComponent;
     let fixture: ComponentFixture<UndefinedMinViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(UndefinedMinViewComponent);
@@ -317,8 +295,6 @@ describe('DlDateTimePickerComponent minView', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 

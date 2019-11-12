@@ -36,10 +36,10 @@ using one of the specified formats, in the order the format occur in the array.
 Once one of the formats is able to parse the user input, the date is set in the model. 
 
 **Nota bene** For convenience `DL_DATE_TIME_INPUT_FORMATS` defaults to support multiple formats, 
-which can dramatically slow down paring performance. It can also result is successfully parsing 
+which can dramatically slow down parsing performance. It can also result in successfully parsing 
 a date using a format that is not appropriate for your use case. 
 
-Consider overriding the `DL_DATE_TIME_INPUT_FORMATS` token to only include only the specific formats required by your project. 
+Consider overriding the `DL_DATE_TIME_INPUT_FORMATS` token to only include the specific formats required by your project. 
  
 `{provide: DL_DATE_TIME_INPUT_FORMATS, useValue: ['<input format zero>', ..., '<input format N>']}` 
  

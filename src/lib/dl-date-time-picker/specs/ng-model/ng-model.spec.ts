@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import {JAN} from '../month-constants';
   template: '<dl-date-time-picker [(ngModel)]="selectedDate" startView="year" minView="year"></dl-date-time-picker>'
 })
 class YearSelectorComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate: number;
 }
 
@@ -42,14 +42,10 @@ describe('DlDateTimePickerComponent', () => {
   describe('startView=year', () => {
     let component: YearSelectorComponent;
     let fixture: ComponentFixture<YearSelectorComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(YearSelectorComponent);
       component = fixture.componentInstance;
-      debugElement = fixture.debugElement;
-      nativeElement = debugElement.nativeElement;
       fixture.detectChanges();
     });
 

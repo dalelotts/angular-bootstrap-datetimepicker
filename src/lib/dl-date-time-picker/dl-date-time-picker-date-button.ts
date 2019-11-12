@@ -13,11 +13,11 @@ export interface DateButton {
    */
   classes: {};
   /**
-   * The text to display in the cell.
+   * The text to display in the button.
    */
   display: string;
   /**
-   * The value for the cell.
+   * The date/time value for the button.
    */
   value: number;
 }

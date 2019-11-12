@@ -28,7 +28,7 @@ if ('default' in _moment) {
                     [(ngModel)]="dateValue"/> `
 })
 class ModelTypeComponent {
-  @ViewChild(DlDateTimeInputDirective) input: DlDateTimeInputDirective<number>;
+  @ViewChild(DlDateTimeInputDirective, {static: false}) input: DlDateTimeInputDirective<number>;
 }
 
 describe('DlDateTimeInputDirective modelType', () => {
@@ -51,7 +51,6 @@ describe('DlDateTimeInputDirective modelType', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(ModelTypeComponent);
@@ -60,7 +59,6 @@ describe('DlDateTimeInputDirective modelType', () => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 

@@ -1,4 +1,6 @@
 {
-  "entry": "./src/lib/dl-date-time-picker/dl-date-time-picker.component.scss",
-  "dest": "dist/dl-date-time-picker.component.scss"
+  "bundlerOptions" : {
+    "entryFile": "./src/lib/dl-date-time-picker/dl-date-time-picker.component.scss",
+    "outFile": "dist/dl-date-time-picker.component.scss"
+  }
 }

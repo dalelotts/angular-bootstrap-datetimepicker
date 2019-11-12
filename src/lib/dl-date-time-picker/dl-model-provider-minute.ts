@@ -85,7 +85,7 @@ export class DlMinuteModelProvider implements DlModelProvider {
     const startDate = moment(milliseconds).startOf('hour');
     const currentMilliseconds = moment().valueOf();
 
-    const minuteSteps = new Array(Math.ceil(60 / this.step)).fill(0).map((value, index) => index * this.step);
+    const minuteSteps = new Array(Math.ceil(60 / this.step)).fill(0).map((zero, index) => zero + index * this.step);
     const minuteValues = minuteSteps.map((minutesToAdd) => moment(startDate).add(minutesToAdd, 'minutes').valueOf());
     const activeValue = moment(minuteValues.filter((value) => value <= milliseconds).pop()).valueOf();
 
@@ -102,7 +102,7 @@ export class DlMinuteModelProvider implements DlModelProvider {
 
     const rows = new Array(Math.ceil(minuteSteps.length / 4))
       .fill(0)
-      .map((value, index) => index)
+      .map((zero, index) => zero + index)
       .map((value) => {
         return {cells: minuteSteps.slice((value * 4), (value * 4) + 4).map(rowOfMinutes)};
       });

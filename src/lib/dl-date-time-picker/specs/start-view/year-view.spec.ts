@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
@@ -32,14 +32,14 @@ import {DEC, JAN} from '../month-constants';
   template: '<dl-date-time-picker startView="year"></dl-date-time-picker>'
 })
 class YearStartViewComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 @Component({
   template: '<dl-date-time-picker startView="year" [(ngModel)]="selectedDate"></dl-date-time-picker>'
 })
 class YearStartViewWithNgModelComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
   selectedDate = new Date(2017, DEC, 22).getTime();
 }
 
@@ -47,7 +47,7 @@ class YearStartViewWithNgModelComponent {
   template: '<dl-date-time-picker startView="year" minView="year" maxView="year"></dl-date-time-picker>'
 })
 class YearSelectorComponent {
-  @ViewChild(DlDateTimePickerComponent) picker: DlDateTimePickerComponent<number>;
+  @ViewChild(DlDateTimePickerComponent, {static: false}) picker: DlDateTimePickerComponent<number>;
 }
 
 describe('DlDateTimePickerComponent', () => {
@@ -71,8 +71,6 @@ describe('DlDateTimePickerComponent', () => {
   describe('default behavior ', () => {
     let component: YearStartViewComponent;
     let fixture: ComponentFixture<YearStartViewComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(YearStartViewComponent);
@@ -80,8 +78,6 @@ describe('DlDateTimePickerComponent', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -114,7 +110,7 @@ describe('DlDateTimePickerComponent', () => {
 
     it('should NOT contain an .dl-abdtp-now element in the previous decade', () => {
       // click on the left button to move to the previous hour
-      debugElement.query(By.css('.dl-abdtp-left-button')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dl-abdtp-left-button')).nativeElement.click();
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now'));
@@ -123,7 +119,7 @@ describe('DlDateTimePickerComponent', () => {
 
     it('should NOT contain an .dl-abdtp-now element in the next decade', () => {
       // click on the left button to move to the previous hour
-      debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dl-abdtp-right-button')).nativeElement.click();
       fixture.detectChanges();
 
       const currentElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-now'));
@@ -144,7 +140,7 @@ describe('DlDateTimePickerComponent', () => {
       // Bug: The value change is not detected until there is some user interaction
       // **ONlY** when there is no ngModel binding on the component.
       // I think it is related to https://github.com/angular/angular/issues/10816
-      const activeElement = debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
+      const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active')).nativeElement;
       activeElement.focus();
       dispatchKeyboardEvent(activeElement, 'keydown', HOME);
       fixture.detectChanges();
@@ -159,8 +155,6 @@ describe('DlDateTimePickerComponent', () => {
   describe('ngModel=2017-12-22', () => {
     let component: YearStartViewWithNgModelComponent;
     let fixture: ComponentFixture<YearStartViewWithNgModelComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(async(() => {
       fixture = TestBed.createComponent(YearStartViewWithNgModelComponent);
@@ -168,8 +162,6 @@ describe('DlDateTimePickerComponent', () => {
       fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
-        nativeElement = debugElement.nativeElement;
       });
     }));
 
@@ -183,8 +175,8 @@ describe('DlDateTimePickerComponent', () => {
       const startDecade = (Math.trunc(moment().year() / 10) * 10);
 
       const expectedValues = new Array(10)
-        .fill(0)
-        .map((value, index) => new Date(startDecade + index, JAN, 1).getTime());
+        .fill(JAN)
+        .map((january, index) => new Date(startDecade + index, january, 1).getTime());
 
       const yearElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-year'));
 
@@ -448,7 +440,7 @@ describe('DlDateTimePickerComponent', () => {
     });
 
     it('should change .dl-abdtp-active element to last .dl-abdtp-year on END', () => {
-      debugElement.nativeElement.dispatchEvent(new Event('input'));
+      fixture.debugElement.nativeElement.dispatchEvent(new Event('input'));
 
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
       expect(activeElement.nativeElement.textContent).toBe('2017');
@@ -465,14 +457,10 @@ describe('DlDateTimePickerComponent', () => {
   describe('year selector (minView=year)', () => {
     let component: YearSelectorComponent;
     let fixture: ComponentFixture<YearSelectorComponent>;
-    let debugElement: DebugElement;
-    let nativeElement: any;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(YearSelectorComponent);
       component = fixture.componentInstance;
-      debugElement = fixture.debugElement;
-      nativeElement = debugElement.nativeElement;
       fixture.detectChanges();
     });
 
