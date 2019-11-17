@@ -1,5 +1,5 @@
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, fakeAsync, flush, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, flush, TestBed, tick} from '@angular/core/testing';
 import {FormsModule, NgForm} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import * as _moment from 'moment';
@@ -24,7 +24,7 @@ if ('default' in _moment) {
       </form>`
 })
 class DateModelComponent {
-  dateValue: any;
+  dateValue: number;
   @ViewChild(DlDateTimeInputDirective, {static: false}) input: DlDateTimeInputDirective<number>;
   dateTimeFilter: (value: (number | null)) => boolean = () => true;
 }
@@ -71,7 +71,7 @@ describe('DlDateTimeInputDirective', () => {
     it('should be displayed using default format', fakeAsync(() => {
       const octoberFirst = moment('2018-10-01');
       const expectedValue = octoberFirst.format(DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT);
-      component.dateValue = octoberFirst.toDate();
+      component.dateValue = octoberFirst.valueOf();
       fixture.detectChanges();
       flush();
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
@@ -107,7 +107,7 @@ describe('DlDateTimeInputDirective', () => {
       expect(inputElement.classList).toContain('ng-touched');
     });
 
-    it('should reformat the input value on blur', () => {
+    it('should reformat the input value on blur', fakeAsync(() => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
 
       inputElement.value = '1/1/2001';
@@ -120,19 +120,21 @@ describe('DlDateTimeInputDirective', () => {
       fixture.detectChanges();
 
       expect(inputElement.value).toBe(moment('2001-01-01').format(DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT));
-    });
+    }));
 
     it('should not reformat invalid dates on blur', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
 
-      inputElement.value = 'very-valid-date';
+      inputElement.value = 'very-invalid-date';
       inputElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
+
+      expect(inputElement.value).toBe('very-invalid-date');
 
       inputElement.dispatchEvent(new Event('blur'));
       fixture.detectChanges();
 
-      expect(inputElement.value).toBe('very-valid-date');
+      expect(inputElement.value).toBe('very-invalid-date');
     });
 
     it('should consider empty input to be valid (for non-required inputs)', () => {
@@ -143,7 +145,7 @@ describe('DlDateTimeInputDirective', () => {
 
     it('should add ng-invalid on invalid input', fakeAsync(() => {
       const novemberFirst = moment('2018-11-01');
-      component.dateValue = novemberFirst.toDate();
+      component.dateValue = novemberFirst.valueOf();
       fixture.detectChanges();
       flush();
 
@@ -186,10 +188,13 @@ describe('DlDateTimeInputDirective', () => {
       expect(inputElement.classList).toContain('ng-valid');
     });
 
-    it('should add ng-invalid for valid input of filtered date', () => {
-      const filteredValue = moment('2018-10-29T17:00').valueOf();
+    it('should add ng-invalid for input of filtered out date', () => {
+      const expectedErrorValue = moment('2018-10-29T17:00').valueOf();
+
+      const allowedValue = moment('2019-10-29T17:00').valueOf();
+
       spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
-        return date !== filteredValue;
+        return date === allowedValue;
       });
 
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
@@ -201,8 +206,32 @@ describe('DlDateTimeInputDirective', () => {
 
       const control = debugElement.children[0].injector.get(NgForm).control.get('dateValue');
       expect(control.hasError('dlDateTimeInputFilter')).toBe(true);
-      expect(control.errors.dlDateTimeInputFilter.value).toBe(filteredValue.valueOf());
+      const value = control.errors.dlDateTimeInputFilter.value;
+      expect(value).toBe(expectedErrorValue);
     });
+
+    it('should remove ng-invalid when model is updated with valid date', fakeAsync(() => {
+      const allowedValue = moment('2019-10-29T17:00').valueOf();
+      spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
+        return date === allowedValue;
+      });
+
+      const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
+      inputElement.value = '10/29/2018 05:00 PM';
+      inputElement.dispatchEvent(new Event('blur'));
+
+      fixture.detectChanges();
+
+      expect(inputElement.classList).toContain('ng-invalid');
+
+      component.dateValue = allowedValue;
+
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(inputElement.classList).toContain('ng-valid');
+    }));
 
     it('should disable input when setDisabled is called', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;

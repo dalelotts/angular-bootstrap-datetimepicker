@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Inject, Input, Output, Renderer2} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostListener, Inject, Input, Output, Renderer2} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -27,8 +27,8 @@ const moment = _moment;
 @Directive({
   selector: 'input[dlDateTimeInput]',
   providers: [
-    {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => DlDateTimeInputDirective), multi: true},
-    {provide: NG_VALIDATORS, useExisting: forwardRef(() => DlDateTimeInputDirective), multi: true}
+    {provide: NG_VALUE_ACCESSOR, useExisting:  DlDateTimeInputDirective, multi: true},
+    {provide: NG_VALIDATORS, useExisting:  DlDateTimeInputDirective, multi: true}
   ]
 })
 export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Validator {
@@ -36,7 +36,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
   /* tslint:disable:member-ordering */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     // @ts-ignore
-    return (this._inputFilter || ((value: any) => true))(this._value) ?
+    return (this._inputFilter || (() => true))(this._value) ?
       null : {'dlDateTimeInputFilter': {'value': control.value}};
   }
   private _inputFilter: (value: (D | null)) => boolean = () => true;
@@ -48,7 +48,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
   private _changed: ((value: D) => void)[] = [];
   private _touched: (() => void)[] = [];
   private _validator = Validators.compose([this._parseValidator, this._filterValidator]);
-  private _validatorOnChange: () => void = () => {};
+  private _onValidatorChange: () => void = () => {};
   private _value: D | undefined = undefined;
 
   /**
@@ -87,8 +87,8 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    */
   @Input()
   set dlDateTimeInputFilter(inputFilterFunction: (value: D | null) => boolean) {
-    this._inputFilter = inputFilterFunction;
-    this._validatorOnChange();
+    this._inputFilter = inputFilterFunction || (() => true);
+    this._onValidatorChange();
   }
 
   /* tslint:enable:member-ordering */
@@ -98,6 +98,19 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    **/
   get value(): D {
     return this._value;
+  }
+
+  /**
+   * Set the value of the date/time input to a value of `D` | `undefined` | `null`;
+   * @param newValue
+   *  the new value of the date/time input
+   */
+
+  set value(newValue: D | null | undefined) {
+    if (newValue !== this._value) {
+      this._value = newValue;
+      this._changed.forEach(onChanged => onChanged(this._value));
+    }
   }
 
   /**
@@ -112,7 +125,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    */
   @HostListener('blur') _onBlur() {
     if (this._value) {
-      this.writeValue(this._value);
+      this._setElementValue(this._value);
     }
     this._touched.forEach(onTouched => onTouched());
   }
@@ -129,8 +142,16 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
       : moment(value, this._inputFormats, true);
 
     this._isValid = testDate && testDate.isValid();
-    this._value = this._isValid ? this._dateAdapter.fromMilliseconds(testDate.valueOf()) : undefined;
-    this._changed.forEach(onChanged => onChanged(this._value));
+    this.value = this._isValid ? this._dateAdapter.fromMilliseconds(testDate.valueOf()) : undefined;
+  }
+
+  /**
+   * @internal
+   */
+  private _setElementValue(value: D) {
+    if (value !== null && value !== undefined) {
+      this._renderer.setProperty(this._elementRef.nativeElement, 'value', moment(value).format(this._displayFormat));
+    }
   }
 
   /**
@@ -151,7 +172,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    * @internal
    */
   registerOnValidatorChange(validatorOnChange: () => void): void {
-    this._validatorOnChange = validatorOnChange;
+    this._onValidatorChange = validatorOnChange;
   }
 
   /**
@@ -172,9 +193,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    * @internal
    */
   writeValue(value: D): void {
-    const normalizedValue = value === null || value === undefined
-      ? ''
-      : moment(value).format(this._displayFormat);
-    this._renderer.setProperty(this._elementRef.nativeElement, 'value', normalizedValue);
+    this.value = value;
+    this._setElementValue(value);
   }
 }
