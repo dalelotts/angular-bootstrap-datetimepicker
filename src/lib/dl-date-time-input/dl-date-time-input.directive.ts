@@ -193,6 +193,7 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
    * @internal
    */
   writeValue(value: D): void {
+    this._isValid = true;
     this.value = value;
     this._setElementValue(value);
   }

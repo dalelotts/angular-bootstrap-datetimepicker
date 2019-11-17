@@ -211,6 +211,9 @@ describe('DlDateTimeInputDirective', () => {
     });
 
     it('should remove ng-invalid when model is updated with valid date', fakeAsync(() => {
+      // This is to fix #448, inputting a value that is a disallowed date (but a valid date)
+      // should change to ng-valid when the model is updated to an allowed date.
+
       const allowedValue = moment('2019-10-29T17:00').valueOf();
       spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
         return date === allowedValue;
@@ -223,6 +226,35 @@ describe('DlDateTimeInputDirective', () => {
       fixture.detectChanges();
 
       expect(inputElement.classList).toContain('ng-invalid');
+
+      component.dateValue = allowedValue;
+
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
+      expect(inputElement.classList).toContain('ng-valid');
+    }));
+
+    it('should add ng-invalid for non-date input and remove ng-invalid after when model is updated with valid date', fakeAsync(() => {
+      // This is to fix #448, inputting a completely invalid date value (i.e not a date at all)
+      // should change to ng-valid when the model is updated to an allowed date.
+
+      const allowedValue = moment('2019-10-29T17:00').valueOf();
+      spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
+        return date === allowedValue;
+      });
+
+      const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
+      inputElement.value = 'very-invalid-date';
+      inputElement.dispatchEvent(new Event('input'));
+
+      fixture.detectChanges();
+
+      expect(inputElement.classList).toContain('ng-invalid');
+
+      inputElement.dispatchEvent(new Event('blur'));
+      fixture.detectChanges();
 
       component.dateValue = allowedValue;
 
