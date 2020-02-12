@@ -172,11 +172,11 @@ describe('DlDateTimePickerComponent', () => {
 
     it('should contain 10 .dl-abdtp-year elements with start of year utc time as class and role of gridcell', () => {
       // Truncate the last digit from the current year to get the start of the decade
-      const startDecade = (Math.trunc(moment().year() / 10) * 10);
+      const startYear = (Math.trunc(moment(component.selectedDate).year() / 10) * 10);
 
       const expectedValues = new Array(10)
-        .fill(JAN)
-        .map((january, index) => new Date(startDecade + index, january, 1).getTime());
+        .fill(startYear)
+        .map((year, index) => new Date(year + index, JAN, 1).getTime());
 
       const yearElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-year'));
 
