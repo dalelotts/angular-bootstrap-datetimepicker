@@ -36,6 +36,8 @@ See [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-
 ## Support the project
 I know this is a tiny component but many people use it in production (high 5 to all of us) - if you happen to use this component please click the star button (at the top of the page) - it means a lot to all the contributors.
 
+![](./screenshots/stars.png)
+
 ## Peer Dependencies
 
 Peer dependencies:
@@ -222,6 +224,11 @@ npm test
 
 The karma task will try to open Chrome as a browser in which to run the tests.
 Make sure Chrome is available or change the browsers setting in karma.config.js
+
+## Stars history
+
+[![Stargazers over time](https://starchart.cc/dalelotts/angular-bootstrap-datetimepicker.svg)](https://starchart.cc/dalelotts/angular-bootstrap-datetimepicker)
+
 
 ## License
 
