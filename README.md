@@ -27,7 +27,7 @@ Native Angular (8+) datetime picker component styled by Twitter Bootstrap 4.
 
 Use install version 3.1.0
 
-`npm install angularjs-bootstrap-datetimepicker@3.1.0`
+`npm install angular-bootstrap-datetimepicker@3.1.0`
 
 ## On Angular 1.x?
 
