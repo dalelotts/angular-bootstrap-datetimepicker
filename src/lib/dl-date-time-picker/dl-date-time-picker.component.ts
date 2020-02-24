@@ -15,6 +15,7 @@ import {
   Input,
   NgZone,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges
@@ -115,7 +116,7 @@ const VIEWS = [
   styleUrls: ['./dl-date-time-picker.component.scss'],
   templateUrl: './dl-date-time-picker.component.html',
 })
-export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlValueAccessor {
+export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, OnDestroy, ControlValueAccessor {
 
   /**
    * Change listener callback functions registered
@@ -436,6 +437,13 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
   }
 
   /**
+   * Performs clean-up at end-of-life.
+   */
+  ngOnDestroy(): void {
+    this.change.complete();
+  }
+
+  /**
    * Sets the initial model.
    *
    * @internal
@@ -551,7 +559,6 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
   writeValue(value: D) {
     this.value = value;
   }
-
 }
 
 /** @internal */
