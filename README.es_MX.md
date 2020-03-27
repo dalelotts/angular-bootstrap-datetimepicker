@@ -14,7 +14,7 @@ Componente selector de fecha/hora nativo para Angular (8+) estilizado con Bootst
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-[documentación](http://dalelotts.github.io/angular-bootstrap-datetimepicker/) (Inglés)
+[Documentación](http://dalelotts.github.io/angular-bootstrap-datetimepicker/) (Inglés)
 
 [Página de demo](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)
 
@@ -33,12 +33,13 @@ Use install version 3.1.0
 Visita [angularjs-bootstrap-datetimepicker](https://github.com/dalelotts/angularjs-bootstrap-datetimepicker)
 
 ## Apoya el proyecto
-Sé que este es un pequeño componente sin embargo mucha gente lo utiliza en producción (estoy completamente agradecido con ello) - si llegas a utilizar este componente por favor dale click al botón de estrella (en la parte superior derecha de la página) - 
-I know this is a tiny component but many people use it in production (high 5 to all of us) - if you happen to use this component please click the star button (at the top of the page) - it means a lot to all the contributors.
+Sé que este es un pequeño componente sin embargo mucha gente lo utiliza en producción (estoy completamente agradecido con ello) - si llegas a utilizar este componente por favor dale click al botón de estrella (en la parte superior derecha de la página).
+
+![](./screenshots/stars.png)
 
 ## Versiones de Dependencias Mínimas
 
-Versiones de Dependencias mínimas:
+Versiones de dependencias mínimas:
  * AngularJS 8.x ó mayor (1.x no funcionará)
  * moment.js 2.x ó mayor para parseo de fecha y formateo
  * bootstrap 4.x para css/layout
@@ -49,7 +50,7 @@ jQuery NO es necesario.
 ## Uso con Angular CLI
 Si estas usando [Angular CLI](https://cli.angular.io/) hay unos pequeños y simples pasos para agregar este componente a tu proyecto.
 
-Primero, instala este módulo y las dependencias minimas
+Primero, instala este módulo y las dependencias mínimas
 
 ```shell
 npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic
@@ -108,33 +109,31 @@ Utiliza las clases `row` y `col` de bootstrap flex para el acomodo del component
 Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño de la fila y columna que contiene el componente puede que no se muestre de manera atractiva.
 Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
-## End-to-End (e2e) testing with protractor 
+## Prueba de Punto a Punto (e2e) con protractor
 
-**Translation Pull request needed for this section**
+Las interacciones del usuario con el selector de fecha y hora dificultan la escritura de pruebas e2e que replican exactamente la interacción del usuario con el selector.
 
-The user interactions with a date-time picker make it difficult to write e2e tests that exactly replicate the users interaction with the picker.
+Afortunadamente, este repositorio contiene un archivo que puede usar pruebas e2e para hacer que el selector de fecha y hora seleccione cualquier fecha específica.
 
-Fortunately, this repository contains a file you can use in your e2e tests to cause the date/time picker to select any specified date.
-
-See [./e2e/src/dl-date-time-picker-protractor.ts](./e2e/src/dl-date-time-picker-protractor.ts) for details.
+Ver [./e2e/src/dl-date-time-picker-protractor.ts](./e2e/src/dl-date-time-picker-protractor.ts) para más detalles.
 
 ## Configuración
-Utiliza el [generador de configuración automatizado](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)  (por favor hazme saber si no funciona para tu caso!), 
+Utiliza el [generador de configuración automatizado](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)  (¡por favor hazme saber si no funciona para tu caso!), 
 o ve a [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
 para visualizar la documentación generada por automático.
 
 ### Primer día de la semana
 El primer día de la semana es determinado por los [ajustes de moment i18n ](https://momentjs.com/docs/#/i18n/).
-Por ejemplo, configurando el locale a `'fr'` hará que día Lunes sea el primer día de la semana.
+Por ejemplo, configurando el lugar a `'fr'` hará que día Lunes sea el primer día de la semana.
 
 ### Formato para visualización de año, mes, dia, hora, am/pm y minutos
 El formato para horas y minutos es determinado por los [ajustes de moment i18n](https://momentjs.com/docs/#/i18n/).
 
 Las horas son desplegadas utilizando `ll` como formato.
-Los miuntos son desplegados utilizando `lll` como formato. 
+Los minutos son desplegados utilizando `lll` como formato. 
 
-Recomiendo que utilices los ajustes del predeterminados del locale de Moment (si con incorrectos puedes enviar un PR  a momento para corregir los ajustes)
-Si por alguna razón los ajustes predeterminados de Moment no funcionan, puedes [configurar el locale existente](https://momentjs.com/docs/#/customization/) ó [crear un locale cutomizado](https://momentjs.com/docs/#/i18n/adding-locale/) with the desired formats.
+Recomiendo que utilices los ajustes predeterminados del lugar con Moment (si con incorrectos puedes enviar un PR  a momento para corregir los ajustes)
+Si por alguna razón los ajustes predeterminados de Moment no funcionan, puedes [configurar el lugar existente](https://momentjs.com/docs/#/customization/) ó [crear un lugar personalizado](https://momentjs.com/docs/#/i18n/adding-locale/) con los formatos deseados.
 
 
 ## Documentación
@@ -149,7 +148,7 @@ El componente `DlDateTimePickerComponent` agrega el atributo `aria-label` a la i
 
 El componente `DlDateTimePickerComponent` soporta los siguiente atajos de teclado en todas las vistas:
 
-| Shortcut             | Action                                          |
+| Atajo            | Acción                                          |
 |----------------------|-------------------------------------------------|
 | `FLECHA_IZQ`         | Ir a la celda de la izquierda                      |
 | `FLECHA_DER`        | Ir a la celda de la derecha                     |
@@ -159,7 +158,7 @@ El componente `DlDateTimePickerComponent` soporta los siguiente atajos de teclad
 | `FIN`                | Ir a la última celda de la vista                |
 | `PAGINA_ARRIBA`            | Ir a la misma celda en el periodo anterior de tiempo |
 | `PAGINA_ABAJO`          | Ir a la misma celda en el periodo siguiente de tiempo     |
-| `ENTRAR` or `ESPACIO`   | Seleccionar la celda actual                             |
+| `ENTRAR` o `ESPACIO`   | Seleccionar la celda actual                             |
 
 ## Capturas de pantalla
 
@@ -225,9 +224,9 @@ angular-bootstrap-datetimepicker fué liberada con la licencia MIT y copyright 2
 
 ## Te permite:
 
-* De manera libre descargar y usar angular-bootstrap-datetimepicker de manera completa o sus componentes para proposito personal, privado, de manera interna en una compañía o con fines comerciales.
+* De manera libre descargar y usar angular-bootstrap-datetimepicker de manera completa o sus componentes para propósito personal, privado, de manera interna en una compañía o con fines comerciales.
 * Usar angular-bootstrap-datetimepicker en paquetes o distribuciones creados por ti.
-* Modificar el código fuente
+* Modificar el código fuente.
 * Acceder a una sublicencia para modificar y distribuir angular-bootstrap-datetimepicker a terceros no incluidos en la licencia.
 
 ## Te prohibe:
@@ -240,8 +239,8 @@ angular-bootstrap-datetimepicker fué liberada con la licencia MIT y copyright 2
 
 ## No requiere el que tu:
 
-* Incluyas el código fuente angular-bootstrap-datetimepicker o el de alguna modificación que tú le hayas hecho al código original, in any redistribution you may assemble that includes it
-* Envíes los cambios que hiciste a angular-bootstrap-datetimepicker al proyecto  angular-bootstrap-datetimepicker (sin embargo sugerencias o cambios son bienvenidos).
+* Incluyas el código fuente angular-bootstrap-datetimepicker o el de alguna modificación que tú le hayas hecho al código original, o en cualquier redistribución.
+* Envíes los cambios que hiciste a angular-bootstrap-datetimepicker al proyecto  angular-bootstrap-datetimepicker (sin embargo, sugerencias o cambios son bienvenidos).
 
 La licencia completa de angular-bootstrap-datetimepicker se encuentra [en el repositorio del proyecto](LICENSE) para más información.
 
