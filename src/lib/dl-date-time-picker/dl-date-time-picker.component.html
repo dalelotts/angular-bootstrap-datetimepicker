@@ -25,7 +25,9 @@
       <div *ngFor="let label of _model.rowLabels"
            class="col align-items-center no-gutters dl-abdtp-col-label">{{label}}</div>
     </div>
-    <div *ngFor="let row of _model.rows" class="row align-items-center no-gutters">
+    <div *ngFor="let row of _model.rows" 
+         role="row"
+         class="row align-items-center no-gutters">
       <div *ngFor="let cell of row.cells"
            role="gridcell"
            class="col dl-abdtp-date-button dl-abdtp-{{_model.viewName}}"
