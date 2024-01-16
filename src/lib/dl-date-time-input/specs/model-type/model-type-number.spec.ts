@@ -8,7 +8,7 @@
  */
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeNumberModule} from '../../../public-api';
@@ -27,8 +27,8 @@ class ModelTypeComponent {
 
 describe('DlDateTimeInputDirective modelType', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -37,24 +37,23 @@ describe('DlDateTimeInputDirective modelType', () => {
       declarations: [
         ModelTypeComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('number', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(ModelTypeComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should be Number type', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;

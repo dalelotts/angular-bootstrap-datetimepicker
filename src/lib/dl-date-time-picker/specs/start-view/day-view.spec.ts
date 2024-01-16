@@ -8,10 +8,10 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import * as moment from 'moment';
+import moment from 'moment';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
 import {
   dispatchKeyboardEvent,
@@ -53,8 +53,8 @@ class UndefinedStartViewComponent {
 
 describe('DlDateTimePickerComponent startView=day', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -65,22 +65,21 @@ describe('DlDateTimePickerComponent startView=day', () => {
         DayStartViewWithNgModelComponent,
         UndefinedStartViewComponent
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('default behavior ', () => {
     let component: DayStartViewComponent;
     let fixture: ComponentFixture<DayStartViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(DayStartViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));
@@ -159,13 +158,13 @@ describe('DlDateTimePickerComponent startView=day', () => {
   describe('undefined start view', () => {
     let fixture: ComponentFixture<UndefinedStartViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(UndefinedStartViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));
@@ -177,14 +176,14 @@ describe('DlDateTimePickerComponent startView=day', () => {
     let component: DayStartViewWithNgModelComponent;
     let fixture: ComponentFixture<DayStartViewWithNgModelComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(DayStartViewWithNgModelComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should contain .dl-abdtp-view-label element with "2018"', () => {
       const viewLabel = fixture.debugElement.query(By.css('.dl-abdtp-view-label'));
@@ -216,9 +215,9 @@ describe('DlDateTimePickerComponent startView=day', () => {
       dayElements.forEach((dayElement, index) => {
         const expectedValue = expectedValues[index];
         const ariaLabel = moment(expectedValue).format('ll');
-        expect(dayElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
-        expect(dayElement.attributes['role']).toBe('gridcell', index);
-        expect(dayElement.attributes['aria-label']).toBe(ariaLabel, index);
+        expect(dayElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        expect(dayElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        expect(dayElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
       });
     });
 

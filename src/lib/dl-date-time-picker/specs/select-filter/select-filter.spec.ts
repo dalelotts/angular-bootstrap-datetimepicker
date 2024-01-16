@@ -8,7 +8,7 @@
  */
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DateButton, DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
@@ -34,8 +34,8 @@ class UndefinedSelectFilterComponent {
 
 describe('DlDateTimePickerComponent startDate', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -45,24 +45,23 @@ describe('DlDateTimePickerComponent startDate', () => {
         SelectFilterComponent,
         UndefinedSelectFilterComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('year', () => {
     let component: SelectFilterComponent;
     let fixture: ComponentFixture<SelectFilterComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(SelectFilterComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should disable .dl-abdtp-now element', () => {
       const nowElement = debugElement.query(By.css('.dl-abdtp-now'));
@@ -84,14 +83,14 @@ describe('DlDateTimePickerComponent startDate', () => {
     let fixture: ComponentFixture<UndefinedSelectFilterComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(UndefinedSelectFilterComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should not disable any elements', () => {
       const dateButtons = debugElement.queryAll(By.css('.dl-abdtp-date-button'));

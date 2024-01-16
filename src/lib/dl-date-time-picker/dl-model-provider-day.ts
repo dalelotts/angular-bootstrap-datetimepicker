@@ -8,24 +8,9 @@
  */
 
 import {SimpleChanges} from '@angular/core';
-import * as _moment from 'moment';
+import moment from 'moment';
 import {DlDateTimePickerModel} from './dl-date-time-picker-model';
 import {DlModelProvider} from './dl-model-provider';
-
-/**
- * Work around for moment namespace conflict when used with webpack and rollup.
- * See https://github.com/dherges/ng-packagr/issues/163
- *
- * Depending on whether rollup is used, moment needs to be imported differently.
- * Since Moment.js doesn't have a default export, we normally need to import using
- * the `* as`syntax.
- *
- * rollup creates a synthetic default module and we thus need to import it using
- * the `default as` syntax.
- *
- * @internal
- **/
-const moment = _moment;
 
 /**
  * Default implementation for the `day` view.
@@ -39,8 +24,7 @@ export class DlDayModelProvider implements DlModelProvider {
    *  the input changes detected by Angular.
    */
   onChanges(
-    // @ts-ignore
-    changes: SimpleChanges
+    _changes: SimpleChanges
   ): void {}
 
   /**

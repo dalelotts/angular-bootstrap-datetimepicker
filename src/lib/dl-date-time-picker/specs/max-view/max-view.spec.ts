@@ -8,7 +8,7 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
@@ -64,8 +64,8 @@ class UndefinedMaxViewComponent {
 
 describe('DlDateTimePickerComponent maxView', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -79,20 +79,19 @@ describe('DlDateTimePickerComponent maxView', () => {
         MinuteMaxViewComponent,
         UndefinedMaxViewComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('year', () => {
     let fixture: ComponentFixture<YearMaxViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(YearMaxViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));
@@ -114,13 +113,13 @@ describe('DlDateTimePickerComponent maxView', () => {
   describe('month', () => {
     let fixture: ComponentFixture<MonthMaxViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MonthMaxViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));
@@ -138,13 +137,13 @@ describe('DlDateTimePickerComponent maxView', () => {
   describe('day', () => {
     let fixture: ComponentFixture<DayMaxViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(DayMaxViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));
@@ -160,13 +159,13 @@ describe('DlDateTimePickerComponent maxView', () => {
   describe('hour', () => {
     let fixture: ComponentFixture<HourMaxViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(HourMaxViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with hour-view', () => {
       const hourView = fixture.debugElement.query(By.css('.dl-abdtp-hour-view'));
@@ -182,13 +181,13 @@ describe('DlDateTimePickerComponent maxView', () => {
   describe('minute', () => {
     let fixture: ComponentFixture<MinuteMaxViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MinuteMaxViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with minute-view', () => {
       const minuteView = fixture.debugElement.query(By.css('.dl-abdtp-minute-view'));
@@ -204,13 +203,13 @@ describe('DlDateTimePickerComponent maxView', () => {
   describe('undefined', () => {
     let fixture: ComponentFixture<UndefinedMaxViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(UndefinedMaxViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       const dayView = fixture.debugElement.query(By.css('.dl-abdtp-day-view'));

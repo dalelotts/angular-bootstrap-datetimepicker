@@ -1,22 +1,6 @@
-import * as _moment from 'moment';
-import {Moment} from 'moment';
+import moment, {Moment} from 'moment';
 import {DlDateAdapterString} from './dl-date-adapter-string';
 
-/**
- * Work around for moment namespace conflict when used with webpack and rollup.
- * See https://github.com/dherges/ng-packagr/issues/163
- *
- * Depending on whether rollup is used, moment needs to be imported differently.
- * Since Moment.js doesn't have a default export, we normally need to import using
- * the `* as`syntax.
- *
- * rollup creates a synthetic default module and we thus need to import it using
- * the `default as` syntax.
- *
- * @internal
- *
- **/
-const moment = _moment;
 
 /**
  * @license

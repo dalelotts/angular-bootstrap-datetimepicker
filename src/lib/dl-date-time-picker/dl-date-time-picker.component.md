@@ -91,8 +91,7 @@ display `25 years`  by doing the following:
     
     import {DlDateTimePickerModel, DlModelProvider} from 'angular-bootstrap-datetimepicker';
     import {SimpleChanges} from '@angular/core';
-    import * as _moment from 'moment';
-    import {Moment} from 'moment';
+    import moment, {Moment} from 'moment';
     
     /**
      * Work around for moment namespace conflict when used with webpack and rollup.

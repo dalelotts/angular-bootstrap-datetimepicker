@@ -8,7 +8,7 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
@@ -64,8 +64,8 @@ class UndefinedMinViewComponent {
 
 describe('DlDateTimePickerComponent minView', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -79,22 +79,21 @@ describe('DlDateTimePickerComponent minView', () => {
         MinuteMinViewComponent,
         UndefinedMinViewComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('year', () => {
     let component: YearMinViewComponent;
     let fixture: ComponentFixture<YearMinViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(YearMinViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with year-view', () => {
       // no other options are specified and year-view is a higher level view than
@@ -123,14 +122,14 @@ describe('DlDateTimePickerComponent minView', () => {
     let component: MonthMinViewComponent;
     let fixture: ComponentFixture<MonthMinViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MonthMinViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with month-view', () => {
       // no other options are specified and month-view is a higher level view than
@@ -159,14 +158,14 @@ describe('DlDateTimePickerComponent minView', () => {
     let component: DayMinViewComponent;
     let fixture: ComponentFixture<DayMinViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(DayMinViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       // no other options are specified and month-view is a higher level view than
@@ -195,14 +194,14 @@ describe('DlDateTimePickerComponent minView', () => {
     let component: HourMinViewComponent;
     let fixture: ComponentFixture<HourMinViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(HourMinViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       // day-view (the default start view) is a higher level view than hour-view
@@ -238,14 +237,14 @@ describe('DlDateTimePickerComponent minView', () => {
     let component: MinuteMinViewComponent;
     let fixture: ComponentFixture<MinuteMinViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MinuteMinViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       // day-view (the default start view) is a higher level view than hour-view
@@ -289,14 +288,14 @@ describe('DlDateTimePickerComponent minView', () => {
     let component: UndefinedMinViewComponent;
     let fixture: ComponentFixture<UndefinedMinViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(UndefinedMinViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with day-view', () => {
       // day-view (the default start view) is a higher level view than hour-view

@@ -1,15 +1,6 @@
 import {InjectionToken} from '@angular/core';
 
-import * as _moment from 'moment';
-
-/**
- * @internal
- */
-let moment = _moment;
-/* istanbul ignore if */
-if ('default' in _moment) {
-  moment = _moment['default'];
-}
+import * as moment from 'moment';
 
 /**
  * InjectionToken for string dates that can be used to override default model format.
@@ -38,6 +29,7 @@ export const DL_DATE_TIME_INPUT_FORMATS_DEFAULT = [
   'M/D/YYYY h:m:s A',
   'M/D/YYYY h:m A',
   'M/D/YYYY h:m A',
+  'M/D/YYYY hh:mm A',
   'M/D/YYYY',
   'M/D/YY h:m:s A',
   'M/D/YY h:m A',

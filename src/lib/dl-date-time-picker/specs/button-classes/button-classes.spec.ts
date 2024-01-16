@@ -8,7 +8,7 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule} from '../../../public-api';
@@ -39,8 +39,8 @@ class ConfigurableButtonClassComponent {
 
 describe('DlDateTimePickerComponent button-classes', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -50,20 +50,19 @@ describe('DlDateTimePickerComponent button-classes', () => {
         DefaultButtonClassComponent,
         ConfigurableButtonClassComponent,
       ],
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('default', () => {
     let fixture: ComponentFixture<DefaultButtonClassComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(DefaultButtonClassComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should have left button with open iconic chevron left', () => {
       const leftButton = fixture.debugElement.query(By.css('.left-icon'));
@@ -88,14 +87,14 @@ describe('DlDateTimePickerComponent button-classes', () => {
     let component: ConfigurableButtonClassComponent;
     let fixture: ComponentFixture<ConfigurableButtonClassComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(ConfigurableButtonClassComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should omit left icon classes if undefined', () => {
       const leftButton = fixture.debugElement.query(By.css('.left-icon'));

@@ -8,10 +8,10 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import * as moment from 'moment';
+import moment from 'moment';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
 import {
   dispatchKeyboardEvent,
@@ -46,8 +46,8 @@ class MonthStartViewWithNgModelComponent {
 
 describe('DlDateTimePickerComponent startView=month', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -57,22 +57,21 @@ describe('DlDateTimePickerComponent startView=month', () => {
         MonthStartViewComponent,
         MonthStartViewWithNgModelComponent
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('default behavior ', () => {
     let component: MonthStartViewComponent;
     let fixture: ComponentFixture<MonthStartViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async() => {
       fixture = TestBed.createComponent(MonthStartViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with month-view', () => {
       const monthView = fixture.debugElement.query(By.css('.dl-abdtp-month-view'));
@@ -150,14 +149,14 @@ describe('DlDateTimePickerComponent startView=month', () => {
     let component: MonthStartViewWithNgModelComponent;
     let fixture: ComponentFixture<MonthStartViewWithNgModelComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MonthStartViewWithNgModelComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
 
     it('should contain .dl-abdtp-view-label element with "2017"', () => {
@@ -177,9 +176,9 @@ describe('DlDateTimePickerComponent startView=month', () => {
       monthElements.forEach((monthElement, index) => {
         const expectedValue = expectedValues[index];
         const ariaLabel = moment(expectedValue).format('MMM YYYY');
-        expect(monthElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
-        expect(monthElement.attributes['role']).toBe('gridcell', index);
-        expect(monthElement.attributes['aria-label']).toBe(ariaLabel, index);
+        expect(monthElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        expect(monthElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        expect(monthElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
       });
     });
 

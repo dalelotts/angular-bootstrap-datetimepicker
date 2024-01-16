@@ -9,14 +9,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import * as _moment from 'moment';
+import moment from 'moment';
 import {DL_DATE_TIME_DISPLAY_FORMAT, DL_DATE_TIME_INPUT_FORMATS, DlDateAdapter} from '../core/public-api';
 import {DlDateTimeInputChange} from './dl-date-time-input-change';
-
-/**
- * @internal
- */
-const moment = _moment;
 
 /**
  *  This directive allows the user to enter dates, using the keyboard, into an input box and
@@ -35,7 +30,6 @@ export class DlDateTimeInputDirective<D> implements ControlValueAccessor, Valida
 
   /* tslint:disable:member-ordering */
   private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    // @ts-ignore
     return (this._inputFilter || (() => true))(this._value) ?
       null : {'dlDateTimeInputFilter': {'value': control.value}};
   }

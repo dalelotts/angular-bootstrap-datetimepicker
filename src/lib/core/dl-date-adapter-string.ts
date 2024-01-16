@@ -1,27 +1,14 @@
-import {Inject} from '@angular/core';
-import * as _moment from 'moment';
+import {Inject, Injectable} from '@angular/core';
+import moment from 'moment';
 import {DlDateAdapter} from './dl-date-adapter';
 import {DL_DATE_TIME_INPUT_FORMATS, DL_DATE_TIME_MODEL_FORMAT} from './dl-date-time-string-format';
 
 /**
- * Work around for moment namespace conflict when used with webpack and rollup.
- * See https://github.com/dherges/ng-packagr/issues/163
- *
- * Depending on whether rollup is used, moment needs to be imported differently.
- * Since Moment.js doesn't have a default export, we normally need to import using
- * the `* as`syntax.
- *
- * rollup creates a synthetic default module and we thus need to import it using
- * the `default as` syntax.
- *
- * @internal
- *
- **/
-const moment = _moment;
-
-/**
  * Adapts `string` to be usable as a date by date/time components that work with dates.
  **/
+@Injectable({
+  providedIn: 'root'
+})
 export class DlDateAdapterString extends DlDateAdapter<string> {
 
   private readonly inputFormats: string[];

@@ -8,7 +8,7 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
@@ -31,8 +31,8 @@ class UndefinedMinuteStepComponent {
 
 describe('DlDateTimePickerComponent minuteStep', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
         imports: [
           FormsModule,
           DlDateTimeNumberModule,
@@ -44,20 +44,20 @@ describe('DlDateTimePickerComponent minuteStep', () => {
         ]
       }
     ).compileComponents();
-  }));
+  });
 
   describe('defined', () => {
     let component: MinuteStepComponent;
     let fixture: ComponentFixture<MinuteStepComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MinuteStepComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should step one minute as configured', () => {
       const minuteElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-minute'));
@@ -116,13 +116,13 @@ describe('DlDateTimePickerComponent minuteStep', () => {
   describe('undefined', () => {
     let fixture: ComponentFixture<UndefinedMinuteStepComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(UndefinedMinuteStepComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
       });
-    }));
+    });
 
     it('should default to 5-minute step', () => {
       const minuteElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-minute'));
