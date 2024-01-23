@@ -103,6 +103,38 @@
               "src/**/*.html"
             ]
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-bootstrap-datetimepicker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-bootstrap-datetimepicker:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-bootstrap-datetimepicker:serve",
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-bootstrap-datetimepicker:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-bootstrap-datetimepicker:serve:production"
+            }
+          }
         }
       }
     }
