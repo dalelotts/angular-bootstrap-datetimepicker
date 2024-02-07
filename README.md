@@ -113,14 +113,6 @@ It uses bootstrap's flex `row` and `col` classes to layout the date/time picker 
 If the parent container is too narrow (less than 340px in english), the row and column layout may wrap in ways that are not attractive. 
 Other languages/locals may require a wider container to fit the contents.
 
-## End-to-End (e2e) testing with protractor
-
-The user interactions with a date-time picker make it difficult to write e2e tests that exactly replicate the users interaction with the picker.
-
-Fortunately, this repository contains a file you can use in your e2e tests to cause the date/time picker to select any specified date.
-
-See [./e2e/src/dl-date-time-picker-protractor.ts](./e2e/src/dl-date-time-picker-protractor.ts) for details.
-
 ## Configuration
 
 Use the [automated configuration generator](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo) (please let me know if it does not work for your use case!), 

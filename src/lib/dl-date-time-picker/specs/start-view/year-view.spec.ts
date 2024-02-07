@@ -8,10 +8,10 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import * as moment from 'moment';
+import moment from 'moment';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
 import {
   dispatchKeyboardEvent,
@@ -52,8 +52,8 @@ class YearSelectorComponent {
 
 describe('DlDateTimePickerComponent', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -64,22 +64,21 @@ describe('DlDateTimePickerComponent', () => {
         YearStartViewWithNgModelComponent,
         YearSelectorComponent
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('default behavior ', () => {
     let component: YearStartViewComponent;
     let fixture: ComponentFixture<YearStartViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(YearStartViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with year-view', () => {
       const monthView = fixture.debugElement.query(By.css('.dl-abdtp-year-view'));
@@ -156,14 +155,14 @@ describe('DlDateTimePickerComponent', () => {
     let component: YearStartViewWithNgModelComponent;
     let fixture: ComponentFixture<YearStartViewWithNgModelComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(YearStartViewWithNgModelComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should contain .dl-abdtp-view-label element with "2010-2019"', () => {
       const viewLabel = fixture.debugElement.query(By.css('.dl-abdtp-view-label'));
@@ -182,9 +181,9 @@ describe('DlDateTimePickerComponent', () => {
 
       yearElements.forEach((yearElement, index) => {
         const expectedValue = expectedValues[index];
-        expect(yearElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
-        expect(yearElement.attributes['role']).toBe('gridcell', index);
-        expect(yearElement.attributes['aria-label']).toBeNull(); // why isn't this undefined?
+        expect(yearElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        expect(yearElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        expect(yearElement.attributes['aria-label']).toBeUndefined();
       });
     });
 
@@ -314,7 +313,7 @@ describe('DlDateTimePickerComponent', () => {
       expect(activeElement.nativeElement.textContent).toBe('2017');
 
       activeElement.nativeElement.focus();
-      expect(document.activeElement).toBe(activeElement.nativeElement, document.activeElement.outerHTML);
+      expect(document.activeElement).withContext(document.activeElement.outerHTML).toBe(activeElement.nativeElement);
 
       dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', RIGHT_ARROW);
 

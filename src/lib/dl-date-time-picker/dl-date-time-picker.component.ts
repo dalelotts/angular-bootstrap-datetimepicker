@@ -21,7 +21,7 @@ import {
 } from '@angular/core';
 
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import * as _moment from 'moment';
+import moment from 'moment';
 import {take} from 'rxjs/operators';
 import {DlDateAdapter} from '../core/public-api';
 import {DlDateTimePickerChange} from './dl-date-time-picker-change';
@@ -33,22 +33,6 @@ import {DlHourModelProvider} from './dl-model-provider-hour';
 import {DlMinuteModelProvider} from './dl-model-provider-minute';
 import {DlMonthModelProvider} from './dl-model-provider-month';
 import {DlYearModelProvider} from './dl-model-provider-year';
-
-/**
- * Work around for moment namespace conflict when used with webpack and rollup.
- * See https://github.com/dherges/ng-packagr/issues/163
- *
- * Depending on whether rollup is used, moment needs to be imported differently.
- * Since Moment.js doesn't have a default export, we normally need to import using
- * the `* as`syntax.
- *
- * rollup creates a synthetic default module and we thus need to import it using
- * the `default as` syntax.
- *
- * @internal
- **/
-const moment = _moment;
-
 
 /**
  * Maps key codes to the model provider function name
@@ -175,7 +159,7 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
    * Emits when a `change` event when date/time is selected or
    * the value of the date/time picker changes.
    **/
-  @Output()
+  @Output() /* eslint-disable-next-line  @angular-eslint/no-output-native */
   readonly change = new EventEmitter<DlDateTimePickerChange<D>>();
   /**
    * Specifies the classes used to display the left icon.
@@ -286,15 +270,10 @@ export class DlDateTimePickerComponent<D> implements OnChanges, OnInit, ControlV
   constructor(private _elementRef: ElementRef,
               private _ngZone: NgZone,
               private _dateAdapter: DlDateAdapter<D>,
-              // @ts-ignore
               private yearModelComponent: DlYearModelProvider,
-              // @ts-ignore
               private monthModelComponent: DlMonthModelProvider,
-              // @ts-ignore
               private dayModelComponent: DlDayModelProvider,
-              // @ts-ignore
               private hourModelComponent: DlHourModelProvider,
-              // @ts-ignore
               private minuteModelComponent: DlMinuteModelProvider) {
 
     this._viewToModelProvider = {

@@ -8,10 +8,10 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import * as moment from 'moment';
+import moment from 'moment';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
 import {
   dispatchKeyboardEvent,
@@ -47,8 +47,8 @@ class MinuteStartViewWithNgModelComponent {
 
 describe('DlDateTimePickerComponent startView=minute', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -58,22 +58,21 @@ describe('DlDateTimePickerComponent startView=minute', () => {
         MinuteStartViewComponent,
         MinuteStartViewWithNgModelComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('default behavior ', () => {
     let component: MinuteStartViewComponent;
     let fixture: ComponentFixture<MinuteStartViewComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MinuteStartViewComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should start with minute-view', () => {
       const minuteView = fixture.debugElement.query(By.css('.dl-abdtp-minute-view'));
@@ -172,14 +171,14 @@ describe('DlDateTimePickerComponent startView=minute', () => {
     let component: MinuteStartViewWithNgModelComponent;
     let fixture: ComponentFixture<MinuteStartViewWithNgModelComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(MinuteStartViewWithNgModelComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should contain .dl-abdtp-view-label element with "2018"', () => {
       const viewLabel = fixture.debugElement.query(By.css('.dl-abdtp-view-label'));
@@ -197,9 +196,9 @@ describe('DlDateTimePickerComponent startView=minute', () => {
       minuteElements.forEach((minuteElement, index) => {
         const expectedValue = expectedValues[index];
         const ariaLabel = moment(expectedValue).format('LLL');
-        expect(minuteElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
-        expect(minuteElement.attributes['role']).toBe('gridcell', index);
-        expect(minuteElement.attributes['aria-label']).toBe(ariaLabel, index);
+        expect(minuteElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        expect(minuteElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        expect(minuteElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
       });
     });
 

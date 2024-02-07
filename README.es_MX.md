@@ -109,14 +109,6 @@ Utiliza las clases `row` y `col` de bootstrap flex para el acomodo del component
 Si el contenedor padre no es lo suficientemente ancho (mayor a 340px) el diseño de la fila y columna que contiene el componente puede que no se muestre de manera atractiva.
 Otros lenguajes/locales es probable que requieran un contenedor un poco mas ancho para poder mostrar apropiadamente el contenido.
 
-## Prueba de Punto a Punto (e2e) con protractor
-
-Las interacciones del usuario con el selector de fecha y hora dificultan la escritura de pruebas e2e que replican exactamente la interacción del usuario con el selector.
-
-Afortunadamente, este repositorio contiene un archivo que puede usar pruebas e2e para hacer que el selector de fecha y hora seleccione cualquier fecha específica.
-
-Ver [./e2e/src/dl-date-time-picker-protractor.ts](./e2e/src/dl-date-time-picker-protractor.ts) para más detalles.
-
 ## Configuración
 Utiliza el [generador de configuración automatizado](https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo)  (¡por favor hazme saber si no funciona para tu caso!), 
 o ve a [https://dalelotts.github.io/angular-bootstrap-datetimepicker/](https://dalelotts.github.io/angular-bootstrap-datetimepicker/)
