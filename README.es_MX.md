@@ -1,6 +1,6 @@
-# Selector de fecha y hora con bootstrap para Angular 8+
+# Selector de fecha y hora con bootstrap para Angular 13+
 
-Componente selector de fecha/hora nativo para Angular (8+) estilizado con Bootstrap 4.
+Componente selector de fecha/hora nativo para Angular (13+) estilizado con Bootstrap 4.
 
 [![npm downloads](https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg)](https://www.npmjs.com/package/angular-bootstrap-datetimepicker)
 [![Build Status](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master)](https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker)
