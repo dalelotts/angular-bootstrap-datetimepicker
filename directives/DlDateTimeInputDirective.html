@@ -1,0 +1,1273 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Angular Bootstrap Date/Time Picker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">Angular Bootstrap Date/Time Picker</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >DlDateTimeInputDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#readme" 
+                class="nav-link"
+                
+                role="tab" id="readme-tab" data-bs-toggle="tab" data-link="readme">README</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/dl-date-time-input/dl-date-time-input.directive.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p> This directive allows the user to enter dates, using the keyboard, into an input box and
+ angular will then store a date value in the model.</p>
+<p> The input format(s), display format, and model format are independent and fully customizable.</p>
+
+            </p>
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>ControlValueAccessor</code>
+                        <code>Validator</code>
+            </p>
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">Providers</td>
+                        <td class="col-md-9">
+                            <code>
+                                { provide: NG_VALUE_ACCESSOR, useExisting: DlDateTimeInputDirective, multi: true }
+                                { provide: NG_VALIDATORS, useExisting: DlDateTimeInputDirective, multi: true }
+                            </code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>input[dlDateTimeInput]</code></td>
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+        </section>
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#_onBlur" >_onBlur</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#_onChange" >_onChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#_onInput" >_onInput</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dlDateTimeInputFilter" >dlDateTimeInputFilter</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dateChange" >dateChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#blur" >blur</a>
+                            </li>
+                            <li>
+                                <a href="#change" >change</a>
+                            </li>
+                            <li>
+                                <a href="#input" >input</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#dlDateTimeInputFilter" >dlDateTimeInputFilter</a>
+                                </li>
+                                <li>
+                                    <a href="#value" >value</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_renderer: Renderer2, _elementRef: ElementRef, _dateAdapter: <a href="../classes/DlDateAdapter.html" target="_self">DlDateAdapter&lt;D&gt;</a>, _displayFormat: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, _inputFormats: string[])</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructs a new instance of this directive.
+ reference to the renderer.
+ reference to this element.
+ date adapter for the date type in the model.
+ from <code>DL_DATE_TIME_DISPLAY_FORMAT</code>, which defines the format to use for a valid date/time value.
+ from <code>DL_DATE_TIME_INPUT_FORMATS</code>, which defines the input formats that allowed as valid date/time values.
+ NB: moment is always in strict parse mode for this directive.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_renderer</td>
+                                                  
+                                                        <td>
+                                                                    <code>Renderer2</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p> reference to the renderer.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>_elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p> reference to this element.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>_dateAdapter</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/DlDateAdapter.html" target="_self" >DlDateAdapter&lt;D&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p> date adapter for the date type in the model.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>_displayFormat</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p> from <code>DL_DATE_TIME_DISPLAY_FORMAT</code>, which defines the format to use for a valid date/time value.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>_inputFormats</td>
+                                                  
+                                                        <td>
+                                                                    <code>string[]</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p> from <code>DL_DATE_TIME_INPUT_FORMATS</code>, which defines the input formats that allowed as valid date/time values.
+ NB: moment is always in strict parse mode for this directive.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dlDateTimeInputFilter"></a>
+                        <b>dlDateTimeInputFilter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:83</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set a function used to determine whether or not the <code>value</code> entered by the user is allowed.
+  a function that returns <code>true</code> if the <code>value</code> entered by the user is allowed, otherwise <code>false</code>.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+            <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dateChange"></a>
+                        <b>dateChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emits when a <code>change</code> event when date/time is selected or
+the value of the date/time picker changes.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-host-listener">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="blur"></a>
+                    <span class="name">
+                        <b>
+                            blur
+                        </b>
+                        <a href="#blur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:120</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Format the input text using <a href="../miscellaneous/variables.html#DL_DATE_TIME_DISPLAY_FORMAT">DL_DATE_TIME_DISPLAY_FORMAT</a> and mark the control as touched.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="change"></a>
+                    <span class="name">
+                        <b>
+                            change
+                        </b>
+                        <a href="#change"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:113</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emit a <code>change</code> event when the value of the input changes.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="input"></a>
+                    <span class="name">
+                        <b>
+                            input
+                        </b>
+                        <a href="#input"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event.target.value' </code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Parse the user input into a possibly valid date.
+The model value is not set if the input is NOT one of the <a href="../miscellaneous/variables.html#DL_DATE_TIME_INPUT_FORMATS">DL_DATE_TIME_INPUT_FORMATS</a>.
+  Value of the input control.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>  Value of the input control.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onBlur"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>_onBlur</b></span>
+                        <a href="#_onBlur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_onBlur()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;blur&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Format the input text using <a href="../miscellaneous/variables.html#DL_DATE_TIME_DISPLAY_FORMAT">DL_DATE_TIME_DISPLAY_FORMAT</a> and mark the control as touched.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onChange"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>_onChange</b></span>
+                        <a href="#_onChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_onChange()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;change&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emit a <code>change</code> event when the value of the input changes.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_onInput"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>_onInput</b></span>
+                        <a href="#_onInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_onInput(value: string | null | undefined)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;input&#x27;, [&#x27;$event.target.value&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Parse the user input into a possibly valid date.
+The model value is not set if the input is NOT one of the <a href="../miscellaneous/variables.html#DL_DATE_TIME_INPUT_FORMATS">DL_DATE_TIME_INPUT_FORMATS</a>.
+  Value of the input control.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>string | null | undefined</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>  Value of the input control.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dlDateTimeInputFilter"></a>
+                        <span class="name"><b>dlDateTimeInputFilter</b><a href="#dlDateTimeInputFilter"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>dlDateTimeInputFilter(inputFilterFunction: (value: D | null) => void)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:83</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set a function used to determine whether or not the <code>value</code> entered by the user is allowed.
+  a function that returns <code>true</code> if the <code>value</code> entered by the user is allowed, otherwise <code>false</code>.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                        <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>inputFilterFunction</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                            <td>
+                                                                    <p>  a function that returns <code>true</code> if the <code>value</code> entered by the user is allowed, otherwise <code>false</code>.</p>
+
+                                                            </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>value()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:93</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Returns <code>D</code> value of the date/time input or <code>undefined</code> | <code>null</code> if no value is set.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>D</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>value(newValue: D | null | undefined)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/lib/dl-date-time-input/dl-date-time-input.directive.ts:103</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set the value of the date/time input to a value of <code>D</code> | <code>undefined</code> | <code>null</code>;
+ the new value of the date/time input</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                        <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>newValue</td>
+                                                    
+                                                            <td>
+                                                                        <code>D | null | undefined</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                            <td>
+                                                                    <p> the new value of the date/time input</p>
+
+                                                            </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+    <div class="tab-pane fade " id="readme">
+        <p><p>This directive provides all of the user facing functionality to input a date and/or time using the keyboard.              |</p>
+<h2>Model date types</h2>
+<p>Import the module corresponding to the desired data type of the date in the model.</p>
+<ul>
+<li>Native JavaScript Date: import <code>DlDateTimePickerDateModule</code></li>
+<li>Moment Date: import <code>DlDateTimePickerMomentModule</code></li>
+<li>Milliseconds (local): import <code>DlDateTimePickerNumberModule</code></li>
+<li>String (local): import <code>DlDateTimePickerStringModule</code></li>
+</ul>
+<p>A <code>DateAdapter</code> is used to adapt the data type in the model to the <code>number</code> data type 
+used internally by the date/time picker.</p>
+<p>If you need a different data type than what is currently supported, you can extend 
+<code>DlDateAdapter&lt;D&gt;</code> to provide the data type you need then override the <code>DlDateAdapter</code> 
+provider in <code>app.module.ts</code> to use your new class. </p>
+<p><code>providers: [{provide: DlDateAdapter, useClass: MyCustomDateAdapter}],</code></p>
+<h2>Display format</h2>
+<p>The display format is defined in the <code>DL_DATE_TIME_DISPLAY_FORMAT</code> token and is injected into this component
+to control the display format.</p>
+<p><code>DL_DATE_TIME_DISPLAY_FORMAT</code> defaults to <code>moment</code>&#39;s <code>lll</code> long date format. 
+Override <code>DL_DATE_TIME_DISPLAY_FORMAT</code> if you do not like the default format.</p>
+<p><code>{provide: DL_DATE_TIME_DISPLAY_FORMAT, useValue: &#39;&lt;what ever format you want goes here&gt;&#39;}</code> </p>
+<h2>Input formats</h2>
+<p>This directive supports multiple input formats, as defined in the <code>DL_DATE_TIME_INPUT_FORMATS</code> token.
+When the user inputs a string value into a text box, this directive attempts to parse the input
+using one of the specified formats, in the order the format occur in the array. </p>
+<p>Once one of the formats is able to parse the user input, the date is set in the model. </p>
+<p><strong>Nota bene</strong> For convenience <code>DL_DATE_TIME_INPUT_FORMATS</code> defaults to support multiple formats, 
+which can dramatically slow down parsing performance. It can also result in successfully parsing 
+a date using a format that is not appropriate for your use case. </p>
+<p>Consider overriding the <code>DL_DATE_TIME_INPUT_FORMATS</code> token to only include the specific formats required by your project. </p>
+<p><code>{provide: DL_DATE_TIME_INPUT_FORMATS, useValue: [&#39;&lt;input format zero&gt;&#39;, ..., &#39;&lt;input format N&gt;&#39;]}</code> </p>
+<p>See moment&#39;s <a href="https://momentjs.com/guides/#/parsing/multiple-formats/">parsing multiple formats</a> 
+page for more information on how these date formats are used. </p>
+</p>
+    </div>
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Directive, ElementRef, EventEmitter, HostListener, Inject, Input, Output, Renderer2} from &#x27;@angular/core&#x27;;
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+  Validators,
+} from &#x27;@angular/forms&#x27;;
+import moment from &#x27;moment&#x27;;
+import {DL_DATE_TIME_DISPLAY_FORMAT, DL_DATE_TIME_INPUT_FORMATS, DlDateAdapter} from &#x27;../core/public-api&#x27;;
+import {DlDateTimeInputChange} from &#x27;./dl-date-time-input-change&#x27;;
+
+/**
+ *  This directive allows the user to enter dates, using the keyboard, into an input box and
+ *  angular will then store a date value in the model.
+ *
+ *  The input format(s), display format, and model format are independent and fully customizable.
+ */
+@Directive({
+  selector: &#x27;input[dlDateTimeInput]&#x27;,
+  providers: [
+    {provide: NG_VALUE_ACCESSOR, useExisting:  DlDateTimeInputDirective, multi: true},
+    {provide: NG_VALIDATORS, useExisting:  DlDateTimeInputDirective, multi: true}
+  ]
+})
+export class DlDateTimeInputDirective&lt;D&gt; implements ControlValueAccessor, Validator {
+
+  /* tslint:disable:member-ordering */
+  private _filterValidator: ValidatorFn &#x3D; (control: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    return (this._inputFilter || (() &#x3D;&gt; true))(this._value) ?
+      null : {&#x27;dlDateTimeInputFilter&#x27;: {&#x27;value&#x27;: control.value}};
+  }
+  private _inputFilter: (value: (D | null)) &#x3D;&gt; boolean &#x3D; () &#x3D;&gt; true;
+  private _isValid &#x3D; true;
+  private _parseValidator: ValidatorFn &#x3D; (): ValidationErrors | null &#x3D;&gt; {
+    return this._isValid ?
+      null : {&#x27;dlDateTimeInputParse&#x27;: {&#x27;text&#x27;: this._elementRef.nativeElement.value}};
+  }
+  private _changed: ((value: D) &#x3D;&gt; void)[] &#x3D; [];
+  private _touched: (() &#x3D;&gt; void)[] &#x3D; [];
+  private _validator &#x3D; Validators.compose([this._parseValidator, this._filterValidator]);
+  private _onValidatorChange: () &#x3D;&gt; void &#x3D; () &#x3D;&gt; {};
+  private _value: D | undefined &#x3D; undefined;
+
+  /**
+   * Emits when a &#x60;change&#x60; event when date/time is selected or
+   * the value of the date/time picker changes.
+   **/
+  @Output()
+  readonly dateChange &#x3D; new EventEmitter&lt;DlDateTimeInputChange&lt;D&gt;&gt;();
+
+  /**
+   * Constructs a new instance of this directive.
+   * @param _renderer
+   *  reference to the renderer.
+   * @param _elementRef
+   *  reference to this element.
+   * @param _dateAdapter
+   *  date adapter for the date type in the model.
+   * @param _displayFormat
+   *  from &#x60;DL_DATE_TIME_DISPLAY_FORMAT&#x60;, which defines the format to use for a valid date/time value.
+   * @param _inputFormats
+   *  from &#x60;DL_DATE_TIME_INPUT_FORMATS&#x60;, which defines the input formats that allowed as valid date/time values.
+   *  NB: moment is always in strict parse mode for this directive.
+   */
+  constructor(
+    private _renderer: Renderer2,
+    private _elementRef: ElementRef,
+    private _dateAdapter: DlDateAdapter&lt;D&gt;,
+    @Inject(DL_DATE_TIME_DISPLAY_FORMAT) private readonly _displayFormat: string,
+    @Inject(DL_DATE_TIME_INPUT_FORMATS) private readonly _inputFormats: string[]
+  ) {}
+
+  /**
+   * Set a function used to determine whether or not the &#x60;value&#x60; entered by the user is allowed.
+   * @param inputFilterFunction
+   *   a function that returns &#x60;true&#x60; if the &#x60;value&#x60; entered by the user is allowed, otherwise &#x60;false&#x60;.
+   */
+  @Input()
+  set dlDateTimeInputFilter(inputFilterFunction: (value: D | null) &#x3D;&gt; boolean) {
+    this._inputFilter &#x3D; inputFilterFunction || (() &#x3D;&gt; true);
+    this._onValidatorChange();
+  }
+
+  /* tslint:enable:member-ordering */
+
+  /**
+   * Returns &#x60;D&#x60; value of the date/time input or &#x60;undefined&#x60; | &#x60;null&#x60; if no value is set.
+   **/
+  get value(): D {
+    return this._value;
+  }
+
+  /**
+   * Set the value of the date/time input to a value of &#x60;D&#x60; | &#x60;undefined&#x60; | &#x60;null&#x60;;
+   * @param newValue
+   *  the new value of the date/time input
+   */
+
+  set value(newValue: D | null | undefined) {
+    if (newValue !&#x3D;&#x3D; this._value) {
+      this._value &#x3D; newValue;
+      this._changed.forEach(onChanged &#x3D;&gt; onChanged(this._value));
+    }
+  }
+
+  /**
+   * Emit a &#x60;change&#x60; event when the value of the input changes.
+   */
+  @HostListener(&#x27;change&#x27;) _onChange() {
+    this.dateChange.emit(new DlDateTimeInputChange(this._value));
+  }
+
+  /**
+   * Format the input text using {@link DL_DATE_TIME_DISPLAY_FORMAT} and mark the control as touched.
+   */
+  @HostListener(&#x27;blur&#x27;) _onBlur() {
+    if (this._value) {
+      this._setElementValue(this._value);
+    }
+    this._touched.forEach(onTouched &#x3D;&gt; onTouched());
+  }
+
+  /**
+   * Parse the user input into a possibly valid date.
+   * The model value is not set if the input is NOT one of the {@link DL_DATE_TIME_INPUT_FORMATS}.
+   * @param value
+   *   Value of the input control.
+   */
+  @HostListener(&#x27;input&#x27;, [&#x27;$event.target.value&#x27;]) _onInput(value: string | null | undefined): void {
+    const testDate &#x3D; value &#x3D;&#x3D;&#x3D; null || value &#x3D;&#x3D;&#x3D; undefined || value &#x3D;&#x3D;&#x3D; &#x27;&#x27;
+      ? undefined
+      : moment(value, this._inputFormats, true);
+
+    this._isValid &#x3D; testDate &amp;&amp; testDate.isValid();
+    this.value &#x3D; this._isValid ? this._dateAdapter.fromMilliseconds(testDate.valueOf()) : undefined;
+  }
+
+  /**
+   * @internal
+   */
+  private _setElementValue(value: D) {
+    if (value !&#x3D;&#x3D; null &amp;&amp; value !&#x3D;&#x3D; undefined) {
+      this._renderer.setProperty(this._elementRef.nativeElement, &#x27;value&#x27;, moment(value).format(this._displayFormat));
+    }
+  }
+
+  /**
+   * @internal
+   */
+  registerOnChange(onChange: (value: any) &#x3D;&gt; void): void {
+    this._changed.push(onChange);
+  }
+
+  /**
+   * @internal
+   */
+  registerOnTouched(onTouched: () &#x3D;&gt; void): void {
+    this._touched.push(onTouched);
+  }
+
+  /**
+   * @internal
+   */
+  registerOnValidatorChange(validatorOnChange: () &#x3D;&gt; void): void {
+    this._onValidatorChange &#x3D; validatorOnChange;
+  }
+
+  /**
+   * @internal
+   */
+  setDisabledState(isDisabled: boolean): void {
+    this._renderer.setProperty(this._elementRef.nativeElement, &#x27;disabled&#x27;, isDisabled);
+  }
+
+  /**
+   * @internal
+   */
+  validate(control: AbstractControl): ValidationErrors | null {
+    return this._validator(control);
+  }
+
+  /**
+   * @internal
+   */
+  writeValue(value: D): void {
+    this._isValid &#x3D; true;
+    this.value &#x3D; value;
+    this._setElementValue(value);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'DlDateTimeInputDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                ga('create', 'UA-325325-19', '');
+                ga('send', 'pageview');
+            </script>
+
+    </body>
+</html>

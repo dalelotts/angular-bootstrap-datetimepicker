@@ -1,0 +1,373 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Angular Bootstrap Date/Time Picker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">Angular Bootstrap Date/Time Picker</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>Angular 13+ bootstrap date &amp; time picker</h1>
+<p>Native Angular (13+) datetime picker component styled by Twitter Bootstrap 4.</p>
+<p><a href="https://www.npmjs.com/package/angular-bootstrap-datetimepicker"><img src="https://img.shields.io/npm/dm/angular-bootstrap-datetimepicker.svg" alt="npm downloads" class="img-responsive"></a>
+<a href="https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker"><img src="https://travis-ci.org/dalelotts/angular-bootstrap-datetimepicker.png?branch=master" alt="Build Status" class="img-responsive"></a>
+<a href="https://coveralls.io/github/dalelotts/angular-bootstrap-datetimepicker?branch=master"><img src="https://coveralls.io/repos/github/dalelotts/angular-bootstrap-datetimepicker/badge.svg?branch=master" alt="Coverage Status" class="img-responsive"></a>
+<a href="https://snyk.io/test/npm/angular-bootstrap-datetimepicker"><img src="https://snyk.io/test/npm/angular-bootstrap-datetimepicker/badge.svg" alt="Known Vulnerabilities" class="img-responsive"></a></p>
+<p><a href="https://gitter.im/dalelotts/angular-bootstrap-datetimepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/dalelotts/angular-bootstrap-datetimepicker.svg" alt="Join the chat at https://gitter.im/dalelotts/angular-bootstrap-datetimepicker" class="img-responsive"></a>
+<a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License" class="img-responsive"></a>
+<a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly" class="img-responsive"></a>
+<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release" class="img-responsive"></a></p>
+<p><a href="http://dalelotts.github.io/angular-bootstrap-datetimepicker/">Documentation</a></p>
+<p><a href="https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo">Demo Page</a></p>
+<p><a href="https://github.com/dalelotts/angular-bootstrap-datetimepicker">Github</a></p>
+<p><em>Read this in other languages: <a href="https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/README.es_MX.md">Spanish</a></em></p>
+<h2>On Angular 8.x-12.x?</h2>
+<p>Use version 4</p>
+<p><code>npm install angular-bootstrap-datetimepicker@4</code></p>
+<h2>On Angular 7.x?</h2>
+<p>Use version 3</p>
+<p><code>npm install angular-bootstrap-datetimepicker@3</code></p>
+<h2>On Angular 1.x?</h2>
+<p>See <a href="https://github.com/dalelotts/angularjs-bootstrap-datetimepicker">angularjs-bootstrap-datetimepicker</a></p>
+<h2>Support the project</h2>
+<p>I know this is a tiny component but many people use it in production (high 5 to all of us) - if you happen to use this component please click the star button (at the top of the page) - it means a lot to all the contributors.</p>
+<p><img src="./screenshots/stars.png" alt="" class="img-responsive"></p>
+<h2>Peer Dependencies</h2>
+<p>Peer dependencies:</p>
+<ul>
+<li>Angular 8.x or higher (1.x will not work)</li>
+<li>moment.js 2.22.2 or higher for date parsing and formatting</li>
+<li>bootstrap 4.x for css/layout</li>
+<li>open-iconic for the default icon&#39;s (you can use any icon library you like)</li>
+</ul>
+<p>jQuery is NOT required.</p>
+<h2>Usage with Angular CLI</h2>
+<p>If you are using the <a href="https://cli.angular.io/">Angular CLI</a> there are a few simple steps to
+add this component to your project.</p>
+<p>First, install this module and it&#39;s peer dependencies.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-shell">npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic</code></pre></div><p>Then update <code>./src/app/app.module.ts</code> to include the following:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-TypeScript">import { AppComponent } from &#39;./app.component&#39;;
+import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
+import { FormsModule } from &#39;&#64;angular/forms&#39;;
+import { NgModule } from &#39;&#64;angular/core&#39;;
+import { DlDateTimeDateModule, DlDateTimePickerModule } from &#39;angular-bootstrap-datetimepicker&#39;;
+
+&#64;NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    DlDateTimeDateModule,  // &lt;--- Determines the data type of the model
+    DlDateTimePickerModule,
+  ],
+  providers: [FormsModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }</code></pre></div><p>Next, add the following to <code>./src/app/app.component.html</code></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;dl-date-time-picker startView=&quot;day&quot; maxView=&quot;year&quot; minView=&quot;minute&quot; minuteStep=&quot;5&quot; [(ngModel)]=&quot;selectedDate&quot;&gt; &lt;/dl-date-time-picker&gt;</code></pre></div><p>Next, add the following to <code>./src/styles.css</code></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-css">&#64;import &quot;~bootstrap/dist/css/bootstrap.min.css&quot;;
+&#64;import &quot;~open-iconic/font/css/open-iconic-bootstrap.css&quot;;</code></pre></div><p><strong>Note:</strong> This component uses <code>open-iconic</code> icons by default, but you can use any icon library
+that supports styling with <code>classes</code>.</p>
+<p>Finally, run <code>npm start</code> and you should see the date/time picker on <a href="http://localhost:4200/">http://localhost:4200/</a></p>
+<p>By default, the date/time picker is as wide as it&#39;s container <code>{ width:100% }</code>.
+It uses bootstrap&#39;s flex <code>row</code> and <code>col</code> classes to layout the date/time picker into rows and columns.
+If the parent container is too narrow (less than 340px in english), the row and column layout may wrap in ways that are not attractive.
+Other languages/locals may require a wider container to fit the contents.</p>
+<h2>Configuration</h2>
+<p>Use the <a href="https://stackblitz.com/github/dalelotts/angular-bootstrap-datetimepicker-demo">automated configuration generator</a> (please let me know if it does not work for your use case!),
+or see <a href="https://dalelotts.github.io/angular-bootstrap-datetimepicker/">https://dalelotts.github.io/angular-bootstrap-datetimepicker/</a>
+for the automatically generated documentation.</p>
+<h3>First day of week</h3>
+<p>The first day of the week is determined by <a href="https://momentjs.com/docs/#/i18n/">moment&#39;s i18n settings</a>.
+For example, setting the locale to <code>&#39;fr&#39;</code> will cause Monday to be the first day of the week.</p>
+<h3>Display of year, month, day, hour, am/pm, and minute formats</h3>
+<p>The format of hours and minutes is also determined by <a href="https://momentjs.com/docs/#/i18n/">moment&#39;s i18n settings</a>.</p>
+<p>hours are displayed using <code>ll</code> as the format.
+minutes are displayed using <code>lll</code> as the format.</p>
+<p>I recommend you use the default locale settings from Moment (if they are incorrect, submit a PR to moment to correct the settings)
+If for some reason the default Moment settings will not work, you can <a href="https://momentjs.com/docs/#/customization/">customize the existing locale</a> or <a href="https://momentjs.com/docs/#/i18n/adding-locale/">create a custom locale</a> with the desired formats.</p>
+<h2>Documentation</h2>
+<p>You can generate the documentation by running <code>npm run documentation</code>
+or see <a href="https://dalelotts.github.io/angular-bootstrap-datetimepicker/">https://dalelotts.github.io/angular-bootstrap-datetimepicker/</a></p>
+<h2>Accessibility</h2>
+<p>The <code>DlDateTimePickerComponent</code> component adds <code>aria-label</code> attributes to the left, right, and up buttons
+in addition to all calendar cells where the text of the cell may not fully describe the value.</p>
+<h3>Keyboard Accessibility</h3>
+<p>The <code>DlDateTimePickerComponent</code> component supports the following keyboard shortcuts in all views:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LEFT_ARROW</code></td>
+<td>Go to the cell to the left</td>
+</tr>
+<tr>
+<td><code>RIGHT_ARROW</code></td>
+<td>Go to the cell to the right</td>
+</tr>
+<tr>
+<td><code>UP_ARROW</code></td>
+<td>Go to the cell above</td>
+</tr>
+<tr>
+<td><code>DOWN_ARROW</code></td>
+<td>Go to the cell below</td>
+</tr>
+<tr>
+<td><code>HOME</code></td>
+<td>Go to the first cell in the view</td>
+</tr>
+<tr>
+<td><code>END</code></td>
+<td>Go to the last cell in the view</td>
+</tr>
+<tr>
+<td><code>PAGE_UP</code></td>
+<td>Go to the same cell in the previous time period</td>
+</tr>
+<tr>
+<td><code>PAGE_DOWN</code></td>
+<td>Go to the same cell in the next time period</td>
+</tr>
+<tr>
+<td><code>ENTER</code> or <code>SPACE</code></td>
+<td>Select current cell</td>
+</tr>
+</tbody>
+</table>
+<h2>Screen shots</h2>
+<h3>Year view</h3>
+<p><img src="./screenshots/year.png" alt="Datetimepicker year view" class="img-responsive"></p>
+<p>This view allows the user to select the year for the target date.
+If the year view is the minView, the date will be set to midnight on the first day of the year</p>
+<h3>Month view</h3>
+<p><img src="./screenshots/month.png" alt="Datetimepicker month view" class="img-responsive"></p>
+<p>This view allows the user to select the month in the selected year.
+If the month view is the minView, the date will be set to midnight on the first day of the month.</p>
+<h3>Day view (Default)</h3>
+<p><img src="./screenshots/day.png" alt="Datetimepicker day view" class="img-responsive"></p>
+<p>This view allows the user to select the the day of the month, in the selected month.
+If the day view is the minView, the date will be set to midnight on the day selected.</p>
+<h3>Hour view</h3>
+<p><img src="./screenshots/hour.png" alt="Datetimepicker hour view" class="img-responsive"></p>
+<p>This view allows the user to select the hour of the day, on the selected day.
+If the hour view is the minView, the date will be set to the beginning of the hour on the day selected.</p>
+<h3>Minute view</h3>
+<p><img src="./screenshots/minute.png" alt="Datetimepicker minute view" class="img-responsive"></p>
+<p>This view allows the user to select a specific time of day, in the selected hour.
+By default, the time is displayed in 5 minute increments. The <code>minuteStep</code> property controls the increments of time displayed.
+If the minute view is the minView, which is is by default, the date will be set to the beginning of the hour on the day selected.</p>
+<h2>Contributing</h2>
+<p>See <a href=".github/contributing.md">Contributing.md</a></p>
+<h3>Testing</h3>
+<p>This component was written using TDD and all enhancements and changes have related tests.</p>
+<p>We use karma and jshint to ensure the quality of the code. The easiest way to run these checks is to use gulp:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-shell">npm install
+npm test</code></pre></div><p>The karma task will try to open Chrome as a browser in which to run the tests.
+Make sure Chrome is available or change the browsers setting in karma.config.js</p>
+<h2>Stars history</h2>
+<p><a href="https://starchart.cc/dalelotts/angular-bootstrap-datetimepicker"><img src="https://starchart.cc/dalelotts/angular-bootstrap-datetimepicker.svg" alt="Stargazers over time" class="img-responsive"></a></p>
+<h2>License</h2>
+<p>angular-bootstrap-datetimepicker is released under the MIT license and is copyright 2015 Knight Rider Consulting, Inc.. Boiled down to smaller chunks, it can be described with the following conditions.</p>
+<h2>It requires you to:</h2>
+<ul>
+<li>Keep the license and copyright notice included in angular-bootstrap-datetimepicker&#39;s CSS and JavaScript files when you use them in your works</li>
+</ul>
+<h2>It permits you to:</h2>
+<ul>
+<li>Freely download and use angular-bootstrap-datetimepicker, in whole or in part, for personal, private, company internal, or commercial purposes</li>
+<li>Use angular-bootstrap-datetimepicker in packages or distributions that you create</li>
+<li>Modify the source code</li>
+<li>Grant a sublicense to modify and distribute angular-bootstrap-datetimepicker to third parties not included in the license</li>
+</ul>
+<h2>It forbids you to:</h2>
+<ul>
+<li>Hold the authors and license owners liable for damages as angular-bootstrap-datetimepicker is provided without warranty</li>
+<li>Hold the creators or copyright holders of angular-bootstrap-datetimepicker liable</li>
+<li>Redistribute any piece of angular-bootstrap-datetimepicker without proper attribution</li>
+<li>Use any marks owned by Knight Rider Consulting, Inc. in any way that might state or imply that Knight Rider Consulting, Inc. endorses your distribution</li>
+<li>Use any marks owned by Knight Rider Consulting, Inc. in any way that might state or imply that you created the Knight Rider Consulting, Inc. software in question</li>
+</ul>
+<h2>It does not require you to:</h2>
+<ul>
+<li>Include the source of angular-bootstrap-datetimepicker itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it</li>
+<li>Submit changes that you make to angular-bootstrap-datetimepicker back to the angular-bootstrap-datetimepicker project (though such feedback is encouraged)</li>
+</ul>
+<p>The full angular-bootstrap-datetimepicker license is located <a href="LICENSE">in the project repository</a> for more information.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                ga('create', 'UA-325325-19', '');
+                ga('send', 'pageview');
+            </script>
+
+    </body>
+</html>

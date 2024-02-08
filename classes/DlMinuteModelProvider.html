@@ -1,0 +1,1529 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Angular Bootstrap Date/Time Picker</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">Angular Bootstrap Date/Time Picker</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >DlMinuteModelProvider</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/lib/dl-date-time-picker/dl-model-provider-minute.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Default implementation for the <code>minute</code> view.</p>
+
+            </p>
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/DlModelProvider.html" target="_self" >DlModelProvider</a></code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getModel" >getModel</a>
+                            </li>
+                            <li>
+                                <a href="#goDown" >goDown</a>
+                            </li>
+                            <li>
+                                <a href="#goEnd" >goEnd</a>
+                            </li>
+                            <li>
+                                <a href="#goHome" >goHome</a>
+                            </li>
+                            <li>
+                                <a href="#goLeft" >goLeft</a>
+                            </li>
+                            <li>
+                                <a href="#goRight" >goRight</a>
+                            </li>
+                            <li>
+                                <a href="#goUp" >goUp</a>
+                            </li>
+                            <li>
+                                <a href="#onChanges" >onChanges</a>
+                            </li>
+                            <li>
+                                <a href="#pageDown" >pageDown</a>
+                            </li>
+                            <li>
+                                <a href="#pageUp" >pageUp</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModel"></a>
+                    <span class="name">
+                        <span ><b>getModel</b></span>
+                        <a href="#getModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getModel(milliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns the <code>minute</code> model for the specified moment in <code>local</code> time with the
+<code>active</code> minute set to the beginning of the hour.</p>
+<p>The <code>minute</code> model represents an hour (60 minutes) as three rows with four columns
+and each cell representing 5-minute increments.</p>
+<p>The hour always starts at midnight.</p>
+<p>Each cell represents a 5-minute increment starting at midnight.</p>
+<p>The <code>active</code> minute will be the 5-minute increments less than or equal to the specified milliseconds.</p>
+<p> the moment in time from which the minute model will be created.
+ the current value of the date/time picker.
+ the model representing the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>milliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the minute model will be created.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> the model representing the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goDown"></a>
+                    <span class="name">
+                        <span ><b>goDown</b></span>
+                        <a href="#goDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goDown(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the active <code>minute</code> one row <code>down</code> from the specified moment in time.</p>
+<p>Moving <code>down</code> can result in the <code>active</code> minute being part of a different hour than
+the specified <code>fromMilliseconds</code>, in this case the hour represented by the model
+will change to show the correct hour.</p>
+<p> the moment in time from which the next <code>minute</code> model <code>down</code> will be constructed.
+ the current value of the date/time picker.
+ model containing an <code>active</code> <code>minute</code> one row <code>down</code> from the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the next <code>minute</code> model <code>down</code> will be constructed.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> model containing an <code>active</code> <code>minute</code> one row <code>down</code> from the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goEnd"></a>
+                    <span class="name">
+                        <span ><b>goEnd</b></span>
+                        <a href="#goEnd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goEnd(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the <code>active</code> <code>minute</code> to the last cell of the current hour.</p>
+<p>The view or time range will not change unless the <code>fromMilliseconds</code> value
+is in a different hour than the displayed decade.</p>
+<p> the moment in time from which the last cell will be calculated.
+ the current value of the date/time picker.
+ a model with the last cell in the view as the active <code>minute</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the last cell will be calculated.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> a model with the last cell in the view as the active <code>minute</code>.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goHome"></a>
+                    <span class="name">
+                        <span ><b>goHome</b></span>
+                        <a href="#goHome"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goHome(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the <code>active</code> <code>minute</code> to the first cell of the current hour.</p>
+<p>The view or time range will not change unless the <code>fromMilliseconds</code> value
+is in a different hour than the displayed decade.</p>
+<p> the moment in time from which the first cell will be calculated.
+ the current value of the date/time picker.
+ a model with the first cell in the view as the active <code>minute</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the first cell will be calculated.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> a model with the first cell in the view as the active <code>minute</code>.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goLeft"></a>
+                    <span class="name">
+                        <span ><b>goLeft</b></span>
+                        <a href="#goLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goLeft(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the <code>active</code> date one cell to <code>left</code> in the current <code>minute</code> view.</p>
+<p>Moving <code>left</code> can result in the <code>active</code> hour being part of a different hour than
+the specified <code>fromMilliseconds</code>, in this case the hour represented by the model
+will change to show the correct hour.</p>
+<p> the moment in time from which the <code>minute</code> model to the <code>left</code> will be constructed.
+ the current value of the date/time picker.
+ model containing an <code>active</code> <code>minute</code> one cell to the <code>left</code> of the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the <code>minute</code> model to the <code>left</code> will be constructed.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> model containing an <code>active</code> <code>minute</code> one cell to the <code>left</code> of the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goRight"></a>
+                    <span class="name">
+                        <span ><b>goRight</b></span>
+                        <a href="#goRight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goRight(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:205</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move <code>active</code> minute one cell to <code>right</code> in the current <code>minute</code> view.</p>
+<p>Moving <code>right</code> can result in the <code>active</code> hour being part of a different hour than
+the specified <code>fromMilliseconds</code>, in this case the hour represented by the model
+will change to show the correct hour.</p>
+<p> the moment in time from which the <code>minute</code> model to the <code>right</code> will be constructed.
+ the current value of the date/time picker.
+ model containing an <code>active</code> <code>minute</code> one cell to the <code>right</code> of the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the <code>minute</code> model to the <code>right</code> will be constructed.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> model containing an <code>active</code> <code>minute</code> one cell to the <code>right</code> of the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goUp"></a>
+                    <span class="name">
+                        <span ><b>goUp</b></span>
+                        <a href="#goUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goUp(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:169</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the active <code>minute</code> one row <code>down</code> from the specified moment in time.</p>
+<p>Moving <code>down</code> can result in the <code>active</code> minute being part of a different hour than
+the specified <code>fromMilliseconds</code>, in this case the hour represented by the model
+will change to show the correct hour.</p>
+<p> the moment in time from which the next <code>minute</code> model <code>down</code> will be constructed.
+ the current value of the date/time picker.
+ model containing an <code>active</code> <code>minute</code> one row <code>down</code> from the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the next <code>minute</code> model <code>down</code> will be constructed.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> model containing an <code>active</code> <code>minute</code> one row <code>down</code> from the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChanges"></a>
+                    <span class="name">
+                        <span ><b>onChanges</b></span>
+                        <a href="#onChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onChanges(changes: SimpleChanges)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Receives <code>minuteStep</code> configuration changes detected by Angular.</p>
+<p>Changes where the value has not changed are ignored.</p>
+<p>Setting <code>minuteStep</code> to <code>null</code> or <code>undefined</code> will result in a
+minuteStep of <code>5</code>.</p>
+<p> the input changes detected by Angular.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changes</td>
+                                            <td>
+                                                        <code>SimpleChanges</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the input changes detected by Angular.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageDown"></a>
+                    <span class="name">
+                        <span ><b>pageDown</b></span>
+                        <a href="#pageDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pageDown(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:225</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the active <code>minute</code> one hour <code>down</code> from the specified moment in time.</p>
+<p>The <code>active</code> minute will be <code>one (1) hour after</code> the specified milliseconds.
+This moves the <code>active</code> date one <code>page</code> <code>down</code> from the current <code>minute</code> view.</p>
+<p>The next cell <code>page-down</code> will be in a different hour than the currently
+displayed view and the model time range will include the new active cell.</p>
+<p> the moment in time from which the next <code>month</code> model page <code>down</code> will be constructed.
+ the current value of the date/time picker.
+ model containing an <code>active</code> <code>month</code> one year <code>down</code> from the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the next <code>month</code> model page <code>down</code> will be constructed.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> model containing an <code>active</code> <code>month</code> one year <code>down</code> from the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageUp"></a>
+                    <span class="name">
+                        <span ><b>pageUp</b></span>
+                        <a href="#pageUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pageUp(fromMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedMilliseconds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="245"
+                                    class="link-to-prism">src/lib/dl-date-time-picker/dl-model-provider-minute.ts:245</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Move the active <code>minute</code> one hour <code>up</code> from the specified moment in time.</p>
+<p>The <code>active</code> minute will be <code>one (1) hour before</code> the specified milliseconds.
+This moves the <code>active</code> date one <code>page</code> <code>down</code> from the current <code>minute</code> view.</p>
+<p>The next cell <code>page-up</code> will be in a different hour than the currently
+displayed view and the model time range will include the new active cell.</p>
+<p> the moment in time from which the next <code>month</code> model page <code>down</code> will be constructed.
+ the current value of the date/time picker.
+ model containing an <code>active</code> <code>month</code> one year <code>down</code> from the specified moment in time.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the moment in time from which the next <code>month</code> model page <code>down</code> will be constructed.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>selectedMilliseconds</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p> the current value of the date/time picker.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/DlDateTimePickerModel.html" target="_self" >DlDateTimePickerModel</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p> model containing an <code>active</code> <code>month</code> one year <code>down</code> from the specified moment in time.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {SimpleChanges} from &#x27;@angular/core&#x27;;
+import moment from &#x27;moment&#x27;;
+import {DlDateTimePickerModel} from &#x27;./dl-date-time-picker-model&#x27;;
+import {DlModelProvider} from &#x27;./dl-model-provider&#x27;;
+
+/**
+ * Default implementation for the &#x60;minute&#x60; view.
+ */
+export class DlMinuteModelProvider implements DlModelProvider {
+
+  private step &#x3D; 5;
+
+  /**
+   * Receives &#x60;minuteStep&#x60; configuration changes detected by Angular.
+   *
+   * Changes where the value has not changed are ignored.
+   *
+   * Setting &#x60;minuteStep&#x60; to &#x60;null&#x60; or &#x60;undefined&#x60; will result in a
+   * minuteStep of &#x60;5&#x60;.
+   *
+   * @param changes
+   *  the input changes detected by Angular.
+   */
+
+  onChanges(changes: SimpleChanges): void {
+
+    const minuteStepChange &#x3D; changes[&#x27;minuteStep&#x27;];
+
+    if (minuteStepChange
+      &amp;&amp; (minuteStepChange.previousValue !&#x3D;&#x3D; minuteStepChange.currentValue)
+    ) {
+      this.step &#x3D; minuteStepChange.currentValue;
+      if (this.step &#x3D;&#x3D;&#x3D; null || this.step &#x3D;&#x3D;&#x3D; undefined) {
+        this.step &#x3D; 5;
+      }
+    }
+  }
+
+
+  /**
+   * Returns the &#x60;minute&#x60; model for the specified moment in &#x60;local&#x60; time with the
+   * &#x60;active&#x60; minute set to the beginning of the hour.
+   *
+   * The &#x60;minute&#x60; model represents an hour (60 minutes) as three rows with four columns
+   * and each cell representing 5-minute increments.
+   *
+   * The hour always starts at midnight.
+   *
+   * Each cell represents a 5-minute increment starting at midnight.
+   *
+   * The &#x60;active&#x60; minute will be the 5-minute increments less than or equal to the specified milliseconds.
+   *
+   * @param milliseconds
+   *  the moment in time from which the minute model will be created.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  the model representing the specified moment in time.
+   */
+  getModel(milliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    const startDate &#x3D; moment(milliseconds).startOf(&#x27;hour&#x27;);
+    const currentMilliseconds &#x3D; moment().valueOf();
+
+    const minuteSteps &#x3D; new Array(Math.ceil(60 / this.step)).fill(0).map((zero, index) &#x3D;&gt; zero + index * this.step);
+    const minuteValues &#x3D; minuteSteps.map((minutesToAdd) &#x3D;&gt; moment(startDate).add(minutesToAdd, &#x27;minutes&#x27;).valueOf());
+    const activeValue &#x3D; moment(minuteValues.filter((value) &#x3D;&gt; value &lt;&#x3D; milliseconds).pop()).valueOf();
+
+    const nowValue &#x3D; currentMilliseconds &gt;&#x3D; startDate.valueOf() &amp;&amp; currentMilliseconds &lt;&#x3D; moment(startDate).endOf(&#x27;hour&#x27;).valueOf()
+      ? moment(minuteValues.filter((value) &#x3D;&gt; value &lt;&#x3D; currentMilliseconds).pop()).valueOf()
+      : null;
+
+
+    const previousHour &#x3D; moment(startDate).subtract(1, &#x27;hour&#x27;);
+    const nextHour &#x3D; moment(startDate).add(1, &#x27;hour&#x27;);
+    const selectedValue &#x3D; selectedMilliseconds &#x3D;&#x3D;&#x3D; null || selectedMilliseconds &#x3D;&#x3D;&#x3D; undefined
+      ? selectedMilliseconds
+      : moment(minuteValues.filter((value) &#x3D;&gt; value &lt;&#x3D; selectedMilliseconds).pop()).valueOf();
+
+    const rows &#x3D; new Array(Math.ceil(minuteSteps.length / 4))
+      .fill(0)
+      .map((zero, index) &#x3D;&gt; zero + index)
+      .map((value) &#x3D;&gt; {
+        return {cells: minuteSteps.slice((value * 4), (value * 4) + 4).map(rowOfMinutes)};
+      });
+
+    return {
+      viewName: &#x27;minute&#x27;,
+      viewLabel: startDate.format(&#x27;lll&#x27;),
+      activeDate: activeValue,
+      leftButton: {
+        value: previousHour.valueOf(),
+        ariaLabel: &#x60;Go to ${previousHour.format(&#x27;lll&#x27;)}&#x60;,
+        classes: {},
+      },
+      upButton: {
+        value: startDate.valueOf(),
+        ariaLabel: &#x60;Go to ${startDate.format(&#x27;ll&#x27;)}&#x60;,
+        classes: {},
+      },
+      rightButton: {
+        value: nextHour.valueOf(),
+        ariaLabel: &#x60;Go to ${nextHour.format(&#x27;lll&#x27;)}&#x60;,
+        classes: {},
+      },
+      rows
+    };
+
+    function rowOfMinutes(stepMinutes): {
+      display: string;
+      ariaLabel: string;
+      value: number;
+      classes: {};
+    } {
+      const minuteMoment &#x3D; moment(startDate).add(stepMinutes, &#x27;minutes&#x27;);
+      return {
+        display: minuteMoment.format(&#x27;LT&#x27;),
+        ariaLabel: minuteMoment.format(&#x27;LLL&#x27;),
+        value: minuteMoment.valueOf(),
+        classes: {
+          &#x27;dl-abdtp-active&#x27;: activeValue &#x3D;&#x3D;&#x3D; minuteMoment.valueOf(),
+          &#x27;dl-abdtp-selected&#x27;: selectedValue &#x3D;&#x3D;&#x3D; minuteMoment.valueOf(),
+          &#x27;dl-abdtp-now&#x27;: nowValue &#x3D;&#x3D;&#x3D; minuteMoment.valueOf(),
+        }
+      };
+    }
+  }
+
+  /**
+   * Move the active &#x60;minute&#x60; one row &#x60;down&#x60; from the specified moment in time.
+   *
+   * Moving &#x60;down&#x60; can result in the &#x60;active&#x60; minute being part of a different hour than
+   * the specified &#x60;fromMilliseconds&#x60;, in this case the hour represented by the model
+   * will change to show the correct hour.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the next &#x60;minute&#x60; model &#x60;down&#x60; will be constructed.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  model containing an &#x60;active&#x60; &#x60;minute&#x60; one row &#x60;down&#x60; from the specified moment in time.
+   */
+  goDown(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).add(this.step * 4, &#x27;minutes&#x27;).valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move the active &#x60;minute&#x60; one row &#x60;down&#x60; from the specified moment in time.
+   *
+   * Moving &#x60;down&#x60; can result in the &#x60;active&#x60; minute being part of a different hour than
+   * the specified &#x60;fromMilliseconds&#x60;, in this case the hour represented by the model
+   * will change to show the correct hour.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the next &#x60;minute&#x60; model &#x60;down&#x60; will be constructed.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  model containing an &#x60;active&#x60; &#x60;minute&#x60; one row &#x60;down&#x60; from the specified moment in time.
+   */
+  goUp(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).subtract(this.step * 4, &#x27;minutes&#x27;).valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move the &#x60;active&#x60; date one cell to &#x60;left&#x60; in the current &#x60;minute&#x60; view.
+   *
+   * Moving &#x60;left&#x60; can result in the &#x60;active&#x60; hour being part of a different hour than
+   * the specified &#x60;fromMilliseconds&#x60;, in this case the hour represented by the model
+   * will change to show the correct hour.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the &#x60;minute&#x60; model to the &#x60;left&#x60; will be constructed.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  model containing an &#x60;active&#x60; &#x60;minute&#x60; one cell to the &#x60;left&#x60; of the specified moment in time.
+   */
+  goLeft(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).subtract(this.step, &#x27;minutes&#x27;).valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move &#x60;active&#x60; minute one cell to &#x60;right&#x60; in the current &#x60;minute&#x60; view.
+   *
+   * Moving &#x60;right&#x60; can result in the &#x60;active&#x60; hour being part of a different hour than
+   * the specified &#x60;fromMilliseconds&#x60;, in this case the hour represented by the model
+   * will change to show the correct hour.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the &#x60;minute&#x60; model to the &#x60;right&#x60; will be constructed.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  model containing an &#x60;active&#x60; &#x60;minute&#x60; one cell to the &#x60;right&#x60; of the specified moment in time.
+   */
+  goRight(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).add(this.step, &#x27;minutes&#x27;).valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move the active &#x60;minute&#x60; one hour &#x60;down&#x60; from the specified moment in time.
+   *
+   * The &#x60;active&#x60; minute will be &#x60;one (1) hour after&#x60; the specified milliseconds.
+   * This moves the &#x60;active&#x60; date one &#x60;page&#x60; &#x60;down&#x60; from the current &#x60;minute&#x60; view.
+   *
+   * The next cell &#x60;page-down&#x60; will be in a different hour than the currently
+   * displayed view and the model time range will include the new active cell.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the next &#x60;month&#x60; model page &#x60;down&#x60; will be constructed.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  model containing an &#x60;active&#x60; &#x60;month&#x60; one year &#x60;down&#x60; from the specified moment in time.
+   */
+  pageDown(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).add(1, &#x27;hour&#x27;).valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move the active &#x60;minute&#x60; one hour &#x60;up&#x60; from the specified moment in time.
+   *
+   * The &#x60;active&#x60; minute will be &#x60;one (1) hour before&#x60; the specified milliseconds.
+   * This moves the &#x60;active&#x60; date one &#x60;page&#x60; &#x60;down&#x60; from the current &#x60;minute&#x60; view.
+   *
+   * The next cell &#x60;page-up&#x60; will be in a different hour than the currently
+   * displayed view and the model time range will include the new active cell.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the next &#x60;month&#x60; model page &#x60;down&#x60; will be constructed.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  model containing an &#x60;active&#x60; &#x60;month&#x60; one year &#x60;down&#x60; from the specified moment in time.
+   */
+  pageUp(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).subtract(1, &#x27;hour&#x27;).valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move the &#x60;active&#x60; &#x60;minute&#x60; to the last cell of the current hour.
+   *
+   * The view or time range will not change unless the &#x60;fromMilliseconds&#x60; value
+   * is in a different hour than the displayed decade.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the last cell will be calculated.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  a model with the last cell in the view as the active &#x60;minute&#x60;.
+   */
+  goEnd(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds)
+      .endOf(&#x27;hour&#x27;)
+      .valueOf(), selectedMilliseconds);
+  }
+
+  /**
+   * Move the &#x60;active&#x60; &#x60;minute&#x60; to the first cell of the current hour.
+   *
+   * The view or time range will not change unless the &#x60;fromMilliseconds&#x60; value
+   * is in a different hour than the displayed decade.
+   *
+   * @param fromMilliseconds
+   *  the moment in time from which the first cell will be calculated.
+   * @param selectedMilliseconds
+   *  the current value of the date/time picker.
+   * @returns
+   *  a model with the first cell in the view as the active &#x60;minute&#x60;.
+   */
+  goHome(fromMilliseconds: number, selectedMilliseconds: number): DlDateTimePickerModel {
+    return this.getModel(moment(fromMilliseconds).startOf(&#x27;hour&#x27;).valueOf(), selectedMilliseconds);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'DlMinuteModelProvider.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                ga('create', 'UA-325325-19', '');
+                ga('send', 'pageview');
+            </script>
+
+    </body>
+</html>
