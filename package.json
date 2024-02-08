@@ -82,6 +82,7 @@
     "@typescript-eslint/eslint-plugin": "5.11.0",
     "@typescript-eslint/parser": "5.11.0",
     "bootstrap": "^4.4.1",
+    "core-js": "^2.6.12",
     "cypress": "^13.6.3",
     "eslint": "^8.2.0",
     "jasmine-core": "~3.8.0",
