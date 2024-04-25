@@ -99,7 +99,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "^7.5.0",
     "scss-bundle": "^3.0.2",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^23.0.8",
     "travis-deploy-once": "^5.0.11",
     "typescript": "~4.5.2",
     "zone.js": "~0.11.3"
