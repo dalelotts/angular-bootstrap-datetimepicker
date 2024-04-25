@@ -22,4 +22,4 @@ jobs:
           node-version: '14.x'
 
       - name: Install dependencies and Run Tests
-        run: clean-install-test
+        run: npm clean-install-test
