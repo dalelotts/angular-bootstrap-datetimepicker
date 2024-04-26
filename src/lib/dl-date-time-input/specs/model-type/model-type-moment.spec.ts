@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import moment from 'moment';
 import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeMomentModule} from '../../../public-api';
+import {expect, it} from '@jest/globals';
 
 @Component({
   template: `<input id="dateInput"
@@ -61,7 +62,7 @@ describe('DlDateTimeInputDirective modelType', () => {
       inputElement.value = '2003-10-01';
       inputElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
-      expect(component.input.value).toEqual(jasmine.any(moment));
+      expect(component.input.value).toEqual(expect.any(moment));
     });
   });
 });

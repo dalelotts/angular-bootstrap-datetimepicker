@@ -27,6 +27,7 @@ import {
   UP_ARROW
 } from '../dispatch-events';
 import {JAN} from '../month-constants';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
 
@@ -196,9 +197,12 @@ describe('DlDateTimePickerComponent startView=minute', () => {
       minuteElements.forEach((minuteElement, index) => {
         const expectedValue = expectedValues[index];
         const ariaLabel = moment(expectedValue).format('LLL');
-        expect(minuteElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
-        expect(minuteElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
-        expect(minuteElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+        // expect(minuteElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        // expect(minuteElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        // expect(minuteElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+        expect(minuteElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10));
+        expect(minuteElement.attributes['role']).toBe('gridcell');
+        expect(minuteElement.attributes['aria-label']).toBe(ariaLabel);
       });
     });
 
@@ -281,7 +285,7 @@ describe('DlDateTimePickerComponent startView=minute', () => {
     });
 
     it('should emit a change event when clicking .dl-abdtp-minute', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const minuteElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-minute'));
@@ -468,7 +472,7 @@ describe('DlDateTimePickerComponent startView=minute', () => {
     });
 
     it('should emit change event when hitting ENTER', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
@@ -483,7 +487,7 @@ describe('DlDateTimePickerComponent startView=minute', () => {
     });
 
     it('should emit change event when hitting SPACE', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));

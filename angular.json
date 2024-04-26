@@ -81,9 +81,15 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "main": ["src/test.ts"],
-            "polyfills": ["src/polyfills.ts"],
+            "main": [
+              "src/test.ts"
+            ],
+            "polyfills": [
+              "src/polyfills.ts",
+              "zone.js/testing"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
+            "configPath": "jest.config.js",
             "styles": [
               "src/styles.scss"
             ],

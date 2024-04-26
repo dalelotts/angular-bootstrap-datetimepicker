@@ -12,7 +12,12 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import moment from 'moment';
-import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
+import {
+  DlDateTimeInputChange,
+  DlDateTimeNumberModule,
+  DlDateTimePickerComponent,
+  DlDateTimePickerModule
+} from '../../../public-api';
 import {
   dispatchKeyboardEvent,
   DOWN_ARROW,
@@ -27,6 +32,7 @@ import {
   UP_ARROW
 } from '../dispatch-events';
 import {DEC, JAN} from '../month-constants';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
   template: '<dl-date-time-picker startView="year"></dl-date-time-picker>'
@@ -181,8 +187,11 @@ describe('DlDateTimePickerComponent', () => {
 
       yearElements.forEach((yearElement, index) => {
         const expectedValue = expectedValues[index];
-        expect(yearElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
-        expect(yearElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        // expect(yearElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        // expect(yearElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        // expect(yearElement.attributes['aria-label']).withContext(index.toString()).toBeUndefined();
+        expect(yearElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10));
+        expect(yearElement.attributes['role']).toBe('gridcell');
         expect(yearElement.attributes['aria-label']).toBeUndefined();
       });
     });
@@ -242,7 +251,7 @@ describe('DlDateTimePickerComponent', () => {
     });
 
     it('should not emit a change event when clicking .dl-abdtp-year', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const yearElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-year'));
@@ -313,7 +322,8 @@ describe('DlDateTimePickerComponent', () => {
       expect(activeElement.nativeElement.textContent).toBe('2017');
 
       activeElement.nativeElement.focus();
-      expect(document.activeElement).withContext(document.activeElement.outerHTML).toBe(activeElement.nativeElement);
+      // expect(document.activeElement).withContext(document.activeElement.outerHTML).toBe(activeElement.nativeElement);
+      expect(document.activeElement).toBe(activeElement.nativeElement);
 
       dispatchKeyboardEvent(activeElement.nativeElement, 'keydown', RIGHT_ARROW);
 
@@ -464,7 +474,7 @@ describe('DlDateTimePickerComponent', () => {
     });
 
     it('should store the value and emit change event when clicking a .dl-abdtp-year', function () {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn<(arg: DlDateTimeInputChange<Date>) => void>();
       component.picker.change.subscribe(changeSpy);
 
       const yearElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-year'));
@@ -477,7 +487,7 @@ describe('DlDateTimePickerComponent', () => {
       const expectedTime = new Date(startDecade, JAN, 1).getTime();
       expect(component.picker.value).toBe(expectedTime);
       expect(changeSpy).toHaveBeenCalled();
-      expect(changeSpy.calls.first().args[0].value).toBe(expectedTime);
+      expect(changeSpy.mock.calls[0][0].value).toBe(expectedTime);
     });
   });
 });

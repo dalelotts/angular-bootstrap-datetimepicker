@@ -12,6 +12,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
   template: '<dl-date-time-picker minView="year" [(ngModel)]="selectedDate"></dl-date-time-picker>'
@@ -103,7 +104,7 @@ describe('DlDateTimePickerComponent minView', () => {
     });
 
     it('should store the value in ngModel when clicking a .dl-abdtp-year', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       expect(component.picker.value).toBeUndefined();
@@ -139,7 +140,7 @@ describe('DlDateTimePickerComponent minView', () => {
     });
 
     it('should store the value in ngModel when clicking a .dl-abdtp-month', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       expect(component.picker.value).toBeUndefined();
@@ -175,7 +176,7 @@ describe('DlDateTimePickerComponent minView', () => {
     });
 
     it('should store the value in ngModel when clicking a .dl-abdtp-day', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       expect(component.picker.value).toBeUndefined();
@@ -210,7 +211,7 @@ describe('DlDateTimePickerComponent minView', () => {
     });
 
     it('should store the value in ngModel when clicking a .dl-abdtp-hour', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       expect(component.picker.value).toBeUndefined();
@@ -253,7 +254,7 @@ describe('DlDateTimePickerComponent minView', () => {
     });
 
     it('should store the value in ngModel when clicking a .dl-abdtp-minute', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       expect(component.picker.value).toBeUndefined();
@@ -304,7 +305,7 @@ describe('DlDateTimePickerComponent minView', () => {
     });
 
     it('should store the value in ngModel when clicking a .dl-abdtp-minute', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       expect(component.picker.value).toBeUndefined();

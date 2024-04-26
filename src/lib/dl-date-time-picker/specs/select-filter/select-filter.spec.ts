@@ -12,6 +12,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DateButton, DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
   template: '<dl-date-time-picker [selectFilter]="selectFilter" [(ngModel)]="selectedDate" maxView="day"></dl-date-time-picker>'
@@ -70,7 +71,7 @@ describe('DlDateTimePickerComponent startDate', () => {
     });
 
     it('should ignore click on disabled element', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
       const disabledElement = debugElement.query(By.css('.dl-abdtp-disabled'));
       disabledElement.nativeElement.click();

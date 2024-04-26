@@ -27,6 +27,8 @@ import {
   UP_ARROW
 } from '../dispatch-events';
 import {DEC, FEB, JAN, NOV} from '../month-constants';
+import {expect, jest, it} from '@jest/globals';
+
 
 @Component({
   template: '<dl-date-time-picker></dl-date-time-picker>'
@@ -215,9 +217,13 @@ describe('DlDateTimePickerComponent startView=day', () => {
       dayElements.forEach((dayElement, index) => {
         const expectedValue = expectedValues[index];
         const ariaLabel = moment(expectedValue).format('ll');
-        expect(dayElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
-        expect(dayElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
-        expect(dayElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+        // expect(dayElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        // expect(dayElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        // expect(dayElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+
+        expect(dayElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10));
+        expect(dayElement.attributes['role']).toBe('gridcell');
+        expect(dayElement.attributes['aria-label']).toBe(ariaLabel);
       });
     });
 
@@ -300,7 +306,7 @@ describe('DlDateTimePickerComponent startView=day', () => {
     });
 
     it('should not emit a change event when clicking .dl-abdtp-day', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const dayElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-day'));

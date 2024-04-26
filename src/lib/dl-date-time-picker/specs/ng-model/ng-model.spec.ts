@@ -11,10 +11,16 @@ import {Component, ViewChild} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
+import {
+  DlDateTimeInputChange,
+  DlDateTimeNumberModule, DlDateTimePickerChange,
+  DlDateTimePickerComponent,
+  DlDateTimePickerModule
+} from '../../../public-api';
 import {dispatchKeyboardEvent, ENTER, SPACE} from '../dispatch-events';
 import {JAN} from '../month-constants';
 import moment from 'moment';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
   template: '<dl-date-time-picker [(ngModel)]="selectedDate" startView="year" minView="year"></dl-date-time-picker>'
@@ -109,7 +115,7 @@ describe('DlDateTimePickerComponent', () => {
 
     it('should store the value internally when clicking a .dl-abdtp-year', function () {
       const startYear = (Math.trunc(moment().year() / 10) * 10);
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn<(arg: DlDateTimeInputChange<Date>) => void>();
       component.picker.change.subscribe(changeSpy);
 
       const yearElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-year'));
@@ -119,14 +125,14 @@ describe('DlDateTimePickerComponent', () => {
       const expected = new Date(startYear + 8, JAN, 1).getTime();
       expect(component.picker.value).toBe(expected);
       expect(changeSpy).toHaveBeenCalled();
-      expect(changeSpy.calls.first().args[0].value).toBe(expected);
+      expect(changeSpy.mock.calls[0][0].value).toBe(expected);
     });
 
     it('should store the value in ngModel when hitting ENTER', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn<(arg: DlDateTimeInputChange<Date>) => void>();
       component.picker.change.subscribe(changeSpy);
 
-      expect(component.picker.value).toBeNull();
+      expect(component.picker.value).toBeUndefined()
 
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
 
@@ -136,15 +142,15 @@ describe('DlDateTimePickerComponent', () => {
       expect(component.picker.value).not.toBeNull();
       expect(component.picker.value).not.toBeUndefined();
       expect(changeSpy).toHaveBeenCalled();
-      expect(changeSpy.calls.first().args[0].value).toBe(component.picker.value);
+      expect(changeSpy.mock.calls[0][0].value).toBe(component.picker.value);
       expect(component.selectedDate).toBe(component.picker.value);
     });
 
     it('should store the value in ngModel when hitting SPACE', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn<(arg: DlDateTimeInputChange<Date>) => void>();
       component.picker.change.subscribe(changeSpy);
 
-      expect(component.picker.value).toBeNull();
+      expect(component.picker.value).toBeUndefined()
 
       const activeElement = fixture.debugElement.query(By.css('.dl-abdtp-active'));
 
@@ -154,12 +160,12 @@ describe('DlDateTimePickerComponent', () => {
       expect(component.picker.value).not.toBeNull();
       expect(component.picker.value).not.toBeUndefined();
       expect(changeSpy).toHaveBeenCalled();
-      expect(changeSpy.calls.first().args[0].value).toBe(component.picker.value);
+      expect(changeSpy.mock.calls[0][0].value).toBe(component.picker.value);
       expect(component.selectedDate).toBe(component.picker.value);
     });
 
     it('should not emit change event if value does not change', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       component.picker.value = 1293840000000;
@@ -170,7 +176,7 @@ describe('DlDateTimePickerComponent', () => {
 
       expect(component.picker.value).toBe(1293840000000);
       expect(changeSpy).toHaveBeenCalledTimes(1);
-      expect(changeSpy.calls.first().args[0].value).toBe(1293840000000);
+      expect((changeSpy.mock.calls[0][0] as DlDateTimeInputChange<number>).value).toBe(1293840000000);
       expect(component.selectedDate).toBe(1293840000000);
     });
   });

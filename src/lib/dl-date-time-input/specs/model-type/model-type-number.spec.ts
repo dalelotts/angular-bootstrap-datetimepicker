@@ -12,6 +12,8 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeNumberModule} from '../../../public-api';
+import {expect, it} from '@jest/globals';
+
 
 @Component({
   template: `<input id="dateInput"
@@ -60,7 +62,7 @@ describe('DlDateTimeInputDirective modelType', () => {
       inputElement.value = '2002-10-01';
       inputElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
-      expect(component.input.value).toEqual(jasmine.any(Number));
+      expect(component.input.value).toEqual(expect.any(Number));
     });
   });
 });

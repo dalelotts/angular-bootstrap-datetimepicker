@@ -12,6 +12,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
+import {expect, it} from '@jest/globals';
 
 @Component({
   template: '<dl-date-time-picker minView="day"></dl-date-time-picker>'
@@ -52,7 +53,7 @@ describe('DlDateTimePickerComponent modelType', () => {
       const nowElement = fixture.debugElement.query(By.css('.dl-abdtp-now'));
       nowElement.nativeElement.click();
 
-      expect(component.picker.value).toEqual(jasmine.any(Number));
+      expect(component.picker.value).toEqual(expect.any(Number));
     });
   });
 });

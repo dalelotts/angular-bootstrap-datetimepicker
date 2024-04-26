@@ -27,6 +27,7 @@ import {
   UP_ARROW
 } from '../dispatch-events';
 import {JAN} from '../month-constants';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
 
@@ -153,7 +154,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
     beforeEach(async () => {
       fixture = TestBed.createComponent(HourStartViewWithNgModelComponent);
       fixture.detectChanges();
-      await fixture.whenStable().then(() => {
+      return await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
@@ -164,8 +165,8 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       expect(viewLabel.nativeElement.textContent.trim()).toBe('Jan 26, 2018');
     });
 
-    it('should contain 24 .dl-abdtp-hour elements with start of hour utc time as class and role of gridcell', () => {
-
+    describe('contains 24 .dl-abdtp-hour elements with start of hour utc time as class and role of gridcell', () => {
+      expect(fixture).not.toBeUndefined()
       const expectedValues = new Array(24)
         .fill(0)
         .map((zero, index) => new Date(2018, JAN, 26, zero + index).getTime());
@@ -173,12 +174,19 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       const hourElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-hour'));
       expect(hourElements.length).toBe(24);
 
-      hourElements.forEach((hourElement, index) => {
-        const expectedValue = expectedValues[index];
-        const ariaLabel = moment(expectedValue).format('LLL');
-        expect(hourElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
-        expect(hourElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
-        expect(hourElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+      const element_data = hourElements.map((hourElement, index) => ({
+        index,
+        value: hourElement.attributes['dl-abdtp-value'],
+        role: hourElement.attributes['role'],
+        label: hourElement.attributes['aria-label'],
+        expectedValue: expectedValues[index].toString(10),
+        expectedLabel: moment(expectedValues[index],).format('LLL'),
+      }))
+
+      it.each(element_data)('element at index $index has a value of $expectedValue', ({ value, role,  label, expectedValue, expectedLabel}) => {
+        expect(value).toBe(expectedValue);
+        expect(role).toBe('gridcell');
+        expect(label).toBe(expectedLabel);
       });
     });
 
@@ -256,7 +264,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
     });
 
     it('should not emit a change event when clicking .dl-abdtp-hour', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const hourElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-hour'));

@@ -4,12 +4,13 @@ import {FormsModule, NgForm} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import moment from 'moment';
 import {
-  DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT,
+  DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT, DlDateTimeInputChange,
   DlDateTimeInputDirective,
   DlDateTimeInputModule,
   DlDateTimeNumberModule
 } from '../../public-api';
 import {OCT} from '../../dl-date-time-picker/specs/month-constants';
+import {expect, jest, it} from '@jest/globals';
 
 @Component({
   template: `
@@ -187,7 +188,7 @@ describe('DlDateTimeInputDirective', () => {
 
       const allowedValue = moment('2019-10-29T17:00').valueOf();
 
-      spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
+      jest.spyOn(component, 'dateTimeFilter').mockImplementation((date: number) => {
         return date === allowedValue;
       });
 
@@ -209,7 +210,7 @@ describe('DlDateTimeInputDirective', () => {
       // should change to ng-valid when the model is updated to an allowed date.
 
       const allowedValue = moment('2019-10-29T17:00').valueOf();
-      spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
+      jest.spyOn(component, 'dateTimeFilter').mockImplementation((date: number) => {
         return date === allowedValue;
       });
 
@@ -231,11 +232,11 @@ describe('DlDateTimeInputDirective', () => {
     }));
 
     it('should add ng-invalid for non-date input and remove ng-invalid after when model is updated with valid date', fakeAsync(() => {
-      // This is to fix #448, inputting a completely invalid date value (i.e not a date at all)
+      // This is to fix #448, inputting a completely invalid date value (i.e. not a date at all)
       // should change to ng-valid when the model is updated to an allowed date.
 
       const allowedValue = moment('2019-10-29T17:00').valueOf();
-      spyOn(component, 'dateTimeFilter').and.callFake((date: number) => {
+      jest.spyOn(component, 'dateTimeFilter').mockImplementation((date: number) => {
         return date === allowedValue;
       });
 
@@ -267,7 +268,8 @@ describe('DlDateTimeInputDirective', () => {
     });
 
     it('should emit a change event when a valid value is entered.', function () {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn<(arg: DlDateTimeInputChange<Date>) => void>();
+
       component.input.dateChange.subscribe(changeSpy);
 
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
@@ -284,7 +286,7 @@ describe('DlDateTimeInputDirective', () => {
       const expected = new Date(2018, OCT, 1).getTime();
 
       expect(changeSpy).toHaveBeenCalled();
-      expect(changeSpy.calls.first().args[0].value).toBe(expected);
+      expect(changeSpy.mock.calls[0][0].value).toBe(expected);
     });
   });
 });

@@ -176,9 +176,12 @@ describe('DlDateTimePickerComponent startView=month', () => {
       monthElements.forEach((monthElement, index) => {
         const expectedValue = expectedValues[index];
         const ariaLabel = moment(expectedValue).format('MMM YYYY');
-        expect(monthElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
-        expect(monthElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
-        expect(monthElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+        // expect(monthElement.attributes['dl-abdtp-value']).withContext(index.toString()).toBe(expectedValue.toString(10));
+        // expect(monthElement.attributes['role']).withContext(index.toString()).toBe('gridcell');
+        // expect(monthElement.attributes['aria-label']).withContext(index.toString()).toBe(ariaLabel);
+        expect(monthElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10));
+        expect(monthElement.attributes['role']).toBe('gridcell');
+        expect(monthElement.attributes['aria-label']).toBe(ariaLabel);
       });
     });
 
@@ -261,7 +264,7 @@ describe('DlDateTimePickerComponent startView=month', () => {
     });
 
     it('should not emit a change event when clicking .dl-abdtp-month', () => {
-      const changeSpy = jasmine.createSpy('change listener');
+      const changeSpy = jest.fn();
       component.picker.change.subscribe(changeSpy);
 
       const monthElements = fixture.debugElement.queryAll(By.css('.dl-abdtp-month'));
