@@ -7,10 +7,10 @@
       "node"
     ],
   },
-  "files": [
-//    "test.ts",
-//    "polyfills.ts"
-  ],
+//  "files": [
+////    "setup-jest.ts",
+////    "polyfills.ts"
+//  ],
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"

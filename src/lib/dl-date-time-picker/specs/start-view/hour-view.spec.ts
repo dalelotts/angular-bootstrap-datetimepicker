@@ -165,8 +165,7 @@ describe('DlDateTimePickerComponent startView=hour', () => {
       expect(viewLabel.nativeElement.textContent.trim()).toBe('Jan 26, 2018');
     });
 
-    describe('contains 24 .dl-abdtp-hour elements with start of hour utc time as class and role of gridcell', () => {
-      expect(fixture).not.toBeUndefined()
+    it('contains 24 .dl-abdtp-hour elements with start of hour utc time as class and role of gridcell', () => {
       const expectedValues = new Array(24)
         .fill(0)
         .map((zero, index) => new Date(2018, JAN, 26, zero + index).getTime());
@@ -183,7 +182,8 @@ describe('DlDateTimePickerComponent startView=hour', () => {
         expectedLabel: moment(expectedValues[index],).format('LLL'),
       }))
 
-      it.each(element_data)('element at index $index has a value of $expectedValue', ({ value, role,  label, expectedValue, expectedLabel}) => {
+      element_data.forEach(({value, role, label, expectedValue, expectedLabel}) => {
+        // console.log("index=", index)
         expect(value).toBe(expectedValue);
         expect(role).toBe('gridcell');
         expect(label).toBe(expectedLabel);
