@@ -73,18 +73,17 @@ describe('DlDateTimeInputDirective', () => {
       expect(inputElement.value).toEqual(expectedValue);
     }));
 
-    it('should remove model value when text value is empty string', fakeAsync(() => {
+    it('should remove model value when text value is empty string', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
       inputElement.value = '2018-10-01';
       inputElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-
       inputElement.value = '';
       inputElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
       expect(component.dateValue).toBeUndefined();
-    }));
+    });
 
     it('should mark input touched on blur', () => {
       const inputElement = fixture.debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
@@ -102,7 +101,7 @@ describe('DlDateTimeInputDirective', () => {
       expect(inputElement.classList).toContain('ng-touched');
     });
 
-    it('should reformat the input value on blur', fakeAsync(() => {
+    it('should reformat the input value on blur', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
 
       inputElement.value = '1/1/2001';
@@ -115,7 +114,7 @@ describe('DlDateTimeInputDirective', () => {
       fixture.detectChanges();
 
       expect(inputElement.value).toBe(moment('2001-01-01').format(DL_DATE_TIME_DISPLAY_FORMAT_DEFAULT));
-    }));
+    });
 
     it('should not reformat invalid dates on blur', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
