@@ -4,13 +4,12 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
   globalSetup: 'jest-preset-angular/global-setup',
-  // globals: {
-  //   'ts-jest': {
-  //     tsconfig: 'src/tsconfig.spec.json',
-  //     diagnostics: true,
-  //     // stringifyContentPathRegex: '\\.html$',
-  //   }
-  // },
+  globals: {
+    'ts-jest': {
+      tsconfig: 'src/tsconfig.spec.json',
+      diagnostics: true,
+    }
+  },
   modulePathIgnorePatterns: [
     '<rootDir>/dist/',  // Ignore modules in dist to prevent naming collisions
   ],
